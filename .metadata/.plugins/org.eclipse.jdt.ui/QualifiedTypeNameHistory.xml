@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.omg.CORBA.INITIALIZE"/>
+    <fullyQualifiedTypeName name="javax.swing.JFrame"/>
+    <fullyQualifiedTypeName name="gui.Login"/>
+    <fullyQualifiedTypeName name="model.User"/>
+    <fullyQualifiedTypeName name="javax.xml.soap.Text"/>
+    <fullyQualifiedTypeName name="java.awt.SystemColor"/>
+    <fullyQualifiedTypeName name="javax.swing.SwingConstants"/>
+</qualifiedTypeNameHistroy>

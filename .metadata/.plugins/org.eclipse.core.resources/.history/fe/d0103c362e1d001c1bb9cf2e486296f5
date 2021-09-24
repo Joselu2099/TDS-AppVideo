@@ -1,0 +1,182 @@
+package gui;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+import java.awt.Dimension;
+import java.awt.GridBagLayout;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.xml.soap.Text;
+
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.SystemColor;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.border.MatteBorder;
+import javax.swing.JButton;
+
+
+public class Login {
+
+	/**
+	 *  Atributes
+	 */
+	private JFrame frmLogin;
+	private JTextField textUser;
+	private JTextField textPassword;
+	
+	
+	/**
+	 * Create the frame.
+	 */
+	public Login() {
+		initialize();
+	}
+	
+	/**
+	 * Show actual window
+	 */
+	public void showWindow() {
+		frmLogin.setLocationRelativeTo(null);
+		frmLogin.setVisible(true);
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmLogin = new JFrame();
+		frmLogin.setResizable(false);
+		frmLogin.setBackground(Color.BLACK);
+		frmLogin.setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/multimediavideoplayer_128px.png")));
+		frmLogin.setTitle("AppVideo");
+		frmLogin.setBounds(100, 100, 1080, 720);
+		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmLogin.getContentPane().setLayout(new BoxLayout(frmLogin.getContentPane(), BoxLayout.X_AXIS));
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		panel.setPreferredSize(new Dimension(0, 0));
+		frmLogin.getContentPane().add(panel);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{20, 10, 0, 205, 0, 10, 20, 0};
+		gbl_panel.rowHeights = new int[]{20, 20, 0, 0, 20, 50, 0, 5, 0, 35, 0, 0, 0, 0, 0, 0};
+		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel.setLayout(gbl_panel);
+		
+		JLabel AppVideoLetters = new JLabel("");
+		AppVideoLetters.setIcon(new ImageIcon(Login.class.getResource("/images/AppVideo-letra.png")));
+		AppVideoLetters.setPreferredSize(new Dimension(150, 30));
+		AppVideoLetters.setForeground(new Color(148, 0, 211));
+		AppVideoLetters.setFont(new Font("Virus Killer", Font.PLAIN, 32));
+		GridBagConstraints gbc_AppVideoLetters = new GridBagConstraints();
+		gbc_AppVideoLetters.insets = new Insets(0, 0, 5, 5);
+		gbc_AppVideoLetters.gridx = 3;
+		gbc_AppVideoLetters.gridy = 2;
+		panel.add(AppVideoLetters, gbc_AppVideoLetters);
+		
+		JLabel AppVideoIcon = new JLabel("");
+		AppVideoIcon.setIcon(new ImageIcon(Login.class.getResource("/images/multimediavideoplayer_128px.png")));
+		GridBagConstraints gbc_AppVideoIcon = new GridBagConstraints();
+		gbc_AppVideoIcon.insets = new Insets(0, 0, 5, 5);
+		gbc_AppVideoIcon.gridx = 3;
+		gbc_AppVideoIcon.gridy = 3;
+		panel.add(AppVideoIcon, gbc_AppVideoIcon);
+		
+		JLabel UserIcon = new JLabel("");
+		UserIcon.setIcon(new ImageIcon(Login.class.getResource("/images/iconoUsuario.png")));
+		GridBagConstraints gbc_UserIcon = new GridBagConstraints();
+		gbc_UserIcon.insets = new Insets(0, 0, 5, 5);
+		gbc_UserIcon.anchor = GridBagConstraints.EAST;
+		gbc_UserIcon.gridx = 2;
+		gbc_UserIcon.gridy = 6;
+		panel.add(UserIcon, gbc_UserIcon);
+		
+		textUser = new JTextField();
+		textUser.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		textUser.setForeground(SystemColor.windowBorder);
+		textUser.setBackground(new Color(255, 255, 255));
+		textUser.setHorizontalAlignment(SwingConstants.CENTER);
+		textUser.setFont(new Font("Gill Sans MT", Font.BOLD, 16));
+		textUser.setPreferredSize(new Dimension(7, 40));
+		GridBagConstraints gbc_textUser = new GridBagConstraints();
+		gbc_textUser.gridwidth = 2;
+		gbc_textUser.insets = new Insets(0, 0, 5, 5);
+		gbc_textUser.fill = GridBagConstraints.BOTH;
+		gbc_textUser.gridx = 3;
+		gbc_textUser.gridy = 6;
+		panel.add(textUser, gbc_textUser);
+		textUser.setColumns(10);
+		
+		JLabel PasswordIcon = new JLabel("");
+		PasswordIcon.setIcon(new ImageIcon(Login.class.getResource("/images/passwordIcon.png")));
+		GridBagConstraints gbc_PasswordIcon = new GridBagConstraints();
+		gbc_PasswordIcon.insets = new Insets(0, 0, 5, 5);
+		gbc_PasswordIcon.anchor = GridBagConstraints.EAST;
+		gbc_PasswordIcon.gridx = 2;
+		gbc_PasswordIcon.gridy = 8;
+		panel.add(PasswordIcon, gbc_PasswordIcon);
+		
+		textPassword = new JTextField();
+		textPassword.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		textPassword.setForeground(SystemColor.windowBorder);
+		textPassword.setBackground(new Color(255, 255, 255));
+		textPassword.setHorizontalAlignment(SwingConstants.CENTER);
+		textPassword.setFont(new Font("Gill Sans MT", Font.BOLD, 16));
+		textPassword.setPreferredSize(new Dimension(7, 40));
+		GridBagConstraints gbc_textPassword = new GridBagConstraints();
+		gbc_textPassword.gridwidth = 2;
+		gbc_textPassword.insets = new Insets(0, 0, 5, 5);
+		gbc_textPassword.fill = GridBagConstraints.BOTH;
+		gbc_textPassword.gridx = 3;
+		gbc_textPassword.gridy = 8;
+		panel.add(textPassword, gbc_textPassword);
+		textPassword.setColumns(10);
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setPreferredSize(new Dimension(48, 48));
+		btnNewButton.setSize(new Dimension(48, 48));
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.setBackground(Color.WHITE);
+		btnNewButton.setIcon(new ImageIcon(Login.class.getResource("/images/join_enter_login_icon.png")));
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton.gridx = 3;
+		gbc_btnNewButton.gridy = 10;
+		panel.add(btnNewButton, gbc_btnNewButton);
+		
+		JLabel lblNewLabel = new JLabel("not registered yet?");
+		lblNewLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 3;
+		gbc_lblNewLabel.gridy = 13;
+		panel.add(lblNewLabel, gbc_lblNewLabel);
+		
+		JButton btnNewButton_1 = new JButton("Register");
+		btnNewButton_1.setForeground(Color.WHITE);
+		btnNewButton_1.setBackground(new Color(102, 0, 204));
+		btnNewButton_1.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
+		btnNewButton_1.setIcon(new ImageIcon(Login.class.getResource("/images/crearCuentaIcon.png")));
+		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+		gbc_btnNewButton_1.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton_1.gridx = 3;
+		gbc_btnNewButton_1.gridy = 14;
+		panel.add(btnNewButton_1, gbc_btnNewButton_1);
+		
+		JLabel ImageLoginInterface = new JLabel("");
+		ImageLoginInterface.setIcon(new ImageIcon(Login.class.getResource("/images/fondoLoginFrame.jpg")));
+		//panel_1.add(ImageLoginInterface);
+		frmLogin.getContentPane().add(ImageLoginInterface);
+		frmLogin.setBounds(100, 100, 1080, 720);
+		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+}

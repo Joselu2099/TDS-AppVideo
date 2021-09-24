@@ -1,0 +1,43 @@
+package gui;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+
+
+public class Login {
+
+	/**
+	 *  Atributes
+	 */
+	private JFrame frmLogin;
+	
+	
+	/**
+	 * Create the frame.
+	 */
+	public Login() {
+		initialize();
+	}
+	
+	/**
+	 * Show actual window
+	 */
+	public void showWindow() {
+		frmLogin.setLocationRelativeTo(null);
+		frmLogin.setVisible(true);
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmLogin = new JFrame();
+		frmLogin.setBounds(100, 100, 1280, 720);
+		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmLogin.getContentPane().setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel = new JPanel();
+		frmLogin.getContentPane().add(panel, BorderLayout.WEST);
+	}
+}
