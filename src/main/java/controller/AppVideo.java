@@ -32,11 +32,12 @@ public class AppVideo {
 	}
 	
 	public boolean login(String username, String password) {
-		User user = UserRepository.getInstance().getUser(username);
+		/**User user = UserRepository.getInstance().getUser(username);
 		if(user != null && user.getPassword().equals(password)) {
 			this.actualUser = user;
 			return true;
 		}
+		**/
 		return false;
 	}
 	
