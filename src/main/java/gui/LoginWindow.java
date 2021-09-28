@@ -24,6 +24,7 @@ import controller.AppVideo;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.UIManager;
 
 
 public class LoginWindow {
@@ -57,7 +58,6 @@ public class LoginWindow {
 	private void initialize() {
 		frmLogin = new JFrame();
 		frmLogin.setResizable(false);
-		frmLogin.setBackground(Color.BLACK);
 		frmLogin.setIconImage(Toolkit.getDefaultToolkit().getImage(LoginWindow.class.getResource("/images/multimediavideoplayer_128px.png")));
 		frmLogin.setTitle("AppVideo");
 		frmLogin.setBounds(100, 100, 1080, 720);
@@ -65,7 +65,6 @@ public class LoginWindow {
 		frmLogin.getContentPane().setLayout(new BoxLayout(frmLogin.getContentPane(), BoxLayout.X_AXIS));
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
 		panel.setPreferredSize(new Dimension(0, 0));
 		frmLogin.getContentPane().add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
@@ -78,7 +77,6 @@ public class LoginWindow {
 		JLabel AppVideoLetters = new JLabel("");
 		AppVideoLetters.setIcon(new ImageIcon(LoginWindow.class.getResource("/images/AppVideo-letra.png")));
 		AppVideoLetters.setPreferredSize(new Dimension(150, 30));
-		AppVideoLetters.setForeground(new Color(148, 0, 211));
 		AppVideoLetters.setFont(new Font("Virus Killer", Font.PLAIN, 32));
 		GridBagConstraints gbc_AppVideoLetters = new GridBagConstraints();
 		gbc_AppVideoLetters.insets = new Insets(0, 0, 5, 5);
@@ -104,9 +102,6 @@ public class LoginWindow {
 		panel.add(UserIcon, gbc_UserIcon);
 		
 		textUser = new JTextField();
-		textUser.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		textUser.setForeground(SystemColor.windowBorder);
-		textUser.setBackground(new Color(255, 255, 255));
 		textUser.setHorizontalAlignment(SwingConstants.CENTER);
 		textUser.setFont(new Font("Gill Sans MT", Font.BOLD, 16));
 		textUser.setPreferredSize(new Dimension(7, 40));
@@ -129,9 +124,6 @@ public class LoginWindow {
 		panel.add(PasswordIcon, gbc_PasswordIcon);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		passwordField.setForeground(SystemColor.windowBorder);
-		passwordField.setBackground(new Color(255, 255, 255));
 		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
 		passwordField.setFont(new Font("Gill Sans MT", Font.BOLD, 16));
 		passwordField.setPreferredSize(new Dimension(7, 40));
@@ -144,6 +136,7 @@ public class LoginWindow {
 		panel.add(passwordField, gbc_passwordField);
 		
 		JButton btnLogin = new JButton("");
+		btnLogin.setBackground(UIManager.getColor("InternalFrame.background"));
 		btnLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -154,7 +147,6 @@ public class LoginWindow {
 		btnLogin.setPreferredSize(new Dimension(48, 48));
 		btnLogin.setSize(new Dimension(48, 48));
 		btnLogin.setBorderPainted(false);
-		btnLogin.setBackground(Color.WHITE);
 		btnLogin.setIcon(new ImageIcon(LoginWindow.class.getResource("/images/join_enter_login_icon.png")));
 		GridBagConstraints gbc_btnLogin = new GridBagConstraints();
 		gbc_btnLogin.insets = new Insets(0, 0, 5, 5);
@@ -177,8 +169,6 @@ public class LoginWindow {
 				registerUser();
 			}
 		});
-		btnRegister.setForeground(Color.WHITE);
-		btnRegister.setBackground(new Color(102, 0, 204));
 		btnRegister.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
 		btnRegister.setIcon(new ImageIcon(LoginWindow.class.getResource("/images/RegisterIcon.png")));
 		GridBagConstraints gbc_btnRegister = new GridBagConstraints();

@@ -1,8 +1,7 @@
 {
-  "name": "IntelliJ Light",
+  "name": "IntelliJ Purpple Light",
   "dark": false,
   "author": "JetBrains",
-  "editorScheme": "/themes/Light.xml",
 
   "colors": {
     "foreground": "#000000",
@@ -10,7 +9,7 @@
     "infoInputForeground": "#999999",
     "disabledForeground": "#8C8C8C",
     "selectionForeground": "#FFFFFF",
-    "linkForeground": "#2470B3",
+    "linkForeground": "#6626d3",
 
     "border": "#D1D1D1",
     "componentBorder": "#C4C4C4",
@@ -28,7 +27,10 @@
       "selectedForeground": "foreground",
       "selectionInactiveForeground": "foreground",
 
-      "selectionBackground":  "#2675BF",
+      "focusColor": "#d0b3ff",
+      "focusedBorderColor": "#807bf7",
+      "focusedForeground" : "#FFFFFF",
+      "selectionBackground":  "#6B28DE",
       "selectionBackgroundInactive": "#D5D5D5",
       "selectionInactiveBackground": "#D5D5D5",
 
@@ -36,7 +38,7 @@
       "disabledText": "disabledForeground",
       "inactiveForeground": "disabledForeground",
 
-      "modifiedItemForeground": "#005ad9",
+      "modifiedItemForeground": "#5a00d9",
 
       "acceleratorSelectionForeground": "selectionForeground",
 
@@ -50,18 +52,11 @@
     },
 
     "Button": {
-      "shadowColor": "#A6A6A600",
-      "startBorderColor": "componentBorder",
-      "endBorderColor": "componentBorder",
-      "default": {
-        "foreground": "selectionForeground",
-        "startBackground": "#528CC7",
-        "endBackground": "#4989CC",
-        "startBorderColor": "#487EB8",
-        "endBorderColor": "#346DAD",
-        "shadowColor": "#A6A6A600",
-        "focusedBorderColor": "#A9C9F5"
-      }
+        "startBorderColor": "#853FF8",
+        "endBorderColor": "#6B28DE",
+        "startBackground": "#953FF8",
+        "endBackground": "#7B28DE",
+        "foreground": "#FFFFFF"
     },
 
     "ComboBox": {
@@ -73,7 +68,7 @@
     "ComboBoxButton.background": "#FFFFFF",
 
     "CompletionPopup": {
-      "selectionBackground": "#c5dffc",
+      "selectionBackground": "#dfc5fc",
       "selectionInactiveBackground": "#e0e0e0"
     },
 
@@ -89,7 +84,7 @@
     "Editor": {
       "background": "#cccccc",
       "foreground": "#737373",
-      "shortcutForeground": "#4274A6"
+      "shortcutForeground": "#7442A6"
     },
 
     "Label": {
@@ -102,7 +97,7 @@
       "hoverForeground": "linkForeground",
       "pressedForeground": "linkForeground",
       "visitedForeground": "linkForeground",
-      "secondaryForeground": "#77a8d9"
+      "secondaryForeground": "#A877D9"
     },
 
     "Notification": {
@@ -123,9 +118,9 @@
 
     "ProgressBar": {
       "trackColor": "#D1D1D1",
-      "progressColor": "#1E82E6",
-      "indeterminateStartColor": "#91C5F2",
-      "indeterminateEndColor": "#1E82E6"
+      "progressColor": "#821EE6",
+      "indeterminateStartColor": "#C591F2",
+      "indeterminateEndColor": "#821EE6"
     },
 
     "StatusBar.borderColor": "border",
@@ -135,11 +130,17 @@
     "Tree.rowHeight": 20
   },
 
+  "DefaultTabs": {
+    "underlineColor": "#9649cc",
+    "inactiveUnderlineColor": "#877399",
+    "hoverBackground": "#dfb3ff1a"
+  },
+
   "icons": {
     "ColorPalette": {
       "Checkbox.Border.Default": "#b0b0b0",
-      "Checkbox.Background.Selected": "#4F9EE3",
-      "Checkbox.Border.Selected": "#4B97D9"
+      "Checkbox.Background.Selected": "#9E4FE3",
+      "Checkbox.Border.Selected": "#974BD9"
     }
   }
 }

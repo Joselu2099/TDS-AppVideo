@@ -26,6 +26,7 @@ import java.awt.event.MouseEvent;
 import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.border.MatteBorder;
+import javax.swing.UIManager;
 
 public class RegisterWindow {
 
@@ -305,6 +306,7 @@ public class RegisterWindow {
 		panelRegister.add(lblDateOfBirth, gbc_lblDateOfBirth);
 
 		dateOfBirth = new JDateChooser();
+		dateOfBirth.getCalendarButton().setBackground(UIManager.getColor("InternalFrame.background"));
 		dateOfBirth.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		GridBagConstraints gbc_dateOfBirth = new GridBagConstraints();
 		gbc_dateOfBirth.insets = new Insets(0, 0, 5, 5);
