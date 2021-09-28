@@ -6,19 +6,33 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="textUser"/>
+		<item key="selection" value="DateOfBirth"/>
 		<list key="findhistory">
+			<item value="FechaNacimiento"/>
+			<item value="Registrar"/>
+			<item value="clave"/>
+			<item value="claveRepetida"/>
+			<item value="textUsuario"/>
+			<item value="textApellidos"/>
+			<item value="txtNombre"/>
 			<item value="txtUsuario"/>
 			<item value="Las canciones han sido"/>
 			<item value="Las"/>
 		</list>
 		<list key="replacehistory">
+			<item value="DateOfBirth"/>
+			<item value="Register"/>
+			<item value="password"/>
+			<item value="Password"/>
+			<item value="repeatedPassword"/>
 			<item value="textUser"/>
+			<item value="textSurname"/>
+			<item value="textUsername"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="826"/>
-		<item key="DIALOG_Y_ORIGIN" value="268"/>
+		<item key="DIALOG_X_ORIGIN" value="1356"/>
+		<item key="DIALOG_Y_ORIGIN" value="144"/>
 		<item key="DIALOG_WIDTH" value="284"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>

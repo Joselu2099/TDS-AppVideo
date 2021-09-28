@@ -1,0 +1,16 @@
+package model;
+
+public class UserRepository {
+	
+	private static UserRepository uniqueInstance = null;
+	
+	private UserRepository() {
+		
+	}
+	
+	public static AppVideo getInstance() {
+		if (uniqueInstance == null)
+			uniqueInstance = new AppVideo();
+		return uniqueInstance;
+	}
+}
