@@ -43,4 +43,5 @@ public class AppVideo {
 	public boolean registerUser(String name, String surname, String mail, String username, String password, String dateOfBirth) {
 		return true;
 	}
+	
 }

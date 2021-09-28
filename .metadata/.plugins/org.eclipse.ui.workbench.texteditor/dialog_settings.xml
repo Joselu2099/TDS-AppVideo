@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="DateOfBirth"/>
+		<item key="selection" value="lblWarningPassword"/>
 		<list key="findhistory">
+			<item value="lblWarning2"/>
+			<item value="Registro"/>
 			<item value="FechaNacimiento"/>
 			<item value="Registrar"/>
 			<item value="clave"/>
@@ -20,6 +22,7 @@
 			<item value="Las"/>
 		</list>
 		<list key="replacehistory">
+			<item value="lblWarningPassword"/>
 			<item value="DateOfBirth"/>
 			<item value="Register"/>
 			<item value="password"/>

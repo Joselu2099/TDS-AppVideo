@@ -1870,3 +1870,545 @@ org.eclipse.core.runtime.CoreException: Launch configuration Lanzador references
 2021-09-26 19:01:00,602 [Worker-100: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2021-09-26 19:01:00,602 [Worker-100: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
 2021-09-28 10:52:29,301 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2021-09-28 10:53:58,126 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2021-09-28 10:54:31,560 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 10:54:31,560 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 10:54:31,561 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 10:54:31,561 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 10:55:53,450 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 10:55:53,450 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 10:55:53,451 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 10:55:53,451 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 10:55:54,514 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 10:55:54,514 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 10:55:54,515 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 10:55:54,515 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 10:55:56,031 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 10:55:56,031 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 10:55:56,032 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 10:55:56,032 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 10:58:43,020 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 10:58:43,020 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 10:58:43,021 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 10:58:43,021 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 10:58:48,936 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 10:58:48,936 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 10:58:48,937 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 10:58:48,937 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 10:59:05,491 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 10:59:05,491 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 10:59:05,492 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 10:59:05,492 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:00:29,907 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:00:29,907 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:00:29,909 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:00:29,909 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:01:07,577 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:01:07,577 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:01:07,577 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:01:07,578 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:05:17,375 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:05:17,375 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:05:17,375 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:05:17,375 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:05:40,688 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:05:40,688 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:05:40,689 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:05:40,689 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:06:59,295 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:06:59,295 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:06:59,295 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:06:59,296 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:07:32,551 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:07:32,551 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:07:32,552 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:07:32,552 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:09:28,565 [Worker-39: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:09:28,565 [Worker-39: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:09:28,566 [Worker-39: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:09:28,566 [Worker-39: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:10:21,491 [Worker-39: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:10:21,491 [Worker-39: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:10:21,492 [Worker-39: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:10:21,492 [Worker-39: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:12:58,383 [Worker-41: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:12:58,383 [Worker-41: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:12:58,384 [Worker-41: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:12:58,384 [Worker-41: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:13:16,218 [Worker-41: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:13:16,218 [Worker-41: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:13:16,218 [Worker-41: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:13:16,219 [Worker-41: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:14:40,879 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:14:40,879 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:14:40,879 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:14:40,879 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:15:40,849 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:15:40,849 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:15:40,849 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:15:40,849 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:15:58,949 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:15:58,950 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:15:58,950 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:15:58,950 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:16:01,792 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:16:01,792 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:16:01,793 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:16:01,793 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:16:48,351 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:16:48,351 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:16:48,351 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:16:48,351 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:17:21,051 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:17:21,051 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:17:21,052 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:17:21,052 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:17:25,528 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:17:25,528 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:17:25,528 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:17:25,528 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:17:47,497 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:17:47,498 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:17:47,498 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:17:47,498 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:18:03,593 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:18:03,593 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:18:03,593 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:18:03,593 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:18:21,633 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:18:21,633 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:18:21,634 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:18:21,634 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:18:29,679 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:18:29,679 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:18:29,679 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:18:29,679 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:19:09,927 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:19:09,927 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:19:09,928 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:19:09,928 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:19:54,726 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:19:54,727 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:19:54,727 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:19:54,727 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:20:26,031 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:20:26,031 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:20:26,032 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:20:26,032 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:20:56,373 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:20:56,373 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:20:56,374 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:20:56,374 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:22:26,557 [Worker-42: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:22:26,557 [Worker-42: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:22:26,558 [Worker-42: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:22:26,558 [Worker-42: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:23:21,742 [Worker-45: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:23:21,742 [Worker-45: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:23:21,742 [Worker-45: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:23:21,742 [Worker-45: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:24:52,491 [Worker-47: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:24:52,491 [Worker-47: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:24:52,491 [Worker-47: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:24:52,491 [Worker-47: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:26:01,074 [Worker-45: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:26:01,074 [Worker-45: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:26:01,074 [Worker-45: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:26:01,074 [Worker-45: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:26:47,349 [Worker-42: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:26:47,350 [Worker-42: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:26:47,350 [Worker-42: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:26:47,350 [Worker-42: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:27:29,182 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:27:29,182 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:27:29,183 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:27:29,183 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:29:38,147 [Worker-48: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:29:38,148 [Worker-48: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:29:38,148 [Worker-48: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:29:38,148 [Worker-48: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:30:49,052 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:30:49,052 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:30:49,052 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:30:49,053 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:32:29,615 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:32:29,616 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:32:29,616 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:32:29,616 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:32:55,542 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:32:55,542 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:32:55,542 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:32:55,542 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:32:57,543 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:32:57,543 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:32:57,544 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:32:57,544 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:33:34,461 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:33:34,462 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:33:34,462 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:33:34,462 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:33:42,998 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:33:42,998 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:33:42,999 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:33:42,999 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:33:53,526 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:33:53,526 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:33:53,526 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:33:53,526 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:34:15,813 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:34:15,813 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:34:15,813 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:34:15,813 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:34:46,047 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:34:46,047 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:34:46,048 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:34:46,048 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:34:50,482 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:34:50,482 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:34:50,483 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:34:50,483 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:35:03,276 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:35:03,276 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:35:03,276 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:35:03,276 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:35:16,920 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:35:16,921 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:35:16,921 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:35:16,921 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:35:24,957 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:35:24,957 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:35:24,958 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:35:24,958 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:35:35,713 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:35:35,713 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:35:35,714 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:35:35,714 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:35:46,904 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:35:46,904 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:35:46,904 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:35:46,904 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:35:56,319 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:35:56,319 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:35:56,320 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:35:56,320 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:36:41,879 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:36:41,879 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:36:41,879 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:36:41,879 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:36:52,224 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:36:52,224 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:36:52,224 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:36:52,224 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:37:19,295 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:37:19,295 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:37:19,295 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:37:19,295 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:38:33,807 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:38:33,807 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:38:33,808 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:38:33,808 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:38:45,984 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:38:45,984 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:38:45,984 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:38:45,984 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:39:04,449 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:39:04,449 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:39:04,449 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:39:04,449 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:39:29,855 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:39:29,856 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:39:29,856 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:39:29,856 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:39:35,759 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:39:35,759 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:39:35,760 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:39:35,760 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:40:51,370 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:40:51,370 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:40:51,370 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:40:51,370 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:42:12,616 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:42:12,616 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:42:12,617 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:42:12,617 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:42:20,943 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:42:20,943 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:42:20,943 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:42:20,943 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:43:10,038 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:43:10,039 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:43:10,039 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:43:10,039 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:43:23,799 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:43:23,799 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:43:23,799 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:43:23,800 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:43:57,742 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:43:57,742 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:43:57,743 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:43:57,743 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:44:41,862 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:44:41,862 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:44:41,863 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:44:41,863 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:44:46,511 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:44:46,511 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:44:46,511 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:44:46,511 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:44:56,340 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:44:56,340 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:44:56,340 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:44:56,340 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:45:08,146 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:45:08,146 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:45:08,146 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:45:08,146 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:45:20,844 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:45:20,844 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:45:20,845 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:45:20,845 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:46:27,999 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:46:28,000 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:46:28,000 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:46:28,000 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:46:53,663 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:46:53,663 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:46:53,663 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:46:53,663 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:50:03,525 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:50:03,525 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:50:03,526 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:50:03,526 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:50:35,175 [Worker-50: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:50:35,175 [Worker-50: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:50:35,175 [Worker-50: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:50:35,176 [Worker-50: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:51:03,142 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:51:03,142 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:51:03,143 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:51:03,143 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:51:31,253 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:51:31,253 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:51:31,254 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:51:31,254 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:51:59,223 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:51:59,223 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:51:59,224 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:51:59,224 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:52:19,374 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:52:19,374 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:52:19,375 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:52:19,375 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:52:24,734 [Worker-50: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:52:24,734 [Worker-50: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:52:24,734 [Worker-50: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:52:24,734 [Worker-50: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:52:56,319 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:52:56,319 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:52:56,319 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:52:56,319 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:54:02,293 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:54:02,293 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:54:02,294 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:54:02,294 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:54:57,967 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:54:57,967 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:54:57,968 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:54:57,968 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:55:27,879 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:55:27,879 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:55:27,879 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:55:27,879 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:55:32,462 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:55:32,462 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:55:32,462 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:55:32,462 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:55:38,335 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:55:38,335 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:55:38,335 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:55:38,335 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:55:52,806 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:55:52,806 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:55:52,807 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:55:52,807 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:56:04,936 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:56:04,936 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:56:04,937 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:56:04,937 [Worker-42: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:56:12,888 [Worker-51: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:56:12,888 [Worker-51: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:56:12,888 [Worker-51: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:56:12,888 [Worker-51: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:58:51,391 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:58:51,391 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:58:51,392 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:58:51,392 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:59:06,982 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:59:06,983 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:59:06,983 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:59:06,983 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:59:10,958 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:59:10,958 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:59:10,958 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:59:10,958 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:59:25,302 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:59:25,302 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:59:25,303 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:59:25,303 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 11:59:52,773 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:59:52,773 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 11:59:52,774 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 11:59:52,774 [Worker-49: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:00:57,377 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:00:57,377 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:00:57,378 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:00:57,378 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:01:07,118 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:01:07,118 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:01:07,118 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:01:07,118 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:01:33,140 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:01:33,140 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:01:33,140 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:01:33,140 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:02:02,343 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:02:02,343 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:02:02,343 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:02:02,343 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:02:28,957 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:02:28,958 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:02:28,958 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:02:28,958 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:02:35,207 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:02:35,207 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:02:35,207 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:02:35,207 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:02:44,950 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:02:44,950 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:02:44,951 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:02:44,951 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:03:06,479 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:03:06,479 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:03:06,479 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:03:06,479 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:03:17,909 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:03:17,909 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:03:17,910 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:03:17,910 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:03:34,598 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:03:34,598 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:03:34,598 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:03:34,598 [Worker-47: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:03:44,712 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:03:44,712 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:03:44,712 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:03:44,712 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:04:07,237 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:04:07,238 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:04:07,238 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:04:07,238 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:04:11,320 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:04:11,320 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:04:11,320 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:04:11,320 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:04:13,750 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:04:13,750 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:04:13,750 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:04:13,750 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:04:38,496 [Worker-54: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:04:38,496 [Worker-54: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:04:38,496 [Worker-54: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:04:38,496 [Worker-54: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:04:51,950 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:04:51,950 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:04:51,951 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:04:51,951 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:05:07,991 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:05:07,991 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:05:07,992 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:05:07,992 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:05:49,653 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:05:49,653 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:05:49,653 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:05:49,653 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:06:05,206 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:06:05,206 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:06:05,206 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:06:05,206 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:06:14,854 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:06:14,854 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:06:14,854 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:06:14,855 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:07:09,718 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:07:09,718 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:07:09,719 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:07:09,719 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:07:18,581 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:07:18,581 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:07:18,581 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:07:18,581 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:08:47,871 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:08:47,871 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:08:47,871 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:08:47,872 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:09:04,521 [Worker-55: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:09:04,521 [Worker-55: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:09:04,522 [Worker-55: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:09:04,522 [Worker-55: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:10:26,783 [Worker-58: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:10:26,783 [Worker-58: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:10:26,784 [Worker-58: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:10:26,784 [Worker-58: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:10:39,490 [Worker-55: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:10:39,490 [Worker-55: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:10:39,490 [Worker-55: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:10:39,490 [Worker-55: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:10:43,135 [Worker-56: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:10:43,135 [Worker-56: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:10:43,136 [Worker-56: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:10:43,136 [Worker-56: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:11:29,181 [Worker-59: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:11:29,181 [Worker-59: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:11:29,181 [Worker-59: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:11:29,181 [Worker-59: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:13:11,655 [Worker-59: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:13:11,655 [Worker-59: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:13:11,655 [Worker-59: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:13:11,655 [Worker-59: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:13:51,375 [Worker-56: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:13:51,375 [Worker-56: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:13:51,375 [Worker-56: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:13:51,375 [Worker-56: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:14:30,623 [Worker-55: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:14:30,624 [Worker-55: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:14:30,624 [Worker-55: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:14:30,624 [Worker-55: Launching Launcher] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:15:12,156 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2021-09-28 12:16:38,835 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:16:38,835 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:16:38,837 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:16:38,837 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:18:06,143 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:18:06,143 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:18:06,144 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:18:06,144 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:18:13,193 [Worker-23: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:18:13,193 [Worker-23: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:18:13,194 [Worker-23: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:18:13,194 [Worker-23: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:18:28,289 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:18:28,289 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:18:28,290 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:18:28,290 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:19:03,080 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:19:03,080 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:19:03,081 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:19:03,081 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:19:09,988 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:19:09,988 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:19:09,989 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:19:09,989 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources
+2021-09-28 12:19:14,318 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:19:14,318 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\main\resources
+2021-09-28 12:19:14,319 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-09-28 12:19:14,319 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Documentos\UNIVERSIDAD\TDS\TDS-AppVideo\AppVideo\src\test\resources

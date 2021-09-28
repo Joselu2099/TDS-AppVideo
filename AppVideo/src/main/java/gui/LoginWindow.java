@@ -138,7 +138,7 @@ public class LoginWindow {
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
 		gbc_passwordField.gridwidth = 2;
 		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
-		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_passwordField.fill = GridBagConstraints.BOTH;
 		gbc_passwordField.gridx = 3;
 		gbc_passwordField.gridy = 8;
 		panel.add(passwordField, gbc_passwordField);
