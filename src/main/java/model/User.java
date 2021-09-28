@@ -1,30 +1,33 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class User {
 	private int id;
 	private String name;
 	private String surname;
-	private String email;
-	private String user;
+	private String mail;
+	private String username;
 	private String password;
 	private String dateOfBirth;
 	private String premium;
 	private TypeOfFilters filter;
-	private ArrayList<Playlist> listOfPlaylist;  
+	private Map<String, Playlist> listOfPlaylist;  
 	private ArrayList<Video> recentVideos;
 	
-	public User(String name, String surname, String email, String user, String password, String dateOfBirth) {
+	public User(String name, String surname, String mail, String username, String password, String dateOfBirth) {
 		this.id = 0;
 		this.name = name;
 		this.surname = surname;
-		this.email = email;
-		this.user = user;
+		this.mail = mail;
+		this.username = username;
 		this.password = password;
 		this.dateOfBirth = dateOfBirth;
 		this.premium = "no";
-		this.listOfPlaylist = new ArrayList<Playlist>();
+		this.filter = TypeOfFilters.NONE;
+		this.listOfPlaylist = new HashMap<String, Playlist>();
 		this.recentVideos = new ArrayList<Video>();
 	}
 
@@ -52,20 +55,20 @@ public class User {
 		this.surname = surname;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getMail() {
+		return mail;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 
-	public String getUser() {
-		return user;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -101,18 +104,32 @@ public class User {
 	}
 	
 	public ArrayList<Playlist> getListOfPlaylist() {
-		return new ArrayList<>(listOfPlaylist);
+		return new ArrayList<>(listOfPlaylist.values());
 	}
 
 	public void setListOfPlaylist(ArrayList<Playlist> listOfPlaylist) {
-		this.listOfPlaylist = listOfPlaylist;
+		for(Playlist pl: listOfPlaylist) {
+			this.listOfPlaylist.put(pl.getTitle(), pl);
+		}
 	}
 
+	public void addPlaylist(Playlist playlist) {
+		this.listOfPlaylist.put(playlist.getTitle(), playlist);
+	}
+	
+	public Playlist getPlaylist(String title) {
+		return listOfPlaylist.get(title);
+	}
+	
 	public ArrayList<Video> getRecentVideos() {
 		return new ArrayList<>(recentVideos);
 	}
 
 	public void setRecentVideos(ArrayList<Video> recentVideos) {
 		this.recentVideos = recentVideos;
+	}
+	
+	public void addRecentVideo(Video video) {
+		this.recentVideos.add(video);
 	}
 }
