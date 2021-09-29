@@ -21,13 +21,23 @@
     },
 
     "Button": {
+      "shadowColor": "#A6A6A620",
+      "startBorderColor": "#C4C4C4",
+      "endBorderColor": "#C4C4C4",
+      "focusedBorderColor": "#7926db",
+      "background" : "#F5F5F5",
+      "startBackground" : "#fcfdfd",
+      "endBackground" : "#fcfdfd",
+      "default": {
         "foreground": "#FFFFFF",
+        "background": "#7926db",
         "startBackground": "#7926db",
         "endBackground": "#7926db",
         "startBorderColor": "#7926db",
         "endBorderColor": "#7926db",
         "shadowColor": "#A6A6A650",
         "focusedBorderColor": "#7926db"
+      }
     },
 
     "ActionButton.hoverBackground" : "#ffffff",
