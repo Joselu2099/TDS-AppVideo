@@ -1,8 +1,7 @@
 {
-  "name": "Arc Theme",
+  "name": "Arc Purple Theme",
   "dark": false,
   "author": "Pavel Zlámal",
-  "editorScheme": "/arc-theme-light.xml",
 
   "ui": {
 
@@ -30,7 +29,6 @@
       "endBackground" : "#fcfdfd",
       "default": {
         "foreground": "#FFFFFF",
-        "background": "#7926db",
         "startBackground": "#7926db",
         "endBackground": "#7926db",
         "startBorderColor": "#7926db",
