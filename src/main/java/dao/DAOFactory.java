@@ -17,7 +17,7 @@ public abstract class DAOFactory {
 	public static DAOFactory getInstance(String type) throws DAOException{
 		if (uniqueInstance == null)
 			try { 
-				uniqueInstance=(DAOFactory) Class.forName(type).newInstance();
+				uniqueInstance=(DAOFactory) Class.forName(type).getConstructor().newInstance();
 			} catch (Exception e) {	
 				throw new DAOException(e.getMessage());
 		} 
