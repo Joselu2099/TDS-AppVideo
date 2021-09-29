@@ -61,6 +61,7 @@ public class LoginWindow {
 		frmLogin.getContentPane().setLayout(new BoxLayout(frmLogin.getContentPane(), BoxLayout.X_AXIS));
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
 		panel.setPreferredSize(new Dimension(0, 0));
 		frmLogin.getContentPane().add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
