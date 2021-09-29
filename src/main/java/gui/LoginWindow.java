@@ -14,17 +14,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.SystemColor;
-import java.awt.Color;
 import java.awt.Font;
-import javax.swing.border.MatteBorder;
-
 import controller.AppVideo;
-
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import javax.swing.UIManager;
 
 

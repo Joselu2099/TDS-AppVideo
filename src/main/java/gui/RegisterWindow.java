@@ -213,6 +213,12 @@ public class RegisterWindow {
 		panelRegister.add(lblUsername, gbc_lblUsername);
 
 		textUsername = new JTextField();
+		textUsername.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				lblWarningUser.setText("");
+			}
+		});
 		textUsername.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		GridBagConstraints gbc_textUsername = new GridBagConstraints();
 		gbc_textUsername.fill = GridBagConstraints.BOTH;
@@ -230,26 +236,14 @@ public class RegisterWindow {
 		gbc_lblPassword.gridx = 1;
 		gbc_lblPassword.gridy = 4;
 		panelRegister.add(lblPassword, gbc_lblPassword);
-
-		/*
-		password = new JPasswordField();
-		password.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(getVentanaRegistro(), "Se recomienda que la contraseña tenga un minimo de 8 caracteres "
-											+ "y que incluya letras mayusculas,minusculas y números para una mayor seguridad.", "Contraseña", JOptionPane.INFORMATION_MESSAGE);
-			}
-		});
-		password.setColumns(15);
-		GridBagConstraints gbc_password = new GridBagConstraints();
-		gbc_password.fill = GridBagConstraints.HORIZONTAL;
-		gbc_password.insets = new Insets(0, 0, 5, 5);
-		gbc_password.gridx = 2;
-		gbc_password.gridy = 4;
-		panel.add(password, gbc_password);
-		*/
 		
 		passwordField = new JPasswordField();
+		passwordField.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				lblWarningPassword.setText("");
+			}
+		});
 		passwordField.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
 		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
@@ -268,6 +262,12 @@ public class RegisterWindow {
 		panelRegister.add(lblRepeatedPassword, gbc_lblRepeatedPassword);
 		
 		repeatedPasswordField = new JPasswordField();
+		repeatedPasswordField.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				lblWarningPassword.setText("");
+			}
+		});
 		repeatedPasswordField.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		GridBagConstraints gbc_repeatedPasswordField = new GridBagConstraints();
 		gbc_repeatedPasswordField.insets = new Insets(0, 0, 5, 5);
@@ -286,6 +286,12 @@ public class RegisterWindow {
 		panelRegister.add(lblMail, gbc_lblMail);
 
 		textMail = new JTextField();
+		textMail.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				lblWarningMail.setText("");
+			}
+		});
 		textMail.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		GridBagConstraints gbc_textMail = new GridBagConstraints();
 		gbc_textMail.fill = GridBagConstraints.BOTH;
@@ -340,6 +346,7 @@ public class RegisterWindow {
 		btnRegister.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		btnRegister.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
+				lblWarningDate.setText("");
 				register();
 			}
 		});
@@ -403,7 +410,7 @@ public class RegisterWindow {
 					passwordField.setBorder(BorderFactory.createLineBorder(Color.RED));
 					repeatedPasswordField.setBorder(BorderFactory.createLineBorder(Color.RED));
 					//JOptionPane.showMessageDialog(frmRegister, "Las contraseñas no coinciden.\n","Registro", JOptionPane.ERROR_MESSAGE);
-					lblWarningPassword.setText("Las contraseñas no coinciden.\\n");
+					lblWarningPassword.setText("Las contraseñas no coinciden.\n");
 					salida = false;
 				}
 			}
@@ -446,10 +453,12 @@ public class RegisterWindow {
 			lblWarningDate.setText("El formato de la fecha es incorrecto.\n");
 		}
 		
+		if(lblWarning.getText()=="El campo") lblWarning.setText("");
+		else lblWarning.setText(lblWarning.getText() + " no ha sido completado");
+		
 		frmRegister.revalidate();
 		frmRegister.pack();
 		
-		lblWarning.setText(lblWarning.getText() + " no ha sido completado");
 		return salida;
 	}
 	
