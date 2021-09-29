@@ -13,9 +13,9 @@ public class User {
 	private String password;
 	private String dateOfBirth;
 	private String premium;
-	private TypeOfFilters filter;
-	private Map<String, Playlist> listOfPlaylist;  
+	private Map<String, Playlist> listOfPlaylist;
 	private ArrayList<Video> recentVideos;
+	private TypeOfFilters filter;
 	
 	public User(String name, String surname, String mail, String username, String password, String dateOfBirth) {
 		this.id = 0;

@@ -1,21 +1,13 @@
 package dao;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.StringTokenizer;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.*;
+import model.Playlist;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
 import beans.Entidad;
 import beans.Propiedad;
 import controller.AppVideo;
 import model.User;
-import model.Video;
 
 /**
  * 
@@ -37,6 +29,7 @@ public final class AppVideoDAOUser implements DAOUser {
 	private static final String PREMIUM = "premium";
 	private static final String RECENTVIDEOS = "recentVideos";
 	private static final String LISTOFPLAYLIST = "listOfPlaylist";
+	private static final String FILTER = "filter";
 	
 	private ServicioPersistencia servPersistencia;
 	
@@ -45,9 +38,8 @@ public final class AppVideoDAOUser implements DAOUser {
 		servPersistencia = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
 	}
 	
-	// Aplicamos el patrón Singleton.
-	// Consiguiendo de esta forma que exista una única instancia de la clase TDSUsuarioDAO
-	public static AppVideoDAOUser getInstancia() {
+	// Aplicamos el patron Singleton.
+	public static AppVideoDAOUser getInstance() {
 		if (uniqueInstance == null)
 			uniqueInstance = new AppVideoDAOUser();
 		return uniqueInstance;
@@ -68,52 +60,51 @@ public final class AppVideoDAOUser implements DAOUser {
 		user.setId(eUser.getId());
 		user.setPremium(premium);
 		if (servPersistencia.recuperarPropiedadEntidad(eUser, RECENTVIDEOS) != null) {
-			ArrayList<String> idVideos = stringToList(servPersistencia.recuperarPropiedadEntidad(eUser, RECENTVIDEOS));
+			ArrayList<Integer> idVideos = AppVideo.getInstance().stringToList(servPersistencia.recuperarPropiedadEntidad(eUser, RECENTVIDEOS));
 			//String to video {idVideo1, idVideo2, idVideo3...} --> [Video1, Video2, Video3]
-			ArrayList<Video> recentVideos = AppVideo.getInstance().
-			user.setRecentVideos(recentVideos);
+			user.setRecentVideos(AppVideo.getInstance().idsToVideos(idVideos));
 		}
 		
 		if (servPersistencia.recuperarPropiedadEntidad(eUser, LISTOFPLAYLIST) != null) {
-			ArrayList<String> canciones = stringToList(
-					servPersistencia.recuperarPropiedadEntidad(eUser, LISTOFPLAYLIST));
-			for(String id : canciones) {
-				usuario.addMasRecientes(id);
+			ArrayList<Integer> idPlaylists = AppVideo.getInstance().stringToList(servPersistencia.recuperarPropiedadEntidad(eUser, LISTOFPLAYLIST));
+			Map<Integer, Playlist> playlists = AppVideo.getInstance().idsToPlaylists(idPlaylists);
+			for(Playlist p: playlists.values()) {
+				user.addPlaylist(p);
 			}
 		}
 		
-		return usuario;
+		String filter = servPersistencia.recuperarPropiedadEntidad(eUser, FILTER);
+		user.setFilter(AppVideo.getInstance().stringToTypeOfFilter(filter));
+		
+		
+		return user;
 	}
 
-	// Función que convierte un usuario en un entidad extrayendo los atributos de la clase y convirtiendolos en propiedades para persistirlos 
+	// Funcion que convierte un usuario en un entidad extrayendo los atributos de la clase y convirtiendolos en propiedades para persistirlos 
 	private Entidad usuarioToEntidad(User user) {
 		Entidad eUser = new Entidad();
+		
 		eUser.setNombre(USER);
 		
 		eUser.setPropiedades(new ArrayList<Propiedad>(Arrays.asList(
-				new Propiedad(NOMBRE, user.getNombre()),
-				new Propiedad(APELLIDOS, usuario.getApellidos()), 
-				new Propiedad(EMAIL, usuario.getEmail()),
-				new Propiedad(LOGIN, usuario.getLogin()), 
-				new Propiedad(PASSWORD, usuario.getPassword()),
-				new Propiedad(FECHA_NACIMIENTO, usuario.getFechaNacimiento()),
-				new Propiedad(LISTAMASESCUCHADAS,listToString(usuario.getMasEscuchadasTitulo())),
-				new Propiedad(LISTAMASRECIENTES,listToString(usuario.getMasRecientes())),
-				new Propiedad(LISTASREPRODUCCION,listToString(usuario.getIdListasReproduccion())),
-				new Propiedad(VISITAS,listToString(usuario.getMasEscuchadasVisitas())),
-				new Propiedad(FOTOPERFIL, usuario.getFotoPerfil()),
-				
-				// Si tiene un descuento se guarda en BD
-				new Propiedad(DESCUENTO,
-							usuario.getDescuento().isPresent() ? usuario.getDescuento().get().getClass().getName() : ""),
-				new Propiedad(PREMIUM, usuario.getPremium()))));
+				new Propiedad(NAME, user.getName()),
+				new Propiedad(SURNAME, user.getSurname()),
+				new Propiedad(MAIL, user.getMail()),
+				new Propiedad(USERNAME, user.getUsername()),
+				new Propiedad(PASSWORD, user.getPassword()),
+				new Propiedad(DATEOFBIRTH, user.getDateOfBirth()),
+				new Propiedad(PREMIUM, user.getPremium()),
+				new Propiedad(RECENTVIDEOS, AppVideo.getInstance().listToString(AppVideo.getInstance().videosToIds(user.getRecentVideos()))),
+				new Propiedad(LISTOFPLAYLIST, AppVideo.getInstance().listToString(AppVideo.getInstance().playlistsToIds(user.getListOfPlaylist()))),
+				new Propiedad(FILTER, AppVideo.getInstance().typeOfFilterToString(user.getFilter())))));
 		return eUser;
 	}
 
 	
 	// Funcion para extraer el usuario que se pasa como parametro de la base de datos.
+	@Override
 	public void create(User user) {
-		// Si la entidad está registrada no la registra de nuevo
+		// Si la entidad estÃ¡ registrada no la registra de nuevo
 		boolean existe = true;
 		try {
 			servPersistencia.recuperarEntidad(user.getId());
@@ -129,6 +120,7 @@ public final class AppVideoDAOUser implements DAOUser {
 		user.setId(eUser.getId());
 	}
 
+	@Override
 	public boolean delete(User user) {
 		Entidad eUser;
 		eUser = servPersistencia.recuperarEntidad(user.getId());
@@ -137,8 +129,9 @@ public final class AppVideoDAOUser implements DAOUser {
 	}
 
 	/**
-	 * Permite que un Usuario modifique su perfil: password y email
+	 * Permite que un Usuario modifique su perfil
 	 */
+	@Override
 	public void updateProfile(User user) {
 		Entidad eUser = servPersistencia.recuperarEntidad(user.getId());
 		servPersistencia.eliminarPropiedadEntidad(eUser, PASSWORD);
@@ -148,16 +141,21 @@ public final class AppVideoDAOUser implements DAOUser {
 		servPersistencia.eliminarPropiedadEntidad(eUser, PREMIUM);
 		servPersistencia.anadirPropiedadEntidad(eUser, PREMIUM, user.getPremium());
 		servPersistencia.eliminarPropiedadEntidad(eUser, RECENTVIDEOS);
-		servPersistencia.anadirPropiedadEntidad(eUser, RECENTVIDEOS, listToString(user.getRecentVideos()));
-		
+		servPersistencia.anadirPropiedadEntidad(eUser, RECENTVIDEOS, AppVideo.getInstance().listToString(AppVideo.getInstance().videosToIds(user.getRecentVideos())));
+		servPersistencia.eliminarPropiedadEntidad(eUser, LISTOFPLAYLIST);
+		servPersistencia.anadirPropiedadEntidad(eUser, LISTOFPLAYLIST, AppVideo.getInstance().listToString(AppVideo.getInstance().playlistsToIds(user.getListOfPlaylist())));
+		servPersistencia.eliminarPropiedadEntidad(eUser, FILTER);
+		servPersistencia.anadirPropiedadEntidad(eUser, FILTER, AppVideo.getInstance().typeOfFilterToString(user.getFilter()));
 	}
-
+	
+	@Override
 	public User get(int id) {
 		Entidad eUser = servPersistencia.recuperarEntidad(id);
 		
 		return entidadToUsuario(eUser);
 	}
 
+	@Override
 	public List<User> getAll() {
 		List<Entidad> entidades = servPersistencia.recuperarEntidades(USER);
 
@@ -167,36 +165,5 @@ public final class AppVideoDAOUser implements DAOUser {
 		}
 		
 		return users;
-	}
-	
-	
-	private ArrayList<Video> stringToVideos(String videosEnString) {
-		return;
-	}
-	
-	private String videosToString(ArrayList<Video> videos) {
-		String resultado="";
-		for(Video v: videos) {
-			String idVideo = Integer.toString(v.getId());
-			resultado=resultado+idVideo+";";
-		}
-		return resultado;
-	}
-	
-	private ArrayList<String> stringToList(String union) {
-		ArrayList<String> canciones = new ArrayList<String>();
-		if (!union.isEmpty() || union!=null){
-		StringTokenizer strTok = new StringTokenizer(union, ";");
-		while (strTok.hasMoreTokens()) {
-			canciones.add((String) strTok.nextElement());
-		}}
-		return canciones;
-	}
-	
-	public static <K, V> Map<K, V> listasToMap(List<K> keys, List<V> values) {
-	    Iterator<K> keyIter = keys.iterator();
-	    Iterator<V> valIter = values.iterator();
-	    return IntStream.range(0, keys.size()).boxed()
-	            .collect(Collectors.toMap(_i -> keyIter.next(), _i -> valIter.next()));
 	}
 }

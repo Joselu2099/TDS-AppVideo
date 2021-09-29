@@ -11,17 +11,17 @@ public final class AppVideoDAOFactory extends DAOFactory {
 
 	@Override
 	public AppVideoDAOUser getDAOUser() {	
-		return AppVideoDAOUser.getInstancia();
+		return AppVideoDAOUser.getInstance();
 	}
-	/*
+	
 	@Override
-	public TDSCancionDAO getCancionDAO() {
-		return TDSCancionDAO.getInstancia();
+	public AppVideoDAOVideo getDAOVideo() {
+		return AppVideoDAOVideo.getInstance();
 	}
 
 	@Override
-	public ListaReproduccionDAO getListaReproduccionDAO() {
-		return TDSListaReproduccionDAO.getInstancia();
+	public AppVideoDAOPlaylist getDAOPlaylist() {
+		return AppVideoDAOPlaylist.getInstance();
 	}
-	*/
+	
 }
