@@ -343,8 +343,7 @@ public class RegisterWindow {
 		final JButton btnRegister = new JButton("Register");
 		btnRegister.setPreferredSize(new Dimension(80, 30));
 		btnRegister.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(138, 43, 226)));
-		btnRegister.setForeground(new Color(255, 255, 255));
-		btnRegister.setBackground(new Color(138, 43, 226));
+		panelRegister.getRootPane().setDefaultButton(btnRegister);
 		btnRegister.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		btnRegister.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {

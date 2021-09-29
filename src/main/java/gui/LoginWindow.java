@@ -21,6 +21,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.UIManager;
 import java.awt.Color;
+import javax.swing.plaf.ButtonUI;
 
 
 public class LoginWindow {
@@ -160,8 +161,6 @@ public class LoginWindow {
 		panel.add(lblNewLabel, gbc_lblNewLabel);
 		
 		JButton btnRegister = new JButton("Register");
-		btnRegister.setForeground(new Color(255, 255, 255));
-		btnRegister.setBackground(new Color(102, 0, 204));
 		btnRegister.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -169,6 +168,8 @@ public class LoginWindow {
 			}
 		});
 		btnRegister.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
+		panel.getRootPane().setDefaultButton(btnRegister);
+		btnRegister.putClientProperty("JButton.buttonType","roundRect");
 		btnRegister.setIcon(new ImageIcon(LoginWindow.class.getResource("/images/RegisterIcon.png")));
 		GridBagConstraints gbc_btnRegister = new GridBagConstraints();
 		gbc_btnRegister.insets = new Insets(0, 0, 0, 5);
