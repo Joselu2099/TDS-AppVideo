@@ -20,6 +20,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.UIManager;
+import java.awt.Color;
 
 
 public class LoginWindow {
@@ -158,6 +159,8 @@ public class LoginWindow {
 		panel.add(lblNewLabel, gbc_lblNewLabel);
 		
 		JButton btnRegister = new JButton("Register");
+		btnRegister.setForeground(new Color(255, 255, 255));
+		btnRegister.setBackground(new Color(102, 0, 204));
 		btnRegister.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

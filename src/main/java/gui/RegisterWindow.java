@@ -322,8 +322,10 @@ public class RegisterWindow {
 		panelRegister.add(dateOfBirth, gbc_dateOfBirth);
 		
 		final JButton btnExit = new JButton("Exit");
+		btnExit.setForeground(new Color(255, 255, 255));
+		btnExit.setBackground(new Color(204, 0, 0));
 		btnExit.setPreferredSize(new Dimension(60, 30));
-		btnExit.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(138, 43, 226)));
+		btnExit.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(153, 0, 0)));
 		btnExit.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		btnExit.addMouseListener(new MouseAdapter() {
 			@Override
@@ -367,8 +369,7 @@ public class RegisterWindow {
 	private boolean checkFields() {
 		boolean salida = true;
 		lblWarning.setText("El campo");
-		//borrar todos los errores en pantalla 
-		//ocultarErrores();
+		
 		if (textName.getText().trim().isEmpty()) {
 			lblWarning.setText(lblWarning.getText() + " Nombre");
 			//JOptionPane.showMessageDialog(textNombre, "El campo nombre no ha sido rellenado");
@@ -403,14 +404,14 @@ public class RegisterWindow {
 				passwordField.setBorder(BorderFactory.createLineBorder(Color.RED));
 				repeatedPasswordField.setBorder(BorderFactory.createLineBorder(Color.RED));
 				//JOptionPane.showMessageDialog(frmRegister, "La contraseña debe tener al menos "+AppVideo.MIN_PASSLENGTH+" caracteres.\n","Registro", JOptionPane.ERROR_MESSAGE);
-				lblWarningPassword.setText("La contraseña debe tener al menos "+AppVideo.MIN_PASSLENGTH+" caracteres.\n");
+				lblWarningPassword.setText("La contraseña debe tener al menos "+AppVideo.MIN_PASSLENGTH+" caracteres");
 				salida = false;
 			}else {
 				if (!password.equals(password2)) {
 					passwordField.setBorder(BorderFactory.createLineBorder(Color.RED));
 					repeatedPasswordField.setBorder(BorderFactory.createLineBorder(Color.RED));
 					//JOptionPane.showMessageDialog(frmRegister, "Las contraseñas no coinciden.\n","Registro", JOptionPane.ERROR_MESSAGE);
-					lblWarningPassword.setText("Las contraseñas no coinciden.\n");
+					lblWarningPassword.setText("Las contraseñas no coinciden");
 					salida = false;
 				}
 			}
@@ -434,7 +435,7 @@ public class RegisterWindow {
 			if (AppVideo.getInstance().isUserRegistered(textUsername.getText())) {
 				textUsername.setBorder(BorderFactory.createLineBorder(Color.RED));
 				//JOptionPane.showMessageDialog(frmRegister, "Ese nombre de usuario ya esta en uso, prueba con otro.\n","Registro", JOptionPane.ERROR_MESSAGE);
-				lblWarningUser.setText("Ese nombre de usuario ya esta en uso, prueba con otro.\n");
+				lblWarningUser.setText("Ese nombre de usuario ya esta en uso, prueba con otro");
 				salida = false;
 			}
 		}
@@ -445,12 +446,12 @@ public class RegisterWindow {
 				dateOfBirth.setBorder(BorderFactory.createLineBorder(Color.RED));
 				dateOfBirth.setForeground(Color.RED);
 				//JOptionPane.showMessageDialog(frmRegister, "El formato de la fecha es incorrecto.\n","Registro", JOptionPane.ERROR_MESSAGE);
-				lblWarningDate.setText("El formato de la fecha es incorrecto.\n");
+				lblWarningDate.setText("El formato de la fecha es incorrecto");
 				salida = false;
 			}
 		} catch (NullPointerException e) {
 			//JOptionPane.showMessageDialog(frmRegister, "El formato de la fecha es incorrecto.\n","Registro", JOptionPane.ERROR_MESSAGE);
-			lblWarningDate.setText("El formato de la fecha es incorrecto.\n");
+			lblWarningDate.setText("El formato de la fecha es incorrecto");
 		}
 		
 		if(lblWarning.getText()=="El campo") lblWarning.setText("");
