@@ -3,8 +3,7 @@ package dao;
 import java.util.List;
 import model.User;
 
-public interface DAOUser {
-	
+public interface DAOUser {	
 	public void create(User assistant);
 	public boolean delete(User assistant);
 	public void updateProfile(User assistant);
