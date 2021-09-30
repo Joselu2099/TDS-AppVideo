@@ -348,6 +348,7 @@ public class RegisterWindow {
 		btnRegister.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				lblWarningDate.setText("");
+				lblWarning.setText("");
 				register();
 			}
 		});

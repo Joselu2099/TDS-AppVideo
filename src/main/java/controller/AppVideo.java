@@ -76,7 +76,12 @@ public class AppVideo {
 		UserRepository.getInstance().addUser(user);
 		return true;
 	}
-	
+
+	public void loadVideos(){
+		ArrayList<Video> videoList = new ArrayList<Video>();
+		VideoRepository.getInstance(); //Se crea el repositorio de videos, lo que conlleva que se cargen todas los videos.
+	}
+
 	public String listToString(ArrayList<Integer> ids) {
 		StringBuilder result= new StringBuilder();
 		for (Integer i : ids) {

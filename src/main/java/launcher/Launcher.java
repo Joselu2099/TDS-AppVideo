@@ -4,8 +4,8 @@ import java.awt.EventQueue;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.IntelliJTheme;
+import controller.AppVideo;
 import gui.LoginWindow;
-
 import javax.swing.*;
 
 public class Launcher {
@@ -16,7 +16,7 @@ public class Launcher {
 					UIManager.setLookAndFeel(new FlatLightLaf());
 					IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/arc-theme.theme.json"));
 //					IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
-					//AppVideo.getInstancia().cargarCanciones();
+					AppVideo.getInstance().loadVideos();
 
 
 					LoginWindow ventana = new LoginWindow();
