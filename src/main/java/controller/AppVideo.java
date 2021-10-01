@@ -78,7 +78,7 @@ public class AppVideo {
 	}
 
 	public void loadVideos(){
-		ArrayList<Video> videoList = new ArrayList<Video>();
+		//ArrayList<Video> videoList = new ArrayList<Video>();
 		VideoRepository.getInstance(); //Se crea el repositorio de videos, lo que conlleva que se cargen todas los videos.
 	}
 

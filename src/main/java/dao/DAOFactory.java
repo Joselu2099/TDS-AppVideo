@@ -14,6 +14,7 @@ public abstract class DAOFactory {
 	 * Crea un tipo de factoria DAO.
 	 * Solo existe el tipo TDSFactoriaDAO
 	 */
+	@SuppressWarnings("deprecation")
 	public static DAOFactory getInstance(String type) throws DAOException{
 		if (uniqueInstance == null)
 			try { 
