@@ -20,28 +20,6 @@
 
   <dependencies>
       <dependency>
-          <groupId>tds.driver</groupId>
-          <artifactId>DriverPersistencia</artifactId>
-          <version>1.0</version>
-          <scope>system</scope>
-          <systemPath>${project.basedir}/lib/DriverPersistencia.jar</systemPath>
-      </dependency>
-      <dependency>
-          <groupId>org.eclipse.persistence</groupId>
-          <artifactId>eclipselink</artifactId>
-          <version>2.7.7</version>
-      </dependency>
-      <dependency>
-          <groupId>javax.persistence</groupId>
-          <artifactId>javax.persistence-api</artifactId>
-          <version>2.2</version>
-      </dependency>
-      <dependency>
-          <groupId>mysql</groupId>
-          <artifactId>mysql-connector-java</artifactId>
-          <version>5.1.18</version>
-      </dependency>
-      <dependency>
           <groupId>com.formdev</groupId>
           <artifactId>flatlaf</artifactId>
           <version>1.6</version>
