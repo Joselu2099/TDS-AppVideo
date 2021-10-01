@@ -16,7 +16,7 @@ public class Launcher {
 					UIManager.setLookAndFeel(new FlatLightLaf());
 					IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/arc-theme.theme.json"));
 //					IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
-					AppVideo.getInstance().loadVideos();
+					//AppVideo.getInstance().loadVideos();
 
 
 					LoginWindow ventana = new LoginWindow();

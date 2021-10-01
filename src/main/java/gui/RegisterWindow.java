@@ -161,12 +161,6 @@ public class RegisterWindow {
 		panelRegister.add(lblName, gbc_lblName);
 
 		textName = new JTextField();
-		textName.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				lblWarning.setText("");
-			}
-		});
 		textName.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		GridBagConstraints gbc_textName = new GridBagConstraints();
 		gbc_textName.gridwidth = 3;
@@ -187,12 +181,6 @@ public class RegisterWindow {
 		panelRegister.add(lblSurname, gbc_lblSurname);
 
 		textSurname = new JTextField();
-		textSurname.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				lblWarning.setText("");
-			}
-		});
 		textSurname.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		GridBagConstraints gbc_textSurname = new GridBagConstraints();
 		gbc_textSurname.gridwidth = 3;
@@ -213,12 +201,6 @@ public class RegisterWindow {
 		panelRegister.add(lblUsername, gbc_lblUsername);
 
 		textUsername = new JTextField();
-		textUsername.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				lblWarningUser.setText("");
-			}
-		});
 		textUsername.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		GridBagConstraints gbc_textUsername = new GridBagConstraints();
 		gbc_textUsername.fill = GridBagConstraints.BOTH;
@@ -238,12 +220,6 @@ public class RegisterWindow {
 		panelRegister.add(lblPassword, gbc_lblPassword);
 		
 		passwordField = new JPasswordField();
-		passwordField.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				lblWarningPassword.setText("");
-			}
-		});
 		passwordField.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
 		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
@@ -262,12 +238,6 @@ public class RegisterWindow {
 		panelRegister.add(lblRepeatedPassword, gbc_lblRepeatedPassword);
 		
 		repeatedPasswordField = new JPasswordField();
-		repeatedPasswordField.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				lblWarningPassword.setText("");
-			}
-		});
 		repeatedPasswordField.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		GridBagConstraints gbc_repeatedPasswordField = new GridBagConstraints();
 		gbc_repeatedPasswordField.insets = new Insets(0, 0, 5, 5);
@@ -286,12 +256,6 @@ public class RegisterWindow {
 		panelRegister.add(lblMail, gbc_lblMail);
 
 		textMail = new JTextField();
-		textMail.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				lblWarningMail.setText("");
-			}
-		});
 		textMail.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		GridBagConstraints gbc_textMail = new GridBagConstraints();
 		gbc_textMail.fill = GridBagConstraints.BOTH;
@@ -347,8 +311,6 @@ public class RegisterWindow {
 		btnRegister.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		btnRegister.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				lblWarningDate.setText("");
-				lblWarning.setText("");
 				register();
 			}
 		});
@@ -358,9 +320,6 @@ public class RegisterWindow {
 		gbc_btnRegistrar.gridx = 4;
 		gbc_btnRegistrar.gridy = 8;
 		panelRegister.add(btnRegister, gbc_btnRegistrar);
-		
-		JPanel panelServices = new JPanel();
-		tabbedPaneRegister.addTab("Services", null, panelServices, null);
 	}
 	
 	/**
@@ -368,23 +327,30 @@ public class RegisterWindow {
 	 */
 	private boolean checkFields() {
 		boolean salida = true;
-		lblWarning.setText("El campo");
-		
+		boolean warningName = false;
+		boolean warningSurname = false;
 		if (textName.getText().trim().isEmpty()) {
-			lblWarning.setText(lblWarning.getText() + " Nombre");
-			//JOptionPane.showMessageDialog(textNombre, "El campo nombre no ha sido rellenado");
 			textName.setForeground(Color.RED);
 			textName.setBorder(BorderFactory.createLineBorder(Color.RED));
+			warningName = true;
 			salida = false;
 		}
 		
 		if (textSurname.getText().trim().isEmpty()) {
-			if(lblWarning.getText()=="El campo") lblWarning.setText(lblWarning.getText() + " Apellidos");
-			else lblWarning.setText(lblWarning.getText() + " y Apellidos");
 			textSurname.setForeground(Color.RED);
 			textSurname.setBorder(BorderFactory.createLineBorder(Color.RED));
+			warningSurname = true;
 			salida = false;
 		}
+		
+		if(warningName && warningSurname) {
+			lblWarning.setText("Los campos Nombre y Apellidos estan incompletos");
+		}else {
+			if(warningName) lblWarning.setText("El campo Nombre esta incompleto");
+			if(warningSurname) lblWarning.setText("El campo Apellidos esta incompleto");
+			if(!warningName && !warningSurname) lblWarning.setText("");
+		}
+		
 		
 		//Comprobar formato contraseña
 		String password = new String(passwordField.getPassword());
@@ -413,7 +379,7 @@ public class RegisterWindow {
 					//JOptionPane.showMessageDialog(frmRegister, "Las contraseñas no coinciden.\n","Registro", JOptionPane.ERROR_MESSAGE);
 					lblWarningPassword.setText("Las contraseñas no coinciden");
 					salida = false;
-				}
+				}else lblWarningPassword.setText("");
 			}
 		}	
 		
@@ -423,7 +389,7 @@ public class RegisterWindow {
 			textMail.setForeground(Color.RED);
 			textMail.setBorder(BorderFactory.createLineBorder(Color.RED));
 			salida = false;
-		}
+		}else lblWarningMail.setText("");
 		
 		//Comprobar formato Usuario y que no exista ya ese Usuario
 		if (textUsername.getText().trim().isEmpty()) {
@@ -437,7 +403,7 @@ public class RegisterWindow {
 				//JOptionPane.showMessageDialog(frmRegister, "Ese nombre de usuario ya esta en uso, prueba con otro.\n","Registro", JOptionPane.ERROR_MESSAGE);
 				lblWarningUser.setText("Ese nombre de usuario ya esta en uso, prueba con otro");
 				salida = false;
-			}
+			}else lblWarningUser.setText("");
 		}
 		
 		//Comprobar formato dateOfBirth
@@ -448,14 +414,11 @@ public class RegisterWindow {
 				//JOptionPane.showMessageDialog(frmRegister, "El formato de la fecha es incorrecto.\n","Registro", JOptionPane.ERROR_MESSAGE);
 				lblWarningDate.setText("El formato de la fecha es incorrecto");
 				salida = false;
-			}
+			}else lblWarningDate.setText("");
 		} catch (NullPointerException e) {
 			//JOptionPane.showMessageDialog(frmRegister, "El formato de la fecha es incorrecto.\n","Registro", JOptionPane.ERROR_MESSAGE);
-			lblWarningDate.setText("El formato de la fecha es incorrecto");
+			lblWarningDate.setText("El campo Fecha esta incompleto");
 		}
-		
-		if(lblWarning.getText()=="El campo") lblWarning.setText("");
-		else lblWarning.setText(lblWarning.getText() + " no ha sido completado");
 		
 		frmRegister.revalidate();
 		frmRegister.pack();
