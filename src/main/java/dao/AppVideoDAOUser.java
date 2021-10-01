@@ -74,7 +74,7 @@ public final class AppVideoDAOUser implements DAOUser {
 		}
 		
 		String filter = servPersistencia.recuperarPropiedadEntidad(eUser, FILTER);
-		user.setFilter(AppVideo.getInstance().stringToTypeOfFilter(filter));
+		user.setFilter(AppVideo.getInstance().stringToFilter(filter));
 		
 		
 		return user;
@@ -96,7 +96,7 @@ public final class AppVideoDAOUser implements DAOUser {
 				new Propiedad(PREMIUM, user.getPremium()),
 				new Propiedad(RECENTVIDEOS, AppVideo.getInstance().listToString(AppVideo.getInstance().videosToIds(user.getRecentVideos()))),
 				new Propiedad(LISTOFPLAYLIST, AppVideo.getInstance().listToString(AppVideo.getInstance().playlistsToIds(user.getListOfPlaylist()))),
-				new Propiedad(FILTER, AppVideo.getInstance().typeOfFilterToString(user.getFilter())))));
+				new Propiedad(FILTER, AppVideo.getInstance().FilterToString(user.getFilter())))));
 		return eUser;
 	}
 
@@ -145,7 +145,7 @@ public final class AppVideoDAOUser implements DAOUser {
 		servPersistencia.eliminarPropiedadEntidad(eUser, LISTOFPLAYLIST);
 		servPersistencia.anadirPropiedadEntidad(eUser, LISTOFPLAYLIST, AppVideo.getInstance().listToString(AppVideo.getInstance().playlistsToIds(user.getListOfPlaylist())));
 		servPersistencia.eliminarPropiedadEntidad(eUser, FILTER);
-		servPersistencia.anadirPropiedadEntidad(eUser, FILTER, AppVideo.getInstance().typeOfFilterToString(user.getFilter()));
+		servPersistencia.anadirPropiedadEntidad(eUser, FILTER, AppVideo.getInstance().FilterToString(user.getFilter()));
 	}
 	
 	@Override

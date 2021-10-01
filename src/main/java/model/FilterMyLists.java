@@ -1,6 +1,6 @@
 package model;
 
-public class FilterMyLists implements Filter {
+public class FilterMyLists implements IFilter {
 
 	@Override
 	public void eliminarVideos() {

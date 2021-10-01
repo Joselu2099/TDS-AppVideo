@@ -1,5 +1,6 @@
 package controller;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -12,12 +13,7 @@ import dao.DAOException;
 import dao.DAOFactory;
 import dao.DAOPlaylist;
 import dao.DAOUser;
-import model.Playlist;
-import model.TypeOfFilters;
-import model.User;
-import model.UserRepository;
-import model.Video;
-import model.VideoRepository;
+import model.*;
 
 public class AppVideo {
 
@@ -141,36 +137,22 @@ public class AppVideo {
 		return playlistsIds;
 	}
 	
-	public String typeOfFilterToString(TypeOfFilters filter) {
-		switch (filter) {
-			case MINORS: {
-				return "minors";
-			}
-			case IMPOPULARS: {
-				return "impopulars";
-			}
-			case MYLISTS: {
-				return "mylists";
-			}
-			default:
-				return "none";
-		}
+	public String FilterToString(IFilter filter) {
+		if(filter==null) return "";
+		return filter.getClass().getName();
 	}
 	
-	public TypeOfFilters stringToTypeOfFilter(String filterString) {
-		switch (filterString) {
-			case "minors": {
-				return TypeOfFilters.MINORS;
+	public IFilter stringToFilter(String filterString) {
+		if(filterString==null) return null;
+		try {
+			Class<?> aClass = Class.forName(filterString);
+			if (IFilter.class.isAssignableFrom(aClass)){
+				return (IFilter) aClass.getConstructor().newInstance();
 			}
-			case "impopulars": {
-				return TypeOfFilters.IMPOPULARS;
-			}
-			case "mylists": {
-				return TypeOfFilters.MYLISTS;
-			}
-			default:
-				return TypeOfFilters.NONE;
+		} catch (ClassNotFoundException | InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
+			e.printStackTrace();
 		}
+		return null;
 	}
 	
 }

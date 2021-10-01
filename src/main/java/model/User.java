@@ -15,7 +15,7 @@ public class User {
 	private String premium;
 	private Map<String, Playlist> listOfPlaylist;
 	private ArrayList<Video> recentVideos;
-	private TypeOfFilters filter;
+	private IFilter filter;
 	
 	public User(String name, String surname, String mail, String username, String password, String dateOfBirth) {
 		this.id = 0;
@@ -26,7 +26,7 @@ public class User {
 		this.password = password;
 		this.dateOfBirth = dateOfBirth;
 		this.premium = "no";
-		this.filter = TypeOfFilters.NONE;
+		this.filter = null;
 		this.listOfPlaylist = new HashMap<String, Playlist>();
 		this.recentVideos = new ArrayList<Video>();
 	}
@@ -95,11 +95,11 @@ public class User {
 		this.premium = premium;
 	}
 	
-	public TypeOfFilters getFilter() {
+	public IFilter getFilter() {
 		return filter;
 	}
 	
-	public void setFilter(TypeOfFilters filter) {
+	public void setFilter(IFilter filter) {
 		this.filter = filter;
 	}
 	
