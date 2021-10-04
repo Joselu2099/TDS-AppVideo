@@ -60,13 +60,13 @@ public final class AppVideoDAOUser implements DAOUser {
 		user.setId(eUser.getId());
 		user.setPremium(premium);
 		if (servPersistencia.recuperarPropiedadEntidad(eUser, RECENTVIDEOS) != null) {
-			ArrayList<Integer> idVideos = AppVideo.getInstance().stringToList(servPersistencia.recuperarPropiedadEntidad(eUser, RECENTVIDEOS));
+			List<Integer> idVideos = AppVideo.getInstance().stringToList(servPersistencia.recuperarPropiedadEntidad(eUser, RECENTVIDEOS));
 			//String to video {idVideo1, idVideo2, idVideo3...} --> [Video1, Video2, Video3]
 			user.setRecentVideos(AppVideo.getInstance().idsToVideos(idVideos));
 		}
 		
 		if (servPersistencia.recuperarPropiedadEntidad(eUser, LISTOFPLAYLIST) != null) {
-			ArrayList<Integer> idPlaylists = AppVideo.getInstance().stringToList(servPersistencia.recuperarPropiedadEntidad(eUser, LISTOFPLAYLIST));
+			List<Integer> idPlaylists = AppVideo.getInstance().stringToList(servPersistencia.recuperarPropiedadEntidad(eUser, LISTOFPLAYLIST));
 			Map<Integer, Playlist> playlists = AppVideo.getInstance().idsToPlaylists(idPlaylists);
 			for(Playlist p: playlists.values()) {
 				user.addPlaylist(p);
@@ -104,13 +104,9 @@ public final class AppVideoDAOUser implements DAOUser {
 	// Funcion para extraer el usuario que se pasa como parametro de la base de datos.
 	@Override
 	public void create(User user) {
-		// Si la entidad estÃ¡ registrada no la registra de nuevo
-		boolean existe = true;
-		try {
-			servPersistencia.recuperarEntidad(user.getId());
-		} catch (NullPointerException e) {
-			existe = false;
-		}
+		// Si la entidad está¡ registrada no la registra de nuevo
+		boolean existe = servPersistencia.recuperarEntidad(user.getId()) != null;
+
 		if (existe) {
 			return;
 		}
@@ -163,7 +159,6 @@ public final class AppVideoDAOUser implements DAOUser {
 		for (Entidad eUser : entidades) {
 			users.add(get(eUser.getId()));
 		}
-		
 		return users;
 	}
 }

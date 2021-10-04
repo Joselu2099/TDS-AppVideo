@@ -1,12 +1,7 @@
 package controller;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.StringTokenizer;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import dao.DAOException;
@@ -68,6 +63,10 @@ public class AppVideo {
 
 		DAOUser daoUser = factory.getDAOUser(); /* Adaptador DAO para almacenar el nuevo Usuario en la BD */
 		daoUser.create(user);
+		System.out.println(user.getId());
+		daoUser.create(user);
+		System.out.println(user.getId());
+
 
 		UserRepository.getInstance().addUser(user);
 		return true;
@@ -78,24 +77,17 @@ public class AppVideo {
 		VideoRepository.getInstance(); //Se crea el repositorio de videos, lo que conlleva que se cargen todas los videos.
 	}
 
-	public String listToString(ArrayList<Integer> ids) {
-		StringBuilder result= new StringBuilder();
-		for (Integer i : ids) {
-			result.append(Integer.toString(i)).append(";");
-		}
-		return result.toString();
+	public String listToString(List<Integer> ids) {
+		return ids != null ? ids.stream().map(i -> Integer.toString(i)).collect(Collectors.joining(";")) : "";
+//		StringBuilder result= new StringBuilder();
+//		for (Integer i : ids) {
+//			result.append(Integer.toString(i)).append(";");
+//		}
+//		return result.toString();
 	}
-	
-	public ArrayList<Integer> stringToList(String union) {
-		ArrayList<Integer> ids = new ArrayList<Integer>();
-		if (!union.isEmpty() || union!=null){
-			StringTokenizer strTok = new StringTokenizer(union, ";");
-			while (strTok.hasMoreTokens()) {
-				int id = Integer.parseInt((String) strTok.nextElement());
-				ids.add(id);
-			}
-		}
-		return ids;
+
+	public List<Integer> stringToList(String union) {
+		return union != null ? Arrays.stream(union.split(";")).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList()) : new ArrayList<>();
 	}
 	
 	public <K, V> Map<K, V> listsToMap(List<K> keys, List<V> values) {
@@ -105,23 +97,23 @@ public class AppVideo {
 	            .collect(Collectors.toMap(_i -> keyIter.next(), _i -> valIter.next()));
 	}
 	
-	public ArrayList<Video> idsToVideos(ArrayList<Integer> idsVideos) {
-		ArrayList<Video> videos = new ArrayList<Video>();
+	public List<Video> idsToVideos(List<Integer> idsVideos) {
+		List<Video> videos = new ArrayList<>();
 		for(Integer id: idsVideos) {
 			videos.add(VideoRepository.getInstance().getVideo(id));
 		}
 		return videos;
 	}
 	
-	public ArrayList<Integer> videosToIds(ArrayList<Video> videos) {
-		ArrayList<Integer> videosIds = new ArrayList<Integer>();
+	public List<Integer> videosToIds(List<Video> videos) {
+		List<Integer> videosIds = new ArrayList<>();
 		for(Video v: videos) {
 			videosIds.add(v.getId());
 		}
 		return videosIds;
 	}
 	
-	public Map<Integer, Playlist> idsToPlaylists(ArrayList<Integer> idsPlaylists) {
+	public Map<Integer, Playlist> idsToPlaylists(List<Integer> idsPlaylists) {
 		Map<Integer, Playlist> playlists = new HashMap<Integer, Playlist>();
 		for(Integer id : idsPlaylists) {
 			playlists.put(id, playlistAdapter.get(id));
@@ -129,8 +121,8 @@ public class AppVideo {
 		return playlists;
 	}
 	
-	public ArrayList<Integer> playlistsToIds(ArrayList<Playlist> playlists) {
-		ArrayList<Integer> playlistsIds = new ArrayList<Integer>();
+	public List<Integer> playlistsToIds(List<Playlist> playlists) {
+		List<Integer> playlistsIds = new ArrayList<Integer>();
 		for(Playlist p: playlists) {
 			playlistsIds.add(p.getId());
 		}
@@ -150,9 +142,9 @@ public class AppVideo {
 				return (IFilter) aClass.getConstructor().newInstance();
 			}
 		} catch (ClassNotFoundException | InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
 }

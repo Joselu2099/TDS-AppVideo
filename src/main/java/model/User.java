@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class User {
@@ -14,7 +15,7 @@ public class User {
 	private String dateOfBirth;
 	private String premium;
 	private Map<String, Playlist> listOfPlaylist;
-	private ArrayList<Video> recentVideos;
+	private List<Video> recentVideos;
 	private IFilter filter;
 	
 	public User(String name, String surname, String mail, String username, String password, String dateOfBirth) {
@@ -125,7 +126,7 @@ public class User {
 		return new ArrayList<>(recentVideos);
 	}
 
-	public void setRecentVideos(ArrayList<Video> recentVideos) {
+	public void setRecentVideos(List<Video> recentVideos) {
 		this.recentVideos = recentVideos;
 	}
 	
