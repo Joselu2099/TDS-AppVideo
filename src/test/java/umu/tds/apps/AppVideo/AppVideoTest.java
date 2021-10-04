@@ -11,7 +11,7 @@ import java.util.*;
 /**
  * Unit test for simple App.
  */
-public class AppTest 
+public class AppVideoTest
 {
     /**
      * Rigorous Test :-)
@@ -23,7 +23,7 @@ public class AppTest
     }
 
     @Test
-    public void appVideoListString() {
+    public void stringToListTest() {
         List<Integer> l = Arrays.asList(1,10,2,5,6,200);
         List<Integer> appList = AppVideo.getInstance().stringToList("1;10;2;5;6;200");
         List<Integer> out = AppVideo.getInstance().stringToList(AppVideo.getInstance().listToString(l));
