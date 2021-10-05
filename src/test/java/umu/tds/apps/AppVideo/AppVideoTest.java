@@ -3,7 +3,7 @@ package umu.tds.apps.AppVideo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import controller.AppVideo;
+import dao.DAOUtils;
 import org.junit.Test;
 
 import java.util.*;
@@ -25,8 +25,8 @@ public class AppVideoTest
     @Test
     public void stringToListTest() {
         List<Integer> l = Arrays.asList(1,10,2,5,6,200);
-        List<Integer> appList = AppVideo.getInstance().stringToList("1;10;2;5;6;200");
-        List<Integer> out = AppVideo.getInstance().stringToList(AppVideo.getInstance().listToString(l));
+        List<Integer> appList = DAOUtils.stringToList("1;10;2;5;6;200");
+        List<Integer> out = DAOUtils.stringToList(DAOUtils.listToString(l));
 
 
         Set<Integer> t1 = new TreeSet<>(l);

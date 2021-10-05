@@ -13,7 +13,7 @@ import model.*;
 public class AppVideo {
 
 	public static final int MIN_PASSLENGTH = 8;
-	private static AppVideo uniqueInstance = null;
+	public static AppVideo uniqueInstance = null;
 	private DAOFactory factory;
 	private DAOPlaylist playlistAdapter;
 	private User actualUser;
@@ -34,7 +34,7 @@ public class AppVideo {
 			uniqueInstance = new AppVideo();
 		return uniqueInstance;
 	}
-	
+
 	public User getActualUser() {
 		return actualUser;
 	}
@@ -77,74 +77,12 @@ public class AppVideo {
 		VideoRepository.getInstance(); //Se crea el repositorio de videos, lo que conlleva que se cargen todas los videos.
 	}
 
-	public String listToString(List<Integer> ids) {
-		return ids != null ? ids.stream().map(i -> Integer.toString(i)).collect(Collectors.joining(";")) : "";
-//		StringBuilder result= new StringBuilder();
-//		for (Integer i : ids) {
-//			result.append(Integer.toString(i)).append(";");
-//		}
-//		return result.toString();
-	}
-
-	public List<Integer> stringToList(String union) {
-		return union != null ? Arrays.stream(union.split(";")).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList()) : new ArrayList<>();
-	}
-	
-	public <K, V> Map<K, V> listsToMap(List<K> keys, List<V> values) {
-	    Iterator<K> keyIter = keys.iterator();
-	    Iterator<V> valIter = values.iterator();
-	    return IntStream.range(0, keys.size()).boxed()
-	            .collect(Collectors.toMap(_i -> keyIter.next(), _i -> valIter.next()));
-	}
-	
-	public List<Video> idsToVideos(List<Integer> idsVideos) {
-		List<Video> videos = new ArrayList<>();
-		for(Integer id: idsVideos) {
-			videos.add(VideoRepository.getInstance().getVideo(id));
-		}
-		return videos;
-	}
-	
-	public List<Integer> videosToIds(List<Video> videos) {
-		List<Integer> videosIds = new ArrayList<>();
-		for(Video v: videos) {
-			videosIds.add(v.getId());
-		}
-		return videosIds;
-	}
-	
-	public Map<Integer, Playlist> idsToPlaylists(List<Integer> idsPlaylists) {
+	public static Map<Integer, Playlist> idsToPlaylists(AppVideo appVideo, List<Integer> idsPlaylists) {
 		Map<Integer, Playlist> playlists = new HashMap<Integer, Playlist>();
 		for(Integer id : idsPlaylists) {
-			playlists.put(id, playlistAdapter.get(id));
+			playlists.put(id, appVideo.playlistAdapter.get(id));
 		}
 		return playlists;
-	}
-	
-	public List<Integer> playlistsToIds(List<Playlist> playlists) {
-		List<Integer> playlistsIds = new ArrayList<Integer>();
-		for(Playlist p: playlists) {
-			playlistsIds.add(p.getId());
-		}
-		return playlistsIds;
-	}
-	
-	public String FilterToString(IFilter filter) {
-		if(filter==null) return "";
-		return filter.getClass().getName();
-	}
-	
-	public IFilter stringToFilter(String filterString) {
-		if(filterString==null) return null;
-		try {
-			Class<?> aClass = Class.forName(filterString);
-			if (IFilter.class.isAssignableFrom(aClass)){
-				return (IFilter) aClass.getConstructor().newInstance();
-			}
-		} catch (ClassNotFoundException | InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
-//			e.printStackTrace();
-		}
-		return null;
 	}
 
 }
