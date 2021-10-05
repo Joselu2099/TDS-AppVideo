@@ -13,7 +13,7 @@ public class UserRepository {
 	private DAOFactory factory;
 	private DAOUser userAdapter;
 
-	private Map<String, User> userList;
+	private Map<String, User> userList;  // <Username, User>
 
 	private UserRepository() {
 		try {
@@ -38,7 +38,7 @@ public class UserRepository {
 			userList.put(user.getUsername(), user);
 		}
 	}
-	
+
 	public User getUser(int id) {
 		User user = null;
 		for(User u: userList.values()) {
@@ -48,7 +48,7 @@ public class UserRepository {
 		}
 		return user;
 	}
-	
+
 	public User getUser(String username) {
 		return userList.get(username);
 	}
@@ -57,7 +57,7 @@ public class UserRepository {
 		userList.put(user.getUsername(), user);
 	}
 	
-	public void removeUsuario(User user) {
+	public void removeUser(User user) {
 		userList.remove(user.getUsername());
 	}
 }

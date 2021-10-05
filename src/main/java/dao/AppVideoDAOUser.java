@@ -105,15 +105,22 @@ public final class AppVideoDAOUser implements DAOUser {
 	@Override
 	public void create(User user) {
 		// Si la entidad está¡ registrada no la registra de nuevo
-		boolean existe = servPersistencia.recuperarEntidad(user.getId()) != null;
 
-		if (existe) {
+		boolean exist = true;
+
+		try {
+			exist = servPersistencia.recuperarEntidad(user.getId()) != null;
+		}catch (NullPointerException ignored){}
+
+		System.out.println("Existe User con ID: " + user.getId() + " ? = " + exist);
+		if (exist) {
 			return;
 		}
 		Entidad eUser = this.usuarioToEntidad(user);
 		
 		eUser = servPersistencia.registrarEntidad(eUser);
 		user.setId(eUser.getId());
+		System.out.println("El ID del usuario registrado es: " + user.getId());
 	}
 
 	@Override

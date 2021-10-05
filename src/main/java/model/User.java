@@ -1,5 +1,6 @@
 package model;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +20,9 @@ public class User {
 	private IFilter filter;
 	
 	public User(String name, String surname, String mail, String username, String password, String dateOfBirth) {
-		this.id = 0;
+		BigInteger longId = new BigInteger(username.getBytes());
+		this.id = longId.intValue();
+		System.out.println(id);
 		this.name = name;
 		this.surname = surname;
 		this.mail = mail;
