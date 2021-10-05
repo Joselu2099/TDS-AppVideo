@@ -22,7 +22,6 @@ public class User {
 	public User(String name, String surname, String mail, String username, String password, String dateOfBirth) {
 		BigInteger longId = new BigInteger(username.getBytes());
 		this.id = longId.intValue();
-		System.out.println(id);
 		this.name = name;
 		this.surname = surname;
 		this.mail = mail;
