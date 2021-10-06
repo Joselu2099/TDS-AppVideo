@@ -31,7 +31,7 @@ public class VideoRepository {
 	}
 
 	private void loadRepository() {
-		videoList = new HashMap<Integer, Video>();
+		videoList = new HashMap<>();
 		List<Video> videosFromBD = videoAdapter.getAll();
 		for(Video v: videosFromBD){
 			videoList.put(v.getId(), v);
@@ -45,7 +45,7 @@ public class VideoRepository {
 	public Video getVideo(String title) {
 		Video video = null;
 		for(Video v: videoList.values()) {
-			if(v.getTitle() == title) {
+			if(v.getTitle().equals(title)) {
 				video = v;
 			}
 		}

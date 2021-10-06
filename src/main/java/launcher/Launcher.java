@@ -10,20 +10,18 @@ import javax.swing.*;
 
 public class Launcher {
 	public static void main(final String[] args){
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UIManager.setLookAndFeel(new FlatLightLaf());
-					IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/arc-theme.theme.json"));
+		EventQueue.invokeLater(() -> {
+			try {
+				UIManager.setLookAndFeel(new FlatLightLaf());
+				IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/arc-theme.theme.json"));
 //					IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
-					//AppVideo.getInstance().loadVideos();
+				//AppVideo.getInstance().loadVideos();
 
 
-					LoginWindow ventana = new LoginWindow();
-					ventana.showWindow();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				LoginWindow ventana = new LoginWindow();
+				ventana.showWindow();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		});
 	}

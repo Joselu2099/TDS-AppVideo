@@ -15,7 +15,7 @@ public class User {
 	private String password;
 	private String dateOfBirth;
 	private String premium;
-	private Map<String, Playlist> listOfPlaylist;
+	private final Map<String, Playlist> listOfPlaylist;
 	private List<Video> recentVideos;
 	private IFilter filter;
 	
@@ -30,8 +30,8 @@ public class User {
 		this.dateOfBirth = dateOfBirth;
 		this.premium = "no";
 		this.filter = null;
-		this.listOfPlaylist = new HashMap<String, Playlist>();
-		this.recentVideos = new ArrayList<Video>();
+		this.listOfPlaylist = new HashMap<>();
+		this.recentVideos = new ArrayList<>();
 	}
 
 	public int getId() {

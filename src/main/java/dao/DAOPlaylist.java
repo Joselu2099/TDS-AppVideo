@@ -4,9 +4,9 @@ import java.util.List;
 import model.Playlist;
 
 public interface DAOPlaylist {
-	public void create(Playlist assistant);
-	public boolean delete(Playlist assistant);
-	public void updateProfile(Playlist assistant);
-	public Playlist get(int id);
-	public List<Playlist> getAll();
+	void create(Playlist assistant);
+	boolean delete(Playlist assistant);
+	void updateProfile(Playlist assistant);
+	Playlist get(int id);
+	List<Playlist> getAll();
 }

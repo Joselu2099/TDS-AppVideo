@@ -31,7 +31,7 @@ public final class AppVideoDAOUser implements DAOUser {
 	private static final String LISTOFPLAYLIST = "listOfPlaylist";
 	private static final String FILTER = "filter";
 	
-	private ServicioPersistencia servPersistencia;
+	private final ServicioPersistencia servPersistencia;
 	
 	// Se obtiene la instancia del servicio de persistencia
 	private AppVideoDAOUser() {
@@ -67,7 +67,7 @@ public final class AppVideoDAOUser implements DAOUser {
 		
 		if (servPersistencia.recuperarPropiedadEntidad(eUser, LISTOFPLAYLIST) != null) {
 			List<Integer> idPlaylists = DAOUtils.stringToList(servPersistencia.recuperarPropiedadEntidad(eUser, LISTOFPLAYLIST));
-			Map<Integer, Playlist> playlists = AppVideo.idsToPlaylists(AppVideo.getInstance(), idPlaylists);
+			Map<Integer, Playlist> playlists = AppVideo.idsToPlaylists(idPlaylists);
 			for(Playlist p: playlists.values()) {
 				user.addPlaylist(p);
 			}
@@ -86,7 +86,7 @@ public final class AppVideoDAOUser implements DAOUser {
 		
 		eUser.setNombre(USER);
 		
-		eUser.setPropiedades(new ArrayList<Propiedad>(Arrays.asList(
+		eUser.setPropiedades(new ArrayList<>(Arrays.asList(
 				new Propiedad(NAME, user.getName()),
 				new Propiedad(SURNAME, user.getSurname()),
 				new Propiedad(MAIL, user.getMail()),
@@ -96,7 +96,7 @@ public final class AppVideoDAOUser implements DAOUser {
 				new Propiedad(PREMIUM, user.getPremium()),
 				new Propiedad(RECENTVIDEOS, DAOUtils.listToString(DAOUtils.videosToIds(user.getRecentVideos()))),
 				new Propiedad(LISTOFPLAYLIST, DAOUtils.listToString(DAOUtils.playlistsToIds(user.getListOfPlaylist()))),
-				new Propiedad(FILTER, DAOUtils.FilterToString(user.getFilter())))));
+				new Propiedad(FILTER, DAOUtils.filterToString(user.getFilter())))));
 		return eUser;
 	}
 
@@ -148,7 +148,7 @@ public final class AppVideoDAOUser implements DAOUser {
 		servPersistencia.eliminarPropiedadEntidad(eUser, LISTOFPLAYLIST);
 		servPersistencia.anadirPropiedadEntidad(eUser, LISTOFPLAYLIST, DAOUtils.listToString(DAOUtils.playlistsToIds(user.getListOfPlaylist())));
 		servPersistencia.eliminarPropiedadEntidad(eUser, FILTER);
-		servPersistencia.anadirPropiedadEntidad(eUser, FILTER, DAOUtils.FilterToString(user.getFilter()));
+		servPersistencia.anadirPropiedadEntidad(eUser, FILTER, DAOUtils.filterToString(user.getFilter()));
 	}
 	
 	@Override
@@ -162,7 +162,7 @@ public final class AppVideoDAOUser implements DAOUser {
 	public List<User> getAll() {
 		List<Entidad> entidades = servPersistencia.recuperarEntidades(USER);
 
-		List<User> users = new LinkedList<User>();
+		List<User> users = new LinkedList<>();
 		for (Entidad eUser : entidades) {
 			users.add(get(eUser.getId()));
 		}

@@ -32,7 +32,7 @@ public class UserRepository {
 	}
 
 	private void loadRepository() {
-		userList = new HashMap<String, User>();
+		userList = new HashMap<>();
 		List<User> usersFromBD = userAdapter.getAll();
 		for(User user: usersFromBD){
 			userList.put(user.getUsername(), user);

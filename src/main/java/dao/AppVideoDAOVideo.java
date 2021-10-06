@@ -12,7 +12,7 @@ public final class AppVideoDAOVideo implements DAOVideo{
 	//Definimos los atributos de la clase a persistir
 	private static final String TITLE = "title";
 	
-	private ServicioPersistencia servPersistencia;
+	private final ServicioPersistencia servPersistencia;
 	
 	private AppVideoDAOVideo() {
 		servPersistencia = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();

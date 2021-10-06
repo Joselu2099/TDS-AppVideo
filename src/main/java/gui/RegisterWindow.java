@@ -289,7 +289,7 @@ public class RegisterWindow {
 		btnExit.setForeground(new Color(255, 255, 255));
 		btnExit.setBackground(new Color(204, 0, 0));
 		btnExit.setPreferredSize(new Dimension(60, 30));
-		btnExit.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(153, 0, 0)));
+		btnExit.setBorder(new MatteBorder(1, 1, 1, 1, new Color(153, 0, 0)));
 		btnExit.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		btnExit.addMouseListener(new MouseAdapter() {
 			@Override
@@ -306,7 +306,7 @@ public class RegisterWindow {
 
 		final JButton btnRegister = new JButton("Register");
 		btnRegister.setPreferredSize(new Dimension(80, 30));
-		btnRegister.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(138, 43, 226)));
+		btnRegister.setBorder(new MatteBorder(1, 1, 1, 1, new Color(138, 43, 226)));
 		panelRegister.getRootPane().setDefaultButton(btnRegister);
 		btnRegister.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		btnRegister.addMouseListener(new MouseAdapter() {

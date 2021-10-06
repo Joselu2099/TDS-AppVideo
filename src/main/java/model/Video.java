@@ -13,7 +13,7 @@ public class Video {
 		this.id = 0;
 		this.title = title;
 		this.url = url;
-		this.labels = new ArrayList<Label>();
+		this.labels = new ArrayList<>();
 	}
 
 	public int getId() {
