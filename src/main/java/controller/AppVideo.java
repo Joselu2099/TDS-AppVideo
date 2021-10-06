@@ -1,9 +1,8 @@
 package controller;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+
 import dao.DAOException;
 import dao.DAOFactory;
 import dao.DAOPlaylist;
@@ -77,12 +76,13 @@ public class AppVideo {
 		VideoRepository.getInstance(); //Se crea el repositorio de videos, lo que conlleva que se cargen todas los videos.
 	}
 
-	public static Map<Integer, Playlist> idsToPlaylists(AppVideo appVideo, List<Integer> idsPlaylists) {
-		Map<Integer, Playlist> playlists = new HashMap<Integer, Playlist>();
-		for(Integer id : idsPlaylists) {
-			playlists.put(id, appVideo.playlistAdapter.get(id));
-		}
-		return playlists;
+	public static Map<Integer, Playlist> idsToPlaylists(List<Integer> idsPlaylists) {
+		return idsPlaylists == null? new HashMap<>() : idsPlaylists.stream().collect(Collectors.toMap(Integer::intValue,AppVideo.getInstance().playlistAdapter::get));
+//		Map<Integer, Playlist> playlists = new HashMap<>();
+//		for(Integer id : idsPlaylists) {
+//			playlists.put(id, appVideo.playlistAdapter.get(id));
+//		}
+//		return playlists;
 	}
 
 }

@@ -11,11 +11,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class DAOUtils {
-    private static Integer safeValueOf(String s){
+    public static Integer safeValueOf(String s){
         try{
             return Integer.valueOf(s);
-        }catch (NumberFormatException e){
-        }
+        }catch (NumberFormatException | NullPointerException e){}
         return null;
     }
 
@@ -28,49 +27,35 @@ public class DAOUtils {
     }
 
     public static <K, V> Map<K, V> listsToMap(List<K> keys, List<V> values) {
-        Iterator<K> keyIter = keys.iterator();
-        Iterator<V> valIter = values.iterator();
         return IntStream.range(0, keys.size()).boxed()
-                .collect(Collectors.toMap(_i -> keyIter.next(), _i -> valIter.next()));
+                .collect(Collectors.toMap(keys::get, values::get));
     }
 
     public static List<Video> idsToVideos(List<Integer> idsVideos) {
-        List<Video> videos = new ArrayList<>();
-        for(Integer id: idsVideos) {
-            videos.add(VideoRepository.getInstance().getVideo(id));
-        }
-        return videos;
+        return idsVideos == null? new ArrayList<>() : idsVideos.stream().map(VideoRepository.getInstance()::getVideo).collect(Collectors.toList());
     }
 
     public static List<Integer> videosToIds(List<Video> videos) {
-        List<Integer> videosIds = new ArrayList<>();
-        for(Video v: videos) {
-            videosIds.add(v.getId());
-        }
-        return videosIds;
+        return videos == null ? new ArrayList<>() : videos.stream().map(Video::getId).collect(Collectors.toList());
     }
 
     public static List<Integer> playlistsToIds(List<Playlist> playlists) {
-        List<Integer> playlistsIds = new ArrayList<Integer>();
-        for(Playlist p: playlists) {
-            playlistsIds.add(p.getId());
-        }
-        return playlistsIds;
+        return playlists == null ? new ArrayList<>() : playlists.stream().map(Playlist::getId).collect(Collectors.toList());
     }
 
-    public static String FilterToString(IFilter filter) {
-        if(filter==null) return "";
-        return filter.getClass().getName();
+    public static String filterToString(IFilter filter) {
+        return filter == null ? "" : filter.getClass().getName();
     }
 
     public static IFilter stringToFilter(String filterString) {
         if(filterString==null) return null;
         try {
-            Class<?> aClass = Class.forName(filterString);
-            if (IFilter.class.isAssignableFrom(aClass)){
-                return (IFilter) aClass.getConstructor().newInstance();
+            Class<?> filterClass = Class.forName(filterString);
+            if (IFilter.class.isAssignableFrom(filterClass)){
+                return (IFilter) filterClass.getConstructor().newInstance();
             }
         } catch (ClassNotFoundException | InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
+            System.err.println("Filter class not found: <"+filterString+">");
 //			e.printStackTrace();
         }
         return null;
