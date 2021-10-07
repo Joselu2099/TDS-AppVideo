@@ -158,15 +158,13 @@ public final class AppVideoDAOUser implements DAOUser {
 	}
 
 	@Override
-	public List<User> getAll() {
+	public List<User> getAll() throws NullPointerException {
 
-		List<Entidad> entities = new LinkedList<>();
-		try{
-			entities = servPersistencia.recuperarEntidades(USER);
-		}catch (NullPointerException n){ return new LinkedList<>();}
+		List<Entidad> entities = servPersistencia.recuperarEntidades(USER);
 
 		List<User> users = new LinkedList<>();
 
+		if(entities == null || entities.isEmpty()) return users;
 		for (Entidad eUser : entities) {
 			users.add(get(eUser.getId()));
 		}
