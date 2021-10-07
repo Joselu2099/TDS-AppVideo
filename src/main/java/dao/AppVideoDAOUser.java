@@ -160,10 +160,10 @@ public final class AppVideoDAOUser implements DAOUser {
 
 	@Override
 	public List<User> getAll() {
-		List<Entidad> entidades = servPersistencia.recuperarEntidades(USER);
+		List<Entidad> entities = servPersistencia.recuperarEntidades(USER);
 
 		List<User> users = new LinkedList<>();
-		for (Entidad eUser : entidades) {
+		for (Entidad eUser : entities) {
 			users.add(get(eUser.getId()));
 		}
 		return users;

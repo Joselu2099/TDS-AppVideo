@@ -20,8 +20,7 @@ public class User {
 	private IFilter filter;
 	
 	public User(String name, String surname, String mail, String username, String password, String dateOfBirth) {
-		BigInteger longId = new BigInteger(username.getBytes());
-		this.id = longId.intValue();
+		this.id = 0;
 		this.name = name;
 		this.surname = surname;
 		this.mail = mail;
