@@ -6,7 +6,6 @@ import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
 import beans.Entidad;
 import beans.Propiedad;
-import controller.AppVideo;
 import model.User;
 
 /**
@@ -67,7 +66,7 @@ public final class AppVideoDAOUser implements DAOUser {
 		
 		if (servPersistencia.recuperarPropiedadEntidad(eUser, LISTOFPLAYLIST) != null) {
 			List<Integer> idPlaylists = DAOUtils.stringToList(servPersistencia.recuperarPropiedadEntidad(eUser, LISTOFPLAYLIST));
-			Map<Integer, Playlist> playlists = AppVideo.idsToPlaylists(idPlaylists);
+			Map<Integer, Playlist> playlists = DAOUtils.idsToPlaylists(idPlaylists);
 			for(Playlist p: playlists.values()) {
 				user.addPlaylist(p);
 			}

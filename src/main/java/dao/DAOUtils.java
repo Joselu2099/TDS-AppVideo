@@ -60,4 +60,13 @@ public class DAOUtils {
         }
         return null;
     }
+
+    public static Map<Integer, Playlist> idsToPlaylists(List<Integer> idsPlaylists) {
+        return idsPlaylists == null? new HashMap<>() : idsPlaylists.stream().collect(Collectors.toMap(Integer::intValue, AppVideoDAOPlaylist.getInstance()::get));
+//		Map<Integer, Playlist> playlists = new HashMap<>();
+//		for(Integer id : idsPlaylists) {
+//			playlists.put(id, appVideo.playlistAdapter.get(id));
+//		}
+//		return playlists;
+    }
 }

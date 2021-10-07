@@ -3,10 +3,7 @@ package controller;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import dao.DAOException;
-import dao.DAOFactory;
-import dao.DAOPlaylist;
-import dao.DAOUser;
+import dao.*;
 import model.*;
 
 public class AppVideo {
@@ -65,8 +62,6 @@ public class AppVideo {
 
 		daoUser.create(user);
 
-
-
 		UserRepository.getInstance().addUser(user);
 		return true;
 	}
@@ -74,15 +69,6 @@ public class AppVideo {
 	public void loadVideos(){
 		//ArrayList<Video> videoList = new ArrayList<Video>();
 		VideoRepository.getInstance(); //Se crea el repositorio de videos, lo que conlleva que se cargen todas los videos.
-	}
-
-	public static Map<Integer, Playlist> idsToPlaylists(List<Integer> idsPlaylists) {
-		return idsPlaylists == null? new HashMap<>() : idsPlaylists.stream().collect(Collectors.toMap(Integer::intValue,AppVideo.getInstance().playlistAdapter::get));
-//		Map<Integer, Playlist> playlists = new HashMap<>();
-//		for(Integer id : idsPlaylists) {
-//			playlists.put(id, appVideo.playlistAdapter.get(id));
-//		}
-//		return playlists;
 	}
 
 }
