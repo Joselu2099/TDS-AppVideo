@@ -4,11 +4,11 @@ import model.IFilter;
 import model.Playlist;
 import model.Video;
 import model.VideoRepository;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import org.apache.commons.codec.digest.DigestUtils;
 
 public class DAOUtils {
     public static Integer safeValueOf(String s){
@@ -69,4 +69,13 @@ public class DAOUtils {
 //		}
 //		return playlists;
     }
+    public static String encodePassword(String password){
+        return DigestUtils.md5Hex(password);
+    }
+
+    public static String decodePassword(String passEncoded){
+        //Decodificar la contraseña
+        return passEncoded;
+    }
+
 }

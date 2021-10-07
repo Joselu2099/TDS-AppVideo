@@ -55,7 +55,7 @@ public final class AppVideoDAOUser implements DAOUser {
 		String dateOfBirth = servPersistencia.recuperarPropiedadEntidad(eUser, DATEOFBIRTH);
 		String premium = servPersistencia.recuperarPropiedadEntidad(eUser, PREMIUM);
 		
-		User user = new User(name, surname, mail, username, password, dateOfBirth);
+		User user = new User(name, surname, mail, username, DAOUtils.decodePassword(password), dateOfBirth);
 		user.setId(eUser.getId());
 		user.setPremium(premium);
 		if (servPersistencia.recuperarPropiedadEntidad(eUser, RECENTVIDEOS) != null) {
@@ -90,7 +90,7 @@ public final class AppVideoDAOUser implements DAOUser {
 				new Propiedad(SURNAME, user.getSurname()),
 				new Propiedad(MAIL, user.getMail()),
 				new Propiedad(USERNAME, user.getUsername()),
-				new Propiedad(PASSWORD, user.getPassword()),
+				new Propiedad(PASSWORD, DAOUtils.encodePassword(user.getPassword())),
 				new Propiedad(DATEOFBIRTH, user.getDateOfBirth()),
 				new Propiedad(PREMIUM, user.getPremium()),
 				new Propiedad(RECENTVIDEOS, DAOUtils.listToString(DAOUtils.videosToIds(user.getRecentVideos()))),
@@ -159,10 +159,15 @@ public final class AppVideoDAOUser implements DAOUser {
 
 	@Override
 	public List<User> getAll() {
-		List<Entidad> entidades = servPersistencia.recuperarEntidades(USER);
+
+		List<Entidad> entities = new LinkedList<>();
+		try{
+			entities = servPersistencia.recuperarEntidades(USER);
+		}catch (NullPointerException n){ return new LinkedList<>();}
 
 		List<User> users = new LinkedList<>();
-		for (Entidad eUser : entidades) {
+
+		for (Entidad eUser : entities) {
 			users.add(get(eUser.getId()));
 		}
 		return users;

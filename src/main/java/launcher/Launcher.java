@@ -18,8 +18,8 @@ public class Launcher {
 				//AppVideo.getInstance().loadVideos();
 
 
-				LoginWindow ventana = new LoginWindow();
-				ventana.showWindow();
+				LoginWindow window = new LoginWindow();
+				window.showWindow();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
