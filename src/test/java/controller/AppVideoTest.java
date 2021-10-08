@@ -1,22 +1,13 @@
 package controller;
 
 import dao.DAOUser;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import model.UserRepository;
+import org.junit.jupiter.api.*;
 import tds.driver.FactoriaServicioPersistencia;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppVideoTest {
-
-    @BeforeEach
-    void setUp() {
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
 
     @Test
     void isUserRegistered() {
@@ -28,7 +19,13 @@ class AppVideoTest {
 
     @Test
     void registerUser() {
-        AppVideo.getInstance().registerUser("___testUser","___TDS","test@example.com","___testUserName1","testpassword","2020-10-10");
+        AppVideo.getInstance().removeUser("___testUserName1");
+
+        assertTrue(AppVideo.getInstance().registerUser("___testUser","___TDS","test@example.com","___testUserName1","testpassword","2020-10-10"));
+        assertTrue(AppVideo.getInstance().isUserRegistered("___testUserName1"),"isRegistered" );
+        assertTrue(AppVideo.getInstance().login("___testUserName1","testpassword"),"login");
+        assertFalse(AppVideo.getInstance().registerUser("___testUser","___TDS","test@example.com","___testUserName1","testpassword","2020-10-10"));
+        assertTrue(AppVideo.getInstance().removeUser("___testUserName1"),"remove");
 
     }
 }

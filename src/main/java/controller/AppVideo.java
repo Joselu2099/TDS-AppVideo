@@ -65,6 +65,15 @@ public class AppVideo {
 
 	}
 
+	public boolean removeUser(String username){
+		if(!isUserRegistered(username))
+			return false;
+		User u = UserRepository.getInstance().getUser(username);
+		factory.getDAOUser().delete(u);
+		UserRepository.getInstance().removeUser(u);
+		return true;
+	}
+
 	public void loadVideos(){
 		//ArrayList<Video> videoList = new ArrayList<Video>();
 		VideoRepository.getInstance(); //Se crea el repositorio de videos, lo que conlleva que se cargen todas los videos.
