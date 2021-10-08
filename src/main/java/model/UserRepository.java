@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-
 import dao.DAOException;
 import dao.DAOFactory;
+import dao.DAOPlaylist;
 import dao.DAOUser;
 
 public class UserRepository {
@@ -15,6 +15,7 @@ public class UserRepository {
 	private static UserRepository uniqueInstance = null;
 	private DAOFactory factory;
 	private DAOUser userAdapter;
+	private DAOPlaylist playlistAdapter;
 
 	private Map<String, User> userList;  // <Username, User>
 
@@ -22,6 +23,7 @@ public class UserRepository {
 		try {
 			factory = DAOFactory.getInstance();
 			userAdapter = factory.getDAOUser();
+			playlistAdapter = factory.getDAOPlaylist();
 			this.loadRepository();
 		} catch (DAOException eDAO) {
 			eDAO.printStackTrace();

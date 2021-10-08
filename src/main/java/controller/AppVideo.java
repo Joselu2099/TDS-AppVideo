@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.*;
-import java.util.stream.Collectors;
 import dao.*;
 import model.*;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -11,7 +9,6 @@ public class AppVideo {
 	public static final int MIN_PASSLENGTH = 8;
 	public static AppVideo uniqueInstance = null;
 	private DAOFactory factory;
-	private DAOPlaylist playlistAdapter;
 	private User actualUser;
 	
 	private AppVideo(){
@@ -19,7 +16,6 @@ public class AppVideo {
 		//Iniciamos la factoria para la persistencia
 		try {
 			factory = DAOFactory.getInstance();
-			playlistAdapter = factory.getDAOPlaylist();
 		} catch (DAOException e) {
 			e.printStackTrace();
 		}
@@ -59,6 +55,7 @@ public class AppVideo {
 
 		DAOUser daoUser = factory.getDAOUser(); /* Adaptador DAO para almacenar el nuevo Usuario en la BD */
 		daoUser.create(user);
+
 		UserRepository.getInstance().addUser(user);
 		return true;
 
