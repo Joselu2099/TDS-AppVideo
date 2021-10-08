@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.BorderLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JMenuBar;
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
@@ -27,7 +29,7 @@ public class AppVideoWindow {
 		frmAppVideo.setLocationRelativeTo(null);
 		frmAppVideo.setVisible(true);
 	}
-	
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -36,7 +38,13 @@ public class AppVideoWindow {
 		frmAppVideo.setMinimumSize(new Dimension(1280, 720));
 		frmAppVideo.setIconImage(Toolkit.getDefaultToolkit().getImage(LoginWindow.class.getResource("/images/multimediavideoplayer_128px.png")));
 		frmAppVideo.setBounds(100, 100, 1280, 720);
-		frmAppVideo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmAppVideo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmAppVideo.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				goToLoginWindow();
+			}
+		});
 		
 		JMenuBar menuBar = new JMenuBar();
 		frmAppVideo.setJMenuBar(menuBar);
@@ -64,6 +72,15 @@ public class AppVideoWindow {
 		
 		JPanel playlists = new JPanel();
 		tabbedPane.addTab("Playlists", null, playlists, null);
+	}
+
+	/**
+	 * Vuelve a la ventana de Login
+	 */
+	private void goToLoginWindow() {
+		LoginWindow login = new LoginWindow();
+		frmAppVideo.dispose();
+		login.showWindow();
 	}
 
 }

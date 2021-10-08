@@ -79,7 +79,7 @@ public class AppVideo {
 	}
 
 	public static String encodePassword(String password){
-		System.out.println("Encoding: " + password + " -> " + DigestUtils.md5Hex(password));
+		//System.out.println("Encoding: " + password + " -> " + DigestUtils.md5Hex(password));
 		return DigestUtils.md5Hex(password);
 	}
 

@@ -105,7 +105,7 @@ public final class AppVideoDAOUser implements DAOUser {
 	@Override
 	public void create(User user) {
 
-		Entidad eUser = this.usuarioToEntidad(user);
+		Entidad eUser = this.userToEntity(user);
 		eUser = servPersistencia.registrarEntidad(eUser);
 
 		user.setId(eUser.getId());
