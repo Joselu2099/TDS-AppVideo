@@ -64,13 +64,5 @@ public class DAOUtils {
     public static Map<Integer, Playlist> idsToPlaylists(List<Integer> idsPlaylists) {
         return idsPlaylists == null? new HashMap<>() : idsPlaylists.stream().collect(Collectors.toMap(Integer::intValue, AppVideoDAOPlaylist.getInstance()::get));
     }
-    public static String encodePassword(String password){
-        return DigestUtils.md5Hex(password);
-    }
-
-    public static String decodePassword(String passEncoded){
-        //Decodificar la contraseña
-        return passEncoded;
-    }
 
 }

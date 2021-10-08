@@ -2,9 +2,9 @@ package controller;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
 import dao.*;
 import model.*;
+import org.apache.commons.codec.digest.DigestUtils;
 
 public class AppVideo {
 
@@ -45,7 +45,7 @@ public class AppVideo {
 	
 	public boolean login(String username, String password) {
 		User user = UserRepository.getInstance().getUser(username);
-		if(user != null && user.getPassword().equals(password)) {
+		if(user != null && checkPassword(password, user.getPassword())) {
 			this.setActualUser(user);
 			return true;
 		}
@@ -55,7 +55,7 @@ public class AppVideo {
 	
 	public boolean registerUser(String name, String surname, String mail, String username, String password, String dateOfBirth) {
 		if(isUserRegistered(username)) return false;
-		User user = new User(name, surname, mail, username, password, dateOfBirth);
+		User user = new User(name, surname, mail, username, encodePassword(password), dateOfBirth);
 		System.out.println(dateOfBirth);
 
 		DAOUser daoUser = factory.getDAOUser(); /* Adaptador DAO para almacenar el nuevo Usuario en la BD */
@@ -72,4 +72,12 @@ public class AppVideo {
 		VideoRepository.getInstance(); //Se crea el repositorio de videos, lo que conlleva que se cargen todas los videos.
 	}
 
+	public static String encodePassword(String password){
+		System.out.println("Encoding: " + password + " -> " + DigestUtils.md5Hex(password));
+		return DigestUtils.md5Hex(password);
+	}
+
+	public static boolean checkPassword(String pass, String encodedPass){
+		return encodePassword(pass).equals(encodedPass);
+	}
 }

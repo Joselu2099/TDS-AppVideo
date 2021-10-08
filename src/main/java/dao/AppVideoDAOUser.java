@@ -2,7 +2,6 @@ package dao;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
 import model.Playlist;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
@@ -47,7 +46,7 @@ public final class AppVideoDAOUser implements DAOUser {
 	}
 
 	// Funcion que convierte una entidad en un usuario a traves de los atributos que se persistieron
-	private User entidadToUsuario(Entidad eUser) {
+	private User entityToUser(Entidad eUser) {
 
 		String name = servPersistencia.recuperarPropiedadEntidad(eUser, NAME);
 		String surname = servPersistencia.recuperarPropiedadEntidad(eUser, SURNAME);
@@ -57,7 +56,7 @@ public final class AppVideoDAOUser implements DAOUser {
 		String dateOfBirth = servPersistencia.recuperarPropiedadEntidad(eUser, DATEOFBIRTH);
 		String premium = servPersistencia.recuperarPropiedadEntidad(eUser, PREMIUM);
 		
-		User user = new User(name, surname, mail, username, DAOUtils.decodePassword(password), dateOfBirth);
+		User user = new User(name, surname, mail, username, password, dateOfBirth);
 		user.setId(eUser.getId());
 		user.setPremium(premium);
 		if (servPersistencia.recuperarPropiedadEntidad(eUser, RECENTVIDEOS) != null) {
@@ -82,7 +81,7 @@ public final class AppVideoDAOUser implements DAOUser {
 	}
 
 	// Funcion que convierte un usuario en un entidad extrayendo los atributos de la clase y convirtiendolos en propiedades para persistirlos 
-	private Entidad usuarioToEntidad(User user) {
+	private Entidad userToEntity(User user) {
 		Entidad eUser = new Entidad();
 		
 		eUser.setNombre(USER);
@@ -92,7 +91,7 @@ public final class AppVideoDAOUser implements DAOUser {
 				new Propiedad(SURNAME, user.getSurname()),
 				new Propiedad(MAIL, user.getMail()),
 				new Propiedad(USERNAME, user.getUsername()),
-				new Propiedad(PASSWORD, DAOUtils.encodePassword(user.getPassword())),
+				new Propiedad(PASSWORD, user.getPassword()),
 				new Propiedad(DATEOFBIRTH, user.getDateOfBirth()),
 				new Propiedad(PREMIUM, user.getPremium()),
 				new Propiedad(RECENTVIDEOS, DAOUtils.listToString(DAOUtils.videosToIds(user.getRecentVideos()))),
@@ -113,7 +112,7 @@ public final class AppVideoDAOUser implements DAOUser {
 		if (u == null) {
 			return;
 		}
-		Entidad eUser = this.usuarioToEntidad(user);
+		Entidad eUser = this.userToEntity(user);
 		eUser = servPersistencia.registrarEntidad(eUser);
 
 		user.setId(eUser.getId());
@@ -152,14 +151,14 @@ public final class AppVideoDAOUser implements DAOUser {
 	public User get(int id) {
 		Entidad eUser = servPersistencia.recuperarEntidad(id);
 		
-		return entidadToUsuario(eUser);
+		return entityToUser(eUser);
 	}
 
 	@Override
 	public List<User> getAll() {
 
 		List<Entidad> entities = servPersistencia.recuperarEntidades(USER);
-		return entities == null ? new ArrayList<>() : entities.stream().map(this::entidadToUsuario).collect(Collectors.toList());
+		return entities == null ? new ArrayList<>() : entities.stream().map(this::entityToUser).collect(Collectors.toList());
 
 	}
 }
