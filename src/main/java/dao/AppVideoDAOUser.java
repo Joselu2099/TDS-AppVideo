@@ -1,6 +1,8 @@
 package dao;
 
 import java.util.*;
+import java.util.stream.Collectors;
+
 import model.Playlist;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
@@ -105,21 +107,17 @@ public final class AppVideoDAOUser implements DAOUser {
 	public void create(User user) {
 		// Si la entidad está¡ registrada no la registra de nuevo
 
-		boolean exist = true;
+		Entidad u = servPersistencia.recuperarEntidad(user.getId());
 
-		try {
-			exist = servPersistencia.recuperarEntidad(user.getId()) != null;
-		}catch (NullPointerException ignored){}
-
-		System.out.println("Existe User con ID: " + user.getId() + " ? = " + exist);
-		if (exist) {
+//		System.out.println("Existe User con ID: " + user.getId() + " ? = " + exist);
+		if (u == null) {
 			return;
 		}
 		Entidad eUser = this.usuarioToEntidad(user);
-		
 		eUser = servPersistencia.registrarEntidad(eUser);
+
 		user.setId(eUser.getId());
-		System.out.println("El ID del usuario registrado es: " + user.getId());
+//		System.out.println("El ID del usuario registrado es: " + user.getId());
 	}
 
 	@Override
@@ -161,13 +159,7 @@ public final class AppVideoDAOUser implements DAOUser {
 	public List<User> getAll() throws NullPointerException {
 
 		List<Entidad> entities = servPersistencia.recuperarEntidades(USER);
+		return entities == null ? new ArrayList<>() : entities.stream().map(Entidad::getId).map(this::get).collect(Collectors.toList());
 
-		List<User> users = new LinkedList<>();
-
-		if(entities == null || entities.isEmpty()) return users;
-		for (Entidad eUser : entities) {
-			users.add(get(eUser.getId()));
-		}
-		return users;
 	}
 }
