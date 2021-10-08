@@ -60,11 +60,9 @@ public class AppVideo {
 
 		DAOUser daoUser = factory.getDAOUser(); /* Adaptador DAO para almacenar el nuevo Usuario en la BD */
 		daoUser.create(user);
-
-//		daoUser.create(user);
-
 		UserRepository.getInstance().addUser(user);
 		return true;
+
 	}
 
 	public void loadVideos(){

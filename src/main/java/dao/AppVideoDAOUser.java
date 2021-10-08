@@ -105,19 +105,11 @@ public final class AppVideoDAOUser implements DAOUser {
 	// Funcion para extraer el usuario que se pasa como parametro de la base de datos.
 	@Override
 	public void create(User user) {
-		// Si la entidad está¡ registrada no la registra de nuevo
 
-		Entidad u = servPersistencia.recuperarEntidad(user.getId());
-
-//		System.out.println("Existe User con ID: " + user.getId() + " ? = " + exist);
-		if (u == null) {
-			return;
-		}
 		Entidad eUser = this.usuarioToEntidad(user);
 		eUser = servPersistencia.registrarEntidad(eUser);
 
 		user.setId(eUser.getId());
-//		System.out.println("El ID del usuario registrado es: " + user.getId());
 	}
 
 	@Override
