@@ -1,15 +1,17 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Playlist {
 
 	private int id;
 	private String title;
-	private ArrayList<Video> playlist;
+	private List<Video> listOfVideos;
 	
 	public Playlist(String title) {
 		this.title = title;
+		this.listOfVideos = new ArrayList<>();
 	}
 	
 	public int getId() {
@@ -28,12 +30,12 @@ public class Playlist {
 		this.title = title;
 	}
 
-	public ArrayList<Video> getPlaylist() {
-		return new ArrayList<>(playlist);
+	public List<Video> getListOfVideos() {
+		return new ArrayList<>(listOfVideos);
 	}
 
-	public void setPlaylist(ArrayList<Video> playlist) {
-		this.playlist = playlist;
+	public void setListOfVideos(List<Video> listOfVideos) {
+		this.listOfVideos = listOfVideos;
 	}
 	
 	

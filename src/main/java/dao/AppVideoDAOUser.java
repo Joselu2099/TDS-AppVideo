@@ -19,9 +19,9 @@ public final class AppVideoDAOUser implements DAOUser {
 	private static AppVideoDAOUser uniqueInstance = null;
 	
 	//Definimos los atributos de la clase a persistir
-	private static final String USER = "Usuario";
-	private static final String NAME = "nombre";
-	private static final String SURNAME = "apellidos";
+	private static final String USER = "User";
+	private static final String NAME = "name";
+	private static final String SURNAME = "surname";
 	private static final String MAIL = "mail";
 	private static final String USERNAME = "username";
 	private static final String PASSWORD = "password";
@@ -99,12 +99,10 @@ public final class AppVideoDAOUser implements DAOUser {
 				new Propiedad(FILTER, DAOUtils.filterToString(user.getFilter())))));
 		return eUser;
 	}
-
 	
 	// Funcion para extraer el usuario que se pasa como parametro de la base de datos.
 	@Override
 	public void create(User user) {
-
 		Entidad eUser = this.userToEntity(user);
 		eUser = servPersistencia.registrarEntidad(eUser);
 
@@ -113,9 +111,7 @@ public final class AppVideoDAOUser implements DAOUser {
 
 	@Override
 	public boolean delete(User user) {
-		Entidad eUser;
-		eUser = servPersistencia.recuperarEntidad(user.getId());
-		
+		Entidad eUser = servPersistencia.recuperarEntidad(user.getId());
 		return servPersistencia.borrarEntidad(eUser);
 	}
 
@@ -142,15 +138,12 @@ public final class AppVideoDAOUser implements DAOUser {
 	@Override
 	public User get(int id) {
 		Entidad eUser = servPersistencia.recuperarEntidad(id);
-		
 		return entityToUser(eUser);
 	}
 
 	@Override
 	public List<User> getAll() {
-
 		List<Entidad> entities = servPersistencia.recuperarEntidades(USER);
 		return entities == null ? new ArrayList<>() : entities.stream().map(this::entityToUser).collect(Collectors.toList());
-
 	}
 }
