@@ -1,16 +1,22 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import beans.Entidad;
 import model.Video;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
+
+import javax.swing.text.html.parser.Entity;
 
 public final class AppVideoDAOVideo implements DAOVideo{
 
 	private static AppVideoDAOVideo uniqueInstance = null;
 	
 	//Definimos los atributos de la clase a persistir
-	private static final String TITLE = "title";
+	private static final String TYPE = "Video";
 	
 	private final ServicioPersistencia servPersistencia;
 	
@@ -49,10 +55,15 @@ public final class AppVideoDAOVideo implements DAOVideo{
 		return null;
 	}
 
+//	public Video fromEntity(Entidad e){
+//		Video v = new Video(e.get)
+//	}
+
 	@Override
 	public List<Video> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Entidad> v = servPersistencia.recuperarEntidades(TYPE);
+		return new ArrayList<>();
+//		return v == null ? new ArrayList<>() : v.stream().map().collect(Collectors.toList());
 	}
 
 }

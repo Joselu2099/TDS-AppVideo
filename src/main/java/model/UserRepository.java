@@ -3,6 +3,9 @@ package model;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 import dao.DAOException;
 import dao.DAOFactory;
 import dao.DAOUser;
@@ -32,11 +35,13 @@ public class UserRepository {
 	}
 
 	private void loadRepository() {
-		userList = new HashMap<>();
-		List<User> usersFromBD = userAdapter.getAll();
-		for(User user: usersFromBD){
-			userList.put(user.getUsername(), user);
-		}
+		// Function.identity = return the object itself, it's same as e -> e
+		userList = userAdapter.getAll().stream().collect(Collectors.toMap(User::getUsername, Function.identity()));
+//		userList = new HashMap<>();
+//		List<User> usersFromBD = userAdapter.getAll();
+//		for(User user: usersFromBD){
+//			userList.put(user.getUsername(), user);
+//		}
 	}
 
 	public User getUser(int id) {

@@ -47,6 +47,19 @@ public class Video {
 	public void setLabels(ArrayList<Label> labels) {
 		this.labels = labels;
 	}
-	
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Video)) return false;
+
+		Video video = (Video) o;
+
+		return getId() == video.getId();
+	}
+
+	@Override
+	public int hashCode() {
+		return getId();
+	}
 }

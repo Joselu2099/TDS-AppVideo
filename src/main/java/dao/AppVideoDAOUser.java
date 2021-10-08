@@ -156,10 +156,10 @@ public final class AppVideoDAOUser implements DAOUser {
 	}
 
 	@Override
-	public List<User> getAll() throws NullPointerException {
+	public List<User> getAll() {
 
 		List<Entidad> entities = servPersistencia.recuperarEntidades(USER);
-		return entities == null ? new ArrayList<>() : entities.stream().map(Entidad::getId).map(this::get).collect(Collectors.toList());
+		return entities == null ? new ArrayList<>() : entities.stream().map(this::entidadToUsuario).collect(Collectors.toList());
 
 	}
 }

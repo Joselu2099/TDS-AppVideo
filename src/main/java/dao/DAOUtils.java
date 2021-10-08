@@ -48,7 +48,7 @@ public class DAOUtils {
     }
 
     public static IFilter stringToFilter(String filterString) {
-        if(filterString==null) return null;
+        if(filterString==null || filterString.equals("")) return null;
         try {
             Class<?> filterClass = Class.forName(filterString);
             if (IFilter.class.isAssignableFrom(filterClass)){
@@ -63,11 +63,6 @@ public class DAOUtils {
 
     public static Map<Integer, Playlist> idsToPlaylists(List<Integer> idsPlaylists) {
         return idsPlaylists == null? new HashMap<>() : idsPlaylists.stream().collect(Collectors.toMap(Integer::intValue, AppVideoDAOPlaylist.getInstance()::get));
-//		Map<Integer, Playlist> playlists = new HashMap<>();
-//		for(Integer id : idsPlaylists) {
-//			playlists.put(id, appVideo.playlistAdapter.get(id));
-//		}
-//		return playlists;
     }
     public static String encodePassword(String password){
         return DigestUtils.md5Hex(password);

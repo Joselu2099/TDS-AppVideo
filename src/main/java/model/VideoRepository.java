@@ -43,13 +43,7 @@ public class VideoRepository {
 	}
 	
 	public Video getVideo(String title) {
-		Video video = null;
-		for(Video v: videoList.values()) {
-			if(v.getTitle().equals(title)) {
-				video = v;
-			}
-		}
-		return video;
+		return videoList.values().stream().filter(video -> video.getTitle().equals(title)).findAny().orElse(null);
 	}
 	
 	public void addVideo(Video video) {

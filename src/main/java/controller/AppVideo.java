@@ -56,11 +56,12 @@ public class AppVideo {
 	public boolean registerUser(String name, String surname, String mail, String username, String password, String dateOfBirth) {
 		if(isUserRegistered(username)) return false;
 		User user = new User(name, surname, mail, username, password, dateOfBirth);
+		System.out.println(dateOfBirth);
 
 		DAOUser daoUser = factory.getDAOUser(); /* Adaptador DAO para almacenar el nuevo Usuario en la BD */
 		daoUser.create(user);
 
-		daoUser.create(user);
+//		daoUser.create(user);
 
 		UserRepository.getInstance().addUser(user);
 		return true;
