@@ -151,7 +151,7 @@ public class RegisterWindow {
 		gbc_lblWarningDate.gridy = 14;
 		panelRegister.add(lblWarningDate, gbc_lblWarningDate);
 		
-		JLabel lblName = new JLabel("Nombre: ");
+		JLabel lblName = new JLabel("Name: ");
 		lblName.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		GridBagConstraints gbc_lblName = new GridBagConstraints();
 		gbc_lblName.anchor = GridBagConstraints.EAST;
@@ -171,7 +171,7 @@ public class RegisterWindow {
 		panelRegister.add(textName, gbc_textName);
 		textName.setColumns(10);
 
-		JLabel lblSurname = new JLabel("Apellidos: ");
+		JLabel lblSurname = new JLabel("Surname: ");
 		lblSurname.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		GridBagConstraints gbc_lblSurname = new GridBagConstraints();
 		gbc_lblSurname.anchor = GridBagConstraints.EAST;
@@ -191,7 +191,7 @@ public class RegisterWindow {
 		panelRegister.add(textSurname, gbc_textSurname);
 		textSurname.setColumns(10);
 
-		JLabel lblUsername = new JLabel("Usuario: ");
+		JLabel lblUsername = new JLabel("Username: ");
 		lblUsername.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		GridBagConstraints gbc_lblUsername = new GridBagConstraints();
 		gbc_lblUsername.anchor = GridBagConstraints.EAST;
@@ -210,7 +210,7 @@ public class RegisterWindow {
 		panelRegister.add(textUsername, gbc_textUsername);
 		textUsername.setColumns(15);
 
-		JLabel lblPassword = new JLabel("Contraseña: ");
+		JLabel lblPassword = new JLabel("Password:");
 		lblPassword.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
 		gbc_lblPassword.anchor = GridBagConstraints.EAST;
@@ -228,7 +228,7 @@ public class RegisterWindow {
 		gbc_passwordField.gridy = 4;
 		panelRegister.add(passwordField, gbc_passwordField);
 		
-		JLabel lblRepeatedPassword = new JLabel("Repetir: ");
+		JLabel lblRepeatedPassword = new JLabel("Repeat:");
 		lblRepeatedPassword.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		GridBagConstraints gbc_lblRepeatedPassword = new GridBagConstraints();
 		gbc_lblRepeatedPassword.anchor = GridBagConstraints.EAST;
@@ -266,7 +266,7 @@ public class RegisterWindow {
 		panelRegister.add(textMail, gbc_textMail);
 		textMail.setColumns(15);
 
-		JLabel lblDateOfBirth = new JLabel("Fecha: ");
+		JLabel lblDateOfBirth = new JLabel("Date of birth: ");
 		lblDateOfBirth.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		GridBagConstraints gbc_lblDateOfBirth = new GridBagConstraints();
 		gbc_lblDateOfBirth.anchor = GridBagConstraints.EAST;

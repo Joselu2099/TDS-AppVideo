@@ -86,4 +86,36 @@ public class AppVideo {
 		
 		getActualUser().getFilter().eliminarVideos();
 	}
+	
+	public void changeMail(String mail) {
+		getActualUser().setMail(mail);
+
+		DAOUser daoUser = factory.getDAOUser();
+		daoUser.updateProfile(getActualUser());
+	}
+	
+	public void changeUsername(String username) {
+		getActualUser().setUsername(username);
+
+		DAOUser daoUser = factory.getDAOUser();
+		daoUser.updateProfile(getActualUser());
+	}
+	
+	public void changePassword(String password) {
+		getActualUser().setPassword(encodePassword(password));
+
+		DAOUser daoUser = factory.getDAOUser();
+		daoUser.updateProfile(getActualUser());
+	}
+	
+	public void becomePremium() {
+		getActualUser().setPremium("si");
+
+		DAOUser daoUser = factory.getDAOUser();
+		daoUser.updateProfile(getActualUser());
+	}
+	
+	public void generatePDF() {
+		
+	}
 }

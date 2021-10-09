@@ -14,8 +14,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import controller.AppVideo;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ProfileWindow {
 
@@ -74,7 +77,7 @@ public class ProfileWindow {
 		gbc_lblName.gridy = 6;
 		frmProfile.getContentPane().add(lblName, gbc_lblName);
 		
-		JLabel lblPremium = new JLabel("Premium: ");
+		JLabel lblPremium = new JLabel("Premium: " + AppVideo.getInstance().getActualUser().getPremium());
 		lblPremium.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
 		GridBagConstraints gbc_lblPremium = new GridBagConstraints();
 		gbc_lblPremium.insets = new Insets(0, 0, 5, 5);
@@ -91,6 +94,13 @@ public class ProfileWindow {
 		frmProfile.getContentPane().add(lblSurname, gbc_lblSurname);
 		
 		JButton btnPremium = new JButton("Become premium");
+		btnPremium.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AppVideo.getInstance().becomePremium();
+				lblPremium.revalidate();
+			}
+		});
 		btnPremium.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/premiumIcon.png")));
 		btnPremium.setSelectedIcon(null);
 		btnPremium.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
@@ -127,6 +137,32 @@ public class ProfileWindow {
 		frmProfile.getContentPane().add(lblFilter, gbc_lblFilter);
 		
 		JButton btnChangePassword = new JButton("Change password");
+		btnChangePassword.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				while(true) {
+					
+					String actualPassword = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(), "Intruduce tu contraseña actual : ", 
+							"Change of password",JOptionPane.PLAIN_MESSAGE, null, null,"password");
+					
+					if(AppVideo.getInstance().getActualUser().getPassword().equals(AppVideo.getInstance().encodePassword(actualPassword))) {
+						
+						String newPassword = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(), "Introduce la nueva contraseña : ", 
+								"Change of password",JOptionPane.PLAIN_MESSAGE, null, null,"password");
+						
+						if(newPassword.length() < AppVideo.MIN_PASSWORD_LENGTH) JOptionPane.showMessageDialog(frmProfile.getContentPane(), 
+								"La contraseña debe tener al menos "+AppVideo.MIN_PASSWORD_LENGTH+" caracteres", "Cambio de contraseña", JOptionPane.ERROR_MESSAGE);
+						else{
+							AppVideo.getInstance().changePassword(newPassword);
+							break;
+						}
+						
+					}else {
+						JOptionPane.showMessageDialog(frmProfile.getContentPane(), "Contraseña incorrecta, prueba otra vez", "Cambio de contraseña", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}
+		});
 		btnChangePassword.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/changePasswordIcon.png")));
 		btnChangePassword.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
 		btnChangePassword.setForeground(new Color(255, 255, 255));
@@ -138,6 +174,11 @@ public class ProfileWindow {
 		frmProfile.getContentPane().add(btnChangePassword, gbc_btnChangePassword);
 		
 		JButton btnGeneratePDF = new JButton("Generate PDF");
+		btnGeneratePDF.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		btnGeneratePDF.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/pdfIcon.png")));
 		btnGeneratePDF.setSelectedIcon(null);
 		btnGeneratePDF.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
