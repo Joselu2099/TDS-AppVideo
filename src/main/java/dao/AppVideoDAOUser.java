@@ -2,8 +2,6 @@ package dao;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
-import controller.AppVideo;
 import model.Playlist;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;

@@ -8,13 +8,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import org.apache.commons.codec.digest.DigestUtils;
 
 public class DAOUtils {
     public static Integer safeValueOf(String s){
         try{
             return Integer.valueOf(s);
-        }catch (NumberFormatException | NullPointerException e){}
+        }catch (NumberFormatException | NullPointerException ignored){}
         return null;
     }
 

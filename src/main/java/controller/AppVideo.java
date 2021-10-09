@@ -69,12 +69,20 @@ public class AppVideo {
 		return true;
 	}
 
-	public static String encodePassword(String password){
+	public String encodePassword(String password){
 		//System.out.println("Encoding: " + password + " -> " + DigestUtils.md5Hex(password));
 		return DigestUtils.md5Hex(password);
 	}
 
-	public static boolean checkPassword(String pass, String encodedPass){
+	public boolean checkPassword(String pass, String encodedPass){
 		return encodePassword(pass).equals(encodedPass);
+	}
+	
+	public void selectFilter(IFilter filter) {
+		if(!getActualUser().getFilter().getClass().equals(filter.getClass())) {
+			getActualUser().setFilter(filter);
+		}
+		
+		getActualUser().getFilter().eliminarVideos();
 	}
 }

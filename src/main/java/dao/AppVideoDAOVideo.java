@@ -2,14 +2,10 @@ package dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import beans.Entidad;
 import model.Video;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
-
-import javax.swing.text.html.parser.Entity;
 
 public final class AppVideoDAOVideo implements DAOVideo{
 

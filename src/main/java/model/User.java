@@ -1,6 +1,5 @@
 package model;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +27,7 @@ public class User {
 		this.password = password;
 		this.dateOfBirth = dateOfBirth;
 		this.premium = "no";
-		this.filter = null;
+		this.filter = new NoFilter();
 		this.listOfPlaylist = new HashMap<>();
 		this.recentVideos = new ArrayList<>();
 	}
