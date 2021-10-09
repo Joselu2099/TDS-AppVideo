@@ -18,6 +18,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.event.MenuKeyListener;
+import javax.swing.event.MenuKeyEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AppVideoWindow {
 
@@ -61,9 +65,8 @@ public class AppVideoWindow {
 		menuBar.add(mnProfile);
 		
 		JMenuItem mntmEdit = new JMenuItem("Edit");
-		mntmEdit.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		mntmEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				goToProfileWindow();
 			}
 		});
@@ -73,45 +76,40 @@ public class AppVideoWindow {
 		menuBar.add(mnFilters);
 		
 		JMenu mnSelect = new JMenu("Select");
-		mnSelect.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-			}
-		});
 		mnFilters.add(mnSelect);
 		
 		JMenuItem mntmMinors = new JMenuItem("Minors");
-		mntmMinors.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				AppVideo.getInstance().selectFilter(new MinorsFilter());;
+		mntmMinors.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AppVideo.getInstance().selectFilter(new MinorsFilter());
+				System.out.println("Filtro minors");
 			}
 		});
 		mnSelect.add(mntmMinors);
 		
 		JMenuItem mntmImpopulars = new JMenuItem("Impopulars");
-		mntmImpopulars.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				AppVideo.getInstance().selectFilter(new ImpopularsFilter());;
+		mntmImpopulars.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AppVideo.getInstance().selectFilter(new ImpopularsFilter());
+				System.out.println("Filtro impopulars");
 			}
 		});
 		mnSelect.add(mntmImpopulars);
 		
 		JMenuItem mntmMyLists = new JMenuItem("My lists");
-		mntmMyLists.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				AppVideo.getInstance().selectFilter(new MyListsFilter());;
+		mntmMyLists.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AppVideo.getInstance().selectFilter(new MyListsFilter());
+				System.out.println("Filtro my lists");
 			}
 		});
 		mnSelect.add(mntmMyLists);
 		
 		JMenuItem mntmRemoveFilter = new JMenuItem("Remove filter");
-		mntmRemoveFilter.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				AppVideo.getInstance().selectFilter(new NoFilter());;
+		mntmRemoveFilter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AppVideo.getInstance().selectFilter(new NoFilter());
+				System.out.println("Filtro eliminado");
 			}
 		});
 		mnFilters.add(mntmRemoveFilter);
@@ -120,26 +118,25 @@ public class AppVideoWindow {
 		menuBar.add(mnSettings);
 		
 		JMenuItem mntmHelp = new JMenuItem("Help");
-		mntmHelp.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		mntmHelp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
 			}
 		});
 		
 		JMenuItem mntmMySettings = new JMenuItem("My settings");
-		mntmMySettings.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		mntmMySettings.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				goToSettingsWindow();
 			}
 		});
+	
 		mnSettings.add(mntmMySettings);
 		mnSettings.add(mntmHelp);
 		
 		JMenuItem mntmExit = new JMenuItem("Exit");
-		mntmExit.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		mntmExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				goToLoginWindow();
 			}
 		});
