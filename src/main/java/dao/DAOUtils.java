@@ -1,5 +1,7 @@
 package dao;
 
+import beans.Entidad;
+import beans.Propiedad;
 import model.IFilter;
 import model.Playlist;
 import model.Video;
@@ -62,6 +64,14 @@ public class DAOUtils {
 
     public static Map<Integer, Playlist> idsToPlaylists(List<Integer> idsPlaylists) {
         return idsPlaylists == null? new HashMap<>() : idsPlaylists.stream().collect(Collectors.toMap(Integer::intValue, AppVideoDAOPlaylist.getInstance()::get));
+    }
+
+    public static boolean modifyEntityProperty(Entidad entidad, String propertyName, String value){
+        Propiedad properties = entidad.getPropiedades().stream().filter(propiedad -> propiedad.getNombre().equals(propertyName)).findAny().orElse(null);
+        if (properties == null)
+            return false;
+        properties.setValor(value);
+        return true;
     }
 
 }

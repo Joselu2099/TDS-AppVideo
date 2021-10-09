@@ -3,6 +3,7 @@ package dao;
 import java.util.*;
 import java.util.stream.Collectors;
 import model.Playlist;
+import model.UserRepository;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
 import beans.Entidad;
@@ -119,26 +120,22 @@ public final class AppVideoDAOUser implements DAOUser {
 	 */
 	@Override
 	public void updateProfile(User user) {
-		System.out.println("Vamoh a actualiza");
 		Entidad eUser = servPersistencia.recuperarEntidad(user.getId());
-		System.out.println("Antes: " + entityToUser(eUser).getPremium());
-		System.out.println(user.getPremium());
 
-		servPersistencia.eliminarPropiedadEntidad(eUser, PASSWORD);
-		servPersistencia.anadirPropiedadEntidad(eUser, PASSWORD, user.getPassword());
-		servPersistencia.eliminarPropiedadEntidad(eUser, MAIL);
-		servPersistencia.anadirPropiedadEntidad(eUser, MAIL, user.getMail());
-		servPersistencia.eliminarPropiedadEntidad(eUser, PREMIUM);
-		servPersistencia.modificarPropiedad(new Propiedad(PREMIUM, user.getPremium()));
-		servPersistencia.eliminarPropiedadEntidad(eUser, RECENTVIDEOS);
-		servPersistencia.anadirPropiedadEntidad(eUser, RECENTVIDEOS, DAOUtils.listToString(DAOUtils.videosToIds(user.getRecentVideos())));
-		servPersistencia.eliminarPropiedadEntidad(eUser, LISTOFPLAYLIST);
-		servPersistencia.anadirPropiedadEntidad(eUser, LISTOFPLAYLIST, DAOUtils.listToString(DAOUtils.playlistsToIds(user.getListOfPlaylist())));
-		servPersistencia.eliminarPropiedadEntidad(eUser, FILTER);
-		servPersistencia.anadirPropiedadEntidad(eUser, FILTER, DAOUtils.filterToString(user.getFilter()));
+		DAOUtils.modifyEntityProperty(eUser,NAME,user.getName());
+		DAOUtils.modifyEntityProperty(eUser,SURNAME,user.getSurname());
+		DAOUtils.modifyEntityProperty(eUser,MAIL,user.getMail());
+		DAOUtils.modifyEntityProperty(eUser,USERNAME,user.getUsername());
+		DAOUtils.modifyEntityProperty(eUser,PASSWORD,user.getPassword());
+		DAOUtils.modifyEntityProperty(eUser,DATEOFBIRTH,user.getDateOfBirth());
+		DAOUtils.modifyEntityProperty(eUser,PREMIUM,user.getPremium());
+		DAOUtils.modifyEntityProperty(eUser,RECENTVIDEOS,DAOUtils.listToString(DAOUtils.videosToIds(user.getRecentVideos())));
+		DAOUtils.modifyEntityProperty(eUser,LISTOFPLAYLIST,DAOUtils.listToString(DAOUtils.playlistsToIds(user.getListOfPlaylist())));
+		DAOUtils.modifyEntityProperty(eUser,FILTER,DAOUtils.filterToString(user.getFilter()));
 
-		System.out.println("Despues: " + entityToUser(eUser).getPremium());
-		//servPersistencia.modificarEntidad(eUser);
+		servPersistencia.modificarEntidad(eUser);
+		// Comprobamos si son iguales.
+		assert (servPersistencia.recuperarEntidad(user.getId()).equals(eUser));
 	}
 	
 	@Override
