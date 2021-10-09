@@ -64,7 +64,7 @@ public class AppVideoWindow {
 		mntmEdit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				goToProfileWindow();
 			}
 		});
 		mnProfile.add(mntmEdit);
@@ -177,6 +177,15 @@ public class AppVideoWindow {
 		SettingsWindow settings = new SettingsWindow();
 		frmAppVideo.dispose();
 		settings.showWindow();
+	}
+	
+	/**
+	 * Va a la ventana del perfil
+	 */
+	private void goToProfileWindow() {
+		ProfileWindow profile = new ProfileWindow();
+		frmAppVideo.dispose();
+		profile.showWindow();
 	}
 
 }
