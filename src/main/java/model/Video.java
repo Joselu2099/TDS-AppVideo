@@ -55,11 +55,18 @@ public class Video {
 
 		Video video = (Video) o;
 
-		return getId() == video.getId();
+		if (getId() != video.getId()) return false;
+		if (getTitle() != null ? !getTitle().equals(video.getTitle()) : video.getTitle() != null) return false;
+		if (getUrl() != null ? !getUrl().equals(video.getUrl()) : video.getUrl() != null) return false;
+		return getLabels() != null ? getLabels().equals(video.getLabels()) : video.getLabels() == null;
 	}
 
 	@Override
 	public int hashCode() {
-		return getId();
+		int result = getId();
+		result = 31 * result + (getTitle() != null ? getTitle().hashCode() : 0);
+		result = 31 * result + (getUrl() != null ? getUrl().hashCode() : 0);
+		result = 31 * result + (getLabels() != null ? getLabels().hashCode() : 0);
+		return result;
 	}
 }
