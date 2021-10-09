@@ -6,14 +6,13 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 public class AppVideo {
 
-	public static final int MIN_PASSLENGTH = 8;
+	public static final int MIN_PASSWORD_LENGTH = 8;
 	public static AppVideo uniqueInstance = null;
 	private DAOFactory factory;
 	private User actualUser;
 	
 	private AppVideo(){
 		this.setActualUser(null);
-		//Iniciamos la factoria para la persistencia
 		try {
 			factory = DAOFactory.getInstance();
 		} catch (DAOException e) {
@@ -53,7 +52,7 @@ public class AppVideo {
 		if(isUserRegistered(username)) return false;
 		User user = new User(name, surname, mail, username, encodePassword(password), dateOfBirth);
 
-		DAOUser daoUser = factory.getDAOUser(); /* Adaptador DAO para almacenar el nuevo Usuario en la BD */
+		DAOUser daoUser = factory.getDAOUser(); /* DAO Adapter to save the user into Base Data */
 		daoUser.create(user);
 
 		UserRepository.getInstance().addUser(user);
@@ -68,11 +67,6 @@ public class AppVideo {
 		factory.getDAOUser().delete(u);
 		UserRepository.getInstance().removeUser(u);
 		return true;
-	}
-
-	public void loadVideos(){
-		//ArrayList<Video> videoList = new ArrayList<Video>();
-		VideoRepository.getInstance(); //Se crea el repositorio de videos, lo que conlleva que se cargen todas los videos.
 	}
 
 	public static String encodePassword(String password){

@@ -311,6 +311,7 @@ public class RegisterWindow {
 		btnRegister.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		btnRegister.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
+				resetCheckFields();
 				register();
 			}
 		});
@@ -366,11 +367,11 @@ public class RegisterWindow {
 			} 
 			salida = false;
 		}else {
-			if (password.length()<AppVideo.MIN_PASSLENGTH){
+			if (password.length()<AppVideo.MIN_PASSWORD_LENGTH){
 				passwordField.setBorder(BorderFactory.createLineBorder(Color.RED));
 				repeatedPasswordField.setBorder(BorderFactory.createLineBorder(Color.RED));
 				//JOptionPane.showMessageDialog(frmRegister, "La contraseña debe tener al menos "+AppVideo.MIN_PASSLENGTH+" caracteres.\n","Registro", JOptionPane.ERROR_MESSAGE);
-				lblWarningPassword.setText("La contraseña debe tener al menos "+AppVideo.MIN_PASSLENGTH+" caracteres");
+				lblWarningPassword.setText("La contraseña debe tener al menos "+AppVideo.MIN_PASSWORD_LENGTH+" caracteres");
 				salida = false;
 			}else {
 				if (!password.equals(password2)) {
@@ -425,7 +426,22 @@ public class RegisterWindow {
 		
 		return salida;
 	}
-	
+
+	public void resetCheckFields(){
+		textName.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		textName.setForeground(Color.BLACK);
+		textSurname.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		textSurname.setForeground(Color.BLACK);
+		textMail.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		textMail.setForeground(Color.BLACK);
+		textUsername.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		textUsername.setForeground(Color.BLACK);
+		passwordField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		passwordField.setForeground(Color.BLACK);
+		repeatedPasswordField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		repeatedPasswordField.setForeground(Color.BLACK);
+	}
+
 	/**
 	 * Cambia el formato de la fecha a LocalDate
 	 */
@@ -453,10 +469,9 @@ public class RegisterWindow {
 		String surname = textSurname.getText();
 		if(checkFields()) {
 			LocalDate date = parseLocalDate(dateOfBirth);
-			boolean registrado = false;
-			registrado = AppVideo.getInstance().registerUser(name, surname, mail, username, password, 
+			boolean isRegistered = AppVideo.getInstance().registerUser(name, surname, mail, username, password,
 					date.toString());
-			if (registrado) {
+			if (isRegistered) {
 				JOptionPane.showMessageDialog(frmRegister, "Asistente registrado correctamente.", "Registro", JOptionPane.INFORMATION_MESSAGE);
 				goToLoginWindow();
 			} else {
