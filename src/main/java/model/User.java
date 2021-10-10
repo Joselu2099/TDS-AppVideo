@@ -96,6 +96,10 @@ public class User {
 		this.premium = premium;
 	}
 	
+	public boolean isPremium() {
+		return this.premium.equals("si");
+	}
+	
 	public IFilter getFilter() {
 		return filter;
 	}

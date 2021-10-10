@@ -26,21 +26,31 @@ public final class AppVideoDAOVideo implements DAOVideo{
 			uniqueInstance = new AppVideoDAOVideo();
 		return uniqueInstance;
 	}
-	
+
+	private Video entityToVideo(Entidad eVideo){
+		// TODO
+		return new Video("","");
+	}
+
+	private Entidad videoToEntity(Video video){
+		// TODO
+		return new Entidad();
+	}
+
 	@Override
-	public void create(Video assistant) {
+	public void create(Video video) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public boolean delete(Video assistant) {
+	public boolean delete(Video video) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public void updateProfile(Video assistant) {
+	public void updateProfile(Video video) {
 		// TODO Auto-generated method stub
 		
 	}
