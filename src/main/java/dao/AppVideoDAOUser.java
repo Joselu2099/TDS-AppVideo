@@ -86,7 +86,7 @@ public final class AppVideoDAOUser implements DAOUser {
 		
 		eUser.setNombre(USER);
 		
-		eUser.setPropiedades(new ArrayList<>(Arrays.asList(
+		eUser.setPropiedades(Arrays.asList(
 				new Propiedad(NAME, user.getName()),
 				new Propiedad(SURNAME, user.getSurname()),
 				new Propiedad(MAIL, user.getMail()),
@@ -96,7 +96,7 @@ public final class AppVideoDAOUser implements DAOUser {
 				new Propiedad(PREMIUM, user.getPremium()),
 				new Propiedad(RECENTVIDEOS, DAOUtils.listToString(DAOUtils.videosToIds(user.getRecentVideos()))),
 				new Propiedad(LISTOFPLAYLIST, DAOUtils.listToString(DAOUtils.playlistsToIds(user.getListOfPlaylist()))),
-				new Propiedad(FILTER, DAOUtils.filterToString(user.getFilter())))));
+				new Propiedad(FILTER, DAOUtils.filterToString(user.getFilter()))));
 		return eUser;
 	}
 	

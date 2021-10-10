@@ -74,4 +74,12 @@ public class DAOUtils {
         return true;
     }
 
+    public static List<String> splitString(String s){
+        return s == null ? new ArrayList<>() : Arrays.stream(s.split(";")).collect(Collectors.toList());
+    }
+
+    public static String joinString(List<String> list){
+        return list == null ? "" : list.stream().collect(Collectors.joining(";"));
+    }
+
 }

@@ -76,10 +76,13 @@ public final class AppVideoDAOPlaylist implements DAOPlaylist {
 	@Override
 	public void updateProfile(Playlist playlist) {
 		Entidad ePlaylist = servPersistencia.recuperarEntidad(playlist.getId());
-		servPersistencia.eliminarPropiedadEntidad(ePlaylist, TITLE);
-		servPersistencia.anadirPropiedadEntidad(ePlaylist, TITLE, playlist.getTitle());
-		servPersistencia.eliminarPropiedadEntidad(ePlaylist, LISTOFVIDEOS);
-		servPersistencia.anadirPropiedadEntidad(ePlaylist, LISTOFVIDEOS, DAOUtils.listToString(DAOUtils.videosToIds(playlist.getListOfVideos())));
+
+		DAOUtils.modifyEntityProperty(ePlaylist, TITLE, playlist.getTitle());
+		DAOUtils.modifyEntityProperty(ePlaylist, LISTOFVIDEOS, DAOUtils.listToString(DAOUtils.videosToIds(playlist.getListOfVideos())));
+
+		servPersistencia.modificarEntidad(ePlaylist);
+
+		assert ePlaylist.equals(servPersistencia.recuperarEntidad(playlist.getId()));
 	}
 
 	@Override

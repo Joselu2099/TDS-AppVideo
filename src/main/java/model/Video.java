@@ -1,13 +1,14 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Video {
 	
 	private int id;
 	private String title;
 	private String url;
-	private ArrayList<Label> labels;
+	private List<Label> labels;
 	
 	public Video(String title, String url) {
 		this.id = 0;
@@ -40,11 +41,11 @@ public class Video {
 		this.url = url;
 	}
 
-	public ArrayList<Label> getLabels() {
+	public List<Label> getLabels() {
 		return new ArrayList<>(labels);
 	}
 
-	public void setLabels(ArrayList<Label> labels) {
+	public void setLabels(List<Label> labels) {
 		this.labels = labels;
 	}
 
