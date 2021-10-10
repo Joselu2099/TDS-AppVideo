@@ -37,21 +37,10 @@ public class UserRepository {
 	private void loadRepository() {
 		// Function.identity = return the object itself, it's same as e -> e
 		userList = userAdapter.getAll().stream().collect(Collectors.toMap(User::getUsername, Function.identity()));
-//		userList = new HashMap<>();
-//		List<User> usersFromBD = userAdapter.getAll();
-//		for(User user: usersFromBD){
-//			userList.put(user.getUsername(), user);
-//		}
 	}
 
 	public User getUser(int id) {
-		User user = null;
-		for(User u: userList.values()) {
-			if(u.getId() == id) {
-				user = u;
-			}
-		}
-		return user;
+		return userList.values().stream().filter(user -> user.getId() == id).findAny().orElse(null);
 	}
 
 	public User getUser(String username) {

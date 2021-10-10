@@ -3,6 +3,9 @@ package model;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 import dao.DAOException;
 import dao.DAOFactory;
 import dao.DAOVideo;
@@ -31,11 +34,8 @@ public class VideoRepository {
 	}
 
 	private void loadRepository() {
-		videoList = new HashMap<>();
-		List<Video> videosFromBD = videoAdapter.getAll();
-		for(Video v: videosFromBD){
-			videoList.put(v.getId(), v);
-		}
+		// Function.identity = return the object itself, it's same as e -> e
+		videoList = videoAdapter.getAll().stream().collect(Collectors.toMap(Video::getId, Function.identity()));
 	}
 	
 	public Video getVideo(int id) {

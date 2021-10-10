@@ -22,9 +22,9 @@ class AppVideoTest {
         AppVideo.getInstance().removeUser("___testUserName2");
         assertTrue(AppVideo.getInstance().registerUser("___testUser","___TDS","test@example.com","___testUserName2","testpassword","2020-10-10"));
         assertTrue(AppVideo.getInstance().login("___testUserName2","testpassword"),"login");
-        assertFalse(AppVideo.getInstance().getActualUser().getPremium().equals("si"));
+        assertNotEquals("si", AppVideo.getInstance().getActualUser().getPremium());
         AppVideo.getInstance().becomePremium();
-        assertTrue(AppVideo.getInstance().getActualUser().getPremium().equals("si"));
+        assertEquals("si", AppVideo.getInstance().getActualUser().getPremium());
 
 
         assertTrue(AppVideo.getInstance().removeUser("___testUserName2"),"remove");

@@ -44,7 +44,6 @@ public class AppVideo {
 			this.setActualUser(user);
 			return true;
 		}
-		
 		return false;
 	}
 	
@@ -57,7 +56,6 @@ public class AppVideo {
 
 		UserRepository.getInstance().addUser(user);
 		return true;
-
 	}
 
 	public boolean removeUser(String username){
