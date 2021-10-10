@@ -112,7 +112,14 @@ public class AppVideo {
 		DAOUser daoUser = factory.getDAOUser();
 		daoUser.updateProfile(getActualUser());
 	}
-	
+
+	public void quitPremium(){
+		getActualUser().setPremium("no");
+
+		DAOUser daoUser = factory.getDAOUser();
+		daoUser.updateProfile(getActualUser());
+	}
+
 	public void generatePDF() {
 		
 	}

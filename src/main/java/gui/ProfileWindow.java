@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import controller.AppVideo;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.border.MatteBorder;
 
 public class ProfileWindow {
 
@@ -29,6 +30,7 @@ public class ProfileWindow {
 	private JLabel lblUsername;
 	private JLabel lblPremium;
 	private JLabel lblFilter;
+	private JButton btnBack;
 	
 
 	/**
@@ -52,15 +54,15 @@ public class ProfileWindow {
 	private void initialize() {
 		frmProfile = new JFrame();
 		frmProfile.getContentPane().setBackground(Color.WHITE);
-		frmProfile.setMinimumSize(new Dimension(640, 480));
+		frmProfile.setMinimumSize(new Dimension(740, 580));
 		frmProfile.setIconImage(Toolkit.getDefaultToolkit().getImage(LoginWindow.class.getResource("/images/multimediavideoplayer_128px.png")));
-		frmProfile.setBounds(100, 100, 640, 480);
+		frmProfile.setBounds(100, 100, 740, 580);
 		frmProfile.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{50, 0, 0, 20, 50, 20, 0, 0, 50, 0};
-		gridBagLayout.rowHeights = new int[]{50, 0, 0, 0, 40, 0, 0, 29, 0, 0, 0, 30, 0, 0, 50, 0};
+		gridBagLayout.rowHeights = new int[]{50, 0, 0, 0, 40, 0, 0, 29, 0, 0, 0, 30, 0, 0, 50, 40, 50, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 2.0, 0.0, 1.0, 0.0, 1.0, 0.0, 2.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 2.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 2.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		frmProfile.getContentPane().setLayout(gridBagLayout);
 		frmProfile.addWindowListener(new WindowAdapter() {
 			@Override
@@ -231,6 +233,24 @@ public class ProfileWindow {
 		gbc_btnGeneratePDF.gridx = 6;
 		gbc_btnGeneratePDF.gridy = 11;
 		frmProfile.getContentPane().add(btnGeneratePDF, gbc_btnGeneratePDF);
+		
+		btnBack = new JButton("");
+		btnBack.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				goToAppVideoWindow();
+			}
+		});
+		btnBack.setBackground(Color.WHITE);
+		btnBack.setBorderPainted(false);
+		btnBack.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(138, 43, 226)));
+		btnBack.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/backIcon.png")));
+		GridBagConstraints gbc_btnBack = new GridBagConstraints();
+		gbc_btnBack.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnBack.insets = new Insets(0, 0, 5, 5);
+		gbc_btnBack.gridx = 1;
+		gbc_btnBack.gridy = 15;
+		frmProfile.getContentPane().add(btnBack, gbc_btnBack);
 	}
 	
 	private void goToAppVideoWindow() {
