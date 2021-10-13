@@ -91,14 +91,18 @@ public class AppVideo {
 		DAOUser daoUser = factory.getDAOUser();
 		daoUser.updateProfile(getActualUser());
 	}
-	
-	public void changeUsername(String username) {
-		getActualUser().setUsername(username);
 
-		DAOUser daoUser = factory.getDAOUser();
-		daoUser.updateProfile(getActualUser());
+	/*
+	public void changeUsername(String username) {
+		if(!isUserRegistered(username)){
+			getActualUser().setUsername(username);
+
+			DAOUser daoUser = factory.getDAOUser();
+			daoUser.updateProfile(getActualUser());
+		}
 	}
-	
+	*/
+
 	public void changePassword(String password) {
 		getActualUser().setPassword(encodePassword(password));
 

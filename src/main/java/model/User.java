@@ -178,4 +178,21 @@ public class User {
 		result = 31 * result + (getFilter() != null ? getFilter().hashCode() : 0);
 		return result;
 	}
+
+	@Override
+	public String toString() {
+		return "User{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", surname='" + surname + '\'' +
+				", mail='" + mail + '\'' +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", dateOfBirth='" + dateOfBirth + '\'' +
+				", premium='" + premium + '\'' +
+				", listOfPlaylist=" + listOfPlaylist +
+				", recentVideos=" + recentVideos.toString() +
+				", filter=" + filter.getClass().getSimpleName() +
+				'}';
+	}
 }

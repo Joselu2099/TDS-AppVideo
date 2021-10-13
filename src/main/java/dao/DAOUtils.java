@@ -66,12 +66,11 @@ public class DAOUtils {
         return idsPlaylists == null? new HashMap<>() : idsPlaylists.stream().collect(Collectors.toMap(Integer::intValue, AppVideoDAOPlaylist.getInstance()::get));
     }
 
-    public static boolean modifyEntityProperty(Entidad entidad, String propertyName, String value){
-        Propiedad properties = entidad.getPropiedades().stream().filter(propiedad -> propiedad.getNombre().equals(propertyName)).findAny().orElse(null);
+    public static void modifyEntityProperty(Entidad entidad, String propertyName, String value){
+        Propiedad properties = entidad.getPropiedades().stream().filter(property -> property.getNombre().equals(propertyName)).findAny().orElse(null);
         if (properties == null)
-            return false;
+            return;
         properties.setValor(value);
-        return true;
     }
 
     public static List<String> splitString(String s){
@@ -79,7 +78,7 @@ public class DAOUtils {
     }
 
     public static String joinString(List<String> list){
-        return list == null ? "" : list.stream().collect(Collectors.joining(";"));
+        return list == null ? "" : String.join(";", list);
     }
 
 }

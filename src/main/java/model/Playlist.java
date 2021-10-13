@@ -57,4 +57,13 @@ public class Playlist {
 		result = 31 * result + (getListOfVideos() != null ? getListOfVideos().hashCode() : 0);
 		return result;
 	}
+
+	@Override
+	public String toString() {
+		return "Playlist{" +
+				"id=" + id +
+				", title='" + title + '\'' +
+				", listOfVideos=" + listOfVideos.toString() +
+				'}';
+	}
 }

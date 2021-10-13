@@ -70,4 +70,14 @@ public class Video {
 		result = 31 * result + (getLabels() != null ? getLabels().hashCode() : 0);
 		return result;
 	}
+
+	@Override
+	public String toString() {
+		return "Video{" +
+				"id=" + id +
+				", title='" + title + '\'' +
+				", url='" + url + '\'' +
+				", labels=" + labels.toString() +
+				'}';
+	}
 }
