@@ -111,7 +111,7 @@ public class ProfileWindow {
 		gbc_lblUsername.gridy = 10;
 		frmProfile.getContentPane().add(lblUsername, gbc_lblUsername);
 		
-		lblFilter = new JLabel("Filter: " + AppVideo.getInstance().getActualUser().getFilter());
+		lblFilter = new JLabel("Filter: " + AppVideo.getInstance().getActualUser().getFilter().getClass().getSimpleName());
 		lblFilter.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
 		GridBagConstraints gbc_lblFilter = new GridBagConstraints();
 		gbc_lblFilter.insets = new Insets(0, 0, 5, 5);

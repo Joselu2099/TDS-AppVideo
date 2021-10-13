@@ -77,7 +77,7 @@ public class AppVideo {
 	}
 	
 	public void selectFilter(IFilter filter) {
-		//FALTA ARREGLAR ESTO
+		//TODO
 		if(!getActualUser().getFilter().getClass().equals(filter.getClass())) {
 			getActualUser().setFilter(filter);
 		}
