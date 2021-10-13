@@ -99,7 +99,7 @@ public class SettingsWindow {
 		});
 		btnNightMode.setSelectedIcon(null);
 		btnNightMode.setBorderPainted(false);
-		btnNightMode.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(138, 43, 226)));
+		btnNightMode.setBorder(new MatteBorder(1, 1, 1, 1, UIUtils.getFocusedBorder()));
 		btnNightMode.setIcon(new ImageIcon(SettingsWindow.class.getResource("/images/lightModeIcon.png")));
 		GridBagConstraints gbc_btnNightMode = new GridBagConstraints();
 		gbc_btnNightMode.insets = new Insets(0, 0, 5, 5);
@@ -108,6 +108,7 @@ public class SettingsWindow {
 		frmSettings.getContentPane().add(btnNightMode, gbc_btnNightMode);
 		
 		btnBack = new JButton("");
+		frmSettings.getRootPane().setDefaultButton(btnBack);
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -122,7 +123,7 @@ public class SettingsWindow {
 		gbc_btnNewButton.gridy = 7;
 		frmSettings.getContentPane().add(btnNewButton, gbc_btnNewButton);
 		btnBack.setBorderPainted(false);
-		btnBack.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(138, 43, 226)));
+		btnBack.setBorder(new MatteBorder(1, 1, 1, 1, UIUtils.getFocusedBorder()));
 		btnBack.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/backIcon.png")));
 		GridBagConstraints gbc_btnBack = new GridBagConstraints();
 		gbc_btnBack.insets = new Insets(0, 0, 5, 5);

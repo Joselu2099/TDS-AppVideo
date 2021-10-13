@@ -83,7 +83,6 @@ public class RegisterWindow {
 
 		JPanel panelRegister = new JPanel();
 		panelRegister.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
-		panelRegister.setForeground(new Color(138, 43, 226));
 		panelRegister.setBorder(null);
 		tabbedPaneRegister.addTab("Register", null, panelRegister, null);
 		GridBagLayout gbl_panelRegister = new GridBagLayout();
@@ -303,7 +302,7 @@ public class RegisterWindow {
 
 		final JButton btnRegister = new JButton("Register");
 		btnRegister.setPreferredSize(new Dimension(80, 30));
-		btnRegister.setBorder(new MatteBorder(1, 1, 1, 1, new Color(138, 43, 226)));
+		btnRegister.setBorder(new MatteBorder(1, 1, 1, 1, UIUtils.getFocusedBorder()));
 		panelRegister.getRootPane().setDefaultButton(btnRegister);
 		btnRegister.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		btnRegister.addMouseListener(new MouseAdapter() {

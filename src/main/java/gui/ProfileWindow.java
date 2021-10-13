@@ -10,11 +10,7 @@ import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 import controller.AppVideo;
 import java.awt.event.MouseAdapter;
@@ -135,8 +131,6 @@ public class ProfileWindow {
 		});
 		btnChangeMail.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/changeMailIcon.png")));
 		btnChangeMail.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
-		btnChangeMail.setForeground(new Color(255, 255, 255));
-		btnChangeMail.setBackground(new Color(138, 43, 226));
 		GridBagConstraints gbc_btnChangeMail = new GridBagConstraints();
 		gbc_btnChangeMail.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnChangeMail.insets = new Insets(0, 0, 5, 5);
@@ -155,8 +149,6 @@ public class ProfileWindow {
 		btnPremium.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/premiumIcon.png")));
 		btnPremium.setSelectedIcon(null);
 		btnPremium.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
-		btnPremium.setForeground(new Color(255, 255, 255));
-		btnPremium.setBackground(new Color(138, 43, 226));
 		GridBagConstraints gbc_btnPremium = new GridBagConstraints();
 		gbc_btnPremium.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnPremium.insets = new Insets(0, 0, 5, 5);
@@ -173,8 +165,6 @@ public class ProfileWindow {
 		});
 		btnChangePassword.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/changePasswordIcon.png")));
 		btnChangePassword.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
-		btnChangePassword.setForeground(new Color(255, 255, 255));
-		btnChangePassword.setBackground(new Color(138, 43, 226));
 		GridBagConstraints gbc_btnChangePassword = new GridBagConstraints();
 		gbc_btnChangePassword.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnChangePassword.insets = new Insets(0, 0, 5, 5);
@@ -193,8 +183,6 @@ public class ProfileWindow {
 		btnGeneratePDF.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/pdfIcon.png")));
 		btnGeneratePDF.setSelectedIcon(null);
 		btnGeneratePDF.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
-		btnGeneratePDF.setForeground(new Color(255, 255, 255));
-		btnGeneratePDF.setBackground(new Color(138, 43, 226));
 		GridBagConstraints gbc_btnGeneratePDF = new GridBagConstraints();
 		gbc_btnGeneratePDF.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnGeneratePDF.insets = new Insets(0, 0, 5, 5);
@@ -203,6 +191,7 @@ public class ProfileWindow {
 		frmProfile.getContentPane().add(btnGeneratePDF, gbc_btnGeneratePDF);
 		
 		btnBack = new JButton("");
+		frmProfile.getRootPane().setDefaultButton(btnBack);
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -210,7 +199,7 @@ public class ProfileWindow {
 			}
 		});
 		btnBack.setBorderPainted(false);
-		btnBack.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(138, 43, 226)));
+		btnBack.setBorder(new MatteBorder(1, 1, 1, 1, UIUtils.getFocusedBorder()));
 		btnBack.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/backIcon.png")));
 		GridBagConstraints gbc_btnBack = new GridBagConstraints();
 		gbc_btnBack.fill = GridBagConstraints.HORIZONTAL;
