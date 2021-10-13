@@ -65,8 +65,6 @@ public class RegisterWindow {
 	private void initialize() {
 		frmRegister = new JFrame();
 		frmRegister.setMinimumSize(new Dimension(900, 600));
-		frmRegister.getContentPane().setBackground(Color.WHITE);
-		frmRegister.setBackground(Color.BLACK);
 		frmRegister.setIconImage(Toolkit.getDefaultToolkit().getImage(LoginWindow.class.getResource("/images/multimediavideoplayer_128px.png")));
 		frmRegister.setTitle("AppVideo");
 		frmRegister.setBounds(100, 100, 900, 600);
@@ -87,7 +85,6 @@ public class RegisterWindow {
 		panelRegister.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
 		panelRegister.setForeground(new Color(138, 43, 226));
 		panelRegister.setBorder(null);
-		panelRegister.setBackground(Color.WHITE);
 		tabbedPaneRegister.addTab("Register", null, panelRegister, null);
 		GridBagLayout gbl_panelRegister = new GridBagLayout();
 		gbl_panelRegister.columnWidths = new int[] { 60, 0, 0, 64, 131, 60, 0 };

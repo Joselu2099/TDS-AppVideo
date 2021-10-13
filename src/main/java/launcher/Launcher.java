@@ -13,7 +13,7 @@ public class Launcher {
 		EventQueue.invokeLater(() -> {
 			try {
 				UIManager.setLookAndFeel(new FlatLightLaf());
-				IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/arc-theme.theme.json"));
+				IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/ArcPurple.theme.json"));
 //				IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
 				
 				//AppVideo.getInstance().loadVideos();

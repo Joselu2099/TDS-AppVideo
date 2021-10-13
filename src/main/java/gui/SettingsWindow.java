@@ -1,16 +1,16 @@
 package gui;
 
+import com.formdev.flatlaf.IntelliJTheme;
+import launcher.Launcher;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import javax.swing.JFrame;
+import javax.swing.*;
 import java.awt.GridBagLayout;
-import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.border.MatteBorder;
@@ -19,6 +19,9 @@ import java.awt.event.MouseEvent;
 
 
 public class SettingsWindow {
+
+	private static final String NIGHTMODE = "Night mode";
+	private static final String LIGHTMODE = "Light mode";
 
 	private JFrame frmSettings;
 	private JLabel lblLightNightMode;
@@ -45,7 +48,6 @@ public class SettingsWindow {
 	 */
 	private void initialize() {
 		frmSettings = new JFrame();
-		frmSettings.getContentPane().setBackground(Color.WHITE);
 		frmSettings.setMinimumSize(new Dimension(740, 580));
 		frmSettings.setIconImage(Toolkit.getDefaultToolkit().getImage(LoginWindow.class.getResource("/images/multimediavideoplayer_128px.png")));
 		frmSettings.setBounds(100, 100, 740, 580);
@@ -71,7 +73,7 @@ public class SettingsWindow {
 		gbc_lblAppVideoIcon.gridy = 3;
 		frmSettings.getContentPane().add(lblAppVideoIcon, gbc_lblAppVideoIcon);
 		
-		lblLightNightMode = new JLabel("Light mode");
+		lblLightNightMode = new JLabel(AppSettings.getInstance().isNightMode()? "Night mode": "Light mode");
 		lblLightNightMode.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
 		GridBagConstraints gbc_lblLightNightMode = new GridBagConstraints();
 		gbc_lblLightNightMode.insets = new Insets(0, 0, 5, 5);
@@ -83,19 +85,19 @@ public class SettingsWindow {
 		btnNightMode.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(lblLightNightMode.getText().equals("Light mode")) {
-					lblLightNightMode.setText("Night mode");
+				if(lblLightNightMode.getText().equals(LIGHTMODE)) {
+					lblLightNightMode.setText(NIGHTMODE);
 					btnNightMode.setIcon(new ImageIcon(SettingsWindow.class.getResource("/images/nightModeIcon.png")));
-				}else {
-					if(lblLightNightMode.getText().equals("Night mode")) {
-						lblLightNightMode.setText("Light mode");
-						btnNightMode.setIcon(new ImageIcon(SettingsWindow.class.getResource("/images/lightModeIcon.png")));
-					}
+					AppSettings.getInstance().setNightMode(true);
+				}else if(lblLightNightMode.getText().equals(NIGHTMODE)) {
+					lblLightNightMode.setText(LIGHTMODE);
+					btnNightMode.setIcon(new ImageIcon(SettingsWindow.class.getResource("/images/lightModeIcon.png")));
+					AppSettings.getInstance().setNightMode(false);
 				}
+				SwingUtilities.updateComponentTreeUI(frmSettings);
 			}
 		});
 		btnNightMode.setSelectedIcon(null);
-		btnNightMode.setBackground(Color.WHITE);
 		btnNightMode.setBorderPainted(false);
 		btnNightMode.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(138, 43, 226)));
 		btnNightMode.setIcon(new ImageIcon(SettingsWindow.class.getResource("/images/lightModeIcon.png")));
@@ -119,7 +121,6 @@ public class SettingsWindow {
 		gbc_btnNewButton.gridx = 8;
 		gbc_btnNewButton.gridy = 7;
 		frmSettings.getContentPane().add(btnNewButton, gbc_btnNewButton);
-		btnBack.setBackground(Color.WHITE);
 		btnBack.setBorderPainted(false);
 		btnBack.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(138, 43, 226)));
 		btnBack.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/backIcon.png")));

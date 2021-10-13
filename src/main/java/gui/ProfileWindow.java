@@ -53,7 +53,6 @@ public class ProfileWindow {
 	 */
 	private void initialize() {
 		frmProfile = new JFrame();
-		frmProfile.getContentPane().setBackground(Color.WHITE);
 		frmProfile.setMinimumSize(new Dimension(740, 580));
 		frmProfile.setIconImage(Toolkit.getDefaultToolkit().getImage(LoginWindow.class.getResource("/images/multimediavideoplayer_128px.png")));
 		frmProfile.setBounds(100, 100, 740, 580);
@@ -210,7 +209,6 @@ public class ProfileWindow {
 				goToAppVideoWindow();
 			}
 		});
-		btnBack.setBackground(Color.WHITE);
 		btnBack.setBorderPainted(false);
 		btnBack.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(138, 43, 226)));
 		btnBack.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/backIcon.png")));
