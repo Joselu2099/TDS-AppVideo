@@ -131,18 +131,7 @@ public class ProfileWindow {
 		btnChangeMail.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				while(true) {
-					
-					String newMail = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(), "Intruduce un nuevo mail : ", 
-							"Change of mail",JOptionPane.PLAIN_MESSAGE, null, null,"mail");
-					
-					if(newMail.trim().contains("@")) {
-						AppVideo.getInstance().changeMail(newMail); 
-						lblMail.setText("Mail: " + AppVideo.getInstance().getActualUser().getMail());
-						break;
-					}
-					else JOptionPane.showMessageDialog(frmProfile.getContentPane(), "El formato del Mail es incorrecto, ejemplo de uso: usuario@gmail.com", "Change of mail", JOptionPane.ERROR_MESSAGE);
-				}
+				changeUserMail();
 			}
 		});
 		btnChangeMail.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/changeMailIcon.png")));
@@ -180,27 +169,7 @@ public class ProfileWindow {
 		btnChangePassword.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				while(true) {
-					
-					String actualPassword = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(), "Intruduce tu contraseña actual : ", 
-							"Change of password",JOptionPane.PLAIN_MESSAGE, null, null,"password");
-					
-					if(AppVideo.getInstance().getActualUser().getPassword().equals(AppVideo.getInstance().encodePassword(actualPassword))) {
-						
-						String newPassword = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(), "Introduce la nueva contraseña : ", 
-								"Change of password",JOptionPane.PLAIN_MESSAGE, null, null,"password");
-						
-						if(newPassword.length() < AppVideo.MIN_PASSWORD_LENGTH) JOptionPane.showMessageDialog(frmProfile.getContentPane(), 
-								"La contraseña debe tener al menos "+AppVideo.MIN_PASSWORD_LENGTH+" caracteres", "Change of password", JOptionPane.ERROR_MESSAGE);
-						else{
-							AppVideo.getInstance().changePassword(newPassword);
-							break;
-						}
-						
-					}else {
-						JOptionPane.showMessageDialog(frmProfile.getContentPane(), "Contraseña incorrecta, prueba otra vez", "Change of password", JOptionPane.ERROR_MESSAGE);
-					}
-				}
+				changeUserPassword();
 			}
 		});
 		btnChangePassword.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/changePasswordIcon.png")));
@@ -251,6 +220,45 @@ public class ProfileWindow {
 		gbc_btnBack.gridx = 1;
 		gbc_btnBack.gridy = 15;
 		frmProfile.getContentPane().add(btnBack, gbc_btnBack);
+	}
+
+	private void changeUserMail(){
+		while(true) {
+
+			String newMail = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(), "Intruduce un nuevo mail : ",
+					"Change of mail",JOptionPane.PLAIN_MESSAGE, null, null,"mail");
+
+			if(newMail.trim().contains("@")) {
+				AppVideo.getInstance().changeMail(newMail);
+				lblMail.setText("Mail: " + AppVideo.getInstance().getActualUser().getMail());
+				break;
+			}
+			else JOptionPane.showMessageDialog(frmProfile.getContentPane(), "El formato del Mail es incorrecto, ejemplo de uso: usuario@gmail.com", "Change of mail", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	private void changeUserPassword(){
+		while(true) {
+
+			String actualPassword = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(), "Intruduce tu contraseña actual : ",
+					"Change of password",JOptionPane.PLAIN_MESSAGE, null, null,"password");
+
+			if(AppVideo.getInstance().getActualUser().getPassword().equals(AppVideo.getInstance().encodePassword(actualPassword))) {
+
+				String newPassword = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(), "Introduce la nueva contraseña : ",
+						"Change of password",JOptionPane.PLAIN_MESSAGE, null, null,"password");
+
+				if(newPassword.length() < AppVideo.MIN_PASSWORD_LENGTH) JOptionPane.showMessageDialog(frmProfile.getContentPane(),
+						"La contraseña debe tener al menos "+AppVideo.MIN_PASSWORD_LENGTH+" caracteres", "Change of password", JOptionPane.ERROR_MESSAGE);
+				else{
+					AppVideo.getInstance().changePassword(newPassword);
+					break;
+				}
+
+			}else {
+				JOptionPane.showMessageDialog(frmProfile.getContentPane(), "Contraseña incorrecta, prueba otra vez", "Change of password", JOptionPane.ERROR_MESSAGE);
+			}
+		}
 	}
 	
 	private void goToAppVideoWindow() {

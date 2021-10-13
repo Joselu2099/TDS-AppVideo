@@ -6,21 +6,15 @@ import javax.swing.JPasswordField;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import java.awt.Toolkit;
+import java.awt.*;
 import javax.swing.ImageIcon;
-import java.awt.Dimension;
-import java.awt.GridBagLayout;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.Font;
+
 import controller.AppVideo;
 import javax.swing.JButton;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import javax.swing.UIManager;
-import java.awt.Color;
 
 
 public class LoginWindow {
@@ -121,6 +115,12 @@ public class LoginWindow {
 		panel.add(PasswordIcon, gbc_PasswordIcon);
 		
 		passwordField = new JPasswordField();
+		passwordField.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent actionEvent) {
+				loginUser();
+			}
+		});
 		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
 		passwordField.setFont(new Font("Gill Sans MT", Font.BOLD, 16));
 		passwordField.setPreferredSize(new Dimension(7, 40));
@@ -140,7 +140,7 @@ public class LoginWindow {
 				loginUser();
 			}
 		});
-		
+
 		btnLogin.setPreferredSize(new Dimension(48, 48));
 		btnLogin.setSize(new Dimension(48, 48));
 		btnLogin.setBorderPainted(false);

@@ -83,7 +83,6 @@ public class SettingsWindow {
 		btnNightMode.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("esta el modo luz? " + lblLightNightMode.getText().equals("Light mode"));
 				if(lblLightNightMode.getText().equals("Light mode")) {
 					lblLightNightMode.setText("Night mode");
 					btnNightMode.setIcon(new ImageIcon(SettingsWindow.class.getResource("/images/nightModeIcon.png")));
