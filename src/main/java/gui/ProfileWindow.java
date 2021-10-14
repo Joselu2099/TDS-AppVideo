@@ -254,13 +254,20 @@ public class ProfileWindow {
 
 	private void changeUserPassword(){
 		while(true) {
+			String actualPassword = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(),
+					"Intruduce tu contraseña actual : ", "Change password",
+					JOptionPane.PLAIN_MESSAGE, null, null, "");
 
-			String actualPassword = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(), "Intruduce tu contraseña actual : ", "Change password",JOptionPane.PLAIN_MESSAGE, null, null,"");
+			if (actualPassword==null) break;
 
 			if(AppVideo.getInstance().getActualUser().getPassword().equals(AppVideo.getInstance().encodePassword(actualPassword))) {
 
 				String newPassword = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(), "Introduce la nueva contraseña : ",
-						"Change password",JOptionPane.PLAIN_MESSAGE, null, null,"password");
+						"Change password", JOptionPane.PLAIN_MESSAGE, null, null, "password");
+
+				System.out.println(newPassword);
+				if(newPassword==null) break;
+				//if (newPassword.equals("null")) break;
 
 				if(newPassword.length() < AppVideo.MIN_PASSWORD_LENGTH) JOptionPane.showMessageDialog(frmProfile.getContentPane(),
 						"La contraseña debe tener al menos "+AppVideo.MIN_PASSWORD_LENGTH+" caracteres", "Change password", JOptionPane.ERROR_MESSAGE);
@@ -269,26 +276,29 @@ public class ProfileWindow {
 					break;
 				}
 
-			}else {
+			} else{
 				JOptionPane.showMessageDialog(frmProfile.getContentPane(), "Contraseña incorrecta, prueba otra vez", "Change password", JOptionPane.ERROR_MESSAGE);
 			}
+
+
 		}
 	}
 
-	private void changeUserUsername(){
+	private void changeUserUsername() {
 		if(AppVideo.getInstance().getActualUser().isPremium()) {
 			while (true) {
 
 				String newUsername = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(), "Intruduce un nuevo username : ",
 						"Change username", JOptionPane.PLAIN_MESSAGE, null, null, "");
 
+				if (newUsername==null) break;
 
 				if (!AppVideo.getInstance().isUserRegistered(newUsername)) {
 					AppVideo.getInstance().changeUsername(newUsername);
 					lblUsername.setText("Username: " + AppVideo.getInstance().getActualUser().getUsername());
 					break;
-				} else
-					JOptionPane.showMessageDialog(frmProfile.getContentPane(), "El username " + newUsername + " ya esta en uso, prueba con otro \uD83D\uDE04", "Change username", JOptionPane.ERROR_MESSAGE);
+				}
+				else JOptionPane.showMessageDialog(frmProfile.getContentPane(), "El username " + newUsername + " ya esta en uso, prueba con otro \uD83D\uDE04", "Change username", JOptionPane.ERROR_MESSAGE);
 			}
 		}else JOptionPane.showMessageDialog(frmProfile.getContentPane(), "Esta funcion es solo para usuarios premium", "Change username", JOptionPane.ERROR_MESSAGE);
 	}
@@ -304,7 +314,7 @@ public class ProfileWindow {
 
 	private void quitUserPremium(){
 		if(AppVideo.getInstance().getActualUser().isPremium()) {
-			AppVideo.getInstance().becomePremium();
+			AppVideo.getInstance().quitPremium();
 			lblPremium.setText("Premium: " + AppVideo.getInstance().getActualUser().getPremium());
 		}else JOptionPane.showMessageDialog(frmProfile.getContentPane(),
 				"No eres premium \uD83D\uDE1D" ,
