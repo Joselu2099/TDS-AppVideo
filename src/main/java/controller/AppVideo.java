@@ -69,7 +69,11 @@ public class AppVideo {
 
 	public String encodePassword(String password){
 		//System.out.println("Encoding: " + password + " -> " + DigestUtils.md5Hex(password));
-		return DigestUtils.md5Hex(password);
+		String encodedPass = password + "NonEncoded";
+		try{
+			encodedPass = DigestUtils.md5Hex(password);
+		}catch (NullPointerException ignored) {}
+		return encodedPass;
 	}
 
 	public boolean checkPassword(String pass, String encodedPass){
@@ -92,16 +96,12 @@ public class AppVideo {
 		daoUser.updateProfile(getActualUser());
 	}
 
-	/*
 	public void changeUsername(String username) {
-		if(!isUserRegistered(username)){
-			getActualUser().setUsername(username);
+		getActualUser().setUsername(username);
 
-			DAOUser daoUser = factory.getDAOUser();
-			daoUser.updateProfile(getActualUser());
-		}
+		DAOUser daoUser = factory.getDAOUser();
+		daoUser.updateProfile(getActualUser());
 	}
-	*/
 
 	public void changePassword(String password) {
 		getActualUser().setPassword(encodePassword(password));

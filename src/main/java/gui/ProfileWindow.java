@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -9,9 +8,7 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import javax.swing.*;
-
 import controller.AppVideo;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -49,9 +46,9 @@ public class ProfileWindow {
 	 */
 	private void initialize() {
 		frmProfile = new JFrame();
-		frmProfile.setMinimumSize(new Dimension(740, 580));
+		frmProfile.setMinimumSize(new Dimension(900, 680));
 		frmProfile.setIconImage(Toolkit.getDefaultToolkit().getImage(LoginWindow.class.getResource("/images/multimediavideoplayer_128px.png")));
-		frmProfile.setBounds(100, 100, 740, 580);
+		frmProfile.setBounds(100, 100, 900, 680);
 		frmProfile.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{50, 0, 0, 20, 50, 20, 0, 0, 50, 0};
@@ -142,12 +139,10 @@ public class ProfileWindow {
 		btnPremium.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AppVideo.getInstance().becomePremium();
-				lblPremium.setText("Premium: " + AppVideo.getInstance().getActualUser().getPremium());
+				becomeUserPremium();
 			}
 		});
 		btnPremium.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/premiumIcon.png")));
-		btnPremium.setSelectedIcon(null);
 		btnPremium.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
 		GridBagConstraints gbc_btnPremium = new GridBagConstraints();
 		gbc_btnPremium.fill = GridBagConstraints.HORIZONTAL;
@@ -155,7 +150,23 @@ public class ProfileWindow {
 		gbc_btnPremium.gridx = 6;
 		gbc_btnPremium.gridy = 9;
 		frmProfile.getContentPane().add(btnPremium, gbc_btnPremium);
-		
+
+		JButton btnChangeUsername = new JButton("Change username");
+		btnChangeUsername.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				changeUserUsername();
+			}
+		});
+		btnChangeUsername.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/UserIcon.png")));
+		btnChangeUsername.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
+		GridBagConstraints gbc_btnChangeUsername = new GridBagConstraints();
+		gbc_btnChangeUsername.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnChangeUsername.insets = new Insets(0, 0, 5, 5);
+		gbc_btnChangeUsername.gridx = 2;
+		gbc_btnChangeUsername.gridy = 11;
+		frmProfile.getContentPane().add(btnChangeUsername, gbc_btnChangeUsername);
+
 		JButton btnChangePassword = new JButton("Change password");
 		btnChangePassword.addMouseListener(new MouseAdapter() {
 			@Override
@@ -169,9 +180,26 @@ public class ProfileWindow {
 		gbc_btnChangePassword.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnChangePassword.insets = new Insets(0, 0, 5, 5);
 		gbc_btnChangePassword.gridx = 2;
-		gbc_btnChangePassword.gridy = 11;
+		gbc_btnChangePassword.gridy = 12;
 		frmProfile.getContentPane().add(btnChangePassword, gbc_btnChangePassword);
-		
+
+		JButton btnQuitPremium = new JButton("Quit Premium");
+		btnQuitPremium.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				quitUserPremium();
+			}
+		});
+		btnQuitPremium.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/premiumIcon.png")));
+		btnQuitPremium.setSelectedIcon(null);
+		btnQuitPremium.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
+		GridBagConstraints gbc_btnQuitPremium = new GridBagConstraints();
+		gbc_btnQuitPremium.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnQuitPremium.insets = new Insets(0, 0, 5, 5);
+		gbc_btnQuitPremium.gridx = 6;
+		gbc_btnQuitPremium.gridy = 11;
+		frmProfile.getContentPane().add(btnQuitPremium, gbc_btnQuitPremium);
+
 		JButton btnGeneratePDF = new JButton("Generate PDF");
 		btnGeneratePDF.addMouseListener(new MouseAdapter() {
 			@Override
@@ -187,7 +215,7 @@ public class ProfileWindow {
 		gbc_btnGeneratePDF.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnGeneratePDF.insets = new Insets(0, 0, 5, 5);
 		gbc_btnGeneratePDF.gridx = 6;
-		gbc_btnGeneratePDF.gridy = 11;
+		gbc_btnGeneratePDF.gridy = 12;
 		frmProfile.getContentPane().add(btnGeneratePDF, gbc_btnGeneratePDF);
 		
 		btnBack = new JButton("");
@@ -213,39 +241,74 @@ public class ProfileWindow {
 		while(true) {
 
 			String newMail = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(), "Intruduce un nuevo mail : ",
-					"Change of mail",JOptionPane.PLAIN_MESSAGE, null, null,"mail");
+					"Change mail",JOptionPane.PLAIN_MESSAGE, null, null,"");
 
 			if(newMail.trim().contains("@")) {
 				AppVideo.getInstance().changeMail(newMail);
 				lblMail.setText("Mail: " + AppVideo.getInstance().getActualUser().getMail());
 				break;
 			}
-			else JOptionPane.showMessageDialog(frmProfile.getContentPane(), "El formato del Mail es incorrecto, ejemplo de uso: usuario@gmail.com", "Change of mail", JOptionPane.ERROR_MESSAGE);
+			else JOptionPane.showMessageDialog(frmProfile.getContentPane(), "El formato del Mail es incorrecto, ejemplo de uso: usuario@gmail.com", "Change mail", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
 	private void changeUserPassword(){
 		while(true) {
 
-			String actualPassword = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(), "Intruduce tu contraseña actual : ",
-					"Change of password",JOptionPane.PLAIN_MESSAGE, null, null,"password");
+			String actualPassword = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(), "Intruduce tu contraseña actual : ", "Change password",JOptionPane.PLAIN_MESSAGE, null, null,"");
 
 			if(AppVideo.getInstance().getActualUser().getPassword().equals(AppVideo.getInstance().encodePassword(actualPassword))) {
 
 				String newPassword = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(), "Introduce la nueva contraseña : ",
-						"Change of password",JOptionPane.PLAIN_MESSAGE, null, null,"password");
+						"Change password",JOptionPane.PLAIN_MESSAGE, null, null,"password");
 
 				if(newPassword.length() < AppVideo.MIN_PASSWORD_LENGTH) JOptionPane.showMessageDialog(frmProfile.getContentPane(),
-						"La contraseña debe tener al menos "+AppVideo.MIN_PASSWORD_LENGTH+" caracteres", "Change of password", JOptionPane.ERROR_MESSAGE);
+						"La contraseña debe tener al menos "+AppVideo.MIN_PASSWORD_LENGTH+" caracteres", "Change password", JOptionPane.ERROR_MESSAGE);
 				else{
 					AppVideo.getInstance().changePassword(newPassword);
 					break;
 				}
 
 			}else {
-				JOptionPane.showMessageDialog(frmProfile.getContentPane(), "Contraseña incorrecta, prueba otra vez", "Change of password", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(frmProfile.getContentPane(), "Contraseña incorrecta, prueba otra vez", "Change password", JOptionPane.ERROR_MESSAGE);
 			}
 		}
+	}
+
+	private void changeUserUsername(){
+		if(AppVideo.getInstance().getActualUser().isPremium()) {
+			while (true) {
+
+				String newUsername = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(), "Intruduce un nuevo username : ",
+						"Change username", JOptionPane.PLAIN_MESSAGE, null, null, "");
+
+
+				if (!AppVideo.getInstance().isUserRegistered(newUsername)) {
+					AppVideo.getInstance().changeUsername(newUsername);
+					lblUsername.setText("Username: " + AppVideo.getInstance().getActualUser().getUsername());
+					break;
+				} else
+					JOptionPane.showMessageDialog(frmProfile.getContentPane(), "El username " + newUsername + " ya esta en uso, prueba con otro \uD83D\uDE04", "Change username", JOptionPane.ERROR_MESSAGE);
+			}
+		}else JOptionPane.showMessageDialog(frmProfile.getContentPane(), "Esta funcion es solo para usuarios premium", "Change username", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void becomeUserPremium(){
+		if(!AppVideo.getInstance().getActualUser().isPremium()) {
+			AppVideo.getInstance().becomePremium();
+			lblPremium.setText("Premium: " + AppVideo.getInstance().getActualUser().getPremium());
+		}else JOptionPane.showMessageDialog(frmProfile.getContentPane(),
+				"Ya eres premium \uD83D\uDE1D" ,
+				"Become premium", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void quitUserPremium(){
+		if(AppVideo.getInstance().getActualUser().isPremium()) {
+			AppVideo.getInstance().becomePremium();
+			lblPremium.setText("Premium: " + AppVideo.getInstance().getActualUser().getPremium());
+		}else JOptionPane.showMessageDialog(frmProfile.getContentPane(),
+				"No eres premium \uD83D\uDE1D" ,
+				"Quit premium", JOptionPane.ERROR_MESSAGE);
 	}
 	
 	private void goToAppVideoWindow() {
