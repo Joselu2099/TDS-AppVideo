@@ -1,7 +1,9 @@
 package controller;
 
+import com.formdev.flatlaf.IntelliJTheme;
 import dao.*;
 import gui.SettingsWindow;
+import launcher.Launcher;
 import model.*;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -120,6 +122,13 @@ public class AppVideo {
 
 	public void quitPremium(){
 		getActualUser().setPremium("no");
+
+		DAOUser daoUser = factory.getDAOUser();
+		daoUser.updateProfile(getActualUser());
+	}
+
+	public void setNightMode(boolean nightMode){
+		getActualUser().setNightMode(nightMode);
 
 		DAOUser daoUser = factory.getDAOUser();
 		daoUser.updateProfile(getActualUser());

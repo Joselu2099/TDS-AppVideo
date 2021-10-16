@@ -89,11 +89,11 @@ public class SettingsWindow {
 				if(lblLightNightMode.getText().equals(LIGHTMODE)) {
 					lblLightNightMode.setText(NIGHTMODE);
 					btnNightMode.setIcon(new ImageIcon(SettingsWindow.class.getResource("/images/nightModeIcon.png")));
-					AppVideo.getInstance().getActualUser().setNightMode(true);
+					AppVideo.getInstance().setNightMode(true);
 				}else if(lblLightNightMode.getText().equals(NIGHTMODE)) {
 					lblLightNightMode.setText(LIGHTMODE);
 					btnNightMode.setIcon(new ImageIcon(SettingsWindow.class.getResource("/images/lightModeIcon.png")));
-					AppVideo.getInstance().getActualUser().setNightMode(false);
+					AppVideo.getInstance().setNightMode(false);
 				}
 				SwingUtilities.updateComponentTreeUI(frmSettings);
 			}

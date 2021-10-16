@@ -147,8 +147,8 @@ public class User {
 	}
 
 	public void setNightMode(boolean nightMode) {
-		isNightMode = nightMode;
-		if (isNightMode){
+		this.isNightMode = nightMode;
+		if (this.isNightMode){
 			IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
 		}else {
 			IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/ArcPurple.theme.json"));

@@ -3,7 +3,6 @@ package dao;
 import java.util.*;
 import java.util.stream.Collectors;
 import model.Playlist;
-import model.UserRepository;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
 import beans.Entidad;

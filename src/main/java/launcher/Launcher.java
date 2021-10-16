@@ -6,8 +6,6 @@ import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.IntelliJTheme;
 import controller.AppVideo;
 import gui.LoginWindow;
-import model.UserRepository;
-
 import javax.swing.*;
 
 public class Launcher {
