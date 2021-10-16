@@ -1,6 +1,7 @@
 package gui;
 
 import com.formdev.flatlaf.IntelliJTheme;
+import controller.AppVideo;
 import launcher.Launcher;
 
 import java.awt.Dimension;
@@ -73,7 +74,7 @@ public class SettingsWindow {
 		gbc_lblAppVideoIcon.gridy = 3;
 		frmSettings.getContentPane().add(lblAppVideoIcon, gbc_lblAppVideoIcon);
 		
-		lblLightNightMode = new JLabel(AppSettings.getInstance().isNightMode()? "Night mode": "Light mode");
+		lblLightNightMode = new JLabel(AppVideo.getInstance().getActualUser().isNightMode()? "Night mode": "Light mode");
 		lblLightNightMode.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
 		GridBagConstraints gbc_lblLightNightMode = new GridBagConstraints();
 		gbc_lblLightNightMode.insets = new Insets(0, 0, 5, 5);
@@ -88,11 +89,11 @@ public class SettingsWindow {
 				if(lblLightNightMode.getText().equals(LIGHTMODE)) {
 					lblLightNightMode.setText(NIGHTMODE);
 					btnNightMode.setIcon(new ImageIcon(SettingsWindow.class.getResource("/images/nightModeIcon.png")));
-					AppSettings.getInstance().setNightMode(true);
+					AppVideo.getInstance().getActualUser().setNightMode(true);
 				}else if(lblLightNightMode.getText().equals(NIGHTMODE)) {
 					lblLightNightMode.setText(LIGHTMODE);
 					btnNightMode.setIcon(new ImageIcon(SettingsWindow.class.getResource("/images/lightModeIcon.png")));
-					AppSettings.getInstance().setNightMode(false);
+					AppVideo.getInstance().getActualUser().setNightMode(false);
 				}
 				SwingUtilities.updateComponentTreeUI(frmSettings);
 			}

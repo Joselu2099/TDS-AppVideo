@@ -1,5 +1,7 @@
 package model;
 
+import com.formdev.flatlaf.IntelliJTheme;
+import launcher.Launcher;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +19,7 @@ public class User {
 	private final Map<String, Playlist> listOfPlaylist;
 	private List<Video> recentVideos;
 	private IFilter filter;
+	private boolean isNightMode;
 	
 	public User(String name, String surname, String mail, String username, String password, String dateOfBirth) {
 		this.id = 0;
@@ -27,9 +30,10 @@ public class User {
 		this.password = password;
 		this.dateOfBirth = dateOfBirth;
 		this.premium = "no";
-		this.filter = new NoFilter();
 		this.listOfPlaylist = new HashMap<>();
 		this.recentVideos = new ArrayList<>();
+		this.filter = new NoFilter();
+		this.isNightMode = false;
 	}
 
 	public int getId() {
@@ -136,6 +140,19 @@ public class User {
 	
 	public void addRecentVideo(Video video) {
 		this.recentVideos.add(video);
+	}
+
+	public boolean isNightMode() {
+		return isNightMode;
+	}
+
+	public void setNightMode(boolean nightMode) {
+		isNightMode = nightMode;
+		if (isNightMode){
+			IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
+		}else {
+			IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/ArcPurple.theme.json"));
+		}
 	}
 
 	@Override

@@ -2,10 +2,7 @@ package dao;
 
 import beans.Entidad;
 import beans.Propiedad;
-import model.IFilter;
-import model.Playlist;
-import model.Video;
-import model.VideoRepository;
+import model.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -80,5 +77,7 @@ public class DAOUtils {
     public static String joinString(List<String> list){
         return list == null ? "" : String.join(";", list);
     }
+
+
 
 }

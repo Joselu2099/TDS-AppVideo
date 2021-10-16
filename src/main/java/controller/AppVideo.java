@@ -1,6 +1,7 @@
 package controller;
 
 import dao.*;
+import gui.SettingsWindow;
 import model.*;
 import org.apache.commons.codec.digest.DigestUtils;
 

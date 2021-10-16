@@ -265,9 +265,7 @@ public class ProfileWindow {
 				String newPassword = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(), "Introduce la nueva contraseña : ",
 						"Change password", JOptionPane.PLAIN_MESSAGE, null, null, "password");
 
-				System.out.println(newPassword);
 				if(newPassword==null) break;
-				//if (newPassword.equals("null")) break;
 
 				if(newPassword.length() < AppVideo.MIN_PASSWORD_LENGTH) JOptionPane.showMessageDialog(frmProfile.getContentPane(),
 						"La contraseña debe tener al menos "+AppVideo.MIN_PASSWORD_LENGTH+" caracteres", "Change password", JOptionPane.ERROR_MESSAGE);

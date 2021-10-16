@@ -31,6 +31,7 @@ public final class AppVideoDAOUser implements DAOUser {
 	private static final String RECENTVIDEOS = "recentVideos";
 	private static final String LISTOFPLAYLIST = "listOfPlaylist";
 	private static final String FILTER = "filter";
+	private static final String NIGHTMODE = "nightMode";
 	
 	private final ServicioPersistencia servPersistencia;
 	
@@ -56,10 +57,12 @@ public final class AppVideoDAOUser implements DAOUser {
 		String password = servPersistencia.recuperarPropiedadEntidad(eUser, PASSWORD);
 		String dateOfBirth = servPersistencia.recuperarPropiedadEntidad(eUser, DATEOFBIRTH);
 		String premium = servPersistencia.recuperarPropiedadEntidad(eUser, PREMIUM);
+		String nightMode = servPersistencia.recuperarPropiedadEntidad(eUser, NIGHTMODE);
 		
 		User user = new User(name, surname, mail, username, password, dateOfBirth);
 		user.setId(eUser.getId());
 		user.setPremium(premium);
+		user.setNightMode(Boolean.parseBoolean(nightMode));
 		if (servPersistencia.recuperarPropiedadEntidad(eUser, RECENTVIDEOS) != null) {
 			List<Integer> idVideos = DAOUtils.stringToList(servPersistencia.recuperarPropiedadEntidad(eUser, RECENTVIDEOS));
 			//String to video {idVideo1, idVideo2, idVideo3...} --> [Video1, Video2, Video3]
@@ -96,7 +99,8 @@ public final class AppVideoDAOUser implements DAOUser {
 				new Propiedad(PREMIUM, user.getPremium()),
 				new Propiedad(RECENTVIDEOS, DAOUtils.listToString(DAOUtils.videosToIds(user.getRecentVideos()))),
 				new Propiedad(LISTOFPLAYLIST, DAOUtils.listToString(DAOUtils.playlistsToIds(user.getListOfPlaylist()))),
-				new Propiedad(FILTER, DAOUtils.filterToString(user.getFilter()))));
+				new Propiedad(FILTER, DAOUtils.filterToString(user.getFilter())),
+				new Propiedad(NIGHTMODE, String.valueOf(user.isNightMode()))));
 		return eUser;
 	}
 	
@@ -132,6 +136,7 @@ public final class AppVideoDAOUser implements DAOUser {
 		DAOUtils.modifyEntityProperty(eUser,RECENTVIDEOS,DAOUtils.listToString(DAOUtils.videosToIds(user.getRecentVideos())));
 		DAOUtils.modifyEntityProperty(eUser,LISTOFPLAYLIST,DAOUtils.listToString(DAOUtils.playlistsToIds(user.getListOfPlaylist())));
 		DAOUtils.modifyEntityProperty(eUser,FILTER,DAOUtils.filterToString(user.getFilter()));
+		DAOUtils.modifyEntityProperty(eUser,NIGHTMODE,String.valueOf(user.isNightMode()));
 
 		servPersistencia.modificarEntidad(eUser);
 		// Comprobamos si son iguales.
