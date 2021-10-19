@@ -2,17 +2,22 @@ package dao;
 
 import beans.Entidad;
 import beans.Propiedad;
-import model.*;
+import model.IFilter;
+import model.Playlist;
+import model.Video;
+import model.VideoRepository;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class DAOUtils {
-    public static Integer safeValueOf(String s){
-        try{
+    public static Integer safeValueOf(String s) {
+        try {
             return Integer.valueOf(s);
-        }catch (NumberFormatException | NullPointerException ignored){}
+        } catch (NumberFormatException | NullPointerException ignored) {
+        }
         return null;
     }
 
@@ -30,7 +35,7 @@ public class DAOUtils {
     }
 
     public static List<Video> idsToVideos(List<Integer> idsVideos) {
-        return idsVideos == null? new ArrayList<>() : idsVideos.stream().map(VideoRepository.getInstance()::getVideo).collect(Collectors.toList());
+        return idsVideos == null ? new ArrayList<>() : idsVideos.stream().map(VideoRepository.getInstance()::getVideo).collect(Collectors.toList());
     }
 
     public static List<Integer> videosToIds(List<Video> videos) {
@@ -46,38 +51,37 @@ public class DAOUtils {
     }
 
     public static IFilter stringToFilter(String filterString) {
-        if(filterString==null || filterString.equals("")) return null;
+        if (filterString == null || filterString.equals("")) return null;
         try {
             Class<?> filterClass = Class.forName(filterString);
-            if (IFilter.class.isAssignableFrom(filterClass)){
+            if (IFilter.class.isAssignableFrom(filterClass)) {
                 return (IFilter) filterClass.getConstructor().newInstance();
             }
         } catch (ClassNotFoundException | InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
-            System.err.println("Filter class not found: <"+filterString+">");
+            System.err.println("Filter class not found: <" + filterString + ">");
 //			e.printStackTrace();
         }
         return null;
     }
 
     public static Map<Integer, Playlist> idsToPlaylists(List<Integer> idsPlaylists) {
-        return idsPlaylists == null? new HashMap<>() : idsPlaylists.stream().collect(Collectors.toMap(Integer::intValue, AppVideoDAOPlaylist.getInstance()::get));
+        return idsPlaylists == null ? new HashMap<>() : idsPlaylists.stream().collect(Collectors.toMap(Integer::intValue, AppVideoDAOPlaylist.getInstance()::get));
     }
 
-    public static void modifyEntityProperty(Entidad entidad, String propertyName, String value){
+    public static void modifyEntityProperty(Entidad entidad, String propertyName, String value) {
         Propiedad properties = entidad.getPropiedades().stream().filter(property -> property.getNombre().equals(propertyName)).findAny().orElse(null);
         if (properties == null)
             return;
         properties.setValor(value);
     }
 
-    public static List<String> splitString(String s){
+    public static List<String> splitString(String s) {
         return s == null ? new ArrayList<>() : Arrays.stream(s.split(";")).collect(Collectors.toList());
     }
 
-    public static String joinString(List<String> list){
+    public static String joinString(List<String> list) {
         return list == null ? "" : String.join(";", list);
     }
-
 
 
 }

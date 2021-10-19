@@ -1,5 +1,5 @@
 package model;
 
 public interface IFilter {
-	void eliminarVideos();
+    void eliminarVideos();
 }

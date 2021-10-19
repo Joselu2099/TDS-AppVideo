@@ -1,5 +1,5 @@
 package model;
 
 public enum TypeOfFilters {
-	NONE, MINORS, IMPOPULARS, MYLISTS
+    NONE, MINORS, IMPOPULARS, MYLISTS
 }

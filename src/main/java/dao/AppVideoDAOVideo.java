@@ -1,10 +1,5 @@
 package dao;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import beans.Entidad;
 import beans.Propiedad;
 import model.Label;
@@ -12,83 +7,86 @@ import model.Video;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
 
-public final class AppVideoDAOVideo implements DAOVideo{
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
-	private static AppVideoDAOVideo uniqueInstance = null;
-	
-	//Definimos los atributos de la clase a persistir
-	private static final String VIDEO = "Video";
-	private static final String TITLE = "Video_Title";
-	private static final String URL = "Video_URL";
-	private static final String LABELS = "Video_LABELS";
+public final class AppVideoDAOVideo implements DAOVideo {
 
-	private final ServicioPersistencia servPersistencia;
-	
-	private AppVideoDAOVideo() {
-		servPersistencia = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
-	}
-	
-	// Aplicamos el patron Singleton.
-	public static AppVideoDAOVideo getInstance() {
-		if (uniqueInstance == null)
-			uniqueInstance = new AppVideoDAOVideo();
-		return uniqueInstance;
-	}
+    //Definimos los atributos de la clase a persistir
+    private static final String VIDEO = "Video";
+    private static final String TITLE = "Video_Title";
+    private static final String URL = "Video_URL";
+    private static final String LABELS = "Video_LABELS";
+    private static AppVideoDAOVideo uniqueInstance = null;
+    private final ServicioPersistencia servPersistencia;
 
-	public Video entityToVideo(Entidad e){
-		Video v = new Video(servPersistencia.recuperarPropiedadEntidad(e,TITLE),servPersistencia.recuperarPropiedadEntidad(e,URL));
-		v.setId(e.getId());
-		v.setLabels(DAOUtils.splitString(servPersistencia.recuperarPropiedadEntidad(e,LABELS)).stream().map(Label::valueOf).collect(Collectors.toList()));
-		return v;
-	}
+    private AppVideoDAOVideo() {
+        servPersistencia = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
+    }
 
-	public Entidad videoToEntity(Video v){
-		Entidad e = new Entidad();
-		e.setId(v.getId());
-		e.setNombre(VIDEO);
-		e.setPropiedades(Arrays.asList(
-				new Propiedad(TITLE,v.getTitle()),
-				new Propiedad(URL,v.getUrl()),
-				new Propiedad(LABELS,DAOUtils.joinString(v.getLabels().stream().map(Label::name).collect(Collectors.toList())))
-		));
+    // Aplicamos el patron Singleton.
+    public static AppVideoDAOVideo getInstance() {
+        if (uniqueInstance == null)
+            uniqueInstance = new AppVideoDAOVideo();
+        return uniqueInstance;
+    }
 
-		return e;
-	}
-	
-	@Override
-	public void create(Video video) {
-		servPersistencia.registrarEntidad(videoToEntity(video));
-	}
+    public Video entityToVideo(Entidad e) {
+        Video v = new Video(servPersistencia.recuperarPropiedadEntidad(e, TITLE), servPersistencia.recuperarPropiedadEntidad(e, URL));
+        v.setId(e.getId());
+        v.setLabels(DAOUtils.splitString(servPersistencia.recuperarPropiedadEntidad(e, LABELS)).stream().map(Label::valueOf).collect(Collectors.toList()));
+        return v;
+    }
 
-	@Override
-	public boolean delete(Video video) {
-		return servPersistencia.borrarEntidad(servPersistencia.recuperarEntidad(video.getId()));
-	}
+    public Entidad videoToEntity(Video v) {
+        Entidad e = new Entidad();
+        e.setId(v.getId());
+        e.setNombre(VIDEO);
+        e.setPropiedades(Arrays.asList(
+                new Propiedad(TITLE, v.getTitle()),
+                new Propiedad(URL, v.getUrl()),
+                new Propiedad(LABELS, DAOUtils.joinString(v.getLabels().stream().map(Label::name).collect(Collectors.toList())))
+        ));
 
-	@Override
-	public void updateProfile(Video v) {
-		Entidad e = servPersistencia.recuperarEntidad(v.getId());
+        return e;
+    }
 
-		DAOUtils.modifyEntityProperty(e,TITLE,v.getTitle());
-		DAOUtils.modifyEntityProperty(e,URL,v.getUrl());
-		DAOUtils.modifyEntityProperty(e,LABELS,DAOUtils.joinString(v.getLabels().stream().map(Label::name).collect(Collectors.toList())));
+    @Override
+    public void create(Video video) {
+        servPersistencia.registrarEntidad(videoToEntity(video));
+    }
 
-		servPersistencia.modificarEntidad(e);
+    @Override
+    public boolean delete(Video video) {
+        return servPersistencia.borrarEntidad(servPersistencia.recuperarEntidad(video.getId()));
+    }
 
-		assert servPersistencia.recuperarEntidad(v.getId()).equals(e);
-	}
+    @Override
+    public void updateProfile(Video v) {
+        Entidad e = servPersistencia.recuperarEntidad(v.getId());
 
-	@Override
-	public Video get(int id) {
-		return entityToVideo(servPersistencia.recuperarEntidad(id));
-	}
+        DAOUtils.modifyEntityProperty(e, TITLE, v.getTitle());
+        DAOUtils.modifyEntityProperty(e, URL, v.getUrl());
+        DAOUtils.modifyEntityProperty(e, LABELS, DAOUtils.joinString(v.getLabels().stream().map(Label::name).collect(Collectors.toList())));
+
+        servPersistencia.modificarEntidad(e);
+
+        assert servPersistencia.recuperarEntidad(v.getId()).equals(e);
+    }
+
+    @Override
+    public Video get(int id) {
+        return entityToVideo(servPersistencia.recuperarEntidad(id));
+    }
 
 
-	@Override
-	public List<Video> getAll() {
-		List<Entidad> v = servPersistencia.recuperarEntidades(VIDEO);
+    @Override
+    public List<Video> getAll() {
+        List<Entidad> v = servPersistencia.recuperarEntidades(VIDEO);
 //		return new ArrayList<>();
-		return v == null ? new ArrayList<>() : v.stream().map(this::entityToVideo).collect(Collectors.toList());
-	}
+        return v == null ? new ArrayList<>() : v.stream().map(this::entityToVideo).collect(Collectors.toList());
+    }
 
 }

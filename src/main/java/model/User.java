@@ -2,214 +2,215 @@ package model;
 
 import com.formdev.flatlaf.IntelliJTheme;
 import launcher.Launcher;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class User {
-	private int id;
-	private String name;
-	private String surname;
-	private String mail;
-	private String username;
-	private String password;
-	private String dateOfBirth;
-	private String premium;
-	private final Map<String, Playlist> listOfPlaylist;
-	private List<Video> recentVideos;
-	private IFilter filter;
-	private boolean isNightMode;
-	
-	public User(String name, String surname, String mail, String username, String password, String dateOfBirth) {
-		this.id = 0;
-		this.name = name;
-		this.surname = surname;
-		this.mail = mail;
-		this.username = username;
-		this.password = password;
-		this.dateOfBirth = dateOfBirth;
-		this.premium = "no";
-		this.listOfPlaylist = new HashMap<>();
-		this.recentVideos = new ArrayList<>();
-		this.filter = new NoFilter();
-		this.isNightMode = false;
-	}
+    private final Map<String, Playlist> listOfPlaylist;
+    private int id;
+    private String name;
+    private String surname;
+    private String mail;
+    private String username;
+    private String password;
+    private String dateOfBirth;
+    private String premium;
+    private List<Video> recentVideos;
+    private IFilter filter;
+    private boolean isNightMode;
 
-	public int getId() {
-		return id;
-	}
+    public User(String name, String surname, String mail, String username, String password, String dateOfBirth) {
+        this.id = 0;
+        this.name = name;
+        this.surname = surname;
+        this.mail = mail;
+        this.username = username;
+        this.password = password;
+        this.dateOfBirth = dateOfBirth;
+        this.premium = "no";
+        this.listOfPlaylist = new HashMap<>();
+        this.recentVideos = new ArrayList<>();
+        this.filter = new NoFilter();
+        this.isNightMode = false;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getSurname() {
-		return surname;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
+    public String getSurname() {
+        return surname;
+    }
 
-	public String getMail() {
-		return mail;
-	}
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
+    public String getMail() {
+        return mail;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public String getDateOfBirth() {
-		return dateOfBirth;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setDateOfBirth(String dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
 
-	public String getPremium() {
-		return premium;
-	}
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 
-	public void setPremium(String premium) {
-		this.premium = premium;
-	}
-	
-	public boolean isPremium() {
-		return this.premium.equals("si");
-	}
-	
-	public IFilter getFilter() {
-		return filter;
-	}
-	
-	public void setFilter(IFilter filter) {
-		this.filter = filter;
-	}
-	
-	public ArrayList<Playlist> getListOfPlaylist() {
-		return new ArrayList<>(listOfPlaylist.values());
-	}
+    public String getPremium() {
+        return premium;
+    }
 
-	public void setListOfPlaylist(ArrayList<Playlist> listOfPlaylist) {
-		for(Playlist pl: listOfPlaylist) {
-			this.listOfPlaylist.put(pl.getTitle(), pl);
-		}
-	}
+    public boolean isPremium() {
+        return this.premium.equals("si");
+    }
 
-	public void addPlaylist(Playlist playlist) {
-		this.listOfPlaylist.put(playlist.getTitle(), playlist);
-	}
-	
-	public Playlist getPlaylist(String title) {
-		return listOfPlaylist.get(title);
-	}
-	
-	public ArrayList<Video> getRecentVideos() {
-		return new ArrayList<>(recentVideos);
-	}
+    public void setPremium(String premium) {
+        this.premium = premium;
+    }
 
-	public void setRecentVideos(List<Video> recentVideos) {
-		this.recentVideos = recentVideos;
-	}
-	
-	public void addRecentVideo(Video video) {
-		this.recentVideos.add(video);
-	}
+    public IFilter getFilter() {
+        return filter;
+    }
 
-	public boolean isNightMode() {
-		return isNightMode;
-	}
+    public void setFilter(IFilter filter) {
+        this.filter = filter;
+    }
 
-	public void setNightMode(boolean nightMode) {
-		this.isNightMode = nightMode;
-		if (this.isNightMode){
-			IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
-		}else {
-			IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/ArcPurple.theme.json"));
-		}
-	}
+    public ArrayList<Playlist> getListOfPlaylist() {
+        return new ArrayList<>(listOfPlaylist.values());
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof User)) return false;
+    public void setListOfPlaylist(ArrayList<Playlist> listOfPlaylist) {
+        for (Playlist pl : listOfPlaylist) {
+            this.listOfPlaylist.put(pl.getTitle(), pl);
+        }
+    }
 
-		User user = (User) o;
+    public void addPlaylist(Playlist playlist) {
+        this.listOfPlaylist.put(playlist.getTitle(), playlist);
+    }
 
-		if (getId() != user.getId()) return false;
-		if (getName() != null ? !getName().equals(user.getName()) : user.getName() != null) return false;
-		if (getSurname() != null ? !getSurname().equals(user.getSurname()) : user.getSurname() != null) return false;
-		if (getMail() != null ? !getMail().equals(user.getMail()) : user.getMail() != null) return false;
-		if (getUsername() != null ? !getUsername().equals(user.getUsername()) : user.getUsername() != null)
-			return false;
-		if (getPassword() != null ? !getPassword().equals(user.getPassword()) : user.getPassword() != null)
-			return false;
-		if (getDateOfBirth() != null ? !getDateOfBirth().equals(user.getDateOfBirth()) : user.getDateOfBirth() != null)
-			return false;
-		if (getPremium() != null ? !getPremium().equals(user.getPremium()) : user.getPremium() != null) return false;
-		if (getListOfPlaylist() != null ? !getListOfPlaylist().equals(user.getListOfPlaylist()) : user.getListOfPlaylist() != null)
-			return false;
-		if (getRecentVideos() != null ? !getRecentVideos().equals(user.getRecentVideos()) : user.getRecentVideos() != null)
-			return false;
-		return getFilter() != null ? getFilter().equals(user.getFilter()) : user.getFilter() == null;
-	}
+    public Playlist getPlaylist(String title) {
+        return listOfPlaylist.get(title);
+    }
 
-	@Override
-	public int hashCode() {
-		int result = getId();
-		result = 31 * result + (getName() != null ? getName().hashCode() : 0);
-		result = 31 * result + (getSurname() != null ? getSurname().hashCode() : 0);
-		result = 31 * result + (getMail() != null ? getMail().hashCode() : 0);
-		result = 31 * result + (getUsername() != null ? getUsername().hashCode() : 0);
-		result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
-		result = 31 * result + (getDateOfBirth() != null ? getDateOfBirth().hashCode() : 0);
-		result = 31 * result + (getPremium() != null ? getPremium().hashCode() : 0);
-		result = 31 * result + (getListOfPlaylist() != null ? getListOfPlaylist().hashCode() : 0);
-		result = 31 * result + (getRecentVideos() != null ? getRecentVideos().hashCode() : 0);
-		result = 31 * result + (getFilter() != null ? getFilter().hashCode() : 0);
-		return result;
-	}
+    public ArrayList<Video> getRecentVideos() {
+        return new ArrayList<>(recentVideos);
+    }
 
-	@Override
-	public String toString() {
-		return "User{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				", surname='" + surname + '\'' +
-				", mail='" + mail + '\'' +
-				", username='" + username + '\'' +
-				", password='" + password + '\'' +
-				", dateOfBirth='" + dateOfBirth + '\'' +
-				", premium='" + premium + '\'' +
-				", listOfPlaylist=" + listOfPlaylist +
-				", recentVideos=" + recentVideos.toString() +
-				", filter=" + filter.getClass().getSimpleName() +
-				'}';
-	}
+    public void setRecentVideos(List<Video> recentVideos) {
+        this.recentVideos = recentVideos;
+    }
+
+    public void addRecentVideo(Video video) {
+        this.recentVideos.add(video);
+    }
+
+    public boolean isNightMode() {
+        return isNightMode;
+    }
+
+    public void setNightMode(boolean nightMode) {
+        this.isNightMode = nightMode;
+        if (this.isNightMode) {
+            IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
+        } else {
+            IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/ArcPurple.theme.json"));
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+
+        User user = (User) o;
+
+        if (getId() != user.getId()) return false;
+        if (getName() != null ? !getName().equals(user.getName()) : user.getName() != null) return false;
+        if (getSurname() != null ? !getSurname().equals(user.getSurname()) : user.getSurname() != null) return false;
+        if (getMail() != null ? !getMail().equals(user.getMail()) : user.getMail() != null) return false;
+        if (getUsername() != null ? !getUsername().equals(user.getUsername()) : user.getUsername() != null)
+            return false;
+        if (getPassword() != null ? !getPassword().equals(user.getPassword()) : user.getPassword() != null)
+            return false;
+        if (getDateOfBirth() != null ? !getDateOfBirth().equals(user.getDateOfBirth()) : user.getDateOfBirth() != null)
+            return false;
+        if (getPremium() != null ? !getPremium().equals(user.getPremium()) : user.getPremium() != null) return false;
+        if (getListOfPlaylist() != null ? !getListOfPlaylist().equals(user.getListOfPlaylist()) : user.getListOfPlaylist() != null)
+            return false;
+        if (getRecentVideos() != null ? !getRecentVideos().equals(user.getRecentVideos()) : user.getRecentVideos() != null)
+            return false;
+        return getFilter() != null ? getFilter().equals(user.getFilter()) : user.getFilter() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId();
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getSurname() != null ? getSurname().hashCode() : 0);
+        result = 31 * result + (getMail() != null ? getMail().hashCode() : 0);
+        result = 31 * result + (getUsername() != null ? getUsername().hashCode() : 0);
+        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
+        result = 31 * result + (getDateOfBirth() != null ? getDateOfBirth().hashCode() : 0);
+        result = 31 * result + (getPremium() != null ? getPremium().hashCode() : 0);
+        result = 31 * result + (getListOfPlaylist() != null ? getListOfPlaylist().hashCode() : 0);
+        result = 31 * result + (getRecentVideos() != null ? getRecentVideos().hashCode() : 0);
+        result = 31 * result + (getFilter() != null ? getFilter().hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", mail='" + mail + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", premium='" + premium + '\'' +
+                ", listOfPlaylist=" + listOfPlaylist +
+                ", recentVideos=" + recentVideos.toString() +
+                ", filter=" + filter.getClass().getSimpleName() +
+                '}';
+    }
 }
