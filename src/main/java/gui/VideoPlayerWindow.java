@@ -14,7 +14,6 @@ import java.awt.*;
 public class VideoPlayerWindow extends JFrame {
 
     private static VideoWeb videoWeb;
-    private JPanel contentPane;
     private static final int BOX_PADDING = 20;
 
     public VideoPlayerWindow(Video video) {
@@ -49,7 +48,6 @@ public class VideoPlayerWindow extends JFrame {
         titleViewPanel.setLayout(new GridLayout(1,2));
     	panel.add(titleViewPanel);
 
-
         // Usamos textarea por si el titulo es largo y necesitamos line wrap
         JTextArea lblVideoTitle = new JTextArea(video.getTitle());
         lblVideoTitle.setEditable(false);
@@ -57,7 +55,7 @@ public class VideoPlayerWindow extends JFrame {
 
     	titleViewPanel.add(lblVideoTitle);
 
-        titleViewPanel.add(Box.createHorizontalStrut(100));
+        titleViewPanel.add(Box.createHorizontalStrut(10));
     	
     	JLabel lblViewList = new JLabel(video.getViews()+" Views",SwingConstants.RIGHT);
     	titleViewPanel.add(lblViewList);
@@ -82,8 +80,8 @@ public class VideoPlayerWindow extends JFrame {
     }
 
     public static void main(String[] args) {
-//        IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/ArcPurple.theme.json"));
-        IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
+        IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/ArcPurple.theme.json"));
+//        IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
         EventQueue.invokeLater(() -> {
             try {
                 Video v = new Video("https://www.youtube.com/watch?v=XKfgdkcIUxw");
