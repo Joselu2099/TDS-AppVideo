@@ -115,15 +115,21 @@ public class AppVideoWindow {
 
         JPanel home = new JPanel();
         tabbedPane.addTab("Home", null, home, null);
-
-        JPanel explore = new JPanel();
-        tabbedPane.addTab("Explore", null, explore, null);
+        GridBagLayout gbl_home = new GridBagLayout();
+        gbl_home.columnWidths = new int[]{0};
+        gbl_home.rowHeights = new int[]{0};
+        gbl_home.columnWeights = new double[]{Double.MIN_VALUE};
+        gbl_home.rowWeights = new double[]{Double.MIN_VALUE};
+        home.setLayout(gbl_home);
 
         JPanel recent = new JPanel();
         tabbedPane.addTab("Recent", null, recent, null);
 
-        JPanel playlists = new JPanel();
-        tabbedPane.addTab("Playlists", null, playlists, null);
+        JPanel myPlaylists = new JPanel();
+        tabbedPane.addTab("My Playlists", null, myPlaylists, null);
+
+        JPanel createPlaylists = new JPanel();
+        tabbedPane.addTab("Create Playlists", null, createPlaylists, null);
     }
 
     /**
