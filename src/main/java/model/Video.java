@@ -37,6 +37,8 @@ public class Video {
 
     public int getViews() {return views;}
 
+    public void incrementViews(){views++;}
+
     public void setViews(int views) {this.views = views;}
 
     public int getId() {
