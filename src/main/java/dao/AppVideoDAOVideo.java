@@ -19,6 +19,7 @@ public final class AppVideoDAOVideo implements DAOVideo {
     private static final String TITLE = "Video_Title";
     private static final String URL = "Video_URL";
     private static final String LABELS = "Video_LABELS";
+    private static final String VIDEO_VIEWS = "Video_VIEWS";
     private static AppVideoDAOVideo uniqueInstance = null;
     private final ServicioPersistencia servPersistencia;
 
@@ -36,7 +37,8 @@ public final class AppVideoDAOVideo implements DAOVideo {
     public Video entityToVideo(Entidad e) {
         Video v = new Video(servPersistencia.recuperarPropiedadEntidad(e, TITLE), servPersistencia.recuperarPropiedadEntidad(e, URL));
         v.setId(e.getId());
-        v.setLabels(DAOUtils.splitString(servPersistencia.recuperarPropiedadEntidad(e, LABELS)).stream().map(Label::valueOf).collect(Collectors.toList()));
+        v.setLabels(DAOUtils.splitString(servPersistencia.recuperarPropiedadEntidad(e, LABELS)).stream().map(Label::valueOf).collect(Collectors.toSet()));
+        v.setViews(Integer.parseInt(servPersistencia.recuperarPropiedadEntidad(e,VIDEO_VIEWS)));
         return v;
     }
 
@@ -47,6 +49,7 @@ public final class AppVideoDAOVideo implements DAOVideo {
         e.setPropiedades(Arrays.asList(
                 new Propiedad(TITLE, v.getTitle()),
                 new Propiedad(URL, v.getUrl()),
+                new Propiedad(VIDEO_VIEWS,String.valueOf(v.getViews())),
                 new Propiedad(LABELS, DAOUtils.joinString(v.getLabels().stream().map(Label::name).collect(Collectors.toList())))
         ));
 
@@ -69,6 +72,7 @@ public final class AppVideoDAOVideo implements DAOVideo {
 
         DAOUtils.modifyEntityProperty(e, TITLE, v.getTitle());
         DAOUtils.modifyEntityProperty(e, URL, v.getUrl());
+        DAOUtils.modifyEntityProperty(e, VIDEO_VIEWS, String.valueOf(v.getViews()));
         DAOUtils.modifyEntityProperty(e, LABELS, DAOUtils.joinString(v.getLabels().stream().map(Label::name).collect(Collectors.toList())));
 
         servPersistencia.modificarEntidad(e);
