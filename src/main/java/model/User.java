@@ -117,6 +117,11 @@ public class User {
         return new ArrayList<>(listOfPlaylist.values());
     }
 
+    public void addRecent(Video v){
+        recentVideos.remove(0);
+        recentVideos.add(v);
+    }
+
     public void setListOfPlaylist(ArrayList<Playlist> listOfPlaylist) {
         for (Playlist pl : listOfPlaylist) {
             this.listOfPlaylist.put(pl.getTitle(), pl);
