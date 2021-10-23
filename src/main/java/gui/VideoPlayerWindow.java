@@ -1,99 +1,95 @@
 package gui;
 
 
+import com.formdev.flatlaf.IntelliJTheme;
+import launcher.Launcher;
+import model.Label;
+import model.Video;
 import tds.video.VideoWeb;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class VideoPlayerWindow extends JFrame {
 
     private static VideoWeb videoWeb;
     private JPanel contentPane;
+    private static final int BOX_PADDING = 20;
 
-    public VideoPlayerWindow() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(0, 0, 760, 650);
+    public VideoPlayerWindow(Video video) {
+        videoWeb = new VideoWeb();
+        setResizable(false);
+    	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	JPanel panel = new JPanel();
+        panel.setBorder(new EmptyBorder(15,15,15,15));
+        setBounds(100, 100, 780, 520);
+    	getContentPane().add(panel, BorderLayout.CENTER);
 
-        contentPane = (JPanel) getContentPane();
-        contentPane.setSize(new Dimension(760, 630)); //20 de barra de título
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+    	panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        JLabel titulo = new JLabel("Sin título", JLabel.CENTER);
-        titulo.setMinimumSize(new Dimension(760, 60));
-        titulo.setPreferredSize(new Dimension(760, 60));
-        titulo.setMaximumSize(new Dimension(760, 60));
-        Font ftit = new Font("Arial", Font.BOLD, 24);
-        titulo.setFont(ftit);
-        //titulo.setAlignmentX(0.5f); //centrar
-        titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
-        JPanel botones = new JPanel();
-        botones.setMinimumSize(new Dimension(760, 60));
-        botones.setPreferredSize(new Dimension(760, 60));
-        botones.setMaximumSize(new Dimension(760, 60));
-        botones.setLayout(new FlowLayout());
+//    	JLabel videoPlayerPlaceholder = new JLabel("Video Player");
+        VideoWeb videoPlayerPlaceholder = videoWeb;
+        videoPlayerPlaceholder.setMinimumSize(new Dimension(366,220));
+        videoPlayerPlaceholder.setMaximumSize(new Dimension(366,220));
+        videoPlayerPlaceholder.setSize(new Dimension(366,220));
 
-        JButton btUno = new JButton("Musica");
-        JButton btDos = new JButton("Pelicula");
-        JButton btTres = new JButton("Sorpresa");
-        JButton btCancelar = new JButton("Cancelar");
-        btCancelar.setBackground(Color.RED);
-        btCancelar.setForeground(Color.WHITE);
+        JPanel videoPanel = new JPanel();
+        videoPanel.setLayout(new BoxLayout(videoPanel,BoxLayout.Y_AXIS));
+        videoPanel.setMinimumSize(new Dimension(366,220));
+        videoPanel.setMaximumSize(new Dimension(366,220));
+        videoPanel.setSize(new Dimension(366,220));
+        videoPanel.add(videoPlayerPlaceholder);
+        panel.add(videoPanel);
+        videoPlayerPlaceholder.playVideo(video.getUrl());
 
-        botones.add(btUno);
-        botones.add(btDos);
-        botones.add(btTres);
-        botones.add(Box.createHorizontalStrut(50));
-        botones.add(btCancelar);
+        panel.add(Box.createVerticalStrut(BOX_PADDING));
 
-        JLabel reprod = new JLabel("reproduciendo:");
-        reprod.setAlignmentX(0.5f);
-        JLabel miniatura = new JLabel();
-        miniatura.setAlignmentX(0.5f);
+    	JPanel titleViewPanel = new JPanel();
+        titleViewPanel.setLayout(new GridLayout(1,2));
+    	panel.add(titleViewPanel);
 
-        JLabel copyright = new JLabel(videoWeb.getVersion());
-        copyright.setAlignmentX(0.5f);
-        contentPane.add(titulo);
-        contentPane.add(videoWeb);
-        contentPane.add(botones);
-        contentPane.add(reprod);
-        contentPane.add(miniatura);
-        contentPane.add(copyright);
 
-        btUno.addActionListener(e -> {
-            titulo.setText("Rasputin");
-            miniatura.setIcon(videoWeb.getThumb("https://www.youtube.com/watch?v=rk7ITikbhs4"));
-            videoWeb.playVideo("https://www.youtube.com/watch?v=hnRphfqIvsM");
-            validate();
-        });
-        btDos.addActionListener(e -> {
-            titulo.setText("Jacinto Durante Representante");
-            miniatura.setIcon(videoWeb.getThumb("https://www.youtube.com/watch?v=EdVMSYomYJY"));
-            videoWeb.playVideo("https://www.youtube.com/watch?v=EdVMSYomYJY");
-            validate();
-        });
-        btTres.addActionListener(e -> {
-            titulo.setText("Si tu padre sabe de efectos especiales");
-            miniatura.setIcon(videoWeb.getThumb("https://www.youtube.com/watch?v=0243Z0YXPpY"));
-            videoWeb.playVideo("https://www.youtube.com/watch?v=0243Z0YXPpY");
-            validate();
-        });
-        btCancelar.addActionListener(e -> {
-            titulo.setText("Sin título");
-            miniatura.setIcon(null);
-            videoWeb.cancel();
-        });
+        // Usamos textarea por si el titulo es largo y necesitamos line wrap
+        JTextArea lblVideoTitle = new JTextArea(video.getTitle());
+        lblVideoTitle.setEditable(false);
+        lblVideoTitle.setLineWrap(true);
+
+    	titleViewPanel.add(lblVideoTitle);
+
+        titleViewPanel.add(Box.createHorizontalStrut(100));
+    	
+    	JLabel lblViewList = new JLabel(video.getViews()+" Views",SwingConstants.RIGHT);
+    	titleViewPanel.add(lblViewList);
+
+
+
+        panel.add(Box.createVerticalStrut(BOX_PADDING));
+
+        JPanel tagContainer = new JPanel();
+        tagContainer.setLayout(new BorderLayout());
+        JPanel tagPanel = new JPanel();
+        tagPanel.setLayout(new FlowLayout());
+
+        tagContainer.add(tagPanel,BorderLayout.CENTER);
+        panel.add(tagContainer);
+
+        // TAGS
+        video.getLabels().stream().forEach(label -> tagPanel.add(new JButton(label.name())));
+        JButton add = new JButton("+");
+//        add.addActionListener(e -> video.addLabels());
+        tagPanel.add(add);
     }
 
     public static void main(String[] args) {
+//        IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/ArcPurple.theme.json"));
+        IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
         EventQueue.invokeLater(() -> {
             try {
-                videoWeb = new VideoWeb();
-                VideoPlayerWindow frame = new VideoPlayerWindow();
+                Video v = new Video("https://www.youtube.com/watch?v=XKfgdkcIUxw");
+                v.addLabels(Label.INFANTIL);
+                v.addLabels(Label.VIDEOCLIP);
+                VideoPlayerWindow frame = new VideoPlayerWindow(v);
                 frame.setVisible(true);
             } catch (Exception e) {
                 e.printStackTrace();
