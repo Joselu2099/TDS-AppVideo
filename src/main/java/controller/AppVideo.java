@@ -54,7 +54,7 @@ public class AppVideo {
     public boolean registerUser(String name, String surname, String mail, String username, String password, String dateOfBirth) {
         if (isUserRegistered(username)) return false;
         User user = new User(name, surname, mail, username, encodePassword(password), dateOfBirth);
-
+        user.setNightMode(false);
         DAOUser daoUser = factory.getDAOUser(); /* DAO Adapter to save the user into Base Data */
         daoUser.create(user);
 

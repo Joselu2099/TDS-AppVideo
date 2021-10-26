@@ -13,8 +13,8 @@ import java.awt.event.WindowEvent;
 
 public class SettingsWindow {
 
-    private static final String NIGHTMODE = "Night mode";
-    private static final String LIGHTMODE = "Light mode";
+    private static final String NIGHTMODEACTIVATED = "Night mode activated";
+    private static final String NIGHTMODEDISABLED = "Light mode disabled";
 
     private JFrame frmSettings;
     private JLabel lblLightNightMode;
@@ -78,22 +78,13 @@ public class SettingsWindow {
         btnNightMode.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (lblLightNightMode.getText().equals(LIGHTMODE)) {
-                    lblLightNightMode.setText(NIGHTMODE);
-                    btnNightMode.setIcon(new ImageIcon(SettingsWindow.class.getResource("/images/nightModeIcon.png")));
-                    AppVideo.getInstance().setNightMode(true);
-                } else if (lblLightNightMode.getText().equals(NIGHTMODE)) {
-                    lblLightNightMode.setText(LIGHTMODE);
-                    btnNightMode.setIcon(new ImageIcon(SettingsWindow.class.getResource("/images/lightModeIcon.png")));
-                    AppVideo.getInstance().setNightMode(false);
-                }
-                SwingUtilities.updateComponentTreeUI(frmSettings);
+                setNightMode();
             }
         });
         btnNightMode.setSelectedIcon(null);
         btnNightMode.setBorderPainted(false);
         btnNightMode.setBorder(new MatteBorder(1, 1, 1, 1, UIUtils.getFocusedBorder()));
-        btnNightMode.setIcon(new ImageIcon(SettingsWindow.class.getResource("/images/lightModeIcon.png")));
+        btnNightMode.setIcon(new ImageIcon(SettingsWindow.class.getResource("/images/nightModeIcon.png")));
         GridBagConstraints gbc_btnNightMode = new GridBagConstraints();
         gbc_btnNightMode.insets = new Insets(0, 0, 5, 5);
         gbc_btnNightMode.gridx = 2;
@@ -124,6 +115,17 @@ public class SettingsWindow {
         gbc_btnBack.gridy = 13;
         frmSettings.getContentPane().add(btnBack, gbc_btnBack);
 
+    }
+
+    private void setNightMode(){
+        if (!AppVideo.getInstance().getActualUser().isNightMode()) {
+            lblLightNightMode.setText(NIGHTMODEACTIVATED);
+            AppVideo.getInstance().setNightMode(true);
+        } else if (AppVideo.getInstance().getActualUser().isNightMode()) {
+            lblLightNightMode.setText(NIGHTMODEDISABLED);
+            AppVideo.getInstance().setNightMode(false);
+        }
+        SwingUtilities.updateComponentTreeUI(frmSettings);
     }
 
     private void goToAppVideoWindow() {

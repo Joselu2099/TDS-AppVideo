@@ -1,5 +1,6 @@
 package controller;
 
+import gui.SettingsWindow;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,6 +37,18 @@ class AppVideoTest {
         assertTrue(AppVideo.getInstance().login("___testUserName1", "testpassword"), "login");
         assertFalse(AppVideo.getInstance().registerUser("___testUser", "___TDS", "test@example.com", "___testUserName1", "testpassword", "2020-10-10"));
         assertTrue(AppVideo.getInstance().removeUser("___testUserName1"), "remove");
+
+    }
+
+    @Test
+    void setNightMode(){
+        AppVideo.getInstance().setNightMode(true);
+        assertTrue(AppVideo.getInstance().getActualUser().isNightMode());
+
+
+        AppVideo.getInstance().setNightMode(false);
+        assertFalse(AppVideo.getInstance().getActualUser().isNightMode());
+
 
     }
 }

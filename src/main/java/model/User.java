@@ -34,7 +34,6 @@ public class User {
         this.listOfPlaylist = new HashMap<>();
         this.recentVideos = new ArrayList<>();
         this.filter = new NoFilter();
-        this.isNightMode = false;
     }
 
     public int getId() {

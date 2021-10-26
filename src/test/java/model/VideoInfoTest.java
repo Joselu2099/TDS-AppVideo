@@ -1,4 +1,4 @@
-package controller;
+package model;
 
 import model.VideoInfo;
 import org.junit.jupiter.api.Test;
