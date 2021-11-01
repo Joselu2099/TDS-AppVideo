@@ -42,12 +42,17 @@ class AppVideoTest {
 
     @Test
     void setNightMode(){
+        AppVideo.getInstance().removeUser("___testUserName1");
+
+        assertTrue(AppVideo.getInstance().registerUser("___testUser", "___TDS", "test@example.com", "___testUserName1", "testpassword", "2020-10-10"));
+        assertTrue(AppVideo.getInstance().isUserRegistered("___testUserName1"), "isRegistered");
+        assertTrue(AppVideo.getInstance().login("___testUserName1", "testpassword"), "login");
         AppVideo.getInstance().setNightMode(true);
         assertTrue(AppVideo.getInstance().getActualUser().isNightMode());
 
-
         AppVideo.getInstance().setNightMode(false);
         assertFalse(AppVideo.getInstance().getActualUser().isNightMode());
+        assertTrue(AppVideo.getInstance().removeUser("___testUserName1"), "remove");
 
 
     }
