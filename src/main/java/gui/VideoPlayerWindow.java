@@ -2,6 +2,7 @@ package gui;
 
 
 import com.formdev.flatlaf.IntelliJTheme;
+import gui.Util.VideoWebFactory;
 import launcher.Launcher;
 import model.Label;
 import model.Video;
@@ -17,7 +18,7 @@ public class VideoPlayerWindow extends JFrame {
     private static final int BOX_PADDING = 20;
 
     public VideoPlayerWindow(Video video) {
-        videoWeb = new VideoWeb();
+        videoWeb = VideoWebFactory.getInstance();
         setResizable(false);
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	JPanel panel = new JPanel();

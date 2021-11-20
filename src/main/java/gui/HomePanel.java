@@ -37,7 +37,6 @@ public class HomePanel extends JFrame {
 		JButton btnSearchButton = new JButton("BUSCAR");
 		searchPanel.add(btnSearchButton);
 
-
 		vidPanel.setLayout(cardLayout);
 		getContentPane().add(vidPanel, BorderLayout.CENTER);
 	}

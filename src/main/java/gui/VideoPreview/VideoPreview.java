@@ -1,15 +1,13 @@
 package gui.VideoPreview;
 
-import gui.UIUtils;
+import gui.Util.UIUtils;
+import gui.Util.VideoWebFactory;
 import model.Video;
-import tds.video.VideoWeb;
 
 import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
@@ -28,7 +26,7 @@ public class VideoPreview extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 		setMinimumSize(new Dimension(180,140));
 
-		lblPreviewLabel.setIcon(new VideoWeb().getThumb(v.getUrl()));
+		lblPreviewLabel.setIcon(VideoWebFactory.getInstance().getThumb(v.getUrl()));
 		lblPreviewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblPreviewLabel, BorderLayout.CENTER);
 

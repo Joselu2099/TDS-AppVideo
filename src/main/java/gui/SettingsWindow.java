@@ -1,6 +1,7 @@
 package gui;
 
 import controller.AppVideo;
+import gui.Util.UIUtils;
 
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
