@@ -39,4 +39,8 @@ public class UIUtils {
     public static Color getFocusedBorder() {
         return UIManager.getColor("focusedBorderColor");
     }
+
+    public static String stringToHTML(String text){
+        return "<html>" + text.replace("\n","<br>") + "</html>";
+    }
 }
