@@ -11,8 +11,10 @@ import tds.video.VideoWeb;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
-public class VideoPlayerWindow extends JFrame {
+public class VideoPlayerWindow extends JDialog {
 
     private static VideoWeb videoWeb;
     private static final int BOX_PADDING = 20;
@@ -20,10 +22,18 @@ public class VideoPlayerWindow extends JFrame {
     public VideoPlayerWindow(Video video) {
         videoWeb = VideoWebFactory.getInstance();
         setResizable(false);
-    	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                videoWeb.cancel(); // Stop playing in background when windows is closed.
+            }
+        });
     	JPanel panel = new JPanel();
         panel.setBorder(new EmptyBorder(15,15,15,15));
         setBounds(100, 100, 780, 520);
+
+        setSize( 780, 520);
     	getContentPane().add(panel, BorderLayout.CENTER);
 
     	panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
