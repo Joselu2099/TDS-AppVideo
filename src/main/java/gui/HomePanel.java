@@ -1,6 +1,7 @@
 package gui;
 
 import com.formdev.flatlaf.IntelliJTheme;
+import gui.Util.SwapLayoutPanelWrapper;
 import gui.VideoPreview.VideoPreviewListPanel;
 import launcher.Launcher;
 import model.Label;
@@ -20,15 +21,13 @@ public class HomePanel extends JFrame {
 	/**
 	 * Create the panel.
 	 */
-	JPanel vidPanel = new JPanel();
-	CardLayout cardLayout = new CardLayout();
+	SwapLayoutPanelWrapper vidPanel = new SwapLayoutPanelWrapper();
 	public HomePanel() {
-		super();
-		getContentPane().setLayout(new BorderLayout(0, 0));
+		setLayout(new BorderLayout(0, 0));
 		
 
 		JPanel searchPanel = new JPanel();
-		getContentPane().add(searchPanel, BorderLayout.NORTH);
+		add(searchPanel, BorderLayout.NORTH);
 		
 		textField = new JTextField();
 		searchPanel.add(textField);
@@ -37,16 +36,11 @@ public class HomePanel extends JFrame {
 		JButton btnSearchButton = new JButton("BUSCAR");
 		searchPanel.add(btnSearchButton);
 
-		vidPanel.setLayout(cardLayout);
-		getContentPane().add(vidPanel, BorderLayout.CENTER);
+		add(vidPanel.getPanel(), BorderLayout.CENTER);
 	}
 
 	public void showVideoPreview(VideoPreviewListPanel videoPreviewListPanel){
-		vidPanel.add(videoPreviewListPanel);
-		cardLayout.next(vidPanel);
-		if (vidPanel.getComponents().length > 1){
-			vidPanel.remove(0);
-		}
+		vidPanel.swap(videoPreviewListPanel);
 	}
 
 
@@ -54,19 +48,25 @@ public class HomePanel extends JFrame {
 	public static void main(String[] args) {
 		IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/ArcPurple.theme.json"));
 //        IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
-		String[] url = {
-				"https://www.youtube.com/watch?v=bxF-pQSzSUM",
-				"https://www.youtube.com/watch?v=XKfgdkcIUxw",
-				"https://www.youtube.com/watch?v=56eIZKyhM6c",
-		};
-		List<Video> videoList = Arrays.stream(url).map(Video::new).collect(Collectors.toList());
-		HomePanel h = new HomePanel();
-		h.setBounds(0, 0, 800, 600);
-		h.showVideoPreview(new VideoPreviewListPanel(videoList,null));
-		h.setLocationRelativeTo(null);
 		EventQueue.invokeLater(() -> {
 			try {
+				String[] url = {
+						"https://www.youtube.com/watch?v=bxF-pQSzSUM",
+						"https://www.youtube.com/watch?v=XKfgdkcIUxw",
+						"https://www.youtube.com/watch?v=56eIZKyhM6c",
+				};
+				List<Video> videoList = Arrays.stream(url).map(Video::new).collect(Collectors.toList());
+				HomePanel h = new HomePanel();
+				h.setBounds(0, 0, 800, 600);
+				h.showVideoPreview(new VideoPreviewListPanel(videoList,null));
+				h.setLocationRelativeTo(null);
 				h.setVisible(true);
+				String[] urlX = {
+						"https://www.youtube.com/watch?v=bxF-pQSzSUM",
+						"https://www.youtube.com/watch?v=56eIZKyhM6c",
+				};
+				List<Video> videoListX = Arrays.stream(urlX).map(Video::new).collect(Collectors.toList());
+				h.showVideoPreview(new VideoPreviewListPanel(videoListX,null));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
