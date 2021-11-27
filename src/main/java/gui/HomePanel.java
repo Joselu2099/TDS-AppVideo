@@ -4,15 +4,12 @@ import com.formdev.flatlaf.IntelliJTheme;
 import gui.Util.SwapLayoutPanelWrapper;
 import gui.VideoPreview.VideoPreviewListPanel;
 import launcher.Launcher;
-import model.Label;
 import model.Video;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class HomePanel extends JPanel {
@@ -48,7 +45,7 @@ public class HomePanel extends JPanel {
 		add(vidPanel.getPanel(), BorderLayout.CENTER);
 	}
 
-	private void filterByName(String text){
+	public void filterByName(String text){
 		currentList = repoList.stream().filter(s-> s.getTitle().contains(text)).collect(Collectors.toList());
 		showVideoPreview(currentList);
 	}
