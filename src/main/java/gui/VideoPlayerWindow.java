@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Set;
 
 public class VideoPlayerWindow extends JDialog {
 
@@ -77,17 +78,17 @@ public class VideoPlayerWindow extends JDialog {
 
         JPanel tagContainer = new JPanel();
         tagContainer.setLayout(new BorderLayout());
-        JPanel tagPanel = new JPanel();
-        tagPanel.setLayout(new FlowLayout());
+        Set<Label> labelSet = video.getLabels();
+        JPanel labelManager = new LabalManager(labelSet,label -> {
+            labelSet.add(label);
+            video.addLabels(label);
+        },label -> {
+            labelSet.remove(label);
+            video.removeLabels(label);
+        });
 
-        tagContainer.add(tagPanel,BorderLayout.CENTER);
+        tagContainer.add(labelManager,BorderLayout.CENTER);
         panel.add(tagContainer);
-
-        // TAGS
-        video.getLabels().stream().forEach(label -> tagPanel.add(new JButton(label.name())));
-        JButton add = new JButton("+");
-//        add.addActionListener(e -> video.addLabels());
-        tagPanel.add(add);
     }
 
 

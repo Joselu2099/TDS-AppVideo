@@ -5,6 +5,7 @@ import gui.Util.SwapLayoutPanelWrapper;
 import gui.VideoPreview.VideoPreviewListPanel;
 import launcher.Launcher;
 import model.Video;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,12 +52,17 @@ public class HomePanel extends JPanel {
 		showVideoPreview(currentList);
 	}
 
-	public void showVideoPreview(List<Video> videoList) {
+	private void showVideoPreview(List<Video> videoList) {
 		currentList = videoList;
 		vidPanel.swap(new VideoPreviewListPanel(videoList,vid->{
 			VideoPlayerWindow player = new VideoPlayerWindow(vid);
 			player.showPlayer(parent);
 		}));
+	}
+
+	public void updateVideoList(@NotNull List<Video> videoList){
+		this.repoList = videoList;
+		showVideoPreview(videoList);
 	}
 
 	public static void main(String[] args) {
@@ -113,8 +119,8 @@ public class HomePanel extends JPanel {
 						"https://www.youtube.com/watch?v=bxF-pQSzSUM",
 						"https://www.youtube.com/watch?v=56eIZKyhM6c",
 				};
-//				List<Video> videoListX = Arrays.stream(urlX).map(Video::new).collect(Collectors.toList());
-//				h.showVideoPreview(videoListX);
+				List<Video> videoListX = Arrays.stream(urlX).map(Video::new).collect(Collectors.toList());
+				h.updateVideoList(videoListX);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

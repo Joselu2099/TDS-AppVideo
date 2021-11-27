@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.function.Consumer;
 
 public class VideoPreview extends JPanel {
 
@@ -17,7 +18,7 @@ public class VideoPreview extends JPanel {
 	 */
 	Video video;
 	JLabel lblPreviewLabel = new JLabel("");
-	public VideoPreview(Video v,VideoPreviewCallback videoCallback) {
+	public VideoPreview(Video v, Consumer<Video> videoCallback) {
 		this.video = v;
 
 
@@ -48,14 +49,14 @@ public class VideoPreview extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (videoCallback != null)
-					videoCallback.clicked(v);
+					videoCallback.accept(v);
 			}
 		});
 		lblTitle.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (videoCallback != null)
-					videoCallback.clicked(v);
+					videoCallback.accept(v);
 			}
 		});
 	}

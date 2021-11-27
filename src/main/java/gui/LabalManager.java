@@ -13,12 +13,24 @@ import java.util.Set;
 import java.util.function.Consumer;
 
 public class LabalManager extends JPanel {
-    Video video;
     private static final JComboBox<Label> comboBox = new JComboBox<>(Label.values());
     Consumer<Label> addCallback;
     Consumer<Label> deleteCallback;
 
     SwapLayoutPanelWrapper swapLayoutPanelWrapper = new SwapLayoutPanelWrapper();
+
+    Set<Label> labels;
+
+    public LabalManager(Set<Label> labels, Consumer<Label> addCallback, Consumer<Label> deleteCallback) {
+        this.labels = labels;
+        this.addCallback = addCallback;
+        this.deleteCallback = deleteCallback;
+        comboBox.setEditable(true);
+
+        // TAGS
+        swapLayoutPanelWrapper.swap(getTagPanel(labels));
+        add(swapLayoutPanelWrapper.getPanel() );
+    }
 
     public JButton tagButtonFactory(String labelName){
         JButton btn = new JButton(labelName);
@@ -28,7 +40,7 @@ public class LabalManager extends JPanel {
                     .getText().equals(l.name())).findAny().ifPresent(this::remove);
             if (deleteCallback != null && l != null){
                 deleteCallback.accept(l);
-                swapLayoutPanelWrapper.swap(getTagPanel(video.getLabels()));
+                swapLayoutPanelWrapper.swap(getTagPanel(labels));
             }
         });
         return btn;
@@ -38,23 +50,13 @@ public class LabalManager extends JPanel {
         JPanel tagPanel = new JPanel();
 
         tagPanel.setLayout(new FlowLayout());
-        video.getLabels().stream().forEach(label -> tagPanel.add(tagButtonFactory(label.name())));
+        labelSet.stream().forEach(label -> tagPanel.add(tagButtonFactory(label.name())));
         JButton addBtn = new JButton("+");
         addBtn.addActionListener(l->showAddDialog());
         tagPanel.add(addBtn);
         return tagPanel;
     }
 
-    public LabalManager(Video video,Consumer<Label> addCallback,Consumer<Label> deleteCallback) {
-        this.video = video;
-        this.addCallback = addCallback;
-        this.deleteCallback = deleteCallback;
-        comboBox.setEditable(true);
-
-        // TAGS
-        swapLayoutPanelWrapper.swap(getTagPanel(video.getLabels()));
-        add(swapLayoutPanelWrapper.getPanel() );
-    }
 
     private void showAddDialog() {
 //        JOptionPane.showMessageDialog(null, comboBox, "Seleccióna la etiqueta que quieres añadir:",
@@ -71,7 +73,7 @@ public class LabalManager extends JPanel {
         System.out.println(l);
         if (addCallback != null && l != null){
             addCallback.accept(l);
-            swapLayoutPanelWrapper.swap(getTagPanel(video.getLabels()));
+            swapLayoutPanelWrapper.swap(getTagPanel(labels));
             this.setVisible(true);
         }
 //            callback.accept(Label.values()[comboBox.getSelectedIndex()]);
@@ -86,7 +88,10 @@ public class LabalManager extends JPanel {
                 v.addLabels(Label.INFANTIL);
                 v.addLabels(Label.VIDEOCLIP);
                 JFrame f = new JFrame();
-                LabalManager manager = new LabalManager(v,v::addLabels,v::removeLabels);
+                Set<Label> labelSet = v.getLabels();
+                LabalManager manager = new LabalManager(labelSet,
+                        l->{v.addLabels(l);labelSet.add(l);},
+                        l->{v.removeLabels(l);labelSet.remove(l);});
                 f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 f.setContentPane(manager);
                 f.setBounds(0, 0, 800, 600);
