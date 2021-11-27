@@ -92,11 +92,11 @@ public class VideoPlayerWindow extends JDialog {
 
 
     public void showPlayer(JFrame parentFrameToHide){
-        frame.setVisible(false);
+        parentFrameToHide.setVisible(false);
         this.setModal(true);
         this.setLocationRelativeTo(this);
         this.setVisible(true);
-        frame.setVisible(true);
+        parentFrameToHide.setVisible(true);
     }
 
 
