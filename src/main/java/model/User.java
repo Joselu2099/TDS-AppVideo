@@ -105,6 +105,7 @@ public class User {
     }
 
     public IFilter getFilter() {
+        if(filter == null) return new NoFilter();
         return filter;
     }
 
