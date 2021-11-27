@@ -1,10 +1,8 @@
 package gui;
 
 import controller.AppVideo;
-import model.ImpopularsFilter;
-import model.MinorsFilter;
-import model.MyListsFilter;
-import model.NoFilter;
+import model.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -112,6 +110,7 @@ public class AppVideoWindow {
 
         //JPanel home = new JPanel();
         HomePanel homePanel = new HomePanel(frmAppVideo);
+        homePanel.showVideoPreview(VideoRepository.getInstance().getFilteredVideos());
         tabbedPane.addTab("Home", null, homePanel, null);
 
         JPanel recent = new JPanel();

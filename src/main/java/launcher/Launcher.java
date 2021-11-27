@@ -3,6 +3,7 @@ package launcher;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.IntelliJTheme;
 import gui.LoginWindow;
+import model.VideoRepository;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +16,7 @@ public class Launcher {
                 IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/ArcPurple.theme.json"));
 //				IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
 
-                //AppVideo.getInstance().loadVideos();
+                VideoRepository.getInstance();
 
 
                 LoginWindow window = new LoginWindow();
