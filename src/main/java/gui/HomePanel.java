@@ -42,7 +42,8 @@ public class HomePanel extends JPanel {
 		searchPanel.add(btnSearchButton);
 
 		showVideoPreview(repoList);
-		add(vidPanel.getPanel(), BorderLayout.CENTER);
+		JScrollPane scrollPane = new JScrollPane(vidPanel.getPanel(),JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		add(scrollPane, BorderLayout.CENTER);
 	}
 
 	public void filterByName(String text){
@@ -64,6 +65,39 @@ public class HomePanel extends JPanel {
 		EventQueue.invokeLater(() -> {
 			try {
 				String[] url = {
+						"https://www.youtube.com/watch?v=bxF-pQSzSUM",
+						"https://www.youtube.com/watch?v=XKfgdkcIUxw",
+						"https://www.youtube.com/watch?v=56eIZKyhM6c",
+						"https://www.youtube.com/watch?v=bxF-pQSzSUM",
+						"https://www.youtube.com/watch?v=XKfgdkcIUxw",
+						"https://www.youtube.com/watch?v=56eIZKyhM6c",
+						"https://www.youtube.com/watch?v=bxF-pQSzSUM",
+						"https://www.youtube.com/watch?v=XKfgdkcIUxw",
+						"https://www.youtube.com/watch?v=56eIZKyhM6c",
+						"https://www.youtube.com/watch?v=bxF-pQSzSUM",
+						"https://www.youtube.com/watch?v=XKfgdkcIUxw",
+						"https://www.youtube.com/watch?v=56eIZKyhM6c",
+						"https://www.youtube.com/watch?v=bxF-pQSzSUM",
+						"https://www.youtube.com/watch?v=XKfgdkcIUxw",
+						"https://www.youtube.com/watch?v=56eIZKyhM6c",
+						"https://www.youtube.com/watch?v=bxF-pQSzSUM",
+						"https://www.youtube.com/watch?v=XKfgdkcIUxw",
+						"https://www.youtube.com/watch?v=56eIZKyhM6c",
+						"https://www.youtube.com/watch?v=bxF-pQSzSUM",
+						"https://www.youtube.com/watch?v=XKfgdkcIUxw",
+						"https://www.youtube.com/watch?v=56eIZKyhM6c",
+						"https://www.youtube.com/watch?v=bxF-pQSzSUM",
+						"https://www.youtube.com/watch?v=XKfgdkcIUxw",
+						"https://www.youtube.com/watch?v=56eIZKyhM6c",
+						"https://www.youtube.com/watch?v=bxF-pQSzSUM",
+						"https://www.youtube.com/watch?v=XKfgdkcIUxw",
+						"https://www.youtube.com/watch?v=56eIZKyhM6c",
+						"https://www.youtube.com/watch?v=bxF-pQSzSUM",
+						"https://www.youtube.com/watch?v=XKfgdkcIUxw",
+						"https://www.youtube.com/watch?v=56eIZKyhM6c",
+						"https://www.youtube.com/watch?v=bxF-pQSzSUM",
+						"https://www.youtube.com/watch?v=XKfgdkcIUxw",
+						"https://www.youtube.com/watch?v=56eIZKyhM6c",
 						"https://www.youtube.com/watch?v=bxF-pQSzSUM",
 						"https://www.youtube.com/watch?v=XKfgdkcIUxw",
 						"https://www.youtube.com/watch?v=56eIZKyhM6c",
