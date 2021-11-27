@@ -45,13 +45,8 @@ public class HomePanel extends JPanel {
 
 	public void showVideoPreview(List<Video> videoList) {
 		vidPanel.swap(new VideoPreviewListPanel(videoList,vid->{
-			this.setVisible(false);
-
 			VideoPlayerWindow player = new VideoPlayerWindow(vid);
-			player.setModal(true);
-			player.setLocationRelativeTo(this);
-			player.setVisible(true);
-			this.setVisible(true);
+			player.showPlayer(parent);
 		}));
 	}
 

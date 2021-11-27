@@ -133,6 +133,7 @@ public class AppVideoWindow {
         login.showWindow();
     }
 
+
     /**
      * Va a la ventana de ajustes
      */

@@ -90,6 +90,16 @@ public class VideoPlayerWindow extends JDialog {
         tagPanel.add(add);
     }
 
+
+    public void showPlayer(JFrame parentFrameToHide){
+        frame.setVisible(false);
+        this.setModal(true);
+        this.setLocationRelativeTo(this);
+        this.setVisible(true);
+        frame.setVisible(true);
+    }
+
+
     public static void main(String[] args) {
         IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/ArcPurple.theme.json"));
 //        IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
