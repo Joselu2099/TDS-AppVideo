@@ -3,10 +3,11 @@ package model;
 import dao.DAOException;
 import dao.DAOFactory;
 import dao.DAOVideo;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import umu.tds.componente.MapperVideosXMLtoJava;
+import umu.tds.componente.Videos;
+import umu.tds.componente.VideosList;
+
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -38,6 +39,22 @@ public class VideoRepository {
         // Function.identity = return the object itself, it's same as e -> e
         videoList = videoAdapter.getAll().stream().collect(Collectors.toMap(Video::getId, Function.identity()));
         filteredVideoList = new HashMap<>();
+
+        //TODO JFileChooser
+        String file = "xml/videos.xml";
+        List<Video> chargedVideos = loadVideos(file);
+    }
+
+    public List<Video> loadVideos(String file){
+
+        Videos videos = MapperVideosXMLtoJava.cargarVideos(file);
+
+        return videos.getVideo().stream()
+                                    .map(v -> {Video video = new Video(v.getTitulo(), v.getURL());
+                                                video.setLabels(v.getEtiqueta().stream()
+                                                        .map(Label::valueOf).collect(Collectors.toSet()));
+                                                return video;
+                                                }).collect(Collectors.toList());
     }
 
     public Video getVideo(int id) {

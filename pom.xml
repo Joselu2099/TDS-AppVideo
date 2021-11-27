@@ -76,6 +76,13 @@
             <systemPath>${project.basedir}/lib/DriverPersistencia.jar</systemPath>
         </dependency>
         <dependency>
+            <groupId>tds.umu</groupId>
+            <artifactId>VideosCharger</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/VideosCharger.jar</systemPath>
+        </dependency>
+        <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>1.3.160</version>
