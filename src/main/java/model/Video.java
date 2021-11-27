@@ -13,6 +13,7 @@ public class Video {
     private String url;
     private int views;
     private Set<Label> labels;
+
     public Video(String url){
         // Get title with yt API
         try {

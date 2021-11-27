@@ -91,7 +91,7 @@ public class AppVideo {
             getActualUser().setFilter(filter);
         }
 
-        getActualUser().getFilter().eliminarVideos();
+        getActualUser().getFilter().filtrarVideos();
     }
 
     public void changeMail(String mail) {
