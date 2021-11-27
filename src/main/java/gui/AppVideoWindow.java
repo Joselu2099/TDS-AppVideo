@@ -110,14 +110,9 @@ public class AppVideoWindow {
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
         frmAppVideo.getContentPane().add(tabbedPane, BorderLayout.NORTH);
 
-        JPanel home = new JPanel();
-        tabbedPane.addTab("Home", null, home, null);
-        GridBagLayout gbl_home = new GridBagLayout();
-        gbl_home.columnWidths = new int[]{0};
-        gbl_home.rowHeights = new int[]{0};
-        gbl_home.columnWeights = new double[]{Double.MIN_VALUE};
-        gbl_home.rowWeights = new double[]{Double.MIN_VALUE};
-        home.setLayout(gbl_home);
+        //JPanel home = new JPanel();
+        HomePanel homePanel = new HomePanel(frmAppVideo);
+        tabbedPane.addTab("Home", null, homePanel, null);
 
         JPanel recent = new JPanel();
         tabbedPane.addTab("Recent", null, recent, null);
