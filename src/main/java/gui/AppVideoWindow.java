@@ -109,8 +109,8 @@ public class AppVideoWindow {
         frmAppVideo.getContentPane().add(tabbedPane, BorderLayout.NORTH);
 
         //JPanel home = new JPanel();
-        HomePanel homePanel = new HomePanel(frmAppVideo);
-        homePanel.showVideoPreview(VideoRepository.getInstance().getFilteredVideos());
+        HomePanel homePanel = new HomePanel(frmAppVideo,VideoRepository.getInstance().getFilteredVideos());
+//        homePanel.showVideoPreview(VideoRepository.getInstance().getFilteredVideos());
         tabbedPane.addTab("Home", null, homePanel, null);
 
         JPanel recent = new JPanel();

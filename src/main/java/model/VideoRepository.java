@@ -50,11 +50,11 @@ public class VideoRepository {
         Videos videos = MapperVideosXMLtoJava.cargarVideos(file);
 
         return videos.getVideo().stream()
-                                    .map(v -> {Video video = new Video(v.getTitulo(), v.getURL());
-                                                video.setLabels(v.getEtiqueta().stream()
-                                                        .map(Label::valueOf).collect(Collectors.toSet()));
-                                                return video;
-                                                }).collect(Collectors.toList());
+                .map(v -> {Video video = new Video(v.getTitulo(), v.getURL());
+                    video.setLabels(v.getEtiqueta().stream()
+                            .map(Label::valueOf).collect(Collectors.toSet()));
+                    return video;
+                }).collect(Collectors.toList());
     }
 
     public Video getVideo(int id) {
