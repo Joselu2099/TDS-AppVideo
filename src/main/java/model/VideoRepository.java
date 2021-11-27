@@ -42,19 +42,20 @@ public class VideoRepository {
 
         //TODO JFileChooser
         String file = "xml/videos.xml";
-        List<Video> chargedVideos = loadVideos(file);
+        loadVideos(file);
     }
 
-    public List<Video> loadVideos(String file){
-
+    public void loadVideos(String file) {
         Videos videos = MapperVideosXMLtoJava.cargarVideos(file);
 
-        return videos.getVideo().stream()
+        videos.getVideo().stream()
                 .map(v -> {Video video = new Video(v.getTitulo(), v.getURL());
                     video.setLabels(v.getEtiqueta().stream()
                             .map(Label::valueOf).collect(Collectors.toSet()));
                     return video;
-                }).collect(Collectors.toList());
+                })
+                .filter(v -> !videoList.containsKey(v.getId()))
+                .forEach(this::addVideo);
     }
 
     public Video getVideo(int id) {
