@@ -84,13 +84,12 @@ public class AppVideo {
     }
 
     public void loadVideos(String file){
-        VideosList videosList = new VideosList();
+        VideosList videosList = new VideosList(file);
         videosList.addVideosListListener(VideoRepository.getInstance());
 
-        Videos videos = MapperVideosXMLtoJava.cargarVideos(file);
-        VideoRepository.getInstance().saveUploadedVideos(videos);
+        VideoRepository.getInstance().saveUploadedVideos(videosList.getVideos());
 
-        videosList.setVideos(videos.getVideo());
+        videosList.setVideos(videosList.getVideos());
     }
 
     public boolean persistVideo(Video video){

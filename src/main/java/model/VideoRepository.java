@@ -38,14 +38,10 @@ public class VideoRepository implements VideosListListener {
         // Function.identity = return the object itself, it's same as e -> e
         videoList = videoAdapter.getAll().stream().collect(Collectors.toMap(Video::getId, Function.identity()));
         filteredVideoList = new HashMap<>();
-
-        //TODO JFileChooser
-        //String file = "xml/videos.xml";
-        //loadVideos(file);
     }
 
-    public void saveUploadedVideos(Videos videos) {
-        videos.getVideo().stream()
+    public void saveUploadedVideos(List<umu.tds.componente.Video> videos) {
+        videos.stream()
                 .map(v -> {Video video = new Video(v.getTitulo(), v.getURL());
                     video.setLabels(v.getEtiqueta().stream()
                             .map(Label::valueOf).collect(Collectors.toSet()));
