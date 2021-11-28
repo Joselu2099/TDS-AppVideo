@@ -1,18 +1,14 @@
 package gui;
 
 import gui.Util.SwapLayoutPanelWrapper;
-import gui.VideoPreview.VideoPreviewListPanel;
-import model.Video;
+import model.Playlist;
 import javax.swing.*;
 import org.jetbrains.annotations.NotNull;
-import controller.AppVideo;
 import java.awt.*;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-public class HomePanel extends JPanel{
+public class MyPlaylistPanel extends JPanel{
 	
 	/**
 	 * 
@@ -20,16 +16,16 @@ public class HomePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	private JTextField textField;
-	private List<Video> repoList;
-	private List<Video> currentList;
-	JFrame parent;
+	private List<Playlist> repoPlaylists;
+	private List<Playlist> currentPlaylists;
 	SwapLayoutPanelWrapper vidPanel = new SwapLayoutPanelWrapper();
+	JFrame parent;
 	
 	/**
 	 * Create the panel.
 	 */
-	public HomePanel(JFrame parent ,List<Video> list ) {
-		repoList = list;
+	public MyPlaylistPanel(JFrame parent ,List<Playlist> list ) {
+		repoPlaylists = list;
 		// Necesitamos el JFrame para ocultar la ventana cuando lanzamos
 		// el visualizador de video.
 		this.parent = parent;
@@ -45,34 +41,31 @@ public class HomePanel extends JPanel{
 		JButton btnSearchButton = new JButton("BUSCAR");
 		btnSearchButton.addActionListener(l->filterByName(textField.getText()));
 		searchPanel.add(btnSearchButton);
-		
-		JButton btnLoadVideos = new JButton("Load Videos");
-		btnLoadVideos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AppVideo.getInstance().loadVideos("xml/videos.xml");
-			}
-		});
-		searchPanel.add(btnLoadVideos);
 	}
 
-	public void showVideoPreview(List<Video> videoList) {
-		currentList = videoList;
-		vidPanel.swap(new VideoPreviewListPanel(videoList,vid->{
+	public void showPlaylistPreview(List<Playlist> playlistList) {
+		currentPlaylists = playlistList;
+		
+		//TODO mostrar playlist
+		
+		/*
+		vidPanel.swap(new VideoPreviewListPanel(playlistList,vid->{
 			VideoPlayerWindow player = new VideoPlayerWindow(vid);
 			player.showPlayer(parent);
 		}));
+		*/
 	}
 	
 	public void filterByName(String text){
-		currentList = repoList.stream()
+		currentPlaylists = repoPlaylists.stream()
 				.filter(s-> s.getTitle().contains(text))
 				.collect(Collectors.toList());
-		showVideoPreview(currentList);
+		showPlaylistPreview(currentPlaylists);
 	}
 	
-	public void updateVideoList(@NotNull List<Video> videoList){
-		this.repoList = videoList;
-		showVideoPreview(videoList);
+	public void updateVideoList(@NotNull List<Playlist> playlistList){
+		this.repoPlaylists = playlistList;
+		showPlaylistPreview(playlistList);
 	}
 }
 
