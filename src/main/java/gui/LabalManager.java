@@ -44,13 +44,13 @@ public class LabalManager extends JPanel {
             }
         });
         return btn;
-    };
+    }
 
     private JPanel getTagPanel(Set<Label> labelSet){
         JPanel tagPanel = new JPanel();
 
         tagPanel.setLayout(new FlowLayout());
-        labelSet.stream().forEach(label -> tagPanel.add(tagButtonFactory(label.name())));
+        labelSet.forEach(label -> tagPanel.add(tagButtonFactory(label.name())));
         JButton addBtn = new JButton("+");
         addBtn.addActionListener(l->showAddDialog());
         tagPanel.add(addBtn);
@@ -59,8 +59,8 @@ public class LabalManager extends JPanel {
 
 
     private void showAddDialog() {
-//        JOptionPane.showMessageDialog(null, comboBox, "Seleccióna la etiqueta que quieres añadir:",
-//                JOptionPane.QUESTION_MESSAGE);
+        //JOptionPane.showMessageDialog(null, comboBox, "Seleccióna la etiqueta que quieres añadir:",
+        //JOptionPane.QUESTION_MESSAGE);
         Label l = (Label)JOptionPane.showInputDialog(
                 this,
                 "Seleccióna la etiqueta que quieres añadir:",
@@ -69,7 +69,7 @@ public class LabalManager extends JPanel {
                 null,
                 Label.values(),
                 null);
-//        System.out.println(Label.values()[comboBox.getSelectedIndex()]);
+        //System.out.println(Label.values()[comboBox.getSelectedIndex()]);
         System.out.println(l);
         if (addCallback != null && l != null){
             addCallback.accept(l);

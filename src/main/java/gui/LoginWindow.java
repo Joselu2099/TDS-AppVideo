@@ -4,10 +4,9 @@ import controller.AppVideo;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Objects;
 
 
 public class LoginWindow {
@@ -58,7 +57,7 @@ public class LoginWindow {
         panel.setLayout(gbl_panel);
 
         JLabel AppVideoLetters = new JLabel("");
-        AppVideoLetters.setIcon(new ImageIcon(LoginWindow.class.getResource("/images/AppVideo-letra.png")));
+        AppVideoLetters.setIcon(new ImageIcon(Objects.requireNonNull(LoginWindow.class.getResource("/images/AppVideo-letra.png"))));
         AppVideoLetters.setPreferredSize(new Dimension(150, 30));
         AppVideoLetters.setFont(new Font("Virus Killer", Font.PLAIN, 32));
         GridBagConstraints gbc_AppVideoLetters = new GridBagConstraints();
@@ -68,7 +67,7 @@ public class LoginWindow {
         panel.add(AppVideoLetters, gbc_AppVideoLetters);
 
         JLabel AppVideoIcon = new JLabel("");
-        AppVideoIcon.setIcon(new ImageIcon(LoginWindow.class.getResource("/images/multimediavideoplayer_128px.png")));
+        AppVideoIcon.setIcon(new ImageIcon(Objects.requireNonNull(LoginWindow.class.getResource("/images/multimediavideoplayer_128px.png"))));
         GridBagConstraints gbc_AppVideoIcon = new GridBagConstraints();
         gbc_AppVideoIcon.insets = new Insets(0, 0, 5, 5);
         gbc_AppVideoIcon.gridx = 3;
@@ -76,7 +75,7 @@ public class LoginWindow {
         panel.add(AppVideoIcon, gbc_AppVideoIcon);
 
         JLabel UserIcon = new JLabel("");
-        UserIcon.setIcon(new ImageIcon(LoginWindow.class.getResource("/images/UserIcon.png")));
+        UserIcon.setIcon(new ImageIcon(Objects.requireNonNull(LoginWindow.class.getResource("/images/UserIcon.png"))));
         GridBagConstraints gbc_UserIcon = new GridBagConstraints();
         gbc_UserIcon.insets = new Insets(0, 0, 5, 5);
         gbc_UserIcon.anchor = GridBagConstraints.EAST;
@@ -98,7 +97,7 @@ public class LoginWindow {
         textUser.setColumns(10);
 
         JLabel PasswordIcon = new JLabel("");
-        PasswordIcon.setIcon(new ImageIcon(LoginWindow.class.getResource("/images/passwordIcon.png")));
+        PasswordIcon.setIcon(new ImageIcon(Objects.requireNonNull(LoginWindow.class.getResource("/images/passwordIcon.png"))));
         GridBagConstraints gbc_PasswordIcon = new GridBagConstraints();
         gbc_PasswordIcon.insets = new Insets(0, 0, 5, 5);
         gbc_PasswordIcon.anchor = GridBagConstraints.EAST;
@@ -131,7 +130,7 @@ public class LoginWindow {
         btnLogin.setPreferredSize(new Dimension(48, 48));
         btnLogin.setSize(new Dimension(48, 48));
         btnLogin.setBorderPainted(false);
-        btnLogin.setIcon(new ImageIcon(LoginWindow.class.getResource("/images/join_enter_login_icon.png")));
+        btnLogin.setIcon(new ImageIcon(Objects.requireNonNull(LoginWindow.class.getResource("/images/join_enter_login_icon.png"))));
         GridBagConstraints gbc_btnLogin = new GridBagConstraints();
         gbc_btnLogin.insets = new Insets(0, 0, 5, 5);
         gbc_btnLogin.gridx = 3;
@@ -156,7 +155,7 @@ public class LoginWindow {
         btnRegister.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
         panel.getRootPane().setDefaultButton(btnRegister);
         btnRegister.putClientProperty("JButton.buttonType", "roundRect");
-        btnRegister.setIcon(new ImageIcon(LoginWindow.class.getResource("/images/RegisterIcon.png")));
+        btnRegister.setIcon(new ImageIcon(Objects.requireNonNull(LoginWindow.class.getResource("/images/RegisterIcon.png"))));
         GridBagConstraints gbc_btnRegister = new GridBagConstraints();
         gbc_btnRegister.insets = new Insets(0, 0, 0, 5);
         gbc_btnRegister.gridx = 3;
@@ -164,7 +163,7 @@ public class LoginWindow {
         panel.add(btnRegister, gbc_btnRegister);
 
         JLabel ImageLoginInterface = new JLabel("");
-        ImageLoginInterface.setIcon(new ImageIcon(LoginWindow.class.getResource("/images/LoginFrameFont.jpg")));
+        ImageLoginInterface.setIcon(new ImageIcon(Objects.requireNonNull(LoginWindow.class.getResource("/images/LoginFrameFont.jpg"))));
         frmLogin.getContentPane().add(ImageLoginInterface);
     }
 
