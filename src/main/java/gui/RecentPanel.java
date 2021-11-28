@@ -28,7 +28,7 @@ public class RecentPanel extends AppVideoPanel {
 	
 	public void showVideoPreview(List<Video> videoList) {
 		currentList = videoList;
-		vidPanel.swap(new VideoPreviewListPanel(videoList,vid->{
+		super.vidPanel.swap(new VideoPreviewListPanel(videoList,vid->{
 			VideoPlayerWindow player = new VideoPlayerWindow(vid);
 			player.showPlayer(parent);
 		}));
