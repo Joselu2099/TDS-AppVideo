@@ -2,6 +2,7 @@ package gui.VideoPreview;
 
 import com.formdev.flatlaf.IntelliJTheme;
 import gui.HomePanel;
+import gui.Util.SwapLayout;
 import gui.Util.SwapLayoutPanelWrapper;
 import gui.Util.WrapLayout;
 import gui.VideoPlayerWindow;
@@ -19,17 +20,16 @@ public class VideoPreviewListPanel extends JPanel {
 
 
     Consumer<Video> videoConsumer;
-    SwapLayoutPanelWrapper swapLayoutPanelWrapper = new SwapLayoutPanelWrapper();
     public VideoPreviewListPanel(List<Video> videoList,Consumer<Video> callback) {
         this.videoConsumer = callback;
+        setLayout(new SwapLayout(this));
         setPrewviewList(videoList);
-        add(swapLayoutPanelWrapper.getPanel());
     }
 
     public void setPrewviewList(List<Video> prewviewList){
 
         JPanel panel = new JPanel(new WrapLayout());
         prewviewList.stream().map(v -> new VideoPreview(v, videoConsumer)).forEach(panel::add);
-        swapLayoutPanelWrapper.swap(panel);
+        this.add(panel);
     }
 }

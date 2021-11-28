@@ -1,5 +1,6 @@
 package gui;
 
+import gui.Util.SwapLayout;
 import gui.Util.SwapLayoutPanelWrapper;
 import gui.VideoPreview.VideoPreviewListPanel;
 import model.Video;
@@ -22,7 +23,7 @@ public class RecentPanel extends JPanel{
 	private List<Video> repoList;
 	private List<Video> currentList;
 	JFrame parent;
-	SwapLayoutPanelWrapper vidPanel = new SwapLayoutPanelWrapper();
+	JPanel vidPanel;
 	
 	/**
 	 * Create the panel.
@@ -33,11 +34,13 @@ public class RecentPanel extends JPanel{
 		// el visualizador de video.
 		this.parent = parent;
 		setLayout(new BorderLayout(0, 0));
+		vidPanel = new JPanel();
+		vidPanel.setLayout(new SwapLayout(vidPanel));
 	}
 
 	public void showVideoPreview(List<Video> videoList) {
 		currentList = videoList;
-		vidPanel.swap(new VideoPreviewListPanel(videoList,vid->{
+		vidPanel.add(new VideoPreviewListPanel(videoList,vid->{
 			VideoPlayerWindow player = new VideoPlayerWindow(vid);
 			player.showPlayer(parent);
 		}));

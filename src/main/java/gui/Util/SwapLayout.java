@@ -15,6 +15,7 @@ public class SwapLayout extends CardLayout {
     }
 
 
+    /* Delete old component when a new component is added*/
     @Override
     public void addLayoutComponent(Component comp, Object constraints) {
         super.addLayoutComponent(comp, constraints);
