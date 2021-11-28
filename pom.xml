@@ -77,6 +77,13 @@
         </dependency>
         <dependency>
             <groupId>tds.umu</groupId>
+            <artifactId>Luz</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/Luz.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>tds.umu</groupId>
             <artifactId>VideosCharger</artifactId>
             <version>1.0</version>
             <scope>system</scope>
