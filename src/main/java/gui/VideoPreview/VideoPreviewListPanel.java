@@ -3,6 +3,7 @@ package gui.VideoPreview;
 import com.formdev.flatlaf.IntelliJTheme;
 import gui.HomePanel;
 import gui.Util.SwapLayoutPanelWrapper;
+import gui.Util.WrapLayout;
 import gui.VideoPlayerWindow;
 import launcher.Launcher;
 import model.Video;
@@ -27,7 +28,7 @@ public class VideoPreviewListPanel extends JPanel {
 
     public void setPrewviewList(List<Video> prewviewList){
 
-        JPanel panel = new JPanel(new FlowLayout());
+        JPanel panel = new JPanel(new WrapLayout());
         prewviewList.stream().map(v -> new VideoPreview(v, videoConsumer)).forEach(panel::add);
         swapLayoutPanelWrapper.swap(panel);
     }
