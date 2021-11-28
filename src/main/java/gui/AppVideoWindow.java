@@ -14,6 +14,8 @@ public class AppVideoWindow {
     private JFrame frmAppVideo;
     private HomePanel homePanel;
     private RecentPanel recentPanel;
+    private MyPlaylistPanel myPlaylistPanel;
+    private CreatePlaylistPanel createPlaylistPanel;
 
     /**
      * Create the application.
@@ -118,11 +120,11 @@ public class AppVideoWindow {
         recentPanel = new RecentPanel(frmAppVideo, AppVideo.getInstance().getActualUser().getRecentVideos());
         tabbedPane.addTab("Recent", null, recentPanel, null);
 
-        JPanel myPlaylists = new JPanel();
-        tabbedPane.addTab("My Playlists", null, myPlaylists, null);
+        myPlaylistPanel = new MyPlaylistPanel(frmAppVideo, AppVideo.getInstance().getActualUser().getListOfPlaylist());
+        tabbedPane.addTab("My Playlists", null, myPlaylistPanel, null);
 
-        JPanel createPlaylists = new JPanel();
-        tabbedPane.addTab("Create Playlists", null, createPlaylists, null);
+        createPlaylistPanel = new CreatePlaylistPanel(frmAppVideo, AppVideo.getInstance().getActualUser().getListOfPlaylist());
+        tabbedPane.addTab("Create Playlists", null, createPlaylistPanel, null);
     }
 
 

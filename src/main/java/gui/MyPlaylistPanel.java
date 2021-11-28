@@ -41,6 +41,10 @@ public class MyPlaylistPanel extends JPanel{
 		JButton btnSearchButton = new JButton("BUSCAR");
 		btnSearchButton.addActionListener(l->filterByName(textField.getText()));
 		searchPanel.add(btnSearchButton);
+
+		showPlaylistPreview(repoPlaylists);
+		JScrollPane scrollPane = new JScrollPane(vidPanel.getPanel(),JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		add(scrollPane, BorderLayout.CENTER);
 	}
 
 	public void showPlaylistPreview(List<Playlist> playlistList) {

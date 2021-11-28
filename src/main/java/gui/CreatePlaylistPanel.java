@@ -1,6 +1,7 @@
 package gui;
 
 import gui.Util.SwapLayoutPanelWrapper;
+import model.Playlist;
 import model.Video;
 import javax.swing.*;
 import java.awt.*;
@@ -13,16 +14,16 @@ public class CreatePlaylistPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private List<Video> repoList;
-	private List<Video> currentList;
-	JFrame parent;
+	private List<Playlist> repoPlaylists;
+	private List<Playlist> currentPlaylists;
 	SwapLayoutPanelWrapper vidPanel = new SwapLayoutPanelWrapper();
+	JFrame parent;
 	
 	/**
 	 * Create the panel.
 	 */
-	public CreatePlaylistPanel(JFrame parent ,List<Video> list ) {
-		repoList = list;
+	public CreatePlaylistPanel(JFrame parent ,List<Playlist> list ) {
+		repoPlaylists = list;
 		// Necesitamos el JFrame para ocultar la ventana cuando lanzamos
 		// el visualizador de video.
 		this.parent = parent;
