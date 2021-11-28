@@ -4,8 +4,11 @@ import com.formdev.flatlaf.IntelliJTheme;
 import gui.Util.SwapLayoutPanelWrapper;
 import gui.VideoPreview.VideoPreviewListPanel;
 import launcher.Launcher;
+import model.Label;
 import model.Video;
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+
 import org.jetbrains.annotations.NotNull;
 import controller.AppVideo;
 import pulsador.Luz;
@@ -14,9 +17,9 @@ import java.awt.*;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class HomePanel extends JPanel{
 	
@@ -39,21 +42,24 @@ public class HomePanel extends JPanel{
 		// Necesitamos el JFrame para ocultar la ventana cuando lanzamos
 		// el visualizador de video.
 		this.parent = parent;
-		setLayout(new BorderLayout(0, 0));
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		JPanel searchPanel = new JPanel();
-//		searchPanel.setLayout(new BoxLayout(searchPanel,BoxLayout.Y_AXIS));
-//		JPanel searchBoxPanel = new JPanel();
-//		searchPanel.add(searchBoxPanel);
-		add(searchPanel, BorderLayout.NORTH);
+		searchPanel.setLayout(new BoxLayout(searchPanel,BoxLayout.Y_AXIS));
+		JPanel searchBoxPanel = new JPanel();
+		Set<Label> labelSet = new TreeSet<>();
+		searchPanel.add(searchBoxPanel);
+		LabelEditorPanel labelManager = new LabelEditorPanel(labelSet,labelSet::add,labelSet::remove);
+		searchPanel.add(labelManager);
+		add(searchPanel);
 		
 		textField = new JTextField();
-		searchPanel.add(textField);
+		searchBoxPanel.add(textField);
 		textField.setColumns(30);
 		
 		JButton btnSearchButton = new JButton("BUSCAR");
 		btnSearchButton.addActionListener(l->filterByName(textField.getText()));
-		searchPanel.add(btnSearchButton);
+		searchBoxPanel.add(btnSearchButton);
 		
 		Luz luz = new Luz();
 		luz.setNombre("LoadVideo");
@@ -74,12 +80,12 @@ public class HomePanel extends JPanel{
 				});
 			}
 		});
-		searchPanel.add(luz);
+		searchBoxPanel.add(luz);
 
 		JScrollPane scrollPane = new JScrollPane(vidPanel.getPanel(),JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		showVideoPreview(repoList);
-		add(scrollPane,BorderLayout.CENTER);
+		add(scrollPane);
 	}
 
 	private void showVideoPreview(List<Video> videoList) {

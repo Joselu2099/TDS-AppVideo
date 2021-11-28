@@ -1,37 +1,45 @@
 package gui;
 
 import com.formdev.flatlaf.IntelliJTheme;
+import gui.Util.SwapLayout;
 import gui.Util.SwapLayoutPanelWrapper;
+import gui.Util.WrapLayout;
 import launcher.Launcher;
 import model.Label;
 import model.Video;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.function.Consumer;
 
-public class LabalManager extends JPanel {
+public class LabelEditorPanel extends JPanel {
     private static final JComboBox<Label> comboBox = new JComboBox<>(Label.values());
     Consumer<Label> addCallback;
     Consumer<Label> deleteCallback;
 
 
-    SwapLayoutPanelWrapper swapLayoutPanelWrapper = new SwapLayoutPanelWrapper();
+//    SwapLayoutPanelWrapper swapLayoutPanelWrapper = new SwapLayoutPanelWrapper();
+
+    SwapLayout swapLayout;
 
     Set<Label> labels;
 
-    public LabalManager(Set<Label> labels, Consumer<Label> addCallback, Consumer<Label> deleteCallback) {
+    public LabelEditorPanel(Set<Label> labels, Consumer<Label> addCallback, Consumer<Label> deleteCallback) {
+        swapLayout = new SwapLayout(this);
+        this.setLayout(swapLayout);
         this.labels = new TreeSet<>( labels);
         this.addCallback = addCallback;
         this.deleteCallback = deleteCallback;
         comboBox.setEditable(true);
 
         // TAGS
-        swapLayoutPanelWrapper.swap(getTagPanel(labels));
-        add(swapLayoutPanelWrapper.getPanel() );
+        this.setBorder(new BevelBorder(BevelBorder.RAISED));
+        this.add(getTagPanel(labels));
+//        add(swapLayoutPanelWrapper.getPanel() );
     }
 
     public JButton tagButtonFactory(String labelName){
@@ -43,7 +51,8 @@ public class LabalManager extends JPanel {
             if (deleteCallback != null && l != null){
                 labels.remove(l);
                 deleteCallback.accept(l);
-                swapLayoutPanelWrapper.swap(getTagPanel(labels));
+                add(getTagPanel(labels));
+//                swapLayoutPanelWrapper.swap(getTagPanel(labels));
             }
         });
         return btn;
@@ -52,7 +61,7 @@ public class LabalManager extends JPanel {
     private JPanel getTagPanel(Set<Label> labelSet){
         JPanel tagPanel = new JPanel();
 
-        tagPanel.setLayout(new FlowLayout());
+        tagPanel.setLayout(new WrapLayout());
         labelSet.forEach(label -> tagPanel.add(tagButtonFactory(label.name())));
         JButton addBtn = new JButton("+");
         addBtn.addActionListener(l->showAddDialog());
@@ -72,12 +81,11 @@ public class LabalManager extends JPanel {
                 null,
                 Label.values(),
                 null);
-        //System.out.println(Label.values()[comboBox.getSelectedIndex()]);
-        System.out.println(l);
         if (addCallback != null && l != null){
             labels.add(l);
             addCallback.accept(l);
-            swapLayoutPanelWrapper.swap(getTagPanel(labels));
+//            swapLayoutPanelWrapper.swap(getTagPanel(labels));
+            add(getTagPanel(labels));
             this.setVisible(true);
         }
 //            callback.accept(Label.values()[comboBox.getSelectedIndex()]);
@@ -93,7 +101,7 @@ public class LabalManager extends JPanel {
                 v.addLabels(Label.VIDEOCLIP);
                 JFrame f = new JFrame();
                 Set<Label> labelSet = v.getLabels();
-                LabalManager manager = new LabalManager(labelSet,
+                LabelEditorPanel manager = new LabelEditorPanel(labelSet,
                         l->{v.addLabels(l);labelSet.add(l);},
                         l->{v.removeLabels(l);labelSet.remove(l);});
                 f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -81,7 +81,7 @@ public class VideoPlayerWindow extends JDialog {
         Set<Label> labelSet = video.getLabels();
 
 
-        JPanel labelManager = new LabalManager(labelSet,label -> {
+        JPanel labelManager = new LabelEditorPanel(labelSet, label -> {
             video.addLabels(label);
         },label -> {
             video.removeLabels(label);
