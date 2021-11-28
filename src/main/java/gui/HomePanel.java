@@ -5,6 +5,7 @@ import gui.Util.SwapLayoutPanelWrapper;
 import gui.VideoPreview.VideoPreviewListPanel;
 import launcher.Launcher;
 import model.Video;
+import model.VideoRepository;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -23,7 +24,7 @@ public class HomePanel extends JPanel {
 	List<Video> repoList;
 	List<Video> currentList;
 	SwapLayoutPanelWrapper vidPanel = new SwapLayoutPanelWrapper();
-	public HomePanel(JFrame parent,List<Video> list) {
+	public HomePanel(JFrame parent ,List<Video> list ) {
 		repoList = list;
 		// Necesitamos el JFrame para ocultar la ventana cuando lanzamos
 		// el visualizador de video.
@@ -48,7 +49,9 @@ public class HomePanel extends JPanel {
 	}
 
 	public void filterByName(String text){
-		currentList = repoList.stream().filter(s-> s.getTitle().contains(text)).collect(Collectors.toList());
+		currentList = repoList.stream()
+				.filter(s-> s.getTitle().contains(text))
+				.collect(Collectors.toList());
 		showVideoPreview(currentList);
 	}
 

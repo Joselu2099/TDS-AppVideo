@@ -3,9 +3,11 @@ package controller;
 import dao.DAOException;
 import dao.DAOFactory;
 import dao.DAOUser;
+import gui.AppVideoWindow;
 import model.IFilter;
 import model.User;
 import model.UserRepository;
+import model.VideoRepository;
 import org.apache.commons.codec.digest.DigestUtils;
 
 public class AppVideo {
@@ -14,6 +16,7 @@ public class AppVideo {
     public static AppVideo uniqueInstance = null;
     private DAOFactory factory;
     private User actualUser;
+    private AppVideoWindow appVideoWindow;
 
     private AppVideo() {
         this.setActualUser(null);
@@ -51,6 +54,11 @@ public class AppVideo {
         return false;
     }
 
+    public void createAppVideoWindow(){
+        appVideoWindow = new AppVideoWindow();
+        appVideoWindow.showWindow();
+    }
+
     public boolean registerUser(String name, String surname, String mail, String username, String password, String dateOfBirth) {
         if (isUserRegistered(username)) return false;
         User user = new User(name, surname, mail, username, encodePassword(password), dateOfBirth);
@@ -86,12 +94,12 @@ public class AppVideo {
     }
 
     public void selectFilter(IFilter filter) {
-        //TODO
         if (!getActualUser().getFilter().getClass().equals(filter.getClass())) {
             getActualUser().setFilter(filter);
         }
 
         getActualUser().getFilter().filtrarVideos();
+        appVideoWindow.updateVideosOnPanels(VideoRepository.getInstance().getFilteredVideos());
     }
 
     public void changeMail(String mail) {

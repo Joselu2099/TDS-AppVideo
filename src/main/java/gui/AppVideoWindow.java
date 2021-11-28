@@ -7,10 +7,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
 
 public class AppVideoWindow {
 
     private JFrame frmAppVideo;
+    private HomePanel homePanel;
 
     /**
      * Create the application.
@@ -38,8 +40,7 @@ public class AppVideoWindow {
         frmAppVideo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frmAppVideo.addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(WindowEvent e) {
-                goToLoginWindow();
+            public void windowClosing(WindowEvent e) {goToLoginWindow();
             }
         });
 
@@ -109,7 +110,7 @@ public class AppVideoWindow {
         frmAppVideo.getContentPane().add(tabbedPane, BorderLayout.NORTH);
 
         //JPanel home = new JPanel();
-        HomePanel homePanel = new HomePanel(frmAppVideo,VideoRepository.getInstance().getFilteredVideos());
+        homePanel = new HomePanel(frmAppVideo,VideoRepository.getInstance().getFilteredVideos());
 //        homePanel.showVideoPreview(VideoRepository.getInstance().getFilteredVideos());
         tabbedPane.addTab("Home", null, homePanel, null);
 
@@ -122,6 +123,12 @@ public class AppVideoWindow {
         JPanel createPlaylists = new JPanel();
         tabbedPane.addTab("Create Playlists", null, createPlaylists, null);
     }
+
+
+    public void updateVideosOnPanels(List<Video> list){
+        homePanel.updateVideoList(list);
+    }
+
 
     /**
      * Vuelve a la ventana de Login

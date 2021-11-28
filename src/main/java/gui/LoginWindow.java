@@ -183,8 +183,7 @@ public class LoginWindow {
                         JOptionPane.ERROR_MESSAGE);
             } else {
                 //Crear ventana principal y mostrarla
-                AppVideoWindow appVideoWindow = new AppVideoWindow();
-                appVideoWindow.showWindow();
+                AppVideo.getInstance().createAppVideoWindow();
                 frmLogin.setVisible(false);
             }
         } else {

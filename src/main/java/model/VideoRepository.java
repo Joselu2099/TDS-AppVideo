@@ -41,8 +41,8 @@ public class VideoRepository {
         filteredVideoList = new HashMap<>();
 
         //TODO JFileChooser
-        String file = "xml/videos.xml";
-        loadVideos(file);
+        //String file = "xml/videos.xml";
+        //loadVideos(file);
     }
 
     public void loadVideos(String file) {
