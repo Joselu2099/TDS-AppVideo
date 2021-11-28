@@ -15,8 +15,9 @@ public class VideoRepository implements VideosListListener {
     private DAOFactory factory;
     private DAOVideo videoAdapter;
 
-    private Map<Integer, Video> videoList;
-    private Map<Integer, Video> filteredVideoList;
+    private Map<Integer, Video> videoListIDs; // <id, Video>
+    private Map<String, Video> videoList; // <URL, Video>
+    private Map<String, Video> filteredVideoList; // <URL, Video>
 
     private VideoRepository() {
         try {
@@ -36,7 +37,7 @@ public class VideoRepository implements VideosListListener {
 
     private void loadRepository() {
         // Function.identity = return the object itself, it's same as e -> e
-        videoList = videoAdapter.getAll().stream().collect(Collectors.toMap(Video::getId, Function.identity()));
+        videoList = videoAdapter.getAll().stream().collect(Collectors.toMap(Video::getUrl, Function.identity()));
         filteredVideoList = new HashMap<>();
     }
 
@@ -47,30 +48,30 @@ public class VideoRepository implements VideosListListener {
                             .map(Label::valueOf).collect(Collectors.toSet())); //TODO
                     return video;
                 })
-                .filter(v -> !videoList.containsKey(v.getId()))
+                .filter(v -> !videoList.containsKey(v.getUrl()))
                 .forEach(this::addVideo);
     }
 
-    public Video getVideo(int id) {
-        return videoList.get(id);
+    public boolean isVideoRegistered(String url){
+        return videoList.get(url)==null;
     }
 
-    public Video getFilteredVideo(int id) {
-        return filteredVideoList.get(id);
+    public Video getVideoByID(Integer id) {
+        return videoListIDs.get(id);
     }
 
-    public Video getVideo(String title) {
-        return videoList.values().stream().filter(video -> video.getTitle().equals(title)).findAny().orElse(null);
+    public Video getVideoByURL(String url) {
+        return videoList.get(url);
     }
 
-    public Video getFilteredVideo(String title) {
-        return filteredVideoList.values().stream().filter(video -> video.getTitle().equals(title)).findAny().orElse(null);
+    public Video getFilteredVideo(String url) {
+        return filteredVideoList.get(url);
     }
 
     public void setFilteredVideoList(List<Video> filteredVideos){
         this.filteredVideoList = new HashMap<>();
         for(Video v: filteredVideos){
-            filteredVideoList.put(v.getId(), v);
+            filteredVideoList.put(v.getUrl(), v);
         }
     }
 
@@ -83,11 +84,11 @@ public class VideoRepository implements VideosListListener {
     }
 
     public void addVideo(Video video) {
-        if(AppVideo.getInstance().persistVideo(video)) videoList.put(video.getId(), video);
+        if(AppVideo.getInstance().persistVideo(video)) videoList.put(video.getUrl(), video);
     }
 
     public void removeVideo(Video video) {
-        videoList.remove(video.getId());
+        videoList.remove(video.getUrl());
     }
 
     @Override

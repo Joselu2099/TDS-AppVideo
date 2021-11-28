@@ -1,6 +1,5 @@
 package model;
 
-import java.util.HashMap;
 import java.util.Locale;
 
 public class Label {

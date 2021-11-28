@@ -47,11 +47,25 @@ public class UserRepository {
         return userList.get(username);
     }
 
-    public void addUser(User user) {
-        userList.put(user.getUsername(), user);
+    public boolean isUserRegistered(String username){
+        return userList.get(username)==null;
     }
 
-    public void removeUser(User user) {
-        userList.remove(user.getUsername());
+    public boolean addUser(User user) {
+        if(!isUserRegistered(user.getUsername())){
+            userList.put(user.getUsername(), user);
+            userAdapter.create(user);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean removeUser(String username) {
+        if(!isUserRegistered(username)){
+            userList.remove(username);
+            userAdapter.delete(userList.get(username));
+            return true;
+        }
+        return false;
     }
 }

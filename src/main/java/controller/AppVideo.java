@@ -45,10 +45,6 @@ public class AppVideo {
         this.actualUser = actualUser;
     }
 
-    public boolean isUserRegistered(String username) {
-        return UserRepository.getInstance().getUser(username) != null;
-    }
-
     public boolean login(String username, String password) {
         User user = UserRepository.getInstance().getUser(username);
         if (user != null && checkPassword(password, user.getPassword())) {
@@ -64,23 +60,13 @@ public class AppVideo {
     }
 
     public boolean registerUser(String name, String surname, String mail, String username, String password, String dateOfBirth) {
-        if (isUserRegistered(username)) return false;
         User user = new User(name, surname, mail, username, encodePassword(password), dateOfBirth);
         user.setNightMode(false);
-        DAOUser daoUser = factory.getDAOUser(); /* DAO Adapter to save the user into Base Data */
-        daoUser.create(user);
-
-        UserRepository.getInstance().addUser(user);
-        return true;
+        return UserRepository.getInstance().addUser(user);
     }
 
     public boolean removeUser(String username) {
-        if (!isUserRegistered(username))
-            return false;
-        User u = UserRepository.getInstance().getUser(username);
-        factory.getDAOUser().delete(u);
-        UserRepository.getInstance().removeUser(u);
-        return true;
+        return UserRepository.getInstance().removeUser(username);
     }
 
     public void loadVideos(String file){
