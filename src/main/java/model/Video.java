@@ -67,7 +67,7 @@ public class Video {
     }
 
     public void setLabels(Set<Label> labels) {
-        this.labels = labels;
+        this.labels = new TreeSet<>(labels);
     }
 
     public void addLabels(Label l){

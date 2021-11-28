@@ -1,8 +1,10 @@
 package model;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Locale;
 
-public class Label {
+public class Label implements Comparable<Label> {
 //    DIBUJOS_ANIMADOS, PELICULA, SERIE, INTRIGA, TERROR, CLASICO, VIDEOCLIP, ADULTOS, INFANTIL
 
     public final String name;
@@ -52,4 +54,8 @@ public class Label {
         return new Label(name);
     }
 
+    @Override
+    public int compareTo(@NotNull Label o) {
+        return this.name.compareTo(o.name);
+    }
 }

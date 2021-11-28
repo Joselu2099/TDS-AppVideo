@@ -79,11 +79,12 @@ public class AppVideo {
     }
 
     public boolean persistVideo(Video video){
-        DAOVideo daoVideo = factory.getDAOVideo();
-        if(daoVideo.get(video.getId())==null){
-            daoVideo.create(video);
-            return true;
-        }else return false;
+//        DAOVideo daoVideo = factory.getDAOVideo();
+//        if(daoVideo.get(video.getId())==null){
+//            daoVideo.create(video);
+//            return true;
+//        }else return false;
+        return VideoRepository.getInstance().addVideo(video);
     }
 
     public String encodePassword(String password) {
@@ -105,7 +106,8 @@ public class AppVideo {
             getActualUser().setFilter(filter);
         }
 
-        getActualUser().getFilter().filtrarVideos();
+//        getActualUser().getFilter().filtrarVideos();
+        VideoRepository.getInstance().setVideoFilter(filter);
         appVideoWindow.updateVideosOnPanels(VideoRepository.getInstance().getFilteredVideos());
     }
 
@@ -153,5 +155,9 @@ public class AppVideo {
 
     public void generatePDF() {
 
+    }
+
+    public boolean isUserRegistered(String username) {
+        return UserRepository.getInstance().isUserRegistered(username);
     }
 }

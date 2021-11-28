@@ -70,7 +70,7 @@ public class LabelEditorPanel extends JPanel {
     private void showAddDialog() {
         //JOptionPane.showMessageDialog(null, comboBox, "Seleccióna la etiqueta que quieres añadir:",
         //JOptionPane.QUESTION_MESSAGE);
-        Label l = (Label)JOptionPane.showInputDialog(
+        Label l = Label.valueOf((String)JOptionPane.showInputDialog(
                 this,
                 "Seleccióna la etiqueta que quieres añadir:",
                 "Añadir etiqueta",
@@ -78,7 +78,7 @@ public class LabelEditorPanel extends JPanel {
                 null,
 null,
 //                Label.values(),
-                null);
+                null));
         if (addCallback != null && l != null){
             labels.add(l);
             addCallback.accept(l);

@@ -7,6 +7,7 @@ import model.Label;
 import model.Video;
 import javax.swing.*;
 
+import model.VideoRepository;
 import org.jetbrains.annotations.NotNull;
 import controller.AppVideo;
 import pulsador.Luz;
@@ -42,7 +43,7 @@ public class HomePanel extends JPanel{
 		// Necesitamos el JFrame para ocultar la ventana cuando lanzamos
 		// el visualizador de video.
 		this.parent = parent;
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setLayout(new BorderLayout());
 		
 		JPanel searchPanel = new JPanel();
 		searchPanel.setLayout(new BoxLayout(searchPanel,BoxLayout.Y_AXIS));
@@ -60,7 +61,7 @@ public class HomePanel extends JPanel{
 				}
 		);
 		searchPanel.add(labelManager);
-		add(searchPanel);
+		add(searchPanel,BorderLayout.NORTH);
 
 		textField = new JTextField();
 		searchBoxPanel.add(textField);
@@ -96,7 +97,7 @@ public class HomePanel extends JPanel{
 		showVideoPreview(repoList);
 		JScrollPane scrollPane = new JScrollPane(vidPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
-		add(scrollPane);
+		add(scrollPane,BorderLayout.CENTER);
 	}
 
 	private void showVideoPreview(List<Video> videoList) {
@@ -175,7 +176,8 @@ public class HomePanel extends JPanel{
 				};
 				List<Video> videoList = Arrays.stream(url).map(Video::new).collect(Collectors.toList());
 				JFrame f = new JFrame();
-				HomePanel h = new HomePanel(f,videoList);
+				HomePanel h = new HomePanel(f, VideoRepository.getInstance().getFilteredVideos());
+//				HomePanel h = new HomePanel(f,videoList);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				f.setContentPane(h);
 				f.setBounds(0, 0, 800, 600);
@@ -187,7 +189,7 @@ public class HomePanel extends JPanel{
 				List<Video> videoListX = Arrays.stream(urlX).map(Video::new).collect(Collectors.toList());
 //				h.updateVideoList(videoListX);
 			} catch (Exception e) {
-				e.printStackTrace();
+				throw e;
 			}
 		});
 	}

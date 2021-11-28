@@ -58,7 +58,9 @@ public final class AppVideoDAOVideo implements DAOVideo {
 
     @Override
     public void create(Video video) {
-        servPersistencia.registrarEntidad(videoToEntity(video));
+        Entidad e = videoToEntity(video);
+        e = servPersistencia.registrarEntidad(e);
+        video.setId(e.getId());
     }
 
     @Override

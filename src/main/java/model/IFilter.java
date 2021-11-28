@@ -1,5 +1,6 @@
 package model;
 
-public interface IFilter {
-    void filtrarVideos();
+import java.util.function.Predicate;
+
+public interface IFilter extends Predicate<Video> {
 }

@@ -3,7 +3,7 @@ package model;
 public class MyListsFilter implements IFilter {
 
     @Override
-    public void filtrarVideos() {
-
+    public boolean test(Video video) {
+        return false;
     }
 }
