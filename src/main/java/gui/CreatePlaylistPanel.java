@@ -1,8 +1,7 @@
 package gui;
 
-import gui.Util.SwapLayoutPanelWrapper;
 import model.Playlist;
-import model.Video;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -16,7 +15,6 @@ public class CreatePlaylistPanel extends JPanel {
 
 	private List<Playlist> repoPlaylists;
 	private List<Playlist> currentPlaylists;
-	SwapLayoutPanelWrapper vidPanel = new SwapLayoutPanelWrapper();
 	JFrame parent;
 	
 	/**

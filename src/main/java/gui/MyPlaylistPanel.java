@@ -1,18 +1,15 @@
 package gui;
 
 import com.formdev.flatlaf.IntelliJTheme;
-import gui.Util.SwapLayoutPanelWrapper;
+import gui.Util.SwapLayout;
 import launcher.Launcher;
-import model.Label;
 import model.Playlist;
 import javax.swing.*;
 
-import model.Video;
 import org.jetbrains.annotations.NotNull;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MyPlaylistPanel extends JPanel{
@@ -25,7 +22,7 @@ public class MyPlaylistPanel extends JPanel{
 	private JTextField textField;
 	private List<Playlist> repoPlaylists;
 	private List<Playlist> currentPlaylists;
-	SwapLayoutPanelWrapper vidPanel = new SwapLayoutPanelWrapper();
+	JPanel vidPanel;
 	JFrame parent;
 	
 	/**
@@ -33,6 +30,8 @@ public class MyPlaylistPanel extends JPanel{
 	 */
 	public MyPlaylistPanel(JFrame parent ,List<Playlist> list ) {
 		repoPlaylists = list;
+		vidPanel = new JPanel();
+		vidPanel.setLayout(new SwapLayout(vidPanel));
 		// Necesitamos el JFrame para ocultar la ventana cuando lanzamos
 		// el visualizador de video.
 		this.parent = parent;
@@ -50,7 +49,7 @@ public class MyPlaylistPanel extends JPanel{
 		searchPanel.add(btnSearchButton);
 
 		showPlaylistPreview(repoPlaylists);
-		JScrollPane scrollPane = new JScrollPane(vidPanel.getPanel(),JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane scrollPane = new JScrollPane(vidPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		add(scrollPane, BorderLayout.CENTER);
 	}
 

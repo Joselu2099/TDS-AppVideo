@@ -1,19 +1,19 @@
 package gui;
 
 import com.formdev.flatlaf.IntelliJTheme;
-import gui.Util.SwapLayoutPanelWrapper;
 import gui.VideoPreview.VideoPreviewListPanel;
 import launcher.Launcher;
 import model.Label;
 import model.Video;
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
 
 import org.jetbrains.annotations.NotNull;
 import controller.AppVideo;
 import pulsador.Luz;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
@@ -32,8 +32,8 @@ public class HomePanel extends JPanel{
 	private List<Video> repoList;
 	private List<Video> currentList;
 	JFrame parent;
-	SwapLayoutPanelWrapper vidPanel = new SwapLayoutPanelWrapper();
-	
+	VideoPreviewListPanel vidPanel;
+
 	/**
 	 * Create the panel.
 	 */
@@ -49,16 +49,25 @@ public class HomePanel extends JPanel{
 		JPanel searchBoxPanel = new JPanel();
 		Set<Label> labelSet = new TreeSet<>();
 		searchPanel.add(searchBoxPanel);
-		LabelEditorPanel labelManager = new LabelEditorPanel(labelSet,labelSet::add,labelSet::remove);
+		LabelEditorPanel labelManager = new LabelEditorPanel(labelSet,
+				label -> {
+					labelSet.add(label);
+					filter(textField.getText(),labelSet);
+				},
+				label ->{
+					labelSet.remove(label);
+					filter(textField.getText(),labelSet);
+				}
+		);
 		searchPanel.add(labelManager);
 		add(searchPanel);
-		
+
 		textField = new JTextField();
 		searchBoxPanel.add(textField);
 		textField.setColumns(30);
-		
+
 		JButton btnSearchButton = new JButton("BUSCAR");
-		btnSearchButton.addActionListener(l->filterByName(textField.getText()));
+		btnSearchButton.addActionListener(l->filter(textField.getText(),labelSet));
 		searchBoxPanel.add(btnSearchButton);
 		
 		Luz luz = new Luz();
@@ -74,35 +83,48 @@ public class HomePanel extends JPanel{
 					int i = jFileChooser.showOpenDialog(this);
 					if (i == JFileChooser.APPROVE_OPTION){
 						File f = jFileChooser.getSelectedFile();
-
 						AppVideo.getInstance().loadVideos(f.getPath());
 					}
+					luz.setEncendido(false);
+					luz.revalidate();
+					luz.repaint();
 				});
 			}
 		});
 		searchBoxPanel.add(luz);
 
-		JScrollPane scrollPane = new JScrollPane(vidPanel.getPanel(),JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-
 		showVideoPreview(repoList);
+		JScrollPane scrollPane = new JScrollPane(vidPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
 		add(scrollPane);
 	}
 
 	private void showVideoPreview(List<Video> videoList) {
 		currentList = videoList;
-		vidPanel.swap(new VideoPreviewListPanel(videoList,vid->{
-			VideoPlayerWindow player = new VideoPlayerWindow(vid);
-			player.showPlayer(parent);
-		}));
+		if (vidPanel == null){
+			vidPanel = new VideoPreviewListPanel(videoList,vid->{
+				VideoPlayerWindow player = new VideoPlayerWindow(vid);
+				player.showPlayer(parent);
+			});
+		}else {
+			vidPanel.setPrewviewList(videoList);
+		}
+
 	}
 	
-	public void filterByName(String text){
+	public void filter(String text,Set<Label> labelSet){
 		currentList = repoList.stream()
-				.filter(s-> s.getTitle().contains(text))
+				.parallel()
+				.filter(v-> v.getTitle().contains(text))
+				.filter(v -> {
+					if (!labelSet.isEmpty())
+						return v.getLabels().stream().parallel().anyMatch(labelSet::contains);
+					return true;
+				}) // OR filter
 				.collect(Collectors.toList());
 		showVideoPreview(currentList);
 	}
-	
+
 	public void updateVideoList(@NotNull List<Video> videoList){
 		this.repoList = videoList;
 		showVideoPreview(videoList);

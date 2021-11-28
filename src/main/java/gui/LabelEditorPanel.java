@@ -2,7 +2,6 @@ package gui;
 
 import com.formdev.flatlaf.IntelliJTheme;
 import gui.Util.SwapLayout;
-import gui.Util.SwapLayoutPanelWrapper;
 import gui.Util.WrapLayout;
 import launcher.Launcher;
 import model.Label;
