@@ -3,12 +3,16 @@ package controller;
 import dao.DAOException;
 import dao.DAOFactory;
 import dao.DAOUser;
+import dao.DAOVideo;
 import gui.AppVideoWindow;
-import model.IFilter;
-import model.User;
-import model.UserRepository;
-import model.VideoRepository;
+import model.*;
 import org.apache.commons.codec.digest.DigestUtils;
+import umu.tds.componente.MapperVideosXMLtoJava;
+import umu.tds.componente.Videos;
+import umu.tds.componente.VideosList;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class AppVideo {
 
@@ -77,6 +81,24 @@ public class AppVideo {
         factory.getDAOUser().delete(u);
         UserRepository.getInstance().removeUser(u);
         return true;
+    }
+
+    public void loadVideos(String file){
+        VideosList videosList = new VideosList();
+        videosList.addVideosListListener(VideoRepository.getInstance());
+
+        Videos videos = MapperVideosXMLtoJava.cargarVideos(file);
+        VideoRepository.getInstance().saveUploadedVideos(videos);
+
+        videosList.setVideos(videos.getVideo());
+    }
+
+    public boolean persistVideo(Video video){
+        DAOVideo daoVideo = factory.getDAOVideo();
+        if(daoVideo.get(video.getId())==null){
+            daoVideo.create(video);
+            return true;
+        }else return false;
     }
 
     public String encodePassword(String password) {

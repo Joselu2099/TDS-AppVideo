@@ -1,17 +1,16 @@
 package model;
 
+import controller.AppVideo;
 import dao.DAOException;
 import dao.DAOFactory;
 import dao.DAOVideo;
-import umu.tds.componente.MapperVideosXMLtoJava;
-import umu.tds.componente.Videos;
-import umu.tds.componente.VideosList;
+import umu.tds.componente.*;
 
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class VideoRepository {
+public class VideoRepository implements VideosListListener {
     private static VideoRepository uniqueInstance = null;
     private DAOFactory factory;
     private DAOVideo videoAdapter;
@@ -45,9 +44,7 @@ public class VideoRepository {
         //loadVideos(file);
     }
 
-    public void loadVideos(String file) {
-        Videos videos = MapperVideosXMLtoJava.cargarVideos(file);
-
+    public void saveUploadedVideos(Videos videos) {
         videos.getVideo().stream()
                 .map(v -> {Video video = new Video(v.getTitulo(), v.getURL());
                     video.setLabels(v.getEtiqueta().stream()
@@ -90,10 +87,15 @@ public class VideoRepository {
     }
 
     public void addVideo(Video video) {
-        videoList.put(video.getId(), video);
+        if(AppVideo.getInstance().persistVideo(video)) videoList.put(video.getId(), video);
     }
 
     public void removeVideo(Video video) {
         videoList.remove(video.getId());
+    }
+
+    @Override
+    public void notifiedChargedVideos(VideosListEvent videosListEvent) {
+        System.out.println("Videos have been loaded");
     }
 }
