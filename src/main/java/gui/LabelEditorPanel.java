@@ -16,7 +16,6 @@ import java.util.TreeSet;
 import java.util.function.Consumer;
 
 public class LabelEditorPanel extends JPanel {
-    private static final JComboBox<Label> comboBox = new JComboBox<>(Label.values());
     Consumer<Label> addCallback;
     Consumer<Label> deleteCallback;
 
@@ -33,7 +32,6 @@ public class LabelEditorPanel extends JPanel {
         this.labels = new TreeSet<>( labels);
         this.addCallback = addCallback;
         this.deleteCallback = deleteCallback;
-        comboBox.setEditable(true);
 
         // TAGS
         this.setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -78,7 +76,8 @@ public class LabelEditorPanel extends JPanel {
                 "Añadir etiqueta",
                 JOptionPane.QUESTION_MESSAGE,
                 null,
-                Label.values(),
+null,
+//                Label.values(),
                 null);
         if (addCallback != null && l != null){
             labels.add(l);

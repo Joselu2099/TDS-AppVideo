@@ -45,6 +45,9 @@ public class Label {
     public String name(){
         return name;
     }
+//    public static String name(Label l){
+//        return l.name;
+//    }
 
     public static Label valueOf(String name){
         return new Label(name);
