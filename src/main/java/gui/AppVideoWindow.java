@@ -13,6 +13,7 @@ public class AppVideoWindow {
 
     private JFrame frmAppVideo;
     private HomePanel homePanel;
+    private RecentPanel recentPanel;
 
     /**
      * Create the application.
@@ -110,12 +111,12 @@ public class AppVideoWindow {
         frmAppVideo.getContentPane().add(tabbedPane, BorderLayout.NORTH);
 
         //JPanel home = new JPanel();
-        homePanel = new HomePanel(frmAppVideo,VideoRepository.getInstance().getFilteredVideos());
+        homePanel = new HomePanel(frmAppVideo, VideoRepository.getInstance().getFilteredVideos());
 //        homePanel.showVideoPreview(VideoRepository.getInstance().getFilteredVideos());
         tabbedPane.addTab("Home", null, homePanel, null);
 
-        JPanel recent = new JPanel();
-        tabbedPane.addTab("Recent", null, recent, null);
+        recentPanel = new RecentPanel(frmAppVideo, AppVideo.getInstance().getActualUser().getRecentVideos());
+        tabbedPane.addTab("Recent", null, recentPanel, null);
 
         JPanel myPlaylists = new JPanel();
         tabbedPane.addTab("My Playlists", null, myPlaylists, null);

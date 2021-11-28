@@ -32,7 +32,7 @@ public class User {
         this.dateOfBirth = dateOfBirth;
         this.premium = "no";
         this.listOfPlaylist = new HashMap<>();
-        this.recentVideos = new ArrayList<>();
+        this.recentVideos = new ArrayList<>(5);
         this.filter = new NoFilter();
     }
 
@@ -136,7 +136,7 @@ public class User {
         return listOfPlaylist.get(title);
     }
 
-    public ArrayList<Video> getRecentVideos() {
+    public List<Video> getRecentVideos() {
         return new ArrayList<>(recentVideos);
     }
 
@@ -145,7 +145,11 @@ public class User {
     }
 
     public void addRecentVideo(Video video) {
-        this.recentVideos.add(video);
+    	if(recentVideos.size()<5) recentVideos.add(video);
+    	else {
+    		recentVideos.remove(1);
+    		recentVideos.add(video);
+    	}
     }
 
     public boolean isNightMode() {
