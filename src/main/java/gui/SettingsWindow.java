@@ -2,6 +2,7 @@ package gui;
 
 import controller.AppVideo;
 import gui.Util.UIUtils;
+import pulsador.Luz;
 
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
@@ -74,6 +75,9 @@ public class SettingsWindow {
         gbc_lblLightNightMode.gridx = 2;
         gbc_lblLightNightMode.gridy = 6;
         frmSettings.getContentPane().add(lblLightNightMode, gbc_lblLightNightMode);
+
+        // TODO
+//        Luz luz = new Luz();
 
         btnNightMode = new JButton("");
         btnNightMode.addMouseListener(new MouseAdapter() {

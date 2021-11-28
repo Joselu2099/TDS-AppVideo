@@ -44,7 +44,7 @@ public class VideoRepository implements VideosListListener {
         videos.stream()
                 .map(v -> {Video video = new Video(v.getTitulo(), v.getURL());
                     video.setLabels(v.getEtiqueta().stream()
-                            .map(Label::valueOf).collect(Collectors.toSet()));
+                            .map(Label::valueOf).collect(Collectors.toSet())); //TODO
                     return video;
                 })
                 .filter(v -> !videoList.containsKey(v.getId()))

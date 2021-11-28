@@ -8,7 +8,10 @@ import model.Video;
 import javax.swing.*;
 import org.jetbrains.annotations.NotNull;
 import controller.AppVideo;
+import pulsador.Luz;
+
 import java.awt.*;
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,6 +42,9 @@ public class HomePanel extends JPanel{
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel searchPanel = new JPanel();
+//		searchPanel.setLayout(new BoxLayout(searchPanel,BoxLayout.Y_AXIS));
+//		JPanel searchBoxPanel = new JPanel();
+//		searchPanel.add(searchBoxPanel);
 		add(searchPanel, BorderLayout.NORTH);
 		
 		textField = new JTextField();
@@ -49,13 +55,27 @@ public class HomePanel extends JPanel{
 		btnSearchButton.addActionListener(l->filterByName(textField.getText()));
 		searchPanel.add(btnSearchButton);
 		
-		JButton btnLoadVideos = new JButton("Load Videos");
-		btnLoadVideos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AppVideo.getInstance().loadVideos("xml/videos.xml");
+		Luz luz = new Luz();
+		luz.setNombre("LoadVideo");
+//		luz.addEncendidoListener(l-> AppVideo.getInstance().loadVideos("xml/videos.xml"));
+
+		luz.setEncendido(false);
+		luz.setColor(Color.YELLOW);
+		luz.addEncendidoListener(l-> {
+			if (luz.isEncendido()){
+				EventQueue.invokeLater(() -> {
+					JFileChooser jFileChooser = new JFileChooser(".");
+					int i = jFileChooser.showOpenDialog(this);
+					if (i == JFileChooser.APPROVE_OPTION){
+						File f = jFileChooser.getSelectedFile();
+
+						AppVideo.getInstance().loadVideos(f.getPath());
+					}
+				});
 			}
 		});
-		searchPanel.add(btnLoadVideos);
+		searchPanel.add(luz);
+
 		JScrollPane scrollPane = new JScrollPane(vidPanel.getPanel(),JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		showVideoPreview(repoList);

@@ -1,11 +1,18 @@
 package gui;
 
+import com.formdev.flatlaf.IntelliJTheme;
 import gui.Util.SwapLayoutPanelWrapper;
+import launcher.Launcher;
+import model.Label;
 import model.Playlist;
 import javax.swing.*;
+
+import model.Video;
 import org.jetbrains.annotations.NotNull;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MyPlaylistPanel extends JPanel{
@@ -70,6 +77,30 @@ public class MyPlaylistPanel extends JPanel{
 	public void updateVideoList(@NotNull List<Playlist> playlistList){
 		this.repoPlaylists = playlistList;
 		showPlaylistPreview(playlistList);
+	}
+
+	public static void main(String[] args){
+		IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/ArcPurple.theme.json"));
+//        IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
+		EventQueue.invokeLater(() -> {
+			try {
+//				Video v = new Video("https://www.youtube.com/watch?v=XKfgdkcIUxw");
+//				v.addLabels(model.Label.INFANTIL);
+//				v.addLabels(model.Label.VIDEOCLIP);
+				JFrame f = new JFrame();
+//				Set<Label> labelSet = v.getLabels();
+//				LabalManager manager = new LabalManager(labelSet,
+//						l->{v.addLabels(l);labelSet.add(l);},
+//						l->{v.removeLabels(l);labelSet.remove(l);});
+				MyPlaylistPanel manager = new MyPlaylistPanel(f,new ArrayList<Playlist>());
+				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				f.setContentPane(manager);
+				f.setBounds(0, 0, 800, 600);
+				f.setVisible(true);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
 	}
 }
 
