@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.function.Consumer;
 
 public class LabalManager extends JPanel {
@@ -17,12 +18,13 @@ public class LabalManager extends JPanel {
     Consumer<Label> addCallback;
     Consumer<Label> deleteCallback;
 
+
     SwapLayoutPanelWrapper swapLayoutPanelWrapper = new SwapLayoutPanelWrapper();
 
     Set<Label> labels;
 
     public LabalManager(Set<Label> labels, Consumer<Label> addCallback, Consumer<Label> deleteCallback) {
-        this.labels = labels;
+        this.labels = new TreeSet<>( labels);
         this.addCallback = addCallback;
         this.deleteCallback = deleteCallback;
         comboBox.setEditable(true);
@@ -39,6 +41,7 @@ public class LabalManager extends JPanel {
             Arrays.stream(getComponents()).filter(v -> v instanceof JButton && ((JButton) v)
                     .getText().equals(l.name())).findAny().ifPresent(this::remove);
             if (deleteCallback != null && l != null){
+                labels.remove(l);
                 deleteCallback.accept(l);
                 swapLayoutPanelWrapper.swap(getTagPanel(labels));
             }
@@ -72,6 +75,7 @@ public class LabalManager extends JPanel {
         //System.out.println(Label.values()[comboBox.getSelectedIndex()]);
         System.out.println(l);
         if (addCallback != null && l != null){
+            labels.add(l);
             addCallback.accept(l);
             swapLayoutPanelWrapper.swap(getTagPanel(labels));
             this.setVisible(true);
