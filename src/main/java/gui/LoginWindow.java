@@ -176,7 +176,7 @@ public class LoginWindow {
         }
         String user = textUser.getText();
         String pass = new String(passwordField.getPassword());
-        if (UserRepository.getInstance().isUserRegistered(textUser.getText())) {
+        if (AppVideo.getInstance().isUserRegistered(textUser.getText())) {
             boolean login = AppVideo.getInstance().login(user, pass);
             if (!login) {
                 JOptionPane.showMessageDialog(null, "El usuario o clave son incorrectos", "Login Fallido",

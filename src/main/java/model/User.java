@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class User {
     private final Map<String, Playlist> listOfPlaylist;
@@ -110,6 +111,7 @@ public class User {
     }
 
     public void setFilter(IFilter filter) {
+        if(filter == null) this.filter = new NoFilter();
         this.filter = filter;
     }
 

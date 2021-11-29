@@ -7,11 +7,12 @@ import dao.DAOVideo;
 import gui.AppVideoWindow;
 import model.*;
 import org.apache.commons.codec.digest.DigestUtils;
-import umu.tds.componente.MapperVideosXMLtoJava;
-import umu.tds.componente.Videos;
+import org.jetbrains.annotations.NotNull;
 import umu.tds.componente.VideosList;
-
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class AppVideo {
@@ -21,11 +22,16 @@ public class AppVideo {
     private DAOFactory factory;
     private User actualUser;
     private AppVideoWindow appVideoWindow;
+    private List<Video> currentVideos;
+    private List<Playlist> currentPlaylists;
+    private VideosList videosList;
 
     private AppVideo() {
         this.setActualUser(null);
         try {
             factory = DAOFactory.getInstance();
+            currentVideos = VideoRepository.getInstance().getFilteredVideos();
+            currentPlaylists = actualUser.getListOfPlaylist();
         } catch (DAOException e) {
             e.printStackTrace();
         }
@@ -59,32 +65,63 @@ public class AppVideo {
         appVideoWindow.showWindow();
     }
 
+    public boolean isUserRegistered(String username) {
+        return UserRepository.getInstance().isUserRegistered(username);
+    }
+
     public boolean registerUser(String name, String surname, String mail, String username, String password, String dateOfBirth) {
+        if (isUserRegistered(username)) return false;
         User user = new User(name, surname, mail, username, encodePassword(password), dateOfBirth);
         user.setNightMode(false);
-        return UserRepository.getInstance().addUser(user);
+        DAOUser daoUser = factory.getDAOUser();
+        daoUser.create(user);
+        UserRepository.getInstance().addUser(user);
+        return true;
     }
 
     public boolean removeUser(String username) {
+        if (isUserRegistered(username)){
+            DAOUser daoUser = factory.getDAOUser();
+            daoUser.delete(UserRepository.getInstance().getUser(username));
+        }
         return UserRepository.getInstance().removeUser(username);
     }
 
     public void loadVideos(String file){
-        VideosList videosList = new VideosList(file);
+        videosList = new VideosList(file);
         videosList.addVideosListListener(VideoRepository.getInstance());
 
         VideoRepository.getInstance().saveUploadedVideos(videosList.getVideos());
 
         videosList.setVideos(videosList.getVideos());
     }
+    
+    public List<Video> searchVideos(String text,Set<Label> labelSet) {
+    	return currentVideos.stream()
+				.parallel()
+				.filter(v-> v.getTitle().contains(text))
+				.filter(v -> {
+					if (!labelSet.isEmpty())
+						return v.getLabels().stream().parallel().anyMatch(labelSet::contains);
+					return true;
+				}) // OR filter
+				.collect(Collectors.toList());
+    }
+
+    public List<Playlist> searchPlaylists(String text) {
+        return currentPlaylists.stream()
+                .parallel()
+                .filter(p-> p.getTitle().contains(text))
+                .collect(Collectors.toList());
+    }
 
     public boolean persistVideo(Video video){
-//        DAOVideo daoVideo = factory.getDAOVideo();
-//        if(daoVideo.get(video.getId())==null){
-//            daoVideo.create(video);
-//            return true;
-//        }else return false;
-        return VideoRepository.getInstance().addVideo(video);
+        DAOVideo daoVideo = factory.getDAOVideo();
+        if(daoVideo.get(video.getId())==null){
+            daoVideo.create(video);
+           return true;
+        }else return false;
+        //return VideoRepository.getInstance().addVideo(video);
     }
 
     public String encodePassword(String password) {
@@ -101,17 +138,47 @@ public class AppVideo {
         return encodePassword(pass).equals(encodedPass);
     }
 
-    public void selectFilter(IFilter filter) {
+    public void applyFilter(IFilter filter) {
         if (!getActualUser().getFilter().getClass().equals(filter.getClass())) {
             getActualUser().setFilter(filter);
         }
 
-//        getActualUser().getFilter().filtrarVideos();
-        VideoRepository.getInstance().setVideoFilter(filter);
-        appVideoWindow.updateVideosOnPanels(VideoRepository.getInstance().getFilteredVideos());
+        currentVideos = VideoRepository.getInstance().setVideoFilter(filter);
+        currentPlaylists = getActualUser().getListOfPlaylist().stream()
+                .filter(playlist -> currentVideos.containsAll(playlist.getListOfVideos()))
+                .collect(Collectors.toList());
+        /*
+        currentPlaylists = new ArrayList<Playlist>();
+        for(Playlist p:getActualUser().getListOfPlaylist()){
+            int contador=0;
+            for(Video v: p.getListOfVideos()){
+                if(!currentVideos.contains(v)) break;
+                contador++;
+            }
+            if(contador>=p.getListOfVideos().size()) currentPlaylists.add(p);
+        }
+        */
+
+        //appVideoWindow.updateVideosOnPanels(VideoRepository.getInstance().getFilteredVideos());
     }
 
-    public void changeMail(String mail) {
+    public List<Video> getCurrentVideos() {
+		return Collections.unmodifiableList(currentVideos);
+	}
+
+	public void setCurrentVideos(List<Video> currentVideos) {
+		this.currentVideos = currentVideos;
+	}
+
+	public List<Playlist> getCurrentPlaylists() {
+		return currentPlaylists;
+	}
+
+	public void setCurrentPlaylists(List<Playlist> currentPlaylists) {
+		this.currentPlaylists = currentPlaylists;
+	}
+
+	public void changeMail(String mail) {
         getActualUser().setMail(mail);
 
         DAOUser daoUser = factory.getDAOUser();
@@ -155,9 +222,5 @@ public class AppVideo {
 
     public void generatePDF() {
 
-    }
-
-    public boolean isUserRegistered(String username) {
-        return UserRepository.getInstance().isUserRegistered(username);
     }
 }

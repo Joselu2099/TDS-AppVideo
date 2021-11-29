@@ -382,7 +382,7 @@ public class RegisterWindow {
             textUsername.setBorder(BorderFactory.createLineBorder(Color.RED));
             salida = false;
         } else {
-            if (UserRepository.getInstance().isUserRegistered(textUsername.getText())) {
+            if (AppVideo.getInstance().isUserRegistered(textUsername.getText())) {
                 textUsername.setBorder(BorderFactory.createLineBorder(Color.RED));
                 //JOptionPane.showMessageDialog(frmRegister, "Ese nombre de usuario ya esta en uso, prueba con otro.\n","Registro", JOptionPane.ERROR_MESSAGE);
                 lblWarningUser.setText("Ese nombre de usuario ya esta en uso, prueba con otro");

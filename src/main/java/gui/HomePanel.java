@@ -4,6 +4,7 @@ import com.formdev.flatlaf.IntelliJTheme;
 import gui.VideoPreview.VideoPreviewListPanel;
 import launcher.Launcher;
 import model.Label;
+import model.Playlist;
 import model.Video;
 import javax.swing.*;
 
@@ -30,16 +31,15 @@ public class HomePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	private JTextField textField;
-	private List<Video> repoList;
-	private List<Video> currentList;
 	JFrame parent;
 	VideoPreviewListPanel vidPanel;
+	private List<Video> filteredVideos;
 
 	/**
 	 * Create the panel.
 	 */
 	public HomePanel(JFrame parent ,List<Video> list ) {
-		repoList = list;
+		filteredVideos = list;
 		// Necesitamos el JFrame para ocultar la ventana cuando lanzamos
 		// el visualizador de video.
 		this.parent = parent;
@@ -53,11 +53,11 @@ public class HomePanel extends JPanel{
 		LabelEditorPanel labelManager = new LabelEditorPanel(labelSet,
 				label -> {
 					labelSet.add(label);
-					filter(textField.getText(),labelSet);
+					AppVideo.getInstance().searchVideos(textField.getText(),labelSet);
 				},
 				label ->{
 					labelSet.remove(label);
-					filter(textField.getText(),labelSet);
+					AppVideo.getInstance().searchVideos(textField.getText(),labelSet);
 				}
 		);
 		searchPanel.add(labelManager);
@@ -68,7 +68,7 @@ public class HomePanel extends JPanel{
 		textField.setColumns(30);
 
 		JButton btnSearchButton = new JButton("BUSCAR");
-		btnSearchButton.addActionListener(l->filter(textField.getText(),labelSet));
+		btnSearchButton.addActionListener(l->setFilteredVideos(AppVideo.getInstance().searchVideos(textField.getText(),labelSet)));
 		searchBoxPanel.add(btnSearchButton);
 		
 		Luz luz = new Luz();
@@ -94,14 +94,23 @@ public class HomePanel extends JPanel{
 		});
 		searchBoxPanel.add(luz);
 
-		showVideoPreview(repoList);
+		showVideoPreview(filteredVideos);
 		JScrollPane scrollPane = new JScrollPane(vidPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		add(scrollPane,BorderLayout.CENTER);
 	}
 
-	private void showVideoPreview(List<Video> videoList) {
-		currentList = videoList;
+	public List<Video> getFilteredVideos() {
+		return filteredVideos;
+	}
+
+	public void setFilteredVideos(@NotNull List<Video> filteredVideos) {
+		this.filteredVideos = filteredVideos;
+		showVideoPreview(filteredVideos);
+	}
+
+	public void showVideoPreview(List<Video> videoList) {
+		//currentList = videoList;
 		if (vidPanel == null){
 			vidPanel = new VideoPreviewListPanel(videoList,vid->{
 				VideoPlayerWindow player = new VideoPlayerWindow(vid);
@@ -110,25 +119,6 @@ public class HomePanel extends JPanel{
 		}else {
 			vidPanel.setPrewviewList(videoList);
 		}
-
-	}
-	
-	public void filter(String text,Set<Label> labelSet){
-		currentList = repoList.stream()
-				.parallel()
-				.filter(v-> v.getTitle().contains(text))
-				.filter(v -> {
-					if (!labelSet.isEmpty())
-						return v.getLabels().stream().parallel().anyMatch(labelSet::contains);
-					return true;
-				}) // OR filter
-				.collect(Collectors.toList());
-		showVideoPreview(currentList);
-	}
-
-	public void updateVideoList(@NotNull List<Video> videoList){
-		this.repoList = videoList;
-		showVideoPreview(videoList);
 	}
 
 	public static void main(String[] args) {

@@ -1,6 +1,7 @@
 package gui;
 
 import com.formdev.flatlaf.IntelliJTheme;
+import controller.AppVideo;
 import gui.Util.SwapLayout;
 import launcher.Launcher;
 import model.Playlist;
@@ -19,16 +20,15 @@ public class MyPlaylistPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	private JTextField textField;
-	private List<Playlist> repoPlaylists;
-	private List<Playlist> currentPlaylists;
 	JPanel vidPanel;
 	JFrame parent;
+	List<Playlist> filteredPlaylist;
 	
 	/**
 	 * Create the panel.
 	 */
 	public MyPlaylistPanel(JFrame parent ,List<Playlist> list ) {
-		repoPlaylists = list;
+		filteredPlaylist = list;
 		vidPanel = new JPanel();
 		vidPanel.setLayout(new SwapLayout(vidPanel));
 		// Necesitamos el JFrame para ocultar la ventana cuando lanzamos
@@ -44,17 +44,16 @@ public class MyPlaylistPanel extends JPanel{
 		textField.setColumns(30);
 		
 		JButton btnSearchButton = new JButton("BUSCAR");
-		btnSearchButton.addActionListener(l->filterByName(textField.getText()));
+		btnSearchButton.addActionListener(l->{filteredPlaylist = AppVideo.getInstance().searchPlaylists(textField.getText());
+											showPlaylistPreview(filteredPlaylist);});
 		searchPanel.add(btnSearchButton);
 
-		showPlaylistPreview(repoPlaylists);
+		showPlaylistPreview(filteredPlaylist);
 		JScrollPane scrollPane = new JScrollPane(vidPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		add(scrollPane, BorderLayout.CENTER);
 	}
 
 	public void showPlaylistPreview(List<Playlist> playlistList) {
-		currentPlaylists = playlistList;
-		
 		//TODO mostrar playlist
 		
 		/*
@@ -65,15 +64,8 @@ public class MyPlaylistPanel extends JPanel{
 		*/
 	}
 	
-	public void filterByName(String text){
-		currentPlaylists = repoPlaylists.stream()
-				.filter(s-> s.getTitle().contains(text))
-				.collect(Collectors.toList());
-		showPlaylistPreview(currentPlaylists);
-	}
-	
-	public void updateVideoList(@NotNull List<Playlist> playlistList){
-		this.repoPlaylists = playlistList;
+	public void setFilteredPlaylist(@NotNull List<Playlist> playlistList){
+		this.filteredPlaylist = playlistList;
 		showPlaylistPreview(playlistList);
 	}
 

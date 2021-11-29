@@ -5,7 +5,6 @@ import dao.DAOException;
 import dao.DAOFactory;
 import dao.DAOVideo;
 import umu.tds.componente.*;
-
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -15,7 +14,6 @@ public class VideoRepository implements VideosListListener {
     private static VideoRepository uniqueInstance = null;
     private DAOFactory factory;
     private DAOVideo videoAdapter;
-    private IFilter filter;
 
     private Map<Integer, Video> videoListIDs; // <id, Video>
     private Map<String, Video> videoList; // <URL, Video>
@@ -86,11 +84,11 @@ public class VideoRepository implements VideosListListener {
             callbacks.remove(callback);
     }
 
-    public void setVideoFilter(IFilter filter){
-        this.filter = filter;
-        filteredList = videoList.values().stream().filter(this::testFilter)
+    public List<Video> setVideoFilter(IFilter filter){
+        return videoList.values().stream()
+                .filter(this::testFilter)
                 .collect(Collectors.toList());
-        broadcastFilteredVideoChangeListener();
+        //broadcastFilteredVideoChangeListener();
     }
 
     public List<Video> getVideos(){
@@ -113,11 +111,11 @@ public class VideoRepository implements VideosListListener {
         return true;
     }
 
+
     private boolean testFilter(Video video){
-        if (filter == null)
-            filter = new NoFilter();
-        return filter.test(video);
+        return AppVideo.getInstance().getActualUser().getFilter().test(video);
     }
+
 
     public boolean isVideoPresent(String url){
         return videoList.get(url) != null;

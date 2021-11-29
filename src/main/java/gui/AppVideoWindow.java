@@ -65,28 +65,28 @@ public class AppVideoWindow {
 
         JMenuItem mntmMinors = new JMenuItem("Minors");
         mntmMinors.addActionListener(arg0 -> {
-			AppVideo.getInstance().selectFilter(new MinorsFilter());
+			AppVideo.getInstance().applyFilter(new MinorsFilter());
 			System.out.println("Filtro minors");
 		});
         mnSelect.add(mntmMinors);
 
         JMenuItem mntmImpopulars = new JMenuItem("Impopulars");
         mntmImpopulars.addActionListener(arg0 -> {
-			AppVideo.getInstance().selectFilter(new ImpopularsFilter());
+			AppVideo.getInstance().applyFilter(new ImpopularsFilter());
 			System.out.println("Filtro impopulars");
 		});
         mnSelect.add(mntmImpopulars);
 
         JMenuItem mntmMyLists = new JMenuItem("My lists");
         mntmMyLists.addActionListener(arg0 -> {
-			AppVideo.getInstance().selectFilter(new MyListsFilter());
+			AppVideo.getInstance().applyFilter(new MyListsFilter());
 			System.out.println("Filtro my lists");
 		});
         mnSelect.add(mntmMyLists);
 
         JMenuItem mntmRemoveFilter = new JMenuItem("Remove filter");
         mntmRemoveFilter.addActionListener(arg0 -> {
-			AppVideo.getInstance().selectFilter(new NoFilter());
+			AppVideo.getInstance().applyFilter(new NoFilter());
 			System.out.println("Filtro eliminado");
 		});
         mnFilters.add(mntmRemoveFilter);
@@ -113,25 +113,19 @@ public class AppVideoWindow {
         frmAppVideo.getContentPane().add(tabbedPane, BorderLayout.NORTH);
 
         //JPanel home = new JPanel();
-        homePanel = new HomePanel(frmAppVideo, VideoRepository.getInstance().getFilteredVideos());
+        homePanel = new HomePanel(frmAppVideo, AppVideo.getInstance().getCurrentVideos());
 //        homePanel.showVideoPreview(VideoRepository.getInstance().getFilteredVideos());
         tabbedPane.addTab("Home", null, homePanel, null);
 
         recentPanel = new RecentPanel(frmAppVideo, AppVideo.getInstance().getActualUser().getRecentVideos());
         tabbedPane.addTab("Recent", null, recentPanel, null);
 
-        myPlaylistPanel = new MyPlaylistPanel(frmAppVideo, AppVideo.getInstance().getActualUser().getListOfPlaylist());
+        myPlaylistPanel = new MyPlaylistPanel(frmAppVideo, AppVideo.getInstance().getCurrentPlaylists());
         tabbedPane.addTab("My Playlists", null, myPlaylistPanel, null);
 
         createPlaylistPanel = new CreatePlaylistPanel(frmAppVideo, AppVideo.getInstance().getActualUser().getListOfPlaylist());
         tabbedPane.addTab("Create Playlists", null, createPlaylistPanel, null);
     }
-
-
-    public void updateVideosOnPanels(List<Video> list){
-        homePanel.updateVideoList(list);
-    }
-
 
     /**
      * Vuelve a la ventana de Login
@@ -141,7 +135,6 @@ public class AppVideoWindow {
         frmAppVideo.dispose();
         login.showWindow();
     }
-
 
     /**
      * Va a la ventana de ajustes
