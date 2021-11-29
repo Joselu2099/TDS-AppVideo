@@ -35,7 +35,7 @@ public class DAOUtils {
     }
 
     public static List<Video> idsToVideos(List<Integer> idsVideos) {
-        return idsVideos == null ? new ArrayList<>() : idsVideos.stream().map(VideoRepository.getInstance()::getVideo).collect(Collectors.toList());
+        return idsVideos == null ? new ArrayList<>() : idsVideos.stream().map(VideoRepository.getInstance()::getVideoByID).collect(Collectors.toList());
     }
 
     public static List<Integer> videosToIds(List<Video> videos) {

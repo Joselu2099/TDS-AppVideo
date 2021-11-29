@@ -48,7 +48,7 @@ public class UserRepository {
     }
 
     public boolean isUserRegistered(String username){
-        return userList.get(username)==null;
+        return userList.get(username)!=null;
     }
 
     public boolean addUser(User user) {

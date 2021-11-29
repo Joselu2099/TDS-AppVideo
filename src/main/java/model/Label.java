@@ -56,6 +56,7 @@ public class Label implements Comparable<Label> {
 
     @Override
     public int compareTo(@NotNull Label o) {
+    	if(this.name == null) return 0;
         return this.name.compareTo(o.name);
     }
 }

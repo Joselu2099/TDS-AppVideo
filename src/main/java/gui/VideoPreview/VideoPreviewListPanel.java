@@ -3,7 +3,6 @@ package gui.VideoPreview;
 import gui.Util.SwapLayout;
 import gui.Util.WrapLayout;
 import model.Video;
-
 import javax.swing.*;
 import java.util.List;
 import java.util.function.Consumer;

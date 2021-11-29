@@ -3,6 +3,7 @@ package gui;
 import com.toedter.calendar.JDateChooser;
 import controller.AppVideo;
 import gui.Util.UIUtils;
+import model.UserRepository;
 
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
@@ -381,7 +382,7 @@ public class RegisterWindow {
             textUsername.setBorder(BorderFactory.createLineBorder(Color.RED));
             salida = false;
         } else {
-            if (AppVideo.getInstance().isUserRegistered(textUsername.getText())) {
+            if (UserRepository.getInstance().isUserRegistered(textUsername.getText())) {
                 textUsername.setBorder(BorderFactory.createLineBorder(Color.RED));
                 //JOptionPane.showMessageDialog(frmRegister, "Ese nombre de usuario ya esta en uso, prueba con otro.\n","Registro", JOptionPane.ERROR_MESSAGE);
                 lblWarningUser.setText("Ese nombre de usuario ya esta en uso, prueba con otro");

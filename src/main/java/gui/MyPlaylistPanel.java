@@ -5,7 +5,6 @@ import gui.Util.SwapLayout;
 import launcher.Launcher;
 import model.Playlist;
 import javax.swing.*;
-
 import org.jetbrains.annotations.NotNull;
 import java.awt.*;
 import java.util.ArrayList;

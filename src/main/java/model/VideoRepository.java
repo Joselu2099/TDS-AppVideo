@@ -22,11 +22,16 @@ public class VideoRepository implements VideosListListener {
 //    private Map<String, Video> filteredVideoList; // <URL, Video>
     private List<Video> filteredList;
     private List<Runnable> callbacks;
+    
     private VideoRepository() {
         callbacks = new ArrayList<>();
         try {
             factory = DAOFactory.getInstance();
             videoAdapter = factory.getDAOVideo();
+            videoList = new HashMap<String, Video>();
+            videoListIDs = new HashMap<Integer, Video>();
+            filteredList = new ArrayList<Video>();
+            callbacks = new ArrayList<Runnable>();
             this.loadRepository();
         } catch (DAOException eDAO) {
             eDAO.printStackTrace();
@@ -57,14 +62,15 @@ public class VideoRepository implements VideosListListener {
     }
 
     public boolean isVideoRegistered(String url){
-        return videoList.get(url)==null;
+        return videoList.get(url)!=null;
     }
 
-    public Video getVideo(Integer id) {
+    public Video getVideoByID(Integer id) {
+    	System.out.println(videoListIDs.toString() + ", INTENTO SACAR -> " + videoListIDs.get(id));
         return videoListIDs.get(id);
     }
 
-    public Video getVideo(String url) {
+    public Video getVideoByURL(String url) {
         return videoList.get(url);
     }
 
@@ -96,8 +102,7 @@ public class VideoRepository implements VideosListListener {
     }
 
     public boolean addVideo(Video video) {
-        if (getVideo(video.getUrl()) != null)
-            return false;
+        if (getVideoByURL(video.getUrl()) != null) return false;
         videoAdapter.create(video);
         videoList.put(video.getUrl(),video);
         videoListIDs.put(video.getId(),video);
