@@ -2,7 +2,6 @@ package gui;
 
 import controller.AppVideo;
 import gui.Util.UIUtils;
-import pulsador.Luz;
 
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
@@ -69,7 +68,7 @@ public class SettingsWindow {
         gbc_lblAppVideoIcon.gridy = 3;
         frmSettings.getContentPane().add(lblAppVideoIcon, gbc_lblAppVideoIcon);
 
-        lblLightNightMode = new JLabel(AppVideo.getInstance().getActualUser().isNightMode() ? "Night mode" : "Light mode");
+        lblLightNightMode = new JLabel(AppVideo.getInstance().getCurrentUser().isNightMode() ? "Night mode" : "Light mode");
         lblLightNightMode.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
         GridBagConstraints gbc_lblLightNightMode = new GridBagConstraints();
         gbc_lblLightNightMode.insets = new Insets(0, 0, 5, 5);
@@ -124,10 +123,10 @@ public class SettingsWindow {
     }
 
     private void setNightMode(){
-        if (!AppVideo.getInstance().getActualUser().isNightMode()) {
+        if (!AppVideo.getInstance().getCurrentUser().isNightMode()) {
             lblLightNightMode.setText(NIGHTMODEACTIVATED);
             AppVideo.getInstance().setNightMode(true);
-        } else if (AppVideo.getInstance().getActualUser().isNightMode()) {
+        } else if (AppVideo.getInstance().getCurrentUser().isNightMode()) {
             lblLightNightMode.setText(NIGHTMODEDISABLED);
             AppVideo.getInstance().setNightMode(false);
         }

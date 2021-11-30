@@ -2,11 +2,15 @@ package gui;
 
 import controller.AppVideo;
 import model.*;
+import model.Label;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
+import java.util.Set;
+import java.util.function.BiConsumer;
 
 public class AppVideoWindow {
 
@@ -19,6 +23,7 @@ public class AppVideoWindow {
     /**
      * Create the application.
      */
+
     public AppVideoWindow() {
         initialize();
     }
@@ -112,17 +117,17 @@ public class AppVideoWindow {
         frmAppVideo.getContentPane().add(tabbedPane, BorderLayout.NORTH);
 
         //JPanel home = new JPanel();
-        homePanel = new HomePanel(frmAppVideo, AppVideo.getInstance().getCurrentVideos());
+        homePanel = new HomePanel(frmAppVideo);
 //        homePanel.showVideoPreview(VideoRepository.getInstance().getFilteredVideos());
         tabbedPane.addTab("Home", null, homePanel, null);
 
-        recentPanel = new RecentPanel(frmAppVideo, AppVideo.getInstance().getActualUser().getRecentVideos());
+        recentPanel = new RecentPanel(frmAppVideo, AppVideo.getInstance().getCurrentUser().getRecentVideos());
         tabbedPane.addTab("Recent", null, recentPanel, null);
 
         myPlaylistPanel = new MyPlaylistPanel(frmAppVideo, AppVideo.getInstance().getCurrentPlaylists());
         tabbedPane.addTab("My Playlists", null, myPlaylistPanel, null);
 
-        createPlaylistPanel = new CreatePlaylistPanel(frmAppVideo, AppVideo.getInstance().getActualUser().getListOfPlaylist());
+        createPlaylistPanel = new CreatePlaylistPanel(frmAppVideo, AppVideo.getInstance().getCurrentUser().getListOfPlaylist());
         tabbedPane.addTab("Create Playlists", null, createPlaylistPanel, null);
     }
 

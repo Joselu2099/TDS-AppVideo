@@ -3,35 +3,44 @@ package controller;
 import dao.DAOException;
 import dao.DAOFactory;
 import dao.DAOUser;
-import dao.DAOVideo;
 import gui.AppVideoWindow;
+import gui.HomePanel;
 import model.*;
 import org.apache.commons.codec.digest.DigestUtils;
 import umu.tds.componente.VideosList;
 import umu.tds.componente.VideosListEvent;
 import umu.tds.componente.VideosListListener;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class AppVideo implements VideosListListener {
+public class AppVideo {
 
     public static final int MIN_PASSWORD_LENGTH = 8;
     public static AppVideo uniqueInstance = null;
     private DAOFactory factory;
-    private User actualUser;
+    private User currentUser;
     private AppVideoWindow appVideoWindow;
-    private List<Video> currentVideos;
     private List<Playlist> currentPlaylists;
-    private VideosList videosList;
+    private IFilter filter;
+
+    private VideoRepository videoRepository;
+    private UserRepository userRepository;
 
     private AppVideo() {
         try {
             factory = DAOFactory.getInstance();
+            videoRepository = VideoRepository.getInstance();
+            userRepository = UserRepository.getInstance();
+
+            currentPlaylists = new ArrayList<>();
         } catch (DAOException e) {
             e.printStackTrace();
         }
+        filter = new NoFilter();
     }
 
     public static AppVideo getInstance() {
@@ -40,19 +49,21 @@ public class AppVideo implements VideosListListener {
         return uniqueInstance;
     }
 
-    public User getActualUser() {
-        return actualUser;
+    public User getCurrentUser() {
+        return currentUser;
     }
 
-    public void setActualUser(User actualUser) {
-        this.actualUser = actualUser;
-        applyFilter(actualUser.getFilter());
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+        filter = currentUser.getFilter();
+        applyFilter(currentUser.getFilter());
     }
 
     public boolean login(String username, String password) {
-        User user = UserRepository.getInstance().getUser(username);
+        User user = userRepository.getUser(username);
         if (user != null && checkPassword(password, user.getPassword())) {
-            this.setActualUser(user);
+            this.setCurrentUser(user);
+            applyFilter(user.getFilter());
             return true;
         }
         return false;
@@ -64,7 +75,7 @@ public class AppVideo implements VideosListListener {
     }
 
     public boolean isUserRegistered(String username) {
-        return UserRepository.getInstance().isUserRegistered(username);
+        return userRepository.isUserRegistered(username);
     }
 
     public boolean registerUser(String name, String surname, String mail, String username, String password, String dateOfBirth) {
@@ -73,38 +84,43 @@ public class AppVideo implements VideosListListener {
         user.setNightMode(false);
         DAOUser daoUser = factory.getDAOUser();
         daoUser.create(user);
-        UserRepository.getInstance().addUser(user);
+        userRepository.addUser(user);
         return true;
     }
 
     public boolean removeUser(String username) {
         if (isUserRegistered(username)){
             DAOUser daoUser = factory.getDAOUser();
-            daoUser.delete(UserRepository.getInstance().getUser(username));
+            daoUser.delete(userRepository.getUser(username));
         }
-        return UserRepository.getInstance().removeUser(username);
+        return userRepository.removeUser(username);
     }
 
     public void loadVideos(String file){
-        videosList = new VideosList(file);
-        videosList.addVideosListListener(AppVideo.getInstance());
+        VideosList videosList = new VideosList(file);
+//        videosList.addVideosListListener(AppVideo.getInstance()); // TODO refactor java bean
 
-        VideoRepository.getInstance().saveUploadedVideos(videosList.getVideos());
-        DAOVideo daoVideo = factory.getDAOVideo();
-        for(Video v: VideoRepository.getInstance().getVideos()){
-            persistVideo(v);
+        persistXMLVideoList(videosList.getVideos());
+        updateVideoPreviewPanel();
+
+    }
+
+    private void updateVideoPreviewPanel(){
+        if(appVideoWindow==null){
+            return;
         }
 
-        appVideoWindow.getHomePanel().setFilteredVideos(currentVideos);
-        videosList.setVideos(videosList.getVideos());
+        HomePanel homePanel = appVideoWindow.getHomePanel();
+        homePanel.showVideoPreview(searchVideos(homePanel.getSearchText(),homePanel.getSearchLabelSet()));
+        appVideoWindow.getMyPlaylistPanel().setFilteredPlaylist(currentPlaylists);
     }
     
     public List<Video> searchVideos(String text,Set<Label> labelSet) {
-    	return currentVideos.stream()
+    	return videoRepository.getUnmodifiableFilteredVideoSet().stream()
 				.parallel()
 				.filter(v-> v.getTitle().contains(text))
 				.filter(v -> {
-					if (!labelSet.isEmpty())
+					if (labelSet != null && !labelSet.isEmpty())
 						return v.getLabels().stream().parallel().anyMatch(labelSet::contains);
 					return true;
 				}) // OR filter
@@ -118,15 +134,15 @@ public class AppVideo implements VideosListListener {
                 .collect(Collectors.toList());
     }
 
+    public boolean isVideoPersisted(String url){
+        return videoRepository.isVideoPresent(url);
+    }
+
     public void persistVideo(Video video){
-        //TODO no guarda bien los videos, solo modificar esta funcion && AppVideoDAOVideo
-        DAOVideo daoVideo = factory.getDAOVideo();
-        try {
-            if (daoVideo.get(video.getId()) == null) {
-                daoVideo.create(video);
-            }
-        }catch (NullPointerException ignored){}
-        //return VideoRepository.getInstance().addVideo(video);
+        if (!isVideoPersisted(video.getUrl()))
+            return;
+        factory.getDAOVideo().create(video); // Side effect: update video ids
+        videoRepository.addVideo(video,filter.test(video));
     }
 
     public String encodePassword(String password) {
@@ -144,19 +160,14 @@ public class AppVideo implements VideosListListener {
     }
 
     public void applyFilter(IFilter filter) {
-        if (!getActualUser().getFilter().getClass().equals(filter.getClass())) {
-            getActualUser().setFilter(filter);
-        }
+        getCurrentUser().setFilter(filter);
 
-        this.currentVideos = VideoRepository.getInstance().setVideoFilter(filter);
-        this.currentPlaylists = getActualUser().getListOfPlaylist().stream()
-                .filter(playlist -> currentVideos.containsAll(playlist.getListOfVideos()))
+        videoRepository.updateFilteredVideoSet(videoRepository.getVideoList().stream().filter(filter::test).collect(Collectors.toSet()));
+        this.currentPlaylists = getCurrentUser().getListOfPlaylist().stream()
+                .filter(playlist -> videoRepository.getUnmodifiableFilteredVideoSet().containsAll(playlist.getListOfVideos()))
                 .collect(Collectors.toList());
 
-        if(appVideoWindow!=null){
-            appVideoWindow.getHomePanel().setFilteredVideos(currentVideos);
-            appVideoWindow.getMyPlaylistPanel().setFilteredPlaylist(currentPlaylists);
-        }
+        updateVideoPreviewPanel();
         /*
         currentPlaylists = new ArrayList<Playlist>();
         for(Playlist p:getActualUser().getListOfPlaylist()){
@@ -170,20 +181,8 @@ public class AppVideo implements VideosListListener {
         */
     }
 
-    public List<Video> getCurrentVideos() {
-		return Collections.unmodifiableList(currentVideos);
-	}
-
-	public void setCurrentVideos(List<Video> currentVideos) {
-		this.currentVideos = currentVideos;
-	}
-
-    public void addCurrentVideo(Video video){
-        this.currentVideos.add(video);
-    }
-
-    public void removeCurrentVideo(Video video){
-        this.currentVideos.remove(video);
+    public List<Video> getFilteredVideoList(){
+        return new ArrayList<>(videoRepository.getUnmodifiableFilteredVideoSet());
     }
 
 	public List<Playlist> getCurrentPlaylists() {
@@ -195,53 +194,60 @@ public class AppVideo implements VideosListListener {
 	}
 
 	public void changeMail(String mail) {
-        getActualUser().setMail(mail);
+        getCurrentUser().setMail(mail);
 
         DAOUser daoUser = factory.getDAOUser();
-        daoUser.updateProfile(getActualUser());
+        daoUser.updateProfile(getCurrentUser());
     }
 
     public void changeUsername(String username) {
-        getActualUser().setUsername(username);
+        getCurrentUser().setUsername(username);
 
         DAOUser daoUser = factory.getDAOUser();
-        daoUser.updateProfile(getActualUser());
+        daoUser.updateProfile(getCurrentUser());
     }
 
     public void changePassword(String password) {
-        getActualUser().setPassword(encodePassword(password));
+        getCurrentUser().setPassword(encodePassword(password));
 
         DAOUser daoUser = factory.getDAOUser();
-        daoUser.updateProfile(getActualUser());
+        daoUser.updateProfile(getCurrentUser());
     }
 
     public void becomePremium() {
-        getActualUser().setPremium("si");
+        getCurrentUser().setPremium("si");
 
         DAOUser daoUser = factory.getDAOUser();
-        daoUser.updateProfile(getActualUser());
+        daoUser.updateProfile(getCurrentUser());
     }
 
     public void quitPremium() {
-        getActualUser().setPremium("no");
+        getCurrentUser().setPremium("no");
 
         DAOUser daoUser = factory.getDAOUser();
-        daoUser.updateProfile(getActualUser());
+        daoUser.updateProfile(getCurrentUser());
     }
 
     public void setNightMode(boolean nightMode) {
-        getActualUser().setNightMode(nightMode);
+        getCurrentUser().setNightMode(nightMode);
 
         DAOUser daoUser = factory.getDAOUser();
-        daoUser.updateProfile(getActualUser());
+        daoUser.updateProfile(getCurrentUser());
     }
 
     public void generatePDF() {
 
     }
 
-    @Override
-    public void notifiedChargedVideos(VideosListEvent videosListEvent) {
-        System.out.println("Videos cargados!");
+
+    public void persistXMLVideoList(List<umu.tds.componente.Video> videos) {
+        videos.stream()
+                .map(v -> {Video video = new Video(v.getTitulo(), v.getURL());
+                    video.setLabels(v.getEtiqueta().stream()
+                            .map(Label::valueOf).collect(Collectors.toSet()));
+                    return video;
+                })
+                .forEach(this::persistVideo);
     }
+
 }

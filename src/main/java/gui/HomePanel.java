@@ -17,10 +17,9 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
-import java.util.Arrays;
+import java.util.*;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
 public class HomePanel extends JPanel{
@@ -31,15 +30,21 @@ public class HomePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	private JTextField textField;
-	JFrame parent;
-	VideoPreviewListPanel vidPanel;
-	private List<Video> filteredVideos;
+	private JFrame parent;
+	private VideoPreviewListPanel vidPanel;
+	Set<Label> labelSet = new TreeSet<>();
 
+	public String getSearchText(){
+		return textField.getText();
+	}
+
+	public Set<Label> getSearchLabelSet(){
+		return Collections.unmodifiableSet(labelSet);
+	}
 	/**
 	 * Create the panel.
 	 */
-	public HomePanel(JFrame parent ,List<Video> list ) {
-		filteredVideos = list;
+	public HomePanel(JFrame parent) {
 		// Necesitamos el JFrame para ocultar la ventana cuando lanzamos
 		// el visualizador de video.
 		this.parent = parent;
@@ -48,7 +53,6 @@ public class HomePanel extends JPanel{
 		JPanel searchPanel = new JPanel();
 		searchPanel.setLayout(new BoxLayout(searchPanel,BoxLayout.Y_AXIS));
 		JPanel searchBoxPanel = new JPanel();
-		Set<Label> labelSet = new TreeSet<>();
 		searchPanel.add(searchBoxPanel);
 		LabelEditorPanel labelManager = new LabelEditorPanel(labelSet,
 				label -> {
@@ -67,8 +71,16 @@ public class HomePanel extends JPanel{
 		searchBoxPanel.add(textField);
 		textField.setColumns(30);
 
+
+		vidPanel = new VideoPreviewListPanel(new ArrayList<>(),vid->{
+			VideoPlayerWindow player = new VideoPlayerWindow(vid);
+			player.showPlayer(parent);
+		});
+
 		JButton btnSearchButton = new JButton("BUSCAR");
-		btnSearchButton.addActionListener(l->setFilteredVideos(AppVideo.getInstance().searchVideos(textField.getText(),labelSet)));
+		btnSearchButton.addActionListener(l-> {
+				showVideoPreview(AppVideo.getInstance().searchVideos(textField.getText(),labelSet));
+		});
 		searchBoxPanel.add(btnSearchButton);
 		
 		Luz luz = new Luz();
@@ -94,31 +106,14 @@ public class HomePanel extends JPanel{
 		});
 		searchBoxPanel.add(luz);
 
-		showVideoPreview(filteredVideos);
 		JScrollPane scrollPane = new JScrollPane(vidPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		add(scrollPane,BorderLayout.CENTER);
 	}
 
-	public List<Video> getFilteredVideos() {
-		return filteredVideos;
-	}
-
-	public void setFilteredVideos(@NotNull List<Video> filteredVideos) {
-		this.filteredVideos = filteredVideos;
-		showVideoPreview(filteredVideos);
-	}
 
 	public void showVideoPreview(List<Video> videoList) {
-		//currentList = videoList;
-		if (vidPanel == null){
-			vidPanel = new VideoPreviewListPanel(videoList,vid->{
-				VideoPlayerWindow player = new VideoPlayerWindow(vid);
-				player.showPlayer(parent);
-			});
-		}else {
-			vidPanel.setPrewviewList(videoList);
-		}
+		vidPanel.setPrewviewList(videoList);
 	}
 
 	public static void main(String[] args) {
@@ -166,7 +161,7 @@ public class HomePanel extends JPanel{
 				};
 				List<Video> videoList = Arrays.stream(url).map(Video::new).collect(Collectors.toList());
 				JFrame f = new JFrame();
-				HomePanel h = new HomePanel(f, AppVideo.getInstance().getCurrentVideos());
+				HomePanel h = new HomePanel(f);
 //				HomePanel h = new HomePanel(f,videoList);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				f.setContentPane(h);

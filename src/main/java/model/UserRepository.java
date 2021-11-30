@@ -10,28 +10,26 @@ import java.util.stream.Collectors;
 
 public class UserRepository {
 
-    private static UserRepository uniqueInstance = null;
-    private DAOFactory factory;
     private DAOUser userAdapter;
     //private DAOPlaylist playlistAdapter;
+    private static UserRepository instance;
 
     private Map<String, User> userList;  // <Username, User>
 
+    public static UserRepository getInstance(){
+        if (instance == null)
+            instance = new UserRepository();
+        return instance;
+    }
+
     private UserRepository() {
         try {
-            factory = DAOFactory.getInstance();
-            userAdapter = factory.getDAOUser();
+            userAdapter = DAOFactory.getInstance().getDAOUser();
             //playlistAdapter = factory.getDAOPlaylist();
             this.loadRepository();
         } catch (DAOException eDAO) {
             eDAO.printStackTrace();
         }
-    }
-
-    public static UserRepository getInstance() {
-        if (uniqueInstance == null)
-            uniqueInstance = new UserRepository();
-        return uniqueInstance;
     }
 
     private void loadRepository() {

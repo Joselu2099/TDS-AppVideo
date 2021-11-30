@@ -18,9 +18,9 @@ class AppVideoTest {
         AppVideo.getInstance().removeUser("___testUserName2");
         assertTrue(AppVideo.getInstance().registerUser("___testUser", "___TDS", "test@example.com", "___testUserName2", "testpassword", "2020-10-10"));
         assertTrue(AppVideo.getInstance().login("___testUserName2", "testpassword"), "login");
-        assertNotEquals("si", AppVideo.getInstance().getActualUser().getPremium());
+        assertNotEquals("si", AppVideo.getInstance().getCurrentUser().getPremium());
         AppVideo.getInstance().becomePremium();
-        assertEquals("si", AppVideo.getInstance().getActualUser().getPremium());
+        assertEquals("si", AppVideo.getInstance().getCurrentUser().getPremium());
 
 
         assertTrue(AppVideo.getInstance().removeUser("___testUserName2"), "remove");
@@ -46,10 +46,10 @@ class AppVideoTest {
         assertTrue(AppVideo.getInstance().isUserRegistered("___testUserName1"), "isRegistered");
         assertTrue(AppVideo.getInstance().login("___testUserName1", "testpassword"), "login");
         AppVideo.getInstance().setNightMode(true);
-        assertTrue(AppVideo.getInstance().getActualUser().isNightMode());
+        assertTrue(AppVideo.getInstance().getCurrentUser().isNightMode());
 
         AppVideo.getInstance().setNightMode(false);
-        assertFalse(AppVideo.getInstance().getActualUser().isNightMode());
+        assertFalse(AppVideo.getInstance().getCurrentUser().isNightMode());
         assertTrue(AppVideo.getInstance().removeUser("___testUserName1"), "remove");
     }
 

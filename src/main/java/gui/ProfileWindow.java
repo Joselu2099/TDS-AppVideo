@@ -68,7 +68,7 @@ public class ProfileWindow {
         gbc_lblAppVideoIcon.gridy = 3;
         frmProfile.getContentPane().add(lblAppVideoIcon, gbc_lblAppVideoIcon);
 
-        lblName = new JLabel("Name: " + AppVideo.getInstance().getActualUser().getName());
+        lblName = new JLabel("Name: " + AppVideo.getInstance().getCurrentUser().getName());
         lblName.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
         GridBagConstraints gbc_lblName = new GridBagConstraints();
         gbc_lblName.insets = new Insets(0, 0, 5, 5);
@@ -76,7 +76,7 @@ public class ProfileWindow {
         gbc_lblName.gridy = 6;
         frmProfile.getContentPane().add(lblName, gbc_lblName);
 
-        lblSurname = new JLabel("Surname: " + AppVideo.getInstance().getActualUser().getSurname());
+        lblSurname = new JLabel("Surname: " + AppVideo.getInstance().getCurrentUser().getSurname());
         lblSurname.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
         GridBagConstraints gbc_lblSurname = new GridBagConstraints();
         gbc_lblSurname.insets = new Insets(0, 0, 5, 5);
@@ -84,7 +84,7 @@ public class ProfileWindow {
         gbc_lblSurname.gridy = 7;
         frmProfile.getContentPane().add(lblSurname, gbc_lblSurname);
 
-        lblMail = new JLabel("Mail: " + AppVideo.getInstance().getActualUser().getMail());
+        lblMail = new JLabel("Mail: " + AppVideo.getInstance().getCurrentUser().getMail());
         lblMail.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
         GridBagConstraints gbc_lblMail = new GridBagConstraints();
         gbc_lblMail.insets = new Insets(0, 0, 5, 5);
@@ -92,7 +92,7 @@ public class ProfileWindow {
         gbc_lblMail.gridy = 8;
         frmProfile.getContentPane().add(lblMail, gbc_lblMail);
 
-        lblUsername = new JLabel("Username: " + AppVideo.getInstance().getActualUser().getUsername());
+        lblUsername = new JLabel("Username: " + AppVideo.getInstance().getCurrentUser().getUsername());
         lblUsername.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
         GridBagConstraints gbc_lblUsername = new GridBagConstraints();
         gbc_lblUsername.insets = new Insets(0, 0, 5, 5);
@@ -100,7 +100,7 @@ public class ProfileWindow {
         gbc_lblUsername.gridy = 10;
         frmProfile.getContentPane().add(lblUsername, gbc_lblUsername);
 
-        lblFilter = new JLabel("Filter: " + AppVideo.getInstance().getActualUser().getFilter().getClass().getSimpleName());
+        lblFilter = new JLabel("Filter: " + AppVideo.getInstance().getCurrentUser().getFilter().getClass().getSimpleName());
         lblFilter.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
         GridBagConstraints gbc_lblFilter = new GridBagConstraints();
         gbc_lblFilter.insets = new Insets(0, 0, 5, 5);
@@ -108,7 +108,7 @@ public class ProfileWindow {
         gbc_lblFilter.gridy = 6;
         frmProfile.getContentPane().add(lblFilter, gbc_lblFilter);
 
-        lblPremium = new JLabel("Premium: " + AppVideo.getInstance().getActualUser().getPremium());
+        lblPremium = new JLabel("Premium: " + AppVideo.getInstance().getCurrentUser().getPremium());
         lblPremium.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
         GridBagConstraints gbc_lblPremium = new GridBagConstraints();
         gbc_lblPremium.insets = new Insets(0, 0, 5, 5);
@@ -201,7 +201,7 @@ public class ProfileWindow {
         btnGeneratePDF.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (AppVideo.getInstance().getActualUser().isPremium()) AppVideo.getInstance().generatePDF();
+                if (AppVideo.getInstance().getCurrentUser().isPremium()) AppVideo.getInstance().generatePDF();
                 else
                     JOptionPane.showMessageDialog(frmProfile.getContentPane(), "Esta funcion es solo para usuarios premium", "Generate PDF", JOptionPane.ERROR_MESSAGE);
             }
@@ -243,7 +243,7 @@ public class ProfileWindow {
 
             if (newMail.trim().contains("@")) {
                 AppVideo.getInstance().changeMail(newMail);
-                lblMail.setText("Mail: " + AppVideo.getInstance().getActualUser().getMail());
+                lblMail.setText("Mail: " + AppVideo.getInstance().getCurrentUser().getMail());
                 break;
             } else
                 JOptionPane.showMessageDialog(frmProfile.getContentPane(), "El formato del Mail es incorrecto, ejemplo de uso: usuario@gmail.com", "Change mail", JOptionPane.ERROR_MESSAGE);
@@ -258,7 +258,7 @@ public class ProfileWindow {
 
             if (actualPassword == null) break;
 
-            if (AppVideo.getInstance().getActualUser().getPassword().equals(AppVideo.getInstance().encodePassword(actualPassword))) {
+            if (AppVideo.getInstance().getCurrentUser().getPassword().equals(AppVideo.getInstance().encodePassword(actualPassword))) {
 
                 String newPassword = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(), "Introduce la nueva contraseña : ",
                         "Change password", JOptionPane.PLAIN_MESSAGE, null, null, "password");
@@ -282,7 +282,7 @@ public class ProfileWindow {
     }
 
     private void changeUserUsername() {
-        if (AppVideo.getInstance().getActualUser().isPremium()) {
+        if (AppVideo.getInstance().getCurrentUser().isPremium()) {
             while (true) {
 
                 String newUsername = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(), "Intruduce un nuevo username : ",
@@ -292,7 +292,7 @@ public class ProfileWindow {
 
                 if (!AppVideo.getInstance().isUserRegistered(newUsername)) {
                     AppVideo.getInstance().changeUsername(newUsername);
-                    lblUsername.setText("Username: " + AppVideo.getInstance().getActualUser().getUsername());
+                    lblUsername.setText("Username: " + AppVideo.getInstance().getCurrentUser().getUsername());
                     break;
                 } else
                     JOptionPane.showMessageDialog(frmProfile.getContentPane(), "El username " + newUsername + " ya esta en uso, prueba con otro \uD83D\uDE04", "Change username", JOptionPane.ERROR_MESSAGE);
@@ -302,18 +302,18 @@ public class ProfileWindow {
     }
 
     private void becomeUserPremium() {
-        if (!AppVideo.getInstance().getActualUser().isPremium()) {
+        if (!AppVideo.getInstance().getCurrentUser().isPremium()) {
             AppVideo.getInstance().becomePremium();
-            lblPremium.setText("Premium: " + AppVideo.getInstance().getActualUser().getPremium());
+            lblPremium.setText("Premium: " + AppVideo.getInstance().getCurrentUser().getPremium());
         } else JOptionPane.showMessageDialog(frmProfile.getContentPane(),
                 "Ya eres premium \uD83D\uDE1D",
                 "Become premium", JOptionPane.ERROR_MESSAGE);
     }
 
     private void quitUserPremium() {
-        if (AppVideo.getInstance().getActualUser().isPremium()) {
+        if (AppVideo.getInstance().getCurrentUser().isPremium()) {
             AppVideo.getInstance().quitPremium();
-            lblPremium.setText("Premium: " + AppVideo.getInstance().getActualUser().getPremium());
+            lblPremium.setText("Premium: " + AppVideo.getInstance().getCurrentUser().getPremium());
         } else JOptionPane.showMessageDialog(frmProfile.getContentPane(),
                 "No eres premium \uD83D\uDE1D",
                 "Quit premium", JOptionPane.ERROR_MESSAGE);
