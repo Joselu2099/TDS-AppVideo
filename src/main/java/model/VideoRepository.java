@@ -98,7 +98,6 @@ public class VideoRepository {
 
     public void addVideo(Video video) {
         if (getVideoByURL(video.getUrl()) != null) return;
-        videoAdapter.create(video);
         videoList.put(video.getUrl(),video);
         videoListIDs.put(video.getId(),video);
         if (testFilter(video)){

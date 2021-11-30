@@ -90,7 +90,12 @@ public class AppVideo implements VideosListListener {
         videosList.addVideosListListener(AppVideo.getInstance());
 
         VideoRepository.getInstance().saveUploadedVideos(videosList.getVideos());
+        DAOVideo daoVideo = factory.getDAOVideo();
+        for(Video v: VideoRepository.getInstance().getVideos()){
+            persistVideo(v);
+        }
 
+        appVideoWindow.getHomePanel().setFilteredVideos(currentVideos);
         videosList.setVideos(videosList.getVideos());
     }
     
@@ -113,12 +118,14 @@ public class AppVideo implements VideosListListener {
                 .collect(Collectors.toList());
     }
 
-    public boolean persistVideo(Video video){
+    public void persistVideo(Video video){
+        //TODO no guarda bien los videos, solo modificar esta funcion && AppVideoDAOVideo
         DAOVideo daoVideo = factory.getDAOVideo();
-        if(daoVideo.get(video.getId())==null){
-            daoVideo.create(video);
-           return true;
-        }else return false;
+        try {
+            if (daoVideo.get(video.getId()) == null) {
+                daoVideo.create(video);
+            }
+        }catch (NullPointerException ignored){}
         //return VideoRepository.getInstance().addVideo(video);
     }
 

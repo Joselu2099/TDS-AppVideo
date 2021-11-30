@@ -51,7 +51,19 @@ class AppVideoTest {
         AppVideo.getInstance().setNightMode(false);
         assertFalse(AppVideo.getInstance().getActualUser().isNightMode());
         assertTrue(AppVideo.getInstance().removeUser("___testUserName1"), "remove");
+    }
 
+    @Test
+    void applyFilter(){
+        registerUser();
 
     }
+
+    /*
+    @Test
+    void removeUser(String username){
+        assertTrue(AppVideo.getInstance().removeUser(username, "remove");
+    }
+    */
+
 }
