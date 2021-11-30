@@ -146,8 +146,10 @@ public class AppVideo implements VideosListListener {
                 .filter(playlist -> currentVideos.containsAll(playlist.getListOfVideos()))
                 .collect(Collectors.toList());
 
-        appVideoWindow.getHomePanel().setFilteredVideos(currentVideos);
-        appVideoWindow.getMyPlaylistPanel().setFilteredPlaylist(currentPlaylists);
+        if(appVideoWindow!=null){
+            appVideoWindow.getHomePanel().setFilteredVideos(currentVideos);
+            appVideoWindow.getMyPlaylistPanel().setFilteredPlaylist(currentPlaylists);
+        }
         /*
         currentPlaylists = new ArrayList<Playlist>();
         for(Playlist p:getActualUser().getListOfPlaylist()){
