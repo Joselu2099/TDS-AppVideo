@@ -127,6 +127,22 @@ public class AppVideoWindow {
         tabbedPane.addTab("Create Playlists", null, createPlaylistPanel, null);
     }
 
+    public HomePanel getHomePanel() {
+        return homePanel;
+    }
+
+    public RecentPanel getRecentPanel() {
+        return recentPanel;
+    }
+
+    public MyPlaylistPanel getMyPlaylistPanel() {
+        return myPlaylistPanel;
+    }
+
+    public CreatePlaylistPanel getCreatePlaylistPanel() {
+        return createPlaylistPanel;
+    }
+
     /**
      * Vuelve a la ventana de Login
      */

@@ -7,15 +7,15 @@ import dao.DAOVideo;
 import gui.AppVideoWindow;
 import model.*;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.jetbrains.annotations.NotNull;
 import umu.tds.componente.VideosList;
-import java.util.ArrayList;
+import umu.tds.componente.VideosListEvent;
+import umu.tds.componente.VideosListListener;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class AppVideo {
+public class AppVideo implements VideosListListener {
 
     public static final int MIN_PASSWORD_LENGTH = 8;
     public static AppVideo uniqueInstance = null;
@@ -27,11 +27,8 @@ public class AppVideo {
     private VideosList videosList;
 
     private AppVideo() {
-        this.setActualUser(null);
         try {
             factory = DAOFactory.getInstance();
-            currentVideos = VideoRepository.getInstance().getFilteredVideos();
-            currentPlaylists = actualUser.getListOfPlaylist();
         } catch (DAOException e) {
             e.printStackTrace();
         }
@@ -49,6 +46,7 @@ public class AppVideo {
 
     public void setActualUser(User actualUser) {
         this.actualUser = actualUser;
+        applyFilter(actualUser.getFilter());
     }
 
     public boolean login(String username, String password) {
@@ -89,7 +87,7 @@ public class AppVideo {
 
     public void loadVideos(String file){
         videosList = new VideosList(file);
-        videosList.addVideosListListener(VideoRepository.getInstance());
+        videosList.addVideosListListener(AppVideo.getInstance());
 
         VideoRepository.getInstance().saveUploadedVideos(videosList.getVideos());
 
@@ -143,10 +141,13 @@ public class AppVideo {
             getActualUser().setFilter(filter);
         }
 
-        currentVideos = VideoRepository.getInstance().setVideoFilter(filter);
-        currentPlaylists = getActualUser().getListOfPlaylist().stream()
+        this.currentVideos = VideoRepository.getInstance().setVideoFilter(filter);
+        this.currentPlaylists = getActualUser().getListOfPlaylist().stream()
                 .filter(playlist -> currentVideos.containsAll(playlist.getListOfVideos()))
                 .collect(Collectors.toList());
+
+        appVideoWindow.getHomePanel().setFilteredVideos(currentVideos);
+        appVideoWindow.getMyPlaylistPanel().setFilteredPlaylist(currentPlaylists);
         /*
         currentPlaylists = new ArrayList<Playlist>();
         for(Playlist p:getActualUser().getListOfPlaylist()){
@@ -158,8 +159,6 @@ public class AppVideo {
             if(contador>=p.getListOfVideos().size()) currentPlaylists.add(p);
         }
         */
-
-        //appVideoWindow.updateVideosOnPanels(VideoRepository.getInstance().getFilteredVideos());
     }
 
     public List<Video> getCurrentVideos() {
@@ -170,8 +169,16 @@ public class AppVideo {
 		this.currentVideos = currentVideos;
 	}
 
+    public void addCurrentVideo(Video video){
+        this.currentVideos.add(video);
+    }
+
+    public void removeCurrentVideo(Video video){
+        this.currentVideos.remove(video);
+    }
+
 	public List<Playlist> getCurrentPlaylists() {
-		return currentPlaylists;
+		return Collections.unmodifiableList(currentPlaylists);
 	}
 
 	public void setCurrentPlaylists(List<Playlist> currentPlaylists) {
@@ -222,5 +229,10 @@ public class AppVideo {
 
     public void generatePDF() {
 
+    }
+
+    @Override
+    public void notifiedChargedVideos(VideosListEvent videosListEvent) {
+        System.out.println("Videos cargados!");
     }
 }

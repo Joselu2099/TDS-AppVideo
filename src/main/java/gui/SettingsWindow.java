@@ -11,6 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Objects;
 
 
 public class SettingsWindow {
@@ -61,7 +62,7 @@ public class SettingsWindow {
         });
 
         JLabel lblAppVideoIcon = new JLabel("");
-        lblAppVideoIcon.setIcon(new ImageIcon(SettingsWindow.class.getResource("/images/multimediavideoplayer_128px.png")));
+        lblAppVideoIcon.setIcon(new ImageIcon(Objects.requireNonNull(SettingsWindow.class.getResource("/images/multimediavideoplayer_128px.png"))));
         GridBagConstraints gbc_lblAppVideoIcon = new GridBagConstraints();
         gbc_lblAppVideoIcon.insets = new Insets(0, 0, 5, 5);
         gbc_lblAppVideoIcon.gridx = 5;
@@ -89,7 +90,7 @@ public class SettingsWindow {
         btnNightMode.setSelectedIcon(null);
         btnNightMode.setBorderPainted(false);
         btnNightMode.setBorder(new MatteBorder(1, 1, 1, 1, UIUtils.getFocusedBorder()));
-        btnNightMode.setIcon(new ImageIcon(SettingsWindow.class.getResource("/images/nightModeIcon.png")));
+        btnNightMode.setIcon(new ImageIcon(Objects.requireNonNull(SettingsWindow.class.getResource("/images/nightModeIcon.png"))));
         GridBagConstraints gbc_btnNightMode = new GridBagConstraints();
         gbc_btnNightMode.insets = new Insets(0, 0, 5, 5);
         gbc_btnNightMode.gridx = 2;
@@ -113,7 +114,7 @@ public class SettingsWindow {
         frmSettings.getContentPane().add(btnNewButton, gbc_btnNewButton);
         btnBack.setBorderPainted(false);
         btnBack.setBorder(new MatteBorder(1, 1, 1, 1, UIUtils.getFocusedBorder()));
-        btnBack.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/backIcon.png")));
+        btnBack.setIcon(new ImageIcon(Objects.requireNonNull(ProfileWindow.class.getResource("/images/backIcon.png"))));
         GridBagConstraints gbc_btnBack = new GridBagConstraints();
         gbc_btnBack.insets = new Insets(0, 0, 5, 5);
         gbc_btnBack.gridx = 1;

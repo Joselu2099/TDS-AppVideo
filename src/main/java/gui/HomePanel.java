@@ -166,7 +166,7 @@ public class HomePanel extends JPanel{
 				};
 				List<Video> videoList = Arrays.stream(url).map(Video::new).collect(Collectors.toList());
 				JFrame f = new JFrame();
-				HomePanel h = new HomePanel(f, VideoRepository.getInstance().getFilteredVideos());
+				HomePanel h = new HomePanel(f, AppVideo.getInstance().getCurrentVideos());
 //				HomePanel h = new HomePanel(f,videoList);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				f.setContentPane(h);

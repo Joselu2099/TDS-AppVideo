@@ -6,30 +6,26 @@ import dao.DAOFactory;
 import dao.DAOVideo;
 import umu.tds.componente.*;
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class VideoRepository implements VideosListListener {
+public class VideoRepository {
     private static VideoRepository uniqueInstance = null;
-    private DAOFactory factory;
+    //private DAOFactory factory;
     private DAOVideo videoAdapter;
 
     private Map<Integer, Video> videoListIDs; // <id, Video>
     private Map<String, Video> videoList; // <URL, Video>
-//    private Map<String, Video> filteredVideoList; // <URL, Video>
-    private List<Video> filteredList;
-    private List<Runnable> callbacks;
+    //private Map<String, Video> filteredVideoList; // <URL, Video>
+    //private List<Video> filteredList;
+    //private List<Runnable> callbacks;
     
     private VideoRepository() {
-        callbacks = new ArrayList<>();
         try {
-            factory = DAOFactory.getInstance();
+            DAOFactory factory = DAOFactory.getInstance();
             videoAdapter = factory.getDAOVideo();
             videoList = new HashMap<String, Video>();
             videoListIDs = new HashMap<Integer, Video>();
-            filteredList = new ArrayList<Video>();
-            callbacks = new ArrayList<Runnable>();
             this.loadRepository();
         } catch (DAOException eDAO) {
             eDAO.printStackTrace();
@@ -45,7 +41,8 @@ public class VideoRepository implements VideosListListener {
     private void loadRepository() {
         // Function.identity = return the object itself, it's same as e -> e
         videoList = videoAdapter.getAll().stream().collect(Collectors.toMap(Video::getUrl, Function.identity()));
-        setVideoFilter(new NoFilter());
+        AppVideo.getInstance().setCurrentVideos(getVideos());
+
     }
 
     public void saveUploadedVideos(List<umu.tds.componente.Video> videos) {
@@ -71,7 +68,7 @@ public class VideoRepository implements VideosListListener {
     public Video getVideoByURL(String url) {
         return videoList.get(url);
     }
-
+    /*
     private void broadcastFilteredVideoChangeListener(){
         callbacks.stream().forEach(Runnable::run);
     }
@@ -82,6 +79,10 @@ public class VideoRepository implements VideosListListener {
     public void removeFilteredVideoChangeListener(Runnable callback){
         if (callback != null)
             callbacks.remove(callback);
+    }
+    */
+    private boolean testFilter(Video video){
+        return AppVideo.getInstance().getActualUser().getFilter().test(video);
     }
 
     public List<Video> setVideoFilter(IFilter filter){
@@ -95,27 +96,16 @@ public class VideoRepository implements VideosListListener {
         return new ArrayList<>(videoList.values());
     }
 
-    public List<Video> getFilteredVideos(){
-        return Collections.unmodifiableList(filteredList);
-    }
-
-    public boolean addVideo(Video video) {
-        if (getVideoByURL(video.getUrl()) != null) return false;
+    public void addVideo(Video video) {
+        if (getVideoByURL(video.getUrl()) != null) return;
         videoAdapter.create(video);
         videoList.put(video.getUrl(),video);
         videoListIDs.put(video.getId(),video);
         if (testFilter(video)){
-            filteredList.add(video);
-            broadcastFilteredVideoChangeListener();
+            AppVideo.getInstance().addCurrentVideo(video);
+            //broadcastFilteredVideoChangeListener();
         }
-        return true;
     }
-
-
-    private boolean testFilter(Video video){
-        return AppVideo.getInstance().getActualUser().getFilter().test(video);
-    }
-
 
     public boolean isVideoPresent(String url){
         return videoList.get(url) != null;
@@ -128,13 +118,9 @@ public class VideoRepository implements VideosListListener {
     public void removeVideo(Video video) {
         if (isVideoPresent(video.getUrl())){
             videoListIDs.remove(videoList.remove(video.getUrl()).getId());
-            filteredList.remove(video);
-            broadcastFilteredVideoChangeListener();
+            if(AppVideo.getInstance().getCurrentVideos().contains(video))
+                AppVideo.getInstance().removeCurrentVideo(video);
+            //broadcastFilteredVideoChangeListener();
         }
-    }
-
-    @Override
-    public void notifiedChargedVideos(VideosListEvent videosListEvent) {
-        System.out.println("Videos have been loaded");
     }
 }
