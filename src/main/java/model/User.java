@@ -2,6 +2,7 @@ package model;
 
 import com.formdev.flatlaf.IntelliJTheme;
 import launcher.Launcher;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class User {
+public class User implements Comparable<User> {
     private final Map<String, Playlist> listOfPlaylist;
     private int id;
     private String name;
@@ -174,38 +175,12 @@ public class User {
 
         User user = (User) o;
 
-        if (getId() != user.getId()) return false;
-        if (getName() != null ? !getName().equals(user.getName()) : user.getName() != null) return false;
-        if (getSurname() != null ? !getSurname().equals(user.getSurname()) : user.getSurname() != null) return false;
-        if (getMail() != null ? !getMail().equals(user.getMail()) : user.getMail() != null) return false;
-        if (getUsername() != null ? !getUsername().equals(user.getUsername()) : user.getUsername() != null)
-            return false;
-        if (getPassword() != null ? !getPassword().equals(user.getPassword()) : user.getPassword() != null)
-            return false;
-        if (getDateOfBirth() != null ? !getDateOfBirth().equals(user.getDateOfBirth()) : user.getDateOfBirth() != null)
-            return false;
-        if (getPremium() != null ? !getPremium().equals(user.getPremium()) : user.getPremium() != null) return false;
-        if (getListOfPlaylist() != null ? !getListOfPlaylist().equals(user.getListOfPlaylist()) : user.getListOfPlaylist() != null)
-            return false;
-        if (getRecentVideos() != null ? !getRecentVideos().equals(user.getRecentVideos()) : user.getRecentVideos() != null)
-            return false;
-        return getFilter() != null ? getFilter().equals(user.getFilter()) : user.getFilter() == null;
+        return getUsername() != null ? getUsername().equals(user.getUsername()) : user.getUsername() == null;
     }
 
     @Override
     public int hashCode() {
-        int result = getId();
-        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
-        result = 31 * result + (getSurname() != null ? getSurname().hashCode() : 0);
-        result = 31 * result + (getMail() != null ? getMail().hashCode() : 0);
-        result = 31 * result + (getUsername() != null ? getUsername().hashCode() : 0);
-        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
-        result = 31 * result + (getDateOfBirth() != null ? getDateOfBirth().hashCode() : 0);
-        result = 31 * result + (getPremium() != null ? getPremium().hashCode() : 0);
-        result = 31 * result + (getListOfPlaylist() != null ? getListOfPlaylist().hashCode() : 0);
-        result = 31 * result + (getRecentVideos() != null ? getRecentVideos().hashCode() : 0);
-        result = 31 * result + (getFilter() != null ? getFilter().hashCode() : 0);
-        return result;
+        return getUsername() != null ? getUsername().hashCode() : 0;
     }
 
     @Override
@@ -223,5 +198,10 @@ public class User {
                 ", recentVideos=" + recentVideos.toString() +
                 ", filter=" + filter.getClass().getSimpleName() +
                 '}';
+    }
+
+    @Override
+    public int compareTo(@NotNull User o) {
+        return this.getUsername().compareTo(o.getUsername());
     }
 }
