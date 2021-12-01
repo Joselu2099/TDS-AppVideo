@@ -12,12 +12,6 @@ import java.util.stream.Collectors;
 public class VideoRepository {
     private static VideoRepository uniqueInstance = null;
 
-    public static VideoRepository getInstance() {
-        if (uniqueInstance == null)
-            uniqueInstance = new VideoRepository();
-        return uniqueInstance;
-    }
-
     private DAOVideo videoAdapter;
     private Map<Integer, Video> videoIDMap; // <id, Video>
     private Map<String, Video> videoURLMap; // <URL, Video>
@@ -37,6 +31,12 @@ public class VideoRepository {
         } catch (DAOException eDAO) {
             eDAO.printStackTrace();
         }
+    }
+
+    public static VideoRepository getInstance() {
+        if (uniqueInstance == null)
+            uniqueInstance = new VideoRepository();
+        return uniqueInstance;
     }
 
     public void updateFilteredVideoSet(Set<Video> filteredVideoSet){

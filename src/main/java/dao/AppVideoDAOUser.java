@@ -144,8 +144,7 @@ public final class AppVideoDAOUser implements DAOUser {
 
     @Override
     public User get(int id) {
-        Entidad eUser = servPersistencia.recuperarEntidad(id);
-        return entityToUser(eUser);
+        return entityToUser(servPersistencia.recuperarEntidad(id));
     }
 
     @Override
