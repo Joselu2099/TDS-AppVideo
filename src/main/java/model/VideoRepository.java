@@ -76,16 +76,6 @@ public class VideoRepository {
         return videoURLMap.get(url) != null;
     }
 
-    public void removeVideo(Video video) {
-        if (!isVideoPresent(video.getUrl()))
-            return;
-        videoURLMap.remove(video.getUrl());
-        videoIDMap.remove(video.getId());
-
-        // For filteredList, we can remove safely.
-        filteredVideoSet.remove(video);
-    }
-
     public boolean removeVideo(String url) {
         if (!isVideoPresent(url))
             return false;
