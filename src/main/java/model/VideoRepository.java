@@ -85,4 +85,15 @@ public class VideoRepository {
         // For filteredList, we can remove safely.
         filteredVideoSet.remove(video);
     }
+
+    public boolean removeVideo(String url) {
+        if (!isVideoPresent(url))
+            return false;
+        videoURLMap.remove(url);
+        videoIDMap.remove(getVideo(url).getId());
+
+        // For filteredList, we can remove safely.
+        filteredVideoSet.remove(getVideo(url));
+        return true;
+    }
 }

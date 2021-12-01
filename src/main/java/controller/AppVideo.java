@@ -3,6 +3,7 @@ package controller;
 import dao.DAOException;
 import dao.DAOFactory;
 import dao.DAOUser;
+import dao.DAOVideo;
 import gui.AppVideoWindow;
 import gui.HomePanel;
 import model.*;
@@ -10,7 +11,6 @@ import org.apache.commons.codec.digest.DigestUtils;
 import umu.tds.componente.VideosList;
 import umu.tds.componente.VideosListEvent;
 import umu.tds.componente.VideosListListener;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -94,6 +94,14 @@ public class AppVideo {
             daoUser.delete(userRepository.getUser(username));
         }
         return userRepository.removeUser(username);
+    }
+
+    public boolean removeVideo(String url) {
+        if (isVideoPersisted(url)){
+            DAOVideo daoVideo = factory.getDAOVideo();
+            daoVideo.delete(videoRepository.getVideo(url));
+        }
+        return videoRepository.removeVideo(url);
     }
 
     public void loadVideos(String file){

@@ -1,5 +1,6 @@
 package controller;
 
+import model.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -55,15 +56,31 @@ class AppVideoTest {
 
     @Test
     void applyFilter(){
-        registerUser();
+        AppVideo.getInstance().removeUser("___testUserName1");
 
+        assertTrue(AppVideo.getInstance().registerUser("___testUser", "___TDS", "test@example.com", "___testUserName1", "testpassword", "2020-10-10"));
+        assertTrue(AppVideo.getInstance().isUserRegistered("___testUserName1"), "isRegistered");
+        assertTrue(AppVideo.getInstance().login("___testUserName1", "testpassword"), "login");
+
+        AppVideo.getInstance().applyFilter(new NoFilter());
+        assertEquals(new MinorsFilter(), AppVideo.getInstance().getCurrentUser().getFilter(),"userSavedFilter");
+        AppVideo.getInstance().applyFilter(new MinorsFilter());
+        assertEquals(new MinorsFilter(), AppVideo.getInstance().getCurrentUser().getFilter(),"userSavedFilter");
+        AppVideo.getInstance().applyFilter(new MyListsFilter());
+        assertEquals(new MinorsFilter(), AppVideo.getInstance().getCurrentUser().getFilter(),"userSavedFilter");
+        AppVideo.getInstance().applyFilter(new ImpopularsFilter());
+        assertEquals(new MinorsFilter(), AppVideo.getInstance().getCurrentUser().getFilter(),"userSavedFilter");
     }
 
-    /*
     @Test
-    void removeUser(String username){
-        assertTrue(AppVideo.getInstance().removeUser(username, "remove");
+    void persistVideo(){
+        AppVideo.getInstance().removeVideo("__testURL");
+        Video video = new Video("___testTitulo", "__testURL");
+
+        assertFalse(AppVideo.getInstance().isVideoPersisted("__testURL"),"isVideoPersisted");
+        AppVideo.getInstance().persistVideo(video);
+        assertTrue(AppVideo.getInstance().isVideoPersisted("__testURL"),"isVideoPersisted");
     }
-    */
+
 
 }
