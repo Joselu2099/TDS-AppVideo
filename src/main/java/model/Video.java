@@ -1,10 +1,12 @@
 package model;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class Video {
+public class Video implements Comparable<Video>{
 
     private int id;
     private String title;
@@ -84,21 +86,12 @@ public class Video {
 
         Video video = (Video) o;
 
-        if (getId() != video.getId()) return false;
-        if (getViews() != video.getViews()) return false;
-        if (getTitle() != null ? !getTitle().equals(video.getTitle()) : video.getTitle() != null) return false;
-        if (getUrl() != null ? !getUrl().equals(video.getUrl()) : video.getUrl() != null) return false;
-        return getLabels() != null ? getLabels().equals(video.getLabels()) : video.getLabels() == null;
+        return getUrl() != null ? getUrl().equals(video.getUrl()) : video.getUrl() == null;
     }
 
     @Override
     public int hashCode() {
-        int result = getId();
-        result = 31 * result + (getTitle() != null ? getTitle().hashCode() : 0);
-        result = 31 * result + (getUrl() != null ? getUrl().hashCode() : 0);
-        result = 31 * result + getViews();
-        result = 31 * result + (getLabels() != null ? getLabels().hashCode() : 0);
-        return result;
+        return getUrl() != null ? getUrl().hashCode() : 0;
     }
 
     @Override
@@ -110,5 +103,10 @@ public class Video {
                 ", views=" + views +
                 ", labels=" + labels +
                 '}';
+    }
+
+    @Override
+    public int compareTo(@NotNull Video o) {
+        return this.url.compareTo(o.url);
     }
 }

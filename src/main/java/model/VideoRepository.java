@@ -26,7 +26,7 @@ public class VideoRepository {
             // Function.identity = return the object itself, it's same as e -> e
             videoURLMap = videoAdapter.getAll().stream().collect(Collectors.toMap(Video::getUrl, Function.identity()));
             videoIDMap = videoURLMap.values().stream().collect(Collectors.toMap(Video::getId,Function.identity()));
-            filteredVideoSet = new TreeSet<>(videoURLMap.values());
+            filteredVideoSet = new HashSet<>(videoURLMap.values());
 
         } catch (DAOException eDAO) {
             eDAO.printStackTrace();
@@ -89,8 +89,9 @@ public class VideoRepository {
     public boolean removeVideo(String url) {
         if (!isVideoPresent(url))
             return false;
+        int id = getVideo(url).getId();
         videoURLMap.remove(url);
-        videoIDMap.remove(getVideo(url).getId());
+        videoIDMap.remove(id);
 
         // For filteredList, we can remove safely.
         filteredVideoSet.remove(getVideo(url));

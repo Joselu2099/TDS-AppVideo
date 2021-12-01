@@ -13,6 +13,7 @@ class AppVideoTest {
         assertFalse(AppVideo.getInstance().isUserRegistered(user.getUsername()),"isUserRegistered");
         assertTrue(AppVideo.getInstance().registerUser(user));
         assertTrue(AppVideo.getInstance().isUserRegistered("___testUserName2"), "isRegistered");
+        assertTrue(AppVideo.getInstance().removeUser("___testUserName2"));
     }
 
     @Test
@@ -21,7 +22,9 @@ class AppVideoTest {
         assertFalse(AppVideo.getInstance().login("___testUserName2", "testpassword"));
         assertTrue(AppVideo.getInstance().registerUser("___testUser", "___TDS", "test@example.com", "___testUserName2", "testpassword", "2020-10-10"));
         assertTrue(AppVideo.getInstance().login("___testUserName2", "testpassword"), "login");
-        assertFalse(AppVideo.getInstance().login("___testUserName2", "testpassword2"));
+        assertFalse(AppVideo.getInstance().login("___testUserName2", "badpassword"));
+        assertTrue(AppVideo.getInstance().removeUser("___testUserName2"));
+
     }
 
     @Test
@@ -45,6 +48,8 @@ class AppVideoTest {
         assertTrue(AppVideo.getInstance().isUserRegistered("___testUserName1"), "isRegistered");
         assertTrue(AppVideo.getInstance().login("___testUserName1", "testpassword"), "login");
         assertFalse(AppVideo.getInstance().registerUser("___testUser", "___TDS", "test@example.com", "___testUserName1", "testpassword", "2020-10-10"));
+
+
         assertTrue(AppVideo.getInstance().removeUser("___testUserName1"), "remove");
 
     }
@@ -61,6 +66,7 @@ class AppVideoTest {
 
         AppVideo.getInstance().setNightMode(false);
         assertFalse(AppVideo.getInstance().getCurrentUser().isNightMode());
+
         assertTrue(AppVideo.getInstance().removeUser("___testUserName1"), "remove");
     }
 
@@ -72,14 +78,18 @@ class AppVideoTest {
         assertTrue(AppVideo.getInstance().isUserRegistered("___testUserName1"), "isRegistered");
         assertTrue(AppVideo.getInstance().login("___testUserName1", "testpassword"), "login");
 
+        assertInstanceOf(NoFilter.class, AppVideo.getInstance().getCurrentUser().getFilter(),"NoFilter1");
         AppVideo.getInstance().applyFilter(new NoFilter());
-        assertEquals(new MinorsFilter(), AppVideo.getInstance().getCurrentUser().getFilter(),"userSavedFilter");
+        assertInstanceOf(NoFilter.class, AppVideo.getInstance().getCurrentUser().getFilter(),"NoFilter2");
         AppVideo.getInstance().applyFilter(new MinorsFilter());
-        assertEquals(new MinorsFilter(), AppVideo.getInstance().getCurrentUser().getFilter(),"userSavedFilter");
+        assertInstanceOf(MinorsFilter.class, AppVideo.getInstance().getCurrentUser().getFilter(),"MinorsFilter");
         AppVideo.getInstance().applyFilter(new MyListsFilter());
-        assertEquals(new MinorsFilter(), AppVideo.getInstance().getCurrentUser().getFilter(),"userSavedFilter");
+        assertInstanceOf(MyListsFilter.class, AppVideo.getInstance().getCurrentUser().getFilter(),"MyListFilter");
         AppVideo.getInstance().applyFilter(new ImpopularsFilter());
-        assertEquals(new MinorsFilter(), AppVideo.getInstance().getCurrentUser().getFilter(),"userSavedFilter");
+        assertInstanceOf(ImpopularsFilter.class, AppVideo.getInstance().getCurrentUser().getFilter(),"ImpopularsFilter");
+
+
+        assertTrue(AppVideo.getInstance().removeUser("___testUserName1"), "remove");
     }
 
     @Test
@@ -90,6 +100,8 @@ class AppVideoTest {
         assertFalse(AppVideo.getInstance().isVideoPersisted("__testURL"),"isVideoPersisted");
         AppVideo.getInstance().persistVideo(new Video("___testTitulo", "__testURL"));
         assertTrue(AppVideo.getInstance().isVideoPersisted("__testURL"),"isVideoPersisted");
+
+        assertTrue(AppVideo.getInstance().removeVideo("__testURL"),"removePersistedVideo");
     }
 
 

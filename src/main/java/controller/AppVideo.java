@@ -108,9 +108,11 @@ public class AppVideo {
     public boolean removeVideo(String url) {
         if (isVideoPersisted(url)){
             DAOVideo daoVideo = factory.getDAOVideo();
-            daoVideo.delete(videoRepository.getVideo(url));
+            if (daoVideo.delete(videoRepository.getVideo(url))){
+                return videoRepository.removeVideo(url);
+            }
         }
-        return videoRepository.removeVideo(url);
+        return false;
     }
 
     public void loadVideos(String file){
@@ -156,7 +158,7 @@ public class AppVideo {
     }
 
     public void persistVideo(Video video){
-        if (!isVideoPersisted(video.getUrl()))
+        if (isVideoPersisted(video.getUrl()))
             return;
         factory.getDAOVideo().create(video); // Side effect: update video ids
         videoRepository.addVideo(video,filter.test(video));
