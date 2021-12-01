@@ -75,10 +75,9 @@ class AppVideoTest {
     @Test
     void persistVideo(){
         AppVideo.getInstance().removeVideo("__testURL");
-        Video video = new Video("___testTitulo", "__testURL");
 
         assertFalse(AppVideo.getInstance().isVideoPersisted("__testURL"),"isVideoPersisted");
-        AppVideo.getInstance().persistVideo(video);
+        AppVideo.getInstance().persistVideo(new Video("___testTitulo", "__testURL"));
         assertTrue(AppVideo.getInstance().isVideoPersisted("__testURL"),"isVideoPersisted");
     }
 
