@@ -8,10 +8,20 @@ class AppVideoTest {
 
     @Test
     void isUserRegistered() {
+        AppVideo.getInstance().removeUser("___testUserName2");
+        User user = new User("___testUser", "___TDS", "test@example.com", "___testUserName2", "testpassword", "2020-10-10");
+        assertFalse(AppVideo.getInstance().isUserRegistered(user.getUsername()),"isUserRegistered");
+        assertTrue(AppVideo.getInstance().registerUser(user));
+        assertTrue(AppVideo.getInstance().isUserRegistered("___testUserName2"), "isRegistered");
     }
 
     @Test
     void login() {
+        AppVideo.getInstance().removeUser("___testUserName2");
+        assertFalse(AppVideo.getInstance().login("___testUserName2", "testpassword"));
+        assertTrue(AppVideo.getInstance().registerUser("___testUser", "___TDS", "test@example.com", "___testUserName2", "testpassword", "2020-10-10"));
+        assertTrue(AppVideo.getInstance().login("___testUserName2", "testpassword"), "login");
+        assertFalse(AppVideo.getInstance().login("___testUserName2", "testpassword2"));
     }
 
     @Test
@@ -55,7 +65,7 @@ class AppVideoTest {
     }
 
     @Test
-    void applyFilter(){
+    void applyFilter(){ //TODO arreglar test
         AppVideo.getInstance().removeUser("___testUserName1");
 
         assertTrue(AppVideo.getInstance().registerUser("___testUser", "___TDS", "test@example.com", "___testUserName1", "testpassword", "2020-10-10"));
@@ -76,6 +86,7 @@ class AppVideoTest {
     void persistVideo(){
         AppVideo.getInstance().removeVideo("__testURL");
 
+        //TODO arreglar test
         assertFalse(AppVideo.getInstance().isVideoPersisted("__testURL"),"isVideoPersisted");
         AppVideo.getInstance().persistVideo(new Video("___testTitulo", "__testURL"));
         assertTrue(AppVideo.getInstance().isVideoPersisted("__testURL"),"isVideoPersisted");

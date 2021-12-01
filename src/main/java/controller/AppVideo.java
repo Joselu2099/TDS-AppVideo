@@ -88,6 +88,15 @@ public class AppVideo {
         return true;
     }
 
+    public boolean registerUser(User user) {
+        if (isUserRegistered(user.getUsername())) return false;
+        user.setNightMode(false);
+        DAOUser daoUser = factory.getDAOUser();
+        daoUser.create(user);
+        userRepository.addUser(user);
+        return true;
+    }
+
     public boolean removeUser(String username) {
         if (isUserRegistered(username)){
             DAOUser daoUser = factory.getDAOUser();

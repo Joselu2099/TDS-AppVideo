@@ -33,6 +33,7 @@ public class DAOTest {
             user2.setUsername("___testUserName2");
             user2.setFilter(new MinorsFilter());
             daoUser.create(user2);
+            assertNotNull(daoUser.get(user2.getId()), "isUserRegistered");
             assertNotEquals(daoUser.get(user1.getId()), daoUser.get(user2.getId()), "userNotEquals");
             assertTrue(daoUser.delete(user1), "deleteUser1");
             assertTrue(daoUser.delete(user2), "deleteUser2");
@@ -79,6 +80,7 @@ public class DAOTest {
             //video2.setUrl("___testURL2");
             //video2.setViews(2);
             daoVideo.create(video2);
+            assertNotNull(daoVideo.get(video2.getId()), "isVideoRegistered");
             assertNotEquals(daoVideo.get(video1.getId()), daoVideo.get(video2.getId()), "videoNotEquals");
             assertTrue(daoVideo.delete(video1), "deleteVideo1");
             assertTrue(daoVideo.delete(video2), "deleteVideo2");
