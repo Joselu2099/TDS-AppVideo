@@ -11,6 +11,10 @@ import org.apache.commons.codec.digest.DigestUtils;
 import umu.tds.componente.VideosList;
 import umu.tds.componente.VideosListEvent;
 import umu.tds.componente.VideosListListener;
+import umu.tds.componente.VideosLoader;
+import umu.tds.componente.VideosLoaderEvent;
+import umu.tds.componente.VideosLoaderListener;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,7 +30,7 @@ public class AppVideo {
     private AppVideoWindow appVideoWindow;
     private List<Playlist> currentPlaylists;
     private IFilter filter;
-    private VideosList videosList;
+    private VideosLoader videosLoader;
 
     private VideoRepository videoRepository;
     private UserRepository userRepository;
@@ -117,21 +121,16 @@ public class AppVideo {
     }
 
     public void loadVideos(String file){
-        videosList.addVideosListListener(new VideosListListener() {
+        videosLoader.addVideosListListener(new VideosLoaderListener() {
             @Override
-            public void notifiedChargedVideos(VideosListEvent videosListEvent) {
+            public void notifiedChargedVideos(VideosLoaderEvent videosListEvent) {
                 List<umu.tds.componente.Video> videos = videosListEvent.getNewValue();
                 //PARSE umu.tds.componente.Video to modelo.Video
                 //Add modelo.Video to VideoRepository && persistence
-                persistXMLVideoList(videosList.getVideos());
+                persistXMLVideoList(videosLoader.getVideos());
+                updateVideoPreviewPanel();
             }
         });
-        VideosList videosList = new VideosList(file);
-//        videosList.addVideosListListener(AppVideo.getInstance()); // TODO refactor java bean
-
-        persistXMLVideoList(videosList.getVideos());
-        updateVideoPreviewPanel();
-
     }
 
     private void updateVideoPreviewPanel(){

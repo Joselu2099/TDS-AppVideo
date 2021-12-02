@@ -84,10 +84,10 @@
         </dependency>
         <dependency>
             <groupId>tds.umu</groupId>
-            <artifactId>VideosCharger</artifactId>
+            <artifactId>VideosLoader</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/VideosCharger.jar</systemPath>
+            <systemPath>${project.basedir}/lib/VideosLoader.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>

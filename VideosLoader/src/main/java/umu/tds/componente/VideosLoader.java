@@ -24,12 +24,12 @@ public class VideosLoader {
 		if(oldValue != canciones) {
 			this.videos = canciones;
 			VideosLoaderEvent evento = new VideosLoaderEvent(this, videos, oldValue);
-			notifiedChargedVideos(evento);
+			notifiedLoadedVideos(evento);
 		}
 		
 	}
 	
-	private void notifiedChargedVideos(VideosLoaderEvent event) {
+	private void notifiedLoadedVideos(VideosLoaderEvent event) {
 		List<VideosLoaderListener> copy;
 		synchronized (this.videosListeners) {
 			copy = new ArrayList<VideosLoaderListener>(this.videosListeners);
@@ -41,11 +41,11 @@ public class VideosLoader {
 		
 	}
 
-	public synchronized void addVideosListListener(VideosLoaderListener listener) {
+	public synchronized void addVideosLoaderListener(VideosLoaderListener listener) {
 		this.videosListeners.add(listener);
 	}
 
-	public synchronized void removeVideosListListener(VideosLoaderListener listener) {
+	public synchronized void removeVideosLoaderListener(VideosLoaderListener listener) {
 		this.videosListeners.remove(listener);
 	}
 }
