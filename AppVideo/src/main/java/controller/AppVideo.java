@@ -8,13 +8,9 @@ import gui.AppVideoWindow;
 import gui.HomePanel;
 import model.*;
 import org.apache.commons.codec.digest.DigestUtils;
-import umu.tds.componente.VideosList;
-import umu.tds.componente.VideosListEvent;
-import umu.tds.componente.VideosListListener;
 import umu.tds.componente.VideosLoader;
 import umu.tds.componente.VideosLoaderEvent;
 import umu.tds.componente.VideosLoaderListener;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -121,13 +117,14 @@ public class AppVideo {
     }
 
     public void loadVideos(String file){
-        videosLoader.addVideosListListener(new VideosLoaderListener() {
+        videosLoader.addVideosLoaderListener(new VideosLoaderListener() {
             @Override
-            public void notifiedChargedVideos(VideosLoaderEvent videosListEvent) {
-                List<umu.tds.componente.Video> videos = videosListEvent.getNewValue();
+            public void getLoadedVideos(VideosLoaderEvent videosLoaderEvent) {
+                videosLoader = new VideosLoader(file);
+                List<umu.tds.componente.Video> videos = videosLoaderEvent.getNewValue();
                 //PARSE umu.tds.componente.Video to modelo.Video
                 //Add modelo.Video to VideoRepository && persistence
-                persistXMLVideoList(videosLoader.getVideos());
+                persistXMLVideoList(videos);
                 updateVideoPreviewPanel();
             }
         });
