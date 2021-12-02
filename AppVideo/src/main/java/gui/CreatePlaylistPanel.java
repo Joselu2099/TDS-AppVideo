@@ -46,7 +46,7 @@ public class CreatePlaylistPanel extends JPanel {
 			String playlistTitle = null;
 			while (playlistTitle == null) {
 				playlistTitle = (String) JOptionPane.showInputDialog(parent, "Intruduce un nombre para tu playlist: ",
-						"Change mail", JOptionPane.PLAIN_MESSAGE, null, null, "");
+						"Creating playlist", JOptionPane.PLAIN_MESSAGE, null, null, "");
 				if(!AppVideo.getInstance().isPlaylistRegistered(playlistTitle) && playlistTitle!=null) {
 					AppVideo.getInstance().createPlaylist(playlistTitle);
 					createdPlaylist = AppVideo.getInstance().getCurrentUser().getPlaylist(playlistTitle);

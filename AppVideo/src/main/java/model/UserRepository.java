@@ -34,6 +34,7 @@ public class UserRepository {
 
     private void loadRepository() {
         // Function.identity = return the object itself, it's same as e -> e
+        //TODO Error en persistencia al recuperar playlist
         userList = userAdapter.getAll().stream().collect(Collectors.toMap(User::getUsername, Function.identity()));
     }
 

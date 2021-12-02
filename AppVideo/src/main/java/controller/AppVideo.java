@@ -190,11 +190,13 @@ public class AppVideo {
     public void addVideoToPlaylist(String title, Video video){
         if(!getCurrentUser().isPlaylistRegistered(title)) return;
         getCurrentUser().getPlaylist(title).addVideo(video);
+        factory.getDAOUser().updateProfile(getCurrentUser());
     }
 
     public void removeVideoOfPlaylist(String title, Video video){
         if(!getCurrentUser().isPlaylistRegistered(title)) return;
         getCurrentUser().getPlaylist(title).removeVideo(video);
+        factory.getDAOUser().updateProfile(getCurrentUser());
     }
 
     public String encodePassword(String password) {
