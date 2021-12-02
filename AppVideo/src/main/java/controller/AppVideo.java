@@ -170,6 +170,33 @@ public class AppVideo {
         videoRepository.addVideo(video,filter.test(video));
     }
 
+    public boolean isPlaylistRegistered(String title){
+        return getCurrentUser().isPlaylistRegistered(title);
+    }
+
+    public void createPlaylist(String title){
+        if(getCurrentUser().isPlaylistRegistered(title)) return;
+        Playlist playlist = new Playlist(title);
+        getCurrentUser().addPlaylist(playlist);
+        factory.getDAOUser().updateProfile(getCurrentUser());
+    }
+
+    public void removePlaylist(String title){
+        if(!getCurrentUser().isPlaylistRegistered(title)) return;
+        getCurrentUser().removePlaylist(title);
+        factory.getDAOUser().updateProfile(getCurrentUser());
+    }
+
+    public void addVideoToPlaylist(String title, Video video){
+        if(!getCurrentUser().isPlaylistRegistered(title)) return;
+        getCurrentUser().getPlaylist(title).addVideo(video);
+    }
+
+    public void removeVideoOfPlaylist(String title, Video video){
+        if(!getCurrentUser().isPlaylistRegistered(title)) return;
+        getCurrentUser().getPlaylist(title).removeVideo(video);
+    }
+
     public String encodePassword(String password) {
         //System.out.println("Encoding: " + password + " -> " + DigestUtils.md5Hex(password));
         String encodedPass = password + "NonEncoded";

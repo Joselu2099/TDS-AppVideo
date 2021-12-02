@@ -30,6 +30,20 @@ public class Playlist {
         this.title = title;
     }
 
+    public boolean isVideoInPlaylist(Video video){
+        return listOfVideos.contains(video);
+    }
+
+    public void addVideo(Video video){
+        if(isVideoInPlaylist(video)) return;
+        listOfVideos.add(video);
+    }
+
+    public void removeVideo(Video video){
+        if(!isVideoInPlaylist(video)) return;
+        listOfVideos.remove(video);
+    }
+
     public List<Video> getListOfVideos() {
         return new ArrayList<>(listOfVideos);
     }

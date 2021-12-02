@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class User implements Comparable<User> {
-    private final Map<String, Playlist> listOfPlaylist;
+    private Map<String, Playlist> listOfPlaylist;
     private int id;
     private String name;
     private String surname;
@@ -131,8 +131,20 @@ public class User implements Comparable<User> {
         }
     }
 
+    public boolean isPlaylistRegistered(Playlist playlist){
+        return listOfPlaylist.containsValue(playlist);
+    }
+
+    public boolean isPlaylistRegistered(String title){
+        return listOfPlaylist.containsKey(title);
+    }
+
     public void addPlaylist(Playlist playlist) {
         this.listOfPlaylist.put(playlist.getTitle(), playlist);
+    }
+
+    public void removePlaylist(String title){
+        this.listOfPlaylist.remove(title);
     }
 
     public Playlist getPlaylist(String title) {
