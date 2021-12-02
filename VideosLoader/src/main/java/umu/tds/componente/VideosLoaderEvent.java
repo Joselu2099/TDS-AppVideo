@@ -3,7 +3,7 @@ package umu.tds.componente;
 import java.util.EventObject;
 import java.util.List;
 
-public class VideosListEvent extends EventObject{
+public class VideosLoaderEvent extends EventObject{
 
 	/**
 	 * 
@@ -13,11 +13,10 @@ public class VideosListEvent extends EventObject{
 	//Propiedad
 	private List<Video> oldValue, newValue;
 	
-	public VideosListEvent(Object arg0, List<Video> newValue, List<Video> oldValue) {
+	public VideosLoaderEvent(Object arg0, List<Video> newValue, List<Video> oldValue) {
 		super(arg0);
 		this.newValue = newValue;
 		this.oldValue = oldValue;
-		// TODO Auto-generated constructor stub
 	}
 	
 	public List<Video> getNewValue() {

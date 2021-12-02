@@ -120,8 +120,10 @@ public class AppVideo {
         videosList.addVideosListListener(new VideosListListener() {
             @Override
             public void notifiedChargedVideos(VideosListEvent videosListEvent) {
-                umu.tds.componente.Videos videos = videosListEvent.getNewValue();
-
+                List<umu.tds.componente.Video> videos = videosListEvent.getNewValue();
+                //PARSE umu.tds.componente.Video to modelo.Video
+                //Add modelo.Video to VideoRepository && persistence
+                persistXMLVideoList(videosList.getVideos());
             }
         });
         VideosList videosList = new VideosList(file);
