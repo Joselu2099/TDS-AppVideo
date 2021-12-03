@@ -1,0 +1,146 @@
+{
+  "name": "IntelliJ Purpple Light",
+  "dark": false,
+  "author": "JetBrains",
+
+  "colors": {
+    "foreground": "#000000",
+    "infoPanelForeground": "#808080",
+    "infoInputForeground": "#999999",
+    "disabledForeground": "#8C8C8C",
+    "selectionForeground": "#FFFFFF",
+    "linkForeground": "#6626d3",
+
+    "border": "#D1D1D1",
+    "componentBorder": "#C4C4C4",
+    "lightBorder": "#d9d9d9",
+    "windowsPopupBorder": "#adadad",
+
+    "panel": "#F2F2F2"
+  },
+
+  "ui": {
+    "*": {
+      "foreground": "foreground",
+      "acceleratorForeground": "foreground",
+      "caretForeground": "foreground",
+      "selectedForeground": "foreground",
+      "selectionInactiveForeground": "foreground",
+
+      "focusColor": "#d0b3ff",
+      "focusedBorderColor": "#807bf7",
+      "focusedForeground" : "#FFFFFF",
+      "selectionBackground":  "#6B28DE",
+      "selectionBackgroundInactive": "#D5D5D5",
+      "selectionInactiveBackground": "#D5D5D5",
+
+      "disabledForeground": "disabledForeground",
+      "disabledText": "disabledForeground",
+      "inactiveForeground": "disabledForeground",
+
+      "modifiedItemForeground": "#5a00d9",
+
+      "acceleratorSelectionForeground": "selectionForeground",
+
+      "separatorColor": "border",
+      "separatorForeground": "infoInputForeground"
+    },
+
+    "Borders": {
+      "color": "border",
+      "ContrastBorderColor": "border"
+    },
+
+    "Button": {
+        "startBorderColor": "#853FF8",
+        "endBorderColor": "#6B28DE",
+        "startBackground": "#953FF8",
+        "endBackground": "#7B28DE",
+        "foreground": "#FFFFFF"
+    },
+
+    "ComboBox": {
+      "background": "#FFFFFF",
+      "nonEditableBackground": "#FFFFFF",
+      "ArrowButton.background": "#fafafa"
+    },
+
+    "ComboBoxButton.background": "#FFFFFF",
+
+    "CompletionPopup": {
+      "selectionBackground": "#dfc5fc",
+      "selectionInactiveBackground": "#e0e0e0"
+    },
+
+    "Component": {
+      "borderColor": "componentBorder",
+      "infoForeground": "infoInputForeground"
+    },
+
+    "DefaultTabs.background": "panel",
+
+    "EditorTabs.underlinedTabBackground": "#ffffff",
+
+    "Editor": {
+      "background": "#cccccc",
+      "foreground": "#737373",
+      "shortcutForeground": "#7442A6"
+    },
+
+    "Label": {
+      "errorForeground": "#C7222D",
+      "infoForeground": "infoPanelForeground"
+    },
+
+    "Link": {
+      "activeForeground": "linkForeground",
+      "hoverForeground": "linkForeground",
+      "pressedForeground": "linkForeground",
+      "visitedForeground": "linkForeground",
+      "secondaryForeground": "#A877D9"
+    },
+
+    "Notification": {
+      "borderColor": "border"
+    },
+
+    "Menu.borderColor": "lightBorder",
+
+    "Panel.background": "panel",
+
+    "PasswordField.background": "#FFFFFF",
+
+    "Popup": {
+      "separatorColor": "lightBorder",
+      "Advertiser.borderColor": "border",
+      "borderColor": "windowsPopupBorder"
+    },
+
+    "ProgressBar": {
+      "trackColor": "#D1D1D1",
+      "progressColor": "#821EE6",
+      "indeterminateStartColor": "#C591F2",
+      "indeterminateEndColor": "#821EE6"
+    },
+
+    "StatusBar.borderColor": "border",
+
+    "ToolWindow.Header.inactiveBackground": "panel",
+
+    "Tree.rowHeight": 20
+  },
+
+  "DefaultTabs": {
+    "underlineColor": "#9649cc",
+    "inactiveUnderlineColor": "#877399",
+    "hoverBackground": "#dfb3ff1a"
+  },
+
+  "icons": {
+    "ColorPalette": {
+      "Checkbox.Border.Default": "#b0b0b0",
+      "Checkbox.Background.Selected": "#9E4FE3",
+      "Checkbox.Border.Selected": "#974BD9"
+    }
+  }
+}
