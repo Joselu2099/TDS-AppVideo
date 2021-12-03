@@ -6,6 +6,7 @@ import model.IFilter;
 import model.Playlist;
 import model.Video;
 import model.VideoRepository;
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
@@ -69,7 +70,10 @@ public class DAOUtils {
     }
 
     public static void modifyEntityProperty(Entidad entidad, String propertyName, String value) {
-        Propiedad properties = entidad.getPropiedades().stream().filter(property -> property.getNombre().equals(propertyName)).findAny().orElse(null);
+        if(entidad==null) return;
+        Propiedad properties = entidad.getPropiedades().stream()
+                .filter(property -> property.getNombre().equals(propertyName))
+                .findAny().orElse(null);
         if (properties == null)
             return;
         properties.setValor(value);

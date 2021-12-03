@@ -36,7 +36,6 @@ class AppVideoTest {
         AppVideo.getInstance().becomePremium();
         assertEquals("si", AppVideo.getInstance().getCurrentUser().getPremium());
 
-
         assertTrue(AppVideo.getInstance().removeUser("___testUserName2"), "remove");
     }
 
