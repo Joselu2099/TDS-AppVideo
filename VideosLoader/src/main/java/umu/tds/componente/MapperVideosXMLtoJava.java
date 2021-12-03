@@ -9,17 +9,16 @@ import javax.xml.bind.Unmarshaller;
 public class MapperVideosXMLtoJava {
 
 	public static Videos cargarVideos(String fichero) {
-
 		JAXBContext jc;
-		Videos canciones = null;
+		Videos videos = null;
 		try {
 			jc = JAXBContext.newInstance("umu.tds.componente");
 			Unmarshaller u = jc.createUnmarshaller();
 			File file = new File(fichero);
-			canciones = (Videos) u.unmarshal(file);
+			videos = (Videos) u.unmarshal(file);
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}	
-		return canciones;
+		return videos;
 	}
 }

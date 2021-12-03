@@ -1,51 +1,45 @@
 package umu.tds.componente;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
-public class VideosLoader {
+public class VideosLoader implements Serializable {
+
+	private static VideosLoader instance;
 
 	//Propiedades
-	private List<Video> videos; //propiedad ligada
-	private List<VideosLoaderListener> videosListeners;
+	private List<Consumer<Videos>> videosListeners;
 	
-	public VideosLoader(String file) {
+	private VideosLoader() {
+		this.videosListeners = new ArrayList<>();
+	}
+
+	public static VideosLoader getInstance(){
+		if (instance == null)
+			instance = new VideosLoader();
+		return instance;
+	}
+
+	public void loadVideoFromXML(String file){
 		Videos loadedVideos = MapperVideosXMLtoJava.cargarVideos(file);
-		setVideos(loadedVideos.getVideo());
-		this.videosListeners = new ArrayList<VideosLoaderListener>();
+		if (loadedVideos == null)
+			return;
+		notifiedLoadedVideos(loadedVideos);
+
 	}
 
-	public List<Video> getVideos() {
-		return new ArrayList<Video>(videos);
+	private void notifiedLoadedVideos(Videos videos) {
+		videosListeners.stream().forEach(videosConsumer -> videosConsumer.accept(videos));
 	}
 
-	public void setVideos(List<Video> canciones) {
-		List<Video> oldValue = this.videos;
-		if(oldValue != canciones) {
-			this.videos = canciones;
-			VideosLoaderEvent evento = new VideosLoaderEvent(this, videos, oldValue);
-			notifiedLoadedVideos(evento);
-		}
-		
-	}
-	
-	private void notifiedLoadedVideos(VideosLoaderEvent event) {
-		List<VideosLoaderListener> copy;
-		synchronized (this.videosListeners) {
-			copy = new ArrayList<VideosLoaderListener>(this.videosListeners);
-		}
-		
-		for(VideosLoaderListener canciones : copy) {
-			canciones.getLoadedVideos(event);
-		}
-		
+	public synchronized void subscribeNewVideoLoaded(Consumer<Videos> listener) {
+		if (listener!=null)
+			this.videosListeners.add(listener);
 	}
 
-	public synchronized void addVideosLoaderListener(VideosLoaderListener listener) {
-		this.videosListeners.add(listener);
-	}
-
-	public synchronized void removeVideosLoaderListener(VideosLoaderListener listener) {
+	public synchronized void unsubscribeNewVideoLoaded(Consumer<Videos> listener) {
 		this.videosListeners.remove(listener);
 	}
 }
