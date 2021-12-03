@@ -104,10 +104,14 @@ public class HomePanel extends JPanel{
 				});
 			}
 		});
+		AppVideo.getInstance().subscribeFilteredVideoChange(()->{
+			showVideoPreview(AppVideo.getInstance().searchVideos(getSearchText(),getSearchLabelSet()));
+		});
 		searchBoxPanel.add(luz);
 
 		JScrollPane scrollPane = new JScrollPane(vidPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
+		showVideoPreview(AppVideo.getInstance().getFilteredVideoList());
 		add(scrollPane,BorderLayout.CENTER);
 	}
 
@@ -171,8 +175,9 @@ public class HomePanel extends JPanel{
 						"https://www.youtube.com/watch?v=bxF-pQSzSUM",
 						"https://www.youtube.com/watch?v=56eIZKyhM6c",
 				};
-				List<Video> videoListX = Arrays.stream(urlX).map(Video::new).collect(Collectors.toList());
+//				List<Video> videoListX = Arrays.stream(urlX).map(Video::new).collect(Collectors.toList());
 //				h.updateVideoList(videoListX);
+				h.showVideoPreview(AppVideo.getInstance().getFilteredVideoList());
 			} catch (Exception e) {
 				throw e;
 			}

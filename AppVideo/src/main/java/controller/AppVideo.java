@@ -4,13 +4,9 @@ import dao.DAOException;
 import dao.DAOFactory;
 import dao.DAOUser;
 import dao.DAOVideo;
-import gui.AppVideoWindow;
-import gui.HomePanel;
 import model.*;
 import org.apache.commons.codec.digest.DigestUtils;
 import umu.tds.componente.VideosLoader;
-import umu.tds.componente.VideosLoaderEvent;
-import umu.tds.componente.VideosLoaderListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -23,7 +19,6 @@ public class AppVideo {
     public static AppVideo uniqueInstance = null;
     private DAOFactory factory;
     private User currentUser;
-    private AppVideoWindow appVideoWindow;
     private List<Playlist> currentPlaylists;
     private IFilter filter;
     private VideosLoader videosLoader;
@@ -31,13 +26,24 @@ public class AppVideo {
     private VideoRepository videoRepository;
     private UserRepository userRepository;
 
+    private List<Runnable> filteredVideoChangedListeners;
+
     private AppVideo() {
         try {
             factory = DAOFactory.getInstance();
             videoRepository = VideoRepository.getInstance();
             userRepository = UserRepository.getInstance();
+            videosLoader = VideosLoader.getInstance();
+
+            filteredVideoChangedListeners = new ArrayList<>();
 
             currentPlaylists = new ArrayList<>();
+
+            videosLoader.subscribeNewVideoLoaded( videosXML ->{
+                List<Video> newVideo = xmlVideoAdapter(videosXML);
+                newVideo.stream().forEach(this::persistVideo);
+                notifieFilteredVideoChanged();
+            });
         } catch (DAOException e) {
             e.printStackTrace();
         }
@@ -60,6 +66,15 @@ public class AppVideo {
         applyFilter(currentUser.getFilter());
     }
 
+    public void subscribeFilteredVideoChange(Runnable callback){
+        if (callback != null)
+            filteredVideoChangedListeners.add(callback);
+    }
+
+    public void unsubscribeFilteredVideoChange(Runnable callback){
+        filteredVideoChangedListeners.remove(callback);
+    }
+
     public boolean login(String username, String password) {
         User user = userRepository.getUser(username);
         if (user != null && checkPassword(password, user.getPassword())) {
@@ -68,11 +83,6 @@ public class AppVideo {
             return true;
         }
         return false;
-    }
-
-    public void createAppVideoWindow(){
-        appVideoWindow = new AppVideoWindow();
-        appVideoWindow.showWindow();
     }
 
     public boolean isUserRegistered(String username) {
@@ -117,27 +127,13 @@ public class AppVideo {
     }
 
     public void loadVideos(String file){
-        videosLoader = new VideosLoader(file);
-        videosLoader.addVideosLoaderListener(new VideosLoaderListener() {
-            @Override
-            public void getLoadedVideos(VideosLoaderEvent videosLoaderEvent) {
-                List<umu.tds.componente.Video> videos = videosLoaderEvent.getNewValue();
-                //PARSE umu.tds.componente.Video to modelo.Video
-                //Add modelo.Video to VideoRepository && persistence
-                persistXMLVideoList(videos);
-                updateVideoPreviewPanel();
-            }
-        });
+        videosLoader.loadVideoFromXML(file);
     }
 
-    private void updateVideoPreviewPanel(){
-        if(appVideoWindow==null){
-            return;
-        }
-
-        HomePanel homePanel = appVideoWindow.getHomePanel();
-        homePanel.showVideoPreview(searchVideos(homePanel.getSearchText(),homePanel.getSearchLabelSet()));
-        appVideoWindow.getMyPlaylistPanel().setFilteredPlaylist(currentPlaylists);
+    private void notifieFilteredVideoChanged(){
+        // Usamos runnable porque AppVideo es un singleton y no hay problema de visibilidad,
+        // y no sabemos que dato necesita cuando pasa el evento.
+        filteredVideoChangedListeners.stream().forEach(Runnable::run);
     }
     
     public List<Video> searchVideos(String text,Set<Label> labelSet) {
@@ -168,6 +164,9 @@ public class AppVideo {
             return;
         factory.getDAOVideo().create(video); // Side effect: update video ids
         videoRepository.addVideo(video,filter.test(video));
+        if (filter.test(video)){
+            notifieFilteredVideoChanged();
+        }
     }
 
     public boolean isPlaylistRegistered(String title){
@@ -175,12 +174,13 @@ public class AppVideo {
     }
 
     public void createPlaylist(String title){
-        System.out.println("isPlaylistRegistered? -> " + getCurrentUser().isPlaylistRegistered(title));
-        if(!getCurrentUser().isPlaylistRegistered(title)) {
-            Playlist playlist = new Playlist(title);
-            getCurrentUser().addPlaylist(playlist);
-            factory.getDAOUser().updateProfile(getCurrentUser());
+//        System.out.println("isPlaylistRegistered? -> " + getCurrentUser().isPlaylistRegistered(title));
+        if(getCurrentUser().isPlaylistRegistered(title)) {
+            return;
         }
+        Playlist playlist = new Playlist(title);
+        getCurrentUser().addPlaylist(playlist);
+        factory.getDAOUser().updateProfile(getCurrentUser());
     }
 
     public void removePlaylist(String title){
@@ -232,7 +232,7 @@ public class AppVideo {
                 .filter(playlist -> videoRepository.getUnmodifiableFilteredVideoSet().containsAll(playlist.getListOfVideos()))
                 .collect(Collectors.toList());
 
-        updateVideoPreviewPanel();
+        notifieFilteredVideoChanged();
         /*
         currentPlaylists = new ArrayList<Playlist>();
         for(Playlist p:getActualUser().getListOfPlaylist()){
@@ -305,14 +305,13 @@ public class AppVideo {
     }
 
 
-    public void persistXMLVideoList(List<umu.tds.componente.Video> videos) {
-        videos.stream()
+    public List<Video> xmlVideoAdapter(umu.tds.componente.Videos videos) {
+        return videos.getVideo().stream()
                 .map(v -> {Video video = new Video(v.getTitulo(), v.getURL());
                     video.setLabels(v.getEtiqueta().stream()
                             .map(Label::valueOf).collect(Collectors.toSet()));
                     return video;
-                })
-                .forEach(this::persistVideo);
+                }).collect(Collectors.toList());
     }
 
 }
