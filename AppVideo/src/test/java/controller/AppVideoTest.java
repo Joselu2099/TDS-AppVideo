@@ -103,5 +103,20 @@ class AppVideoTest {
         assertTrue(AppVideo.getInstance().removeVideo("__testURL"),"removePersistedVideo");
     }
 
+    @Test
+    void createPlaylist(){
+        AppVideo.getInstance().createPlaylist("__testTitle");
+        assertTrue(AppVideo.getInstance().isPlaylistRegistered("__testTitle"));
+        AppVideo.getInstance().removePlaylist("__testTitle");
+    }
 
+    @Test
+    void removePlaylist(){
+        AppVideo.getInstance().removePlaylist("__testTitle");
+        assertFalse(AppVideo.getInstance().isPlaylistRegistered("__testTitle"));
+        AppVideo.getInstance().createPlaylist("__testTitle");
+        assertTrue(AppVideo.getInstance().isPlaylistRegistered("__testTitle"));
+        AppVideo.getInstance().removePlaylist("__testTitle");
+        assertFalse(AppVideo.getInstance().isPlaylistRegistered("__testTitle"));
+    }
 }
