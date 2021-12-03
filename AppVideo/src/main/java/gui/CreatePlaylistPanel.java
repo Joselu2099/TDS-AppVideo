@@ -38,7 +38,7 @@ public class CreatePlaylistPanel extends JPanel {
 		JPanel editorPanel = new JPanel();
 		createPanel.add(editorPanel);
 
-		JButton btnCreateButton = new JButton("CREAR");
+		JButton btnCreateButton = new JButton("Create Playlist");
 		btnCreateButton.addActionListener(l -> {
 			String playlistTitle = (String) JOptionPane.showInputDialog(parent, "Intruduce un nombre para tu playlist: ",
 						"Creating playlist", JOptionPane.PLAIN_MESSAGE, null, null, "");
@@ -60,8 +60,15 @@ public class CreatePlaylistPanel extends JPanel {
 		JButton btnEditButton = new JButton("Edit Playlist");
 		btnEditButton.addActionListener(l -> {
 			editPlaylist();
+			showPlaylistPreview(createdPlaylist);
 		});
 		editorPanel.add(btnEditButton);
+
+		JButton btnSavePlaylist = new JButton("Save Playlist");
+		btnSavePlaylist.addActionListener(l -> {
+			AppVideo.getInstance().updatePlaylist(createdPlaylist);
+		});
+		editorPanel.add(btnSavePlaylist);
 
 		playlistPanel = new VideoPreviewListPanel(new ArrayList<>(), vid->{
 			VideoPlayerWindow player = new VideoPlayerWindow(vid);

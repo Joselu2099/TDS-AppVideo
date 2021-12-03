@@ -117,10 +117,10 @@ public class AppVideo {
     }
 
     public void loadVideos(String file){
+        videosLoader = new VideosLoader(file);
         videosLoader.addVideosLoaderListener(new VideosLoaderListener() {
             @Override
             public void getLoadedVideos(VideosLoaderEvent videosLoaderEvent) {
-                videosLoader = new VideosLoader(file);
                 List<umu.tds.componente.Video> videos = videosLoaderEvent.getNewValue();
                 //PARSE umu.tds.componente.Video to modelo.Video
                 //Add modelo.Video to VideoRepository && persistence
@@ -175,6 +175,7 @@ public class AppVideo {
     }
 
     public void createPlaylist(String title){
+        System.out.println("isPlaylistRegistered? -> " + getCurrentUser().isPlaylistRegistered(title));
         if(!getCurrentUser().isPlaylistRegistered(title)) {
             Playlist playlist = new Playlist(title);
             getCurrentUser().addPlaylist(playlist);
@@ -185,6 +186,14 @@ public class AppVideo {
     public void removePlaylist(String title){
         if(getCurrentUser().isPlaylistRegistered(title)) {
             getCurrentUser().removePlaylist(title);
+            factory.getDAOUser().updateProfile(getCurrentUser());
+        }
+    }
+
+    public void updatePlaylist(Playlist playlist){
+        if(getCurrentUser().isPlaylistRegistered(playlist)) {
+            getCurrentUser().removePlaylist(playlist);
+            getCurrentUser().addPlaylist(playlist);
             factory.getDAOUser().updateProfile(getCurrentUser());
         }
     }

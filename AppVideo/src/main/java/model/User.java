@@ -147,6 +147,10 @@ public class User implements Comparable<User> {
         this.listOfPlaylist.remove(title);
     }
 
+    public void removePlaylist(Playlist playlist){
+        this.listOfPlaylist.remove(playlist.getTitle(), playlist);
+    }
+
     public Playlist getPlaylist(String title) {
         return listOfPlaylist.get(title);
     }
