@@ -175,16 +175,18 @@ public class AppVideo {
     }
 
     public void createPlaylist(String title){
-        if(getCurrentUser().isPlaylistRegistered(title)) return;
-        Playlist playlist = new Playlist(title);
-        getCurrentUser().addPlaylist(playlist);
-        factory.getDAOUser().updateProfile(getCurrentUser());
+        if(!getCurrentUser().isPlaylistRegistered(title)) {
+            Playlist playlist = new Playlist(title);
+            getCurrentUser().addPlaylist(playlist);
+            factory.getDAOUser().updateProfile(getCurrentUser());
+        }
     }
 
     public void removePlaylist(String title){
-        if(!getCurrentUser().isPlaylistRegistered(title)) return;
-        getCurrentUser().removePlaylist(title);
-        factory.getDAOUser().updateProfile(getCurrentUser());
+        if(getCurrentUser().isPlaylistRegistered(title)) {
+            getCurrentUser().removePlaylist(title);
+            factory.getDAOUser().updateProfile(getCurrentUser());
+        }
     }
 
     public void addVideoToPlaylist(String title, Video video){

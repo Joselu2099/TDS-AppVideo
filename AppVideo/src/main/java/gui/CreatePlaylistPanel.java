@@ -1,14 +1,14 @@
 package gui;
 
+import gui.VideoPreview.VideoPreviewListPanel;
 import model.Playlist;
-
 import javax.swing.*;
-
 import controller.AppVideo;
 import gui.Util.SwapLayout;
-
 import java.awt.*;
-import java.util.List;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 
 public class CreatePlaylistPanel extends JPanel {
 
@@ -17,24 +17,26 @@ public class CreatePlaylistPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	JPanel vidPanel;
-	JFrame parent;
-	Playlist createdPlaylist;
-	
-	
+	private Playlist createdPlaylist;
+	private JPanel createPlaylistPanel;
+	private VideoPreviewListPanel playlistPanel;
+	private PlaylistEditorPanel videoSelector;
+
 	/**
 	 * Create the panel.
 	 */
 	public CreatePlaylistPanel(JFrame parent) {
-		vidPanel = new JPanel();
-		vidPanel.setLayout(new SwapLayout(vidPanel));
+		createPlaylistPanel = new JPanel();
+		createPlaylistPanel.setLayout(new SwapLayout(createPlaylistPanel));
 		// Necesitamos el JFrame para ocultar la ventana cuando lanzamos
 		// el visualizador de video.
-		this.parent = parent;
 		setLayout(new BorderLayout(0, 0));
 
-		JPanel searchPanel = new JPanel();
-		add(searchPanel, BorderLayout.NORTH);
+		JPanel createPanel = new JPanel();
+		createPanel.setLayout(new BoxLayout(createPanel,BoxLayout.Y_AXIS));
+		add(createPanel, BorderLayout.NORTH);
+		JPanel editorPanel = new JPanel();
+		createPanel.add(editorPanel);
 
 		JButton btnCreateButton = new JButton("CREAR");
 		btnCreateButton.addActionListener(l -> {
@@ -44,6 +46,7 @@ public class CreatePlaylistPanel extends JPanel {
 					&& playlistTitle.length()>0) {
 				AppVideo.getInstance().createPlaylist(playlistTitle);
 				createdPlaylist = AppVideo.getInstance().getCurrentUser().getPlaylist(playlistTitle);
+				editPlaylist();
 				System.out.println(createdPlaylist);
 				showPlaylistPreview(createdPlaylist);
 				//TODO temporal
@@ -52,21 +55,40 @@ public class CreatePlaylistPanel extends JPanel {
 					"Prueba otro nombre para tu playlist",
 					"Playlist title", JOptionPane.ERROR_MESSAGE);
 		});
-		searchPanel.add(btnCreateButton);
+		editorPanel.add(btnCreateButton);
 
-		JScrollPane scrollPane = new JScrollPane(vidPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		add(scrollPane, BorderLayout.CENTER);
+		JButton btnEditButton = new JButton("Edit Playlist");
+		btnEditButton.addActionListener(l -> {
+			editPlaylist();
+		});
+		editorPanel.add(btnEditButton);
+
+		playlistPanel = new VideoPreviewListPanel(new ArrayList<>(), vid->{
+			VideoPlayerWindow player = new VideoPlayerWindow(vid);
+			player.showPlayer(parent);
+		});
+
+		JScrollPane scrollPane = new JScrollPane(playlistPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		add(scrollPane,BorderLayout.CENTER);
 	}
 
 	public void showPlaylistPreview(Playlist playlist) {
-		//TODO mostrar playlist editable
+		playlistPanel.setPrewviewList(playlist.getListOfVideos());
+	}
 
-		/*
-		vidPanel.swap(new VideoPreviewListPanel(playlistList,vid->{
-			VideoPlayerWindow player = new VideoPlayerWindow(vid);
-			player.showPlayer(parent);
-		}));
-		*/
+	public void editPlaylist(){
+		JFrame editorFrame = new JFrame();
+		videoSelector = new PlaylistEditorPanel(editorFrame, createdPlaylist);
+		editorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		editorFrame.setContentPane(videoSelector);
+		editorFrame.setBounds(0, 0, 800, 600);
+		editorFrame.setLocationRelativeTo(null);
+		editorFrame.setVisible(true);
+	}
+
+	public void setCreatedPlaylist(Playlist playlist){
+		this.createdPlaylist = playlist;
+		showPlaylistPreview(playlist);
 	}
 }
 
