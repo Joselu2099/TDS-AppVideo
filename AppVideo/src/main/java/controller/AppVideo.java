@@ -169,43 +169,51 @@ public class AppVideo {
         }
     }
 
-    public boolean isPlaylistRegistered(String title){
-        return getCurrentUser().isPlaylistRegistered(title);
+    public boolean isPlaylistInCurrentUser(String title){
+        return getCurrentUser().hasPlaylist(title);
     }
 
-    public void createPlaylist(String title){
+    // Factoria
+    public Playlist createPlaylist(String title,List<Video> videos){
 //        System.out.println("isPlaylistRegistered? -> " + getCurrentUser().isPlaylistRegistered(title));
-        if(getCurrentUser().isPlaylistRegistered(title)) {
-            return;
+        if(isPlaylistInCurrentUser(title)) {
+            return null;
         }
         Playlist playlist = new Playlist(title);
-        getCurrentUser().addPlaylist(playlist);
+        if (videos != null)
+            playlist.setListOfVideos(videos);
+        factory.getDAOPlaylist().create(playlist);
+        getCurrentUser().addOrReplacePlaylist(playlist);
         factory.getDAOUser().updateProfile(getCurrentUser());
+        return playlist;
     }
 
     public void removePlaylist(String title){
-        if(getCurrentUser().isPlaylistRegistered(title)) {
-            getCurrentUser().removePlaylist(title);
-            factory.getDAOUser().updateProfile(getCurrentUser());
+        if(!isPlaylistInCurrentUser(title)) {
+            return;
         }
+        Playlist p = getCurrentUser().getPlaylist(title);
+        getCurrentUser().removePlaylist(title);
+        factory.getDAOPlaylist().delete(p);
+        factory.getDAOUser().updateProfile(getCurrentUser());
     }
 
     public void updatePlaylist(Playlist playlist){
-        if(getCurrentUser().isPlaylistRegistered(playlist)) {
-            getCurrentUser().removePlaylist(playlist);
-            getCurrentUser().addPlaylist(playlist);
-            factory.getDAOUser().updateProfile(getCurrentUser());
+        if(!isPlaylistInCurrentUser(playlist.getTitle()) || playlist.getId() == 0) {
+            throw new IllegalArgumentException("Invalid playlist or not in current user");
         }
+        getCurrentUser().addOrReplacePlaylist(playlist);
+        factory.getDAOPlaylist().updateProfile(playlist);
     }
 
     public void addVideoToPlaylist(String title, Video video){
-        if(!getCurrentUser().isPlaylistRegistered(title)) return;
+        if(!getCurrentUser().hasPlaylist(title)) return;
         getCurrentUser().getPlaylist(title).addVideo(video);
         factory.getDAOUser().updateProfile(getCurrentUser());
     }
 
     public void removeVideoOfPlaylist(String title, Video video){
-        if(!getCurrentUser().isPlaylistRegistered(title)) return;
+        if(!getCurrentUser().hasPlaylist(title)) return;
         getCurrentUser().getPlaylist(title).removeVideo(video);
         factory.getDAOUser().updateProfile(getCurrentUser());
     }

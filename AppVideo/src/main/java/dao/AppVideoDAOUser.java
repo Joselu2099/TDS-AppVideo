@@ -72,7 +72,7 @@ public final class AppVideoDAOUser implements DAOUser {
             List<Integer> idPlaylists = DAOUtils.stringToList(servPersistencia.recuperarPropiedadEntidad(eUser, LISTOFPLAYLIST));
             Map<Integer, Playlist> playlists = DAOUtils.idsToPlaylists(idPlaylists);
             for (Playlist p : playlists.values()) {
-                user.addPlaylist(p);
+                user.addOrReplacePlaylist(p);
             }
         }
 

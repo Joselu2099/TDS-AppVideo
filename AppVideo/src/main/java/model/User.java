@@ -120,35 +120,22 @@ public class User implements Comparable<User> {
         return new ArrayList<>(listOfPlaylist.values());
     }
 
-    public void addRecent(Video v){
-        recentVideos.remove(0);
+    public void addRecentVideo(Video v){
         recentVideos.add(v);
+        if (recentVideos.size() >5)
+            recentVideos.remove(0);
     }
 
-    public void setListOfPlaylist(ArrayList<Playlist> listOfPlaylist) {
-        for (Playlist pl : listOfPlaylist) {
-            this.listOfPlaylist.put(pl.getTitle(), pl);
-        }
+    public boolean hasPlaylist(String title){
+        return listOfPlaylist.get(title) != null;
     }
 
-    public boolean isPlaylistRegistered(Playlist playlist){
-        return listOfPlaylist.containsValue(playlist);
-    }
-
-    public boolean isPlaylistRegistered(String title){
-        return listOfPlaylist.containsKey(title);
-    }
-
-    public void addPlaylist(Playlist playlist) {
+    public void addOrReplacePlaylist(Playlist playlist) {
         this.listOfPlaylist.put(playlist.getTitle(), playlist);
     }
 
     public void removePlaylist(String title){
         this.listOfPlaylist.remove(title);
-    }
-
-    public void removePlaylist(Playlist playlist){
-        this.listOfPlaylist.remove(playlist.getTitle(), playlist);
     }
 
     public Playlist getPlaylist(String title) {
@@ -163,19 +150,13 @@ public class User implements Comparable<User> {
         this.recentVideos = recentVideos;
     }
 
-    public void addRecentVideo(Video video) {
-    	if(recentVideos.size()<5) recentVideos.add(video);
-    	else {
-    		recentVideos.remove(1);
-    		recentVideos.add(video);
-    	}
-    }
 
     public boolean isNightMode() {
         return isNightMode;
     }
 
     public void setNightMode(boolean nightMode) {
+        // TODO Move this to view layer
         this.isNightMode = nightMode;
         if (this.isNightMode) {
             IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));

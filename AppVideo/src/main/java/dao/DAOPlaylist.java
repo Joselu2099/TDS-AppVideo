@@ -5,11 +5,11 @@ import model.Playlist;
 import java.util.List;
 
 public interface DAOPlaylist {
-    void create(Playlist assistant);
+    void create(Playlist p);
 
-    boolean delete(Playlist assistant);
+    boolean delete(Playlist p);
 
-    void updateProfile(Playlist assistant);
+    void updateProfile(Playlist p);
 
     Playlist get(int id);
 
