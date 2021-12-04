@@ -2,19 +2,15 @@ package gui;
 
 import controller.AppVideo;
 import model.*;
-import model.Label;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.function.BiConsumer;
 
 public class AppVideoWindow {
 
+    private static AppVideoWindow activeInstance;
     private JFrame frmAppVideo;
     private HomePanel homePanel;
     private RecentPanel recentPanel;
@@ -27,6 +23,14 @@ public class AppVideoWindow {
 
     public AppVideoWindow() {
         initialize();
+    }
+
+    public static void setActiveInstance(AppVideoWindow appVideoWindow){
+        AppVideoWindow.activeInstance = appVideoWindow;
+    }
+
+    public static AppVideoWindow getActiveInstance(){
+        return AppVideoWindow.activeInstance;
     }
 
     /**

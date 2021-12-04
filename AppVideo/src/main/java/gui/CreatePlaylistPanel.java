@@ -3,6 +3,9 @@ package gui;
 import gui.VideoPreview.VideoPreviewListPanel;
 import model.Playlist;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+
 import controller.AppVideo;
 import gui.Util.SwapLayout;
 import model.Video;
@@ -24,6 +27,7 @@ public class CreatePlaylistPanel extends JPanel {
 	private VideoPreviewListPanel playlistPanel;
 	private JPanel createPanel;
 	private PlaylistEditorPanel videoSelector;
+	private JLabel lblPlaylistName;
 
 	/**
 	 * Create the panel.
@@ -47,9 +51,10 @@ public class CreatePlaylistPanel extends JPanel {
 						"Creating playlist", JOptionPane.PLAIN_MESSAGE, null, null, "");
 			if(!AppVideo.getInstance().isPlaylistInCurrentUser(playlistTitle) && playlistTitle!=null
 					&& playlistTitle.length()>0) {
-				createdPlaylist = AppVideo.getInstance().createPlaylist(playlistTitle, new ArrayList<Video>());
+				createdPlaylist = new Playlist(playlistTitle);
+				goToPlaylistEditorPanel();
 				showPlaylistPreview(createdPlaylist);
-				goToPlaylistEditorPanel(createdPlaylist.getListOfVideos());
+				lblPlaylistName.setText(playlistTitle);
 			}else if(playlistTitle!=null)JOptionPane.showMessageDialog(parent.getContentPane(),
 					"Prueba otro nombre para tu playlist",
 					"Playlist title", JOptionPane.ERROR_MESSAGE);
@@ -59,7 +64,7 @@ public class CreatePlaylistPanel extends JPanel {
 		JButton btnEditButton = new JButton("Edit Playlist");
 		btnEditButton.addActionListener(l -> {
 			if(createdPlaylist!=null){
-				goToPlaylistEditorPanel(createdPlaylist.getListOfVideos());
+				goToPlaylistEditorPanel();
 				createdPlaylist.setListOfVideos(videoSelector.getSelectedVideos());
 				showPlaylistPreview(createdPlaylist);
 			}else JOptionPane.showMessageDialog(parent.getContentPane(),
@@ -68,19 +73,11 @@ public class CreatePlaylistPanel extends JPanel {
 		});
 		editorPanel.add(btnEditButton);
 
-		JButton btnSavePlaylist = new JButton("Save Playlist");
-		btnSavePlaylist.addActionListener(l -> {
-			if(createdPlaylist!=null) {
-				AppVideo.getInstance().updatePlaylist(createdPlaylist);
-				System.out.println(AppVideo.getInstance().getCurrentPlaylists());
-			}else JOptionPane.showMessageDialog(parent.getContentPane(),
-					"No has creado ninguna lista para poder guardarla",
-					"Playlist not saved", JOptionPane.ERROR_MESSAGE);
-		});
-		editorPanel.add(btnSavePlaylist);
-
-		JPanel namePlaylistPanel = new JPanel();
-
+		JPanel playlistNamePanel = new JPanel();
+		lblPlaylistName = new JLabel("");
+		lblPlaylistName.setFont(new Font("Gill Sans MT", Font.BOLD, 18));
+		playlistNamePanel.add(lblPlaylistName);
+		createPanel.add(playlistNamePanel);
 
 		playlistPanel = new VideoPreviewListPanel(new ArrayList<>(), vid->{
 			VideoPlayerWindow player = new VideoPlayerWindow(vid);
@@ -88,6 +85,7 @@ public class CreatePlaylistPanel extends JPanel {
 		});
 
 		JScrollPane scrollPane = new JScrollPane(playlistPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setBorder(new EmptyBorder(0,0,0,0));
 		add(scrollPane,BorderLayout.CENTER);
 	}
 
@@ -95,25 +93,25 @@ public class CreatePlaylistPanel extends JPanel {
 		playlistPanel.setPrewviewList(playlist.getListOfVideos());
 	}
 
-	public void goToPlaylistEditorPanel(List<Video> videoList){
+	public void goToPlaylistEditorPanel(){
 		JFrame editorFrame = new JFrame();
-		videoSelector = new PlaylistEditorPanel(editorFrame, videoList);
+		videoSelector = new PlaylistEditorPanel(editorFrame, createdPlaylist);
 		editorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		editorFrame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				AppVideo.getInstance().getAppVideoWindow().showWindow();
+				AppVideoWindow.getActiveInstance().showWindow();
 			}
 		});
 		editorFrame.setContentPane(videoSelector);
 		editorFrame.setBounds(0, 0, 800, 600);
-		AppVideo.getInstance().getAppVideoWindow().hideWindow();
+		AppVideoWindow.getActiveInstance().hideWindow();
 		editorFrame.setLocationRelativeTo(null);
 		editorFrame.setVisible(true);
 	}
 
-	public void setCreatedPlaylist(List<Video> selectedVideos){
-		this.createdPlaylist.setListOfVideos(selectedVideos);
+	public void setCreatedPlaylist(Playlist playlist){
+		this.createdPlaylist = playlist;
 		showPlaylistPreview(createdPlaylist);
 	}
 }

@@ -23,19 +23,11 @@ public class PlaylistEditorPanel extends JPanel {
 	private Set<Label> labelSet = new TreeSet<>();
 	private List<Video> selectedVideos;
 
-	public String getSearchText() {
-		return textField.getText();
-	}
-
-	public Set<Label> getSearchLabelSet() {
-		return Collections.unmodifiableSet(labelSet);
-	}
-
 	/**
 	 * Create the panel.
 	 */
-	public PlaylistEditorPanel(JFrame parent, List<Video> videoList) {
-		selectedVideos=videoList;
+	public PlaylistEditorPanel(JFrame parent, Playlist playlist) {
+		selectedVideos=playlist.getListOfVideos();
 		// Necesitamos el JFrame para ocultar la ventana cuando lanzamos
 		// el visualizador de video.
 		setLayout(new BorderLayout());
@@ -69,6 +61,7 @@ public class PlaylistEditorPanel extends JPanel {
 			}else{
 				//TODO mostrar graficamente que el video ha sido seleccionado
 				selectedVideos.add(vid);
+
 				System.out.println("Video " + vid.getTitle() + " añadido a playlist");
 			}
 		});
@@ -82,8 +75,14 @@ public class PlaylistEditorPanel extends JPanel {
 
 		JButton btnSave = new JButton("Guardar");
 		btnSave.addActionListener(l -> {
-			AppVideo.getInstance().getAppVideoWindow().getCreatePlaylistPanel().setCreatedPlaylist(selectedVideos);
-			AppVideo.getInstance().getAppVideoWindow().showWindow();
+			playlist.setListOfVideos(selectedVideos);
+			if(!AppVideo.getInstance().createPlaylist(playlist)){
+				AppVideo.getInstance().updatePlaylist(playlist);
+				System.out.println("Actualizo la playlist");
+			}else System.out.println("Creo la playlist");
+
+			AppVideoWindow.getActiveInstance().getCreatePlaylistPanel().setCreatedPlaylist(playlist);
+			AppVideoWindow.getActiveInstance().showWindow();
 
 			parent.dispose();
 		});
@@ -92,10 +91,6 @@ public class PlaylistEditorPanel extends JPanel {
 		JScrollPane scrollPane = new JScrollPane(vidPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		add(scrollPane, BorderLayout.CENTER);
-	}
-
-	public void goToCreatePlaylistPanel(JFrame parent, JFrame createPlaylist, List<Video> videoList){
-
 	}
 
 	public List<Video> getSelectedVideos(){

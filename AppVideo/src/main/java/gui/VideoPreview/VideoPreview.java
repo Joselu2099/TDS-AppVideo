@@ -1,5 +1,6 @@
 package gui.VideoPreview;
 
+import controller.AppVideo;
 import gui.Util.MultilineLabel;
 import gui.Util.UIUtils;
 import gui.Util.VideoWebFactory;
@@ -16,11 +17,13 @@ public class VideoPreview extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	Video video;
-	JLabel lblPreviewLabel = new JLabel("");
-	public VideoPreview(Video v, Consumer<Video> videoCallback) {
-		this.video = v;
+	private Video video;
+	private JLabel lblPreviewLabel = new JLabel("");
+	private VideoPreview videoPreview;
 
+	public VideoPreview(Video v, Consumer<VideoPreview> videoCallback) {
+		this.video = v;
+		this.videoPreview = this;
 
 		setLayout(new BorderLayout(0, 0));
 		setMinimumSize(new Dimension(180,140));
@@ -38,7 +41,7 @@ public class VideoPreview extends JPanel {
 		add(lblPreviewLabel, BorderLayout.NORTH);
 		lblPreviewLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 
-		MultilineLabel lblTitle = new MultilineLabel(v.getTitle());
+		MultilineLabel lblTitle = new MultilineLabel(AppVideo.getInstance().changeShortTitleOfVideo(video, 20));
 		lblTitle.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		add(lblTitle, BorderLayout.SOUTH);
 
@@ -49,16 +52,20 @@ public class VideoPreview extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (videoCallback != null)
-					videoCallback.accept(v);
+					videoCallback.accept(videoPreview);
 			}
 		});
 		lblTitle.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (videoCallback != null)
-					videoCallback.accept(v);
+					videoCallback.accept(videoPreview);
 			}
 		});
+	}
+
+	public Video getVideo(){
+		return video;
 	}
 
 }

@@ -5,6 +5,7 @@ import dao.DAOFactory;
 import dao.DAOUser;
 import dao.DAOVideo;
 import gui.AppVideoWindow;
+import gui.PlaylistEditorPanel;
 import model.*;
 import org.apache.commons.codec.digest.DigestUtils;
 import umu.tds.componente.VideosLoader;
@@ -17,13 +18,12 @@ import java.util.stream.Collectors;
 public class AppVideo {
 
     public static final int MIN_PASSWORD_LENGTH = 8;
-    public static AppVideo uniqueInstance = null;
+    private static AppVideo uniqueInstance = null;
     private DAOFactory factory;
     private User currentUser;
     private List<Playlist> currentPlaylists;
     private IFilter filter;
     private VideosLoader videosLoader;
-    private AppVideoWindow appVideoWindow;
 
     private VideoRepository videoRepository;
     private UserRepository userRepository;
@@ -68,6 +68,10 @@ public class AppVideo {
         applyFilter(currentUser.getFilter());
     }
 
+    public String changeShortTitleOfVideo(Video video, int num){
+        return video.getShortTitle(num);
+    }
+
     public void subscribeFilteredVideoChange(Runnable callback){
         if (callback != null)
             filteredVideoChangedListeners.add(callback);
@@ -82,14 +86,9 @@ public class AppVideo {
         if (user != null && checkPassword(password, user.getPassword())) {
             this.setCurrentUser(user);
             applyFilter(user.getFilter());
-            appVideoWindow=new AppVideoWindow();
             return true;
         }
         return false;
-    }
-
-    public AppVideoWindow getAppVideoWindow(){
-        return this.appVideoWindow;
     }
 
     public boolean isUserRegistered(String username) {
@@ -181,18 +180,16 @@ public class AppVideo {
     }
 
     // Factoria
-    public Playlist createPlaylist(String title,List<Video> videos){
+    public boolean createPlaylist(Playlist playlist){
 //        System.out.println("isPlaylistRegistered? -> " + getCurrentUser().isPlaylistRegistered(title));
-        if(isPlaylistInCurrentUser(title)) {
-            return null;
+        if(isPlaylistInCurrentUser(playlist.getTitle())) {
+            return false;
         }
-        Playlist playlist = new Playlist(title);
-        if (videos != null)
-            playlist.setListOfVideos(videos);
+        //Playlist playlist = new Playlist(title);
         factory.getDAOPlaylist().create(playlist);
         getCurrentUser().addOrReplacePlaylist(playlist);
         factory.getDAOUser().updateProfile(getCurrentUser());
-        return playlist;
+        return true;
     }
 
     public void removePlaylist(String title){

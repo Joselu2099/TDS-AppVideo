@@ -7,6 +7,7 @@ import model.Label;
 import model.Playlist;
 import model.Video;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 import model.VideoRepository;
 import org.jetbrains.annotations.NotNull;
@@ -108,6 +109,7 @@ public class HomePanel extends JPanel{
 		searchBoxPanel.add(luz);
 
 		JScrollPane scrollPane = new JScrollPane(vidPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setBorder(new EmptyBorder(0,0,0,0));
 
 		showVideoPreview(AppVideo.getInstance().getFilteredVideoList());
 		add(scrollPane,BorderLayout.CENTER);

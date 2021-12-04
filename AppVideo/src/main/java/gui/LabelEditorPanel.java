@@ -34,7 +34,6 @@ public class LabelEditorPanel extends JPanel {
         this.deleteCallback = deleteCallback;
 
         // TAGS
-        this.setBorder(new BevelBorder(BevelBorder.RAISED));
         this.add(getTagPanel(labels));
 //        add(swapLayoutPanelWrapper.getPanel() );
     }

@@ -455,7 +455,7 @@ public class RegisterWindow {
             boolean isRegistered = AppVideo.getInstance().registerUser(name, surname, mail, username, password,
                     date.toString());
             if (isRegistered) {
-                JOptionPane.showMessageDialog(frmRegister, "Asistente registrado correctamente.", "Registro", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(frmRegister, "Usuario registrado correctamente.", "Registro", JOptionPane.INFORMATION_MESSAGE);
                 goToLoginWindow();
             } else {
                 JOptionPane.showMessageDialog(frmRegister, "No se ha podido llevar a cabo el registro.\n", "Registro", JOptionPane.ERROR_MESSAGE);

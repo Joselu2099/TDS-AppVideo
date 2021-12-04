@@ -79,6 +79,12 @@ public class Video implements Comparable<Video>{
         labels.remove(l);
     }
 
+    public String getShortTitle(int num){
+        if(title.length()>num)
+            return title.substring(0, num-3)+"...";
+        return title;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

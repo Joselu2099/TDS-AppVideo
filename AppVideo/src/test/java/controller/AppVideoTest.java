@@ -107,7 +107,7 @@ class AppVideoTest {
 
     @Test
     void createPlaylist(){
-        AppVideo.getInstance().createPlaylist("__testTitle", new ArrayList<>());
+        ///AppVideo.getInstance().createPlaylist("__testTitle", new ArrayList<>());
         assertTrue(AppVideo.getInstance().isPlaylistInCurrentUser("__testTitle"));
         AppVideo.getInstance().removePlaylist("__testTitle");
     }
@@ -116,7 +116,7 @@ class AppVideoTest {
     void removePlaylist(){
         AppVideo.getInstance().removePlaylist("__testTitle");
         assertFalse(AppVideo.getInstance().isPlaylistInCurrentUser("__testTitle"));
-        AppVideo.getInstance().createPlaylist("__testTitle", new ArrayList<>());
+        //AppVideo.getInstance().createPlaylist("__testTitle", new ArrayList<>());
         assertTrue(AppVideo.getInstance().isPlaylistInCurrentUser("__testTitle"));
         AppVideo.getInstance().removePlaylist("__testTitle");
         assertFalse(AppVideo.getInstance().isPlaylistInCurrentUser("__testTitle"));
