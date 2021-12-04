@@ -21,7 +21,7 @@ public class PlaylistEditorPanel extends JPanel {
 	private JTextField textField;
 	private VideoPreviewListPanel vidPanel;
 	private Set<Label> labelSet = new TreeSet<>();
-	private List<Video> videosSelected = new ArrayList<>();
+	private List<Video> selectedVideos;
 
 	public String getSearchText() {
 		return textField.getText();
@@ -34,7 +34,8 @@ public class PlaylistEditorPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public PlaylistEditorPanel(JFrame parent, Playlist playlist) {
+	public PlaylistEditorPanel(JFrame parent, List<Video> videoList) {
+		selectedVideos=videoList;
 		// Necesitamos el JFrame para ocultar la ventana cuando lanzamos
 		// el visualizador de video.
 		setLayout(new BorderLayout());
@@ -61,12 +62,14 @@ public class PlaylistEditorPanel extends JPanel {
 		textField.setColumns(30);
 
 		vidPanel = new VideoPreviewListPanel(new ArrayList<>(), vid->{
-			if(videosSelected.contains(vid)){
+			if(selectedVideos.contains(vid)){
 				//TODO mostrar graficamente que el video ha sido deseleccionado
-				videosSelected.remove(vid);
+				selectedVideos.remove(vid);
+				System.out.println("Video " + vid.getTitle() + " eliminado de playlist");
 			}else{
 				//TODO mostrar graficamente que el video ha sido seleccionado
-				videosSelected.add(vid);
+				selectedVideos.add(vid);
+				System.out.println("Video " + vid.getTitle() + " añadido a playlist");
 			}
 		});
 		showVideoPreview(AppVideo.getInstance().getFilteredVideoList());
@@ -79,7 +82,9 @@ public class PlaylistEditorPanel extends JPanel {
 
 		JButton btnSave = new JButton("Guardar");
 		btnSave.addActionListener(l -> {
-			playlist.setListOfVideos(videosSelected);
+			AppVideo.getInstance().getAppVideoWindow().getCreatePlaylistPanel().setCreatedPlaylist(selectedVideos);
+			AppVideo.getInstance().getAppVideoWindow().showWindow();
+
 			parent.dispose();
 		});
 		searchBoxPanel.add(btnSave);
@@ -89,6 +94,13 @@ public class PlaylistEditorPanel extends JPanel {
 		add(scrollPane, BorderLayout.CENTER);
 	}
 
+	public void goToCreatePlaylistPanel(JFrame parent, JFrame createPlaylist, List<Video> videoList){
+
+	}
+
+	public List<Video> getSelectedVideos(){
+		return this.selectedVideos;
+	}
 
 	public void showVideoPreview(List<Video> videoList) {
 		vidPanel.setPrewviewList(videoList);

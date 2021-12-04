@@ -30,7 +30,6 @@ public class HomePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	private JTextField textField;
-	private JFrame parent;
 	private VideoPreviewListPanel vidPanel;
 	Set<Label> labelSet = new TreeSet<>();
 
@@ -47,7 +46,6 @@ public class HomePanel extends JPanel{
 	public HomePanel(JFrame parent) {
 		// Necesitamos el JFrame para ocultar la ventana cuando lanzamos
 		// el visualizador de video.
-		this.parent = parent;
 		setLayout(new BorderLayout());
 		
 		JPanel searchPanel = new JPanel();

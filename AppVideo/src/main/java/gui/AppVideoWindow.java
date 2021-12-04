@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.function.BiConsumer;
@@ -34,6 +35,13 @@ public class AppVideoWindow {
     public void showWindow() {
         frmAppVideo.setLocationRelativeTo(null);
         frmAppVideo.setVisible(true);
+    }
+
+    /**
+     * Hide actual window
+     */
+    public void hideWindow() {
+        frmAppVideo.setVisible(false);
     }
 
     /**
@@ -173,5 +181,4 @@ public class AppVideoWindow {
         frmAppVideo.dispose();
         profile.showWindow();
     }
-
 }

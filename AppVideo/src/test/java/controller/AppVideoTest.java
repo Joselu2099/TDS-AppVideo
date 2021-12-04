@@ -2,6 +2,9 @@ package controller;
 
 import model.*;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppVideoTest {
@@ -104,18 +107,18 @@ class AppVideoTest {
 
     @Test
     void createPlaylist(){
-        AppVideo.getInstance().createPlaylist("__testTitle");
-        assertTrue(AppVideo.getInstance().isPlaylistRegistered("__testTitle"));
+        AppVideo.getInstance().createPlaylist("__testTitle", new ArrayList<>());
+        assertTrue(AppVideo.getInstance().isPlaylistInCurrentUser("__testTitle"));
         AppVideo.getInstance().removePlaylist("__testTitle");
     }
 
     @Test
     void removePlaylist(){
         AppVideo.getInstance().removePlaylist("__testTitle");
-        assertFalse(AppVideo.getInstance().isPlaylistRegistered("__testTitle"));
-        AppVideo.getInstance().createPlaylist("__testTitle");
-        assertTrue(AppVideo.getInstance().isPlaylistRegistered("__testTitle"));
+        assertFalse(AppVideo.getInstance().isPlaylistInCurrentUser("__testTitle"));
+        AppVideo.getInstance().createPlaylist("__testTitle", new ArrayList<>());
+        assertTrue(AppVideo.getInstance().isPlaylistInCurrentUser("__testTitle"));
         AppVideo.getInstance().removePlaylist("__testTitle");
-        assertFalse(AppVideo.getInstance().isPlaylistRegistered("__testTitle"));
+        assertFalse(AppVideo.getInstance().isPlaylistInCurrentUser("__testTitle"));
     }
 }

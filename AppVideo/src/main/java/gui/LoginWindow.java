@@ -182,10 +182,8 @@ public class LoginWindow {
                 JOptionPane.showMessageDialog(null, "El usuario o clave son incorrectos", "Login Fallido",
                         JOptionPane.ERROR_MESSAGE);
             } else {
-                //Crear ventana principal y mostrarla
-                AppVideoWindow appVideoWindow = new AppVideoWindow();
-                appVideoWindow.showWindow();
-//                AppVideo.getInstance().createAppVideoWindow();
+                //Mostrar ventana principal
+                AppVideo.getInstance().getAppVideoWindow().showWindow();
                 frmLogin.setVisible(false);
             }
         } else {

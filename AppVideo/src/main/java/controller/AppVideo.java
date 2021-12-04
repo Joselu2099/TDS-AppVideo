@@ -4,6 +4,7 @@ import dao.DAOException;
 import dao.DAOFactory;
 import dao.DAOUser;
 import dao.DAOVideo;
+import gui.AppVideoWindow;
 import model.*;
 import org.apache.commons.codec.digest.DigestUtils;
 import umu.tds.componente.VideosLoader;
@@ -22,6 +23,7 @@ public class AppVideo {
     private List<Playlist> currentPlaylists;
     private IFilter filter;
     private VideosLoader videosLoader;
+    private AppVideoWindow appVideoWindow;
 
     private VideoRepository videoRepository;
     private UserRepository userRepository;
@@ -80,9 +82,14 @@ public class AppVideo {
         if (user != null && checkPassword(password, user.getPassword())) {
             this.setCurrentUser(user);
             applyFilter(user.getFilter());
+            appVideoWindow=new AppVideoWindow();
             return true;
         }
         return false;
+    }
+
+    public AppVideoWindow getAppVideoWindow(){
+        return this.appVideoWindow;
     }
 
     public boolean isUserRegistered(String username) {
