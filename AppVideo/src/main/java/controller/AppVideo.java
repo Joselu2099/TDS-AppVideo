@@ -209,6 +209,10 @@ public class AppVideo {
         getCurrentUser().addOrReplacePlaylist(playlist);
         factory.getDAOPlaylist().updateProfile(playlist);
     }
+    
+    public Playlist getPlaylist(String title) {
+    	return getCurrentUser().getPlaylist(title);
+    }
 
     public void addVideoToPlaylist(String title, Video video){
         if(!getCurrentUser().hasPlaylist(title)) return;

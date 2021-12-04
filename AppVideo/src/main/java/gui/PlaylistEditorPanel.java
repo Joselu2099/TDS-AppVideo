@@ -81,7 +81,7 @@ public class PlaylistEditorPanel extends JPanel {
 				System.out.println("Actualizo la playlist");
 			}else System.out.println("Creo la playlist");
 
-			AppVideoWindow.getActiveInstance().getCreatePlaylistPanel().setCreatedPlaylist(playlist);
+			AppVideoWindow.getActiveInstance().getCreatePlaylistPanel().setCurrentPlaylist(playlist);
 			AppVideoWindow.getActiveInstance().showWindow();
 
 			parent.dispose();
