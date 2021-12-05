@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 
 import controller.AppVideo;
 import gui.Util.SwapLayout;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -73,7 +74,7 @@ public class CreatePlaylistPanel extends JPanel {
 		});
 		editorPanel.add(btnEditButton);
 		
-		JButton selectBtn = new JButton("SELECT");
+		JButton selectBtn = new JButton("Select Playlist");
 		selectBtn.addActionListener(l->selectPlaylist());
 
 		editorPanel.add(selectBtn);
@@ -98,8 +99,11 @@ public class CreatePlaylistPanel extends JPanel {
 	private void selectPlaylist(){
 		JComboBox<String> comboBox = new JComboBox<>(AppVideo.getInstance().getCurrentPlaylists().stream().map(Playlist::getTitle).toArray(String[]::new));
 		comboBox.setEditable(false);
-		JOptionPane.showMessageDialog(this, comboBox, "Seleccióna Playlist:",
-				JOptionPane.QUESTION_MESSAGE);
+		JOptionPane.showMessageDialog(this,
+				comboBox,
+				"Seleccióna Playlist:",
+				JOptionPane.QUESTION_MESSAGE,
+				new ImageIcon("/images/multimediavideoplayer_128px.png"));
 		if (comboBox.getSelectedItem() == null)
 			return;
 		currentPlaylist = AppVideo.getInstance().getPlaylist((String) comboBox.getSelectedItem());
