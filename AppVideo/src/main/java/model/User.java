@@ -10,7 +10,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+
 public class User implements Comparable<User> {
+    private final static int MAX_RECENT_VIDEOS = 5;
+
     private Map<String, Playlist> listOfPlaylist;
     private int id;
     private String name;
@@ -34,7 +37,7 @@ public class User implements Comparable<User> {
         this.dateOfBirth = dateOfBirth;
         this.premium = "no";
         this.listOfPlaylist = new HashMap<>();
-        this.recentVideos = new ArrayList<>(5);
+        this.recentVideos = new ArrayList<>(0);
         this.filter = new NoFilter();
     }
 
@@ -121,9 +124,9 @@ public class User implements Comparable<User> {
     }
 
     public void addRecentVideo(Video v){
-        recentVideos.add(v);
-        if (recentVideos.size() >5)
-            recentVideos.remove(0);
+        recentVideos.add(0,v);
+        if (recentVideos.size() >MAX_RECENT_VIDEOS)
+            recentVideos.remove(recentVideos.size()-1);
     }
 
     public boolean hasPlaylist(String title){

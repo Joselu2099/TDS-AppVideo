@@ -1,5 +1,6 @@
 package gui;
 
+import controller.AppVideo;
 import gui.VideoPreview.VideoPreviewListPanel;
 import model.Video;
 import javax.swing.*;
@@ -22,23 +23,26 @@ public class RecentPanel extends JPanel{
 	/**
 	 * Create the panel.
 	 */
-	public RecentPanel(JFrame parent ,List<Video> list ) {
+	public RecentPanel(JFrame parent) {
+		setLayout(new BorderLayout(0, 0));
 		// Necesitamos el JFrame para ocultar la ventana cuando lanzamos
 		// el visualizador de video.
 		this.parent = parent;
-		showVideoPreview(list);
-		setLayout(new BorderLayout(0, 0));
+		this.videoPreviewListPanel = new VideoPreviewListPanel(AppVideo.getInstance().getCurrentUserRencentVideo(),this::videoClickCallback);
+		this.add(videoPreviewListPanel,BorderLayout.CENTER);
+
+		// callback to update panel
+		AppVideo.getInstance().subscribeRecentVideoChanged(()->showVideoPreview(AppVideo.getInstance().getCurrentUserRencentVideo()));
+
+	}
+
+	private void videoClickCallback(Video v){
+		VideoPlayerWindow playerWindow = new VideoPlayerWindow(v);
+		playerWindow.showPlayer(parent);
 	}
 
 	public void showVideoPreview(List<Video> videoList) {
-		if (videoPreviewListPanel == null){
-			videoPreviewListPanel = new VideoPreviewListPanel(videoList,vid->{
-				VideoPlayerWindow player = new VideoPlayerWindow(vid);
-				player.showPlayer(parent);
-			});
-		}else{
 			videoPreviewListPanel.setPrewviewList(videoList);
-		}
 	}
 }
 

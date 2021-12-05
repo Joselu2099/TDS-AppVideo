@@ -133,7 +133,7 @@ public class AppVideoWindow {
 //        homePanel.showVideoPreview(VideoRepository.getInstance().getFilteredVideos());
         tabbedPane.addTab("Home", null, homePanel, null);
 
-        recentPanel = new RecentPanel(frmAppVideo, AppVideo.getInstance().getCurrentUser().getRecentVideos());
+        recentPanel = new RecentPanel(frmAppVideo);
         tabbedPane.addTab("Recent", null, recentPanel, null);
 
         myPlaylistPanel = new MyPlaylistPanel(frmAppVideo, AppVideo.getInstance().getCurrentPlaylists());

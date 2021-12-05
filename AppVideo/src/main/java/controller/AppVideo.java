@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class AppVideo {
@@ -29,6 +30,7 @@ public class AppVideo {
     private UserRepository userRepository;
 
     private List<Runnable> filteredVideoChangedListeners;
+    private List<Runnable> recentVideoChangedListeners;
 
     private AppVideo() {
         try {
@@ -38,6 +40,7 @@ public class AppVideo {
             videosLoader = VideosLoader.getInstance();
 
             filteredVideoChangedListeners = new ArrayList<>();
+            recentVideoChangedListeners = new ArrayList<>();
 
             currentPlaylists = new ArrayList<>();
 
@@ -317,6 +320,31 @@ public class AppVideo {
 
         DAOUser daoUser = factory.getDAOUser();
         daoUser.updateProfile(getCurrentUser());
+    }
+    private void notifieRecentVideoChanged(){
+        recentVideoChangedListeners.stream().forEach(Runnable::run);
+    }
+    public void subscribeRecentVideoChanged(Runnable callback){
+        if (callback == null)
+            return;
+        recentVideoChangedListeners.add(callback);
+    }
+    public void unsubscribeRecentVideoChanged(Runnable callback){
+        recentVideoChangedListeners.remove(callback);
+    }
+
+    public List<Video> getCurrentUserRencentVideo(){
+        return Collections.unmodifiableList(getCurrentUser().getRecentVideos());
+    }
+
+    public void incrementVideoViewAndAddToRecent(Video v){
+        v.incrementViews();
+        factory.getDAOVideo().updateProfile(v);
+        if (getCurrentUser() == null) // Allow playing video without user, testing only
+            return;
+        getCurrentUser().addRecentVideo(v);
+        factory.getDAOUser().updateProfile(getCurrentUser());
+        notifieRecentVideoChanged();
     }
 
     public void generatePDF() {

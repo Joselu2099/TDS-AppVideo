@@ -2,6 +2,7 @@ package gui;
 
 
 import com.formdev.flatlaf.IntelliJTheme;
+import controller.AppVideo;
 import gui.Util.VideoWebFactory;
 import launcher.Launcher;
 import model.Label;
@@ -30,6 +31,10 @@ public class VideoPlayerWindow extends JDialog {
                 videoWeb.cancel(); // Stop playing in background when windows is closed.
             }
         });
+
+        AppVideo.getInstance().incrementVideoViewAndAddToRecent(video);
+
+
     	JPanel panel = new JPanel();
         panel.setBorder(new EmptyBorder(15,15,15,15));
         setBounds(100, 100, 780, 520);
