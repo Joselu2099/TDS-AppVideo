@@ -12,6 +12,7 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class CreatePlaylistPanel extends JPanel {
 
@@ -25,7 +26,6 @@ public class CreatePlaylistPanel extends JPanel {
 	private JPanel createPanel;
 	private PlaylistEditorPanel videoSelector;
 	private JLabel lblPlaylistName;
-	private Choice playlistSelector;
 	//private String currentPlaylist;
 
 	/**
@@ -55,8 +55,6 @@ public class CreatePlaylistPanel extends JPanel {
 				goToPlaylistEditorPanel();
 				showPlaylistPreview(currentPlaylist);
 				lblPlaylistName.setText(playlistTitle);
-				playlistSelector.select(playlistTitle);
-				playlistSelector.add(playlistTitle);
 			}else if(playlistTitle!=null)JOptionPane.showMessageDialog(parent.getContentPane(),
 					"Prueba otro nombre para tu playlist",
 					"Playlist title", JOptionPane.ERROR_MESSAGE);
@@ -75,17 +73,10 @@ public class CreatePlaylistPanel extends JPanel {
 		});
 		editorPanel.add(btnEditButton);
 		
-		playlistSelector = new Choice();
-		playlistSelector.setPreferredSize(new Dimension(200, 0));
-		playlistSelector.addItemListener(e -> {
-			currentPlaylist = AppVideo.getInstance().getPlaylist(playlistSelector.getSelectedItem());
-			showPlaylistPreview(currentPlaylist);
-			lblPlaylistName.setText(playlistSelector.getSelectedItem());
-		});
-		for(Playlist p: AppVideo.getInstance().getCurrentPlaylists()) {
-			playlistSelector.add(p.getTitle());
-		}
-		editorPanel.add(playlistSelector);
+		JButton selectBtn = new JButton("SELECT");
+		selectBtn.addActionListener(l->selectPlaylist());
+
+		editorPanel.add(selectBtn);
 
 		JPanel playlistNamePanel = new JPanel();
 		playlistNamePanel.setBorder(new EmptyBorder(0,0,0,0));
@@ -103,6 +94,17 @@ public class CreatePlaylistPanel extends JPanel {
 		JScrollPane scrollPane = new JScrollPane(playlistPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBorder(new EmptyBorder(0,0,0,0));
 		add(scrollPane,BorderLayout.CENTER);
+	}
+	private void selectPlaylist(){
+		JComboBox<String> comboBox = new JComboBox<>(AppVideo.getInstance().getCurrentPlaylists().stream().map(Playlist::getTitle).toArray(String[]::new));
+		comboBox.setEditable(false);
+		JOptionPane.showMessageDialog(this, comboBox, "Seleccióna Playlist:",
+				JOptionPane.QUESTION_MESSAGE);
+		if (comboBox.getSelectedItem() == null)
+			return;
+		currentPlaylist = AppVideo.getInstance().getPlaylist((String) comboBox.getSelectedItem());
+		showPlaylistPreview(currentPlaylist);
+		lblPlaylistName.setText(currentPlaylist.getTitle());
 	}
 
 	public void showPlaylistPreview(Playlist playlist) {

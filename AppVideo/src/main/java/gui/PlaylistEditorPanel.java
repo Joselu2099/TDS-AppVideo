@@ -55,13 +55,10 @@ public class PlaylistEditorPanel extends JPanel {
 
 		vidPanel = new VideoPreviewListPanel(new ArrayList<>(), vid->{
 			if(selectedVideos.contains(vid)){
-				//TODO mostrar graficamente que el video ha sido deseleccionado
 				selectedVideos.remove(vid);
 				System.out.println("Video " + vid.getTitle() + " eliminado de playlist");
 			}else{
-				//TODO mostrar graficamente que el video ha sido seleccionado
 				selectedVideos.add(vid);
-
 				System.out.println("Video " + vid.getTitle() + " añadido a playlist");
 			}
 		});

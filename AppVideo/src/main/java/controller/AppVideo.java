@@ -189,6 +189,7 @@ public class AppVideo {
         factory.getDAOPlaylist().create(playlist);
         getCurrentUser().addOrReplacePlaylist(playlist);
         factory.getDAOUser().updateProfile(getCurrentUser());
+        applyFilter(filter);
         return true;
     }
 
@@ -200,6 +201,7 @@ public class AppVideo {
         getCurrentUser().removePlaylist(title);
         factory.getDAOPlaylist().delete(p);
         factory.getDAOUser().updateProfile(getCurrentUser());
+        applyFilter(filter);
     }
 
     public void updatePlaylist(Playlist playlist){
@@ -208,6 +210,7 @@ public class AppVideo {
         }
         getCurrentUser().addOrReplacePlaylist(playlist);
         factory.getDAOPlaylist().updateProfile(playlist);
+        applyFilter(filter);
     }
     
     public Playlist getPlaylist(String title) {
