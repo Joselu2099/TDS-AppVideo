@@ -136,7 +136,7 @@ public class AppVideoWindow {
         recentPanel = new RecentPanel(frmAppVideo);
         tabbedPane.addTab("Recent", null, recentPanel, null);
 
-        myPlaylistPanel = new MyPlaylistPanel(frmAppVideo, AppVideo.getInstance().getCurrentPlaylists());
+        myPlaylistPanel = new MyPlaylistPanel(frmAppVideo);
         tabbedPane.addTab("My Playlists", null, myPlaylistPanel, null);
 
         createPlaylistPanel = new CreatePlaylistPanel(frmAppVideo);

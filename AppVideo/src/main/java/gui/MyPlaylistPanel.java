@@ -1,16 +1,14 @@
 package gui;
 
-import com.formdev.flatlaf.IntelliJTheme;
 import controller.AppVideo;
-import gui.Util.SwapLayout;
-import launcher.Launcher;
+import gui.VideoPreview.VideoPreviewListPanel;
 import model.Playlist;
 import javax.swing.*;
-import org.jetbrains.annotations.NotNull;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 public class MyPlaylistPanel extends JPanel{
 	
@@ -20,17 +18,16 @@ public class MyPlaylistPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	private JTextField textField;
-	JPanel vidPanel;
-	JFrame parent;
-	List<Playlist> filteredPlaylist;
+	private JPanel mainPanel;
+	private JFrame parent;
+	private Map<String, VideoPreviewListPanel> playlistsPanels = new HashMap<String, VideoPreviewListPanel>();
+	private List<Playlist> filteredPlaylists = new ArrayList<>();
 	
 	/**
 	 * Create the panel.
 	 */
-	public MyPlaylistPanel(JFrame parent ,List<Playlist> list ) {
-		filteredPlaylist = list;
-		vidPanel = new JPanel();
-		vidPanel.setLayout(new SwapLayout(vidPanel));
+	public MyPlaylistPanel(JFrame parent ) {
+		mainPanel = new JPanel();
 		// Necesitamos el JFrame para ocultar la ventana cuando lanzamos
 		// el visualizador de video.
 		this.parent = parent;
@@ -44,53 +41,42 @@ public class MyPlaylistPanel extends JPanel{
 		textField.setColumns(30);
 		
 		JButton btnSearchButton = new JButton("BUSCAR");
-		btnSearchButton.addActionListener(l->{filteredPlaylist = AppVideo.getInstance().searchPlaylists(textField.getText());
-											showPlaylistPreview(filteredPlaylist);});
+		btnSearchButton.addActionListener(l->{filteredPlaylists = AppVideo.getInstance().searchPlaylists(textField.getText());
+											setPlaylistsPanels(filteredPlaylists);
+											showPlaylistsPreview();});
 		searchPanel.add(btnSearchButton);
 
-		showPlaylistPreview(filteredPlaylist);
-		JScrollPane scrollPane = new JScrollPane(vidPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane scrollPane = new JScrollPane(mainPanel,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+		
+		setPlaylistsPanels(AppVideo.getInstance().getCurrentPlaylists());
+		showPlaylistsPreview();
+		
 		add(scrollPane, BorderLayout.CENTER);
 	}
 
-	public void showPlaylistPreview(List<Playlist> playlistList) {
+	public void showPlaylistsPreview() {
 		//TODO mostrar playlist
-		
-		/*
-		vidPanel.swap(new VideoPreviewListPanel(playlistList,vid->{
-			VideoPlayerWindow player = new VideoPlayerWindow(vid);
-			player.showPlayer(parent);
-		}));
-		*/
+		playlistsPanels.forEach((key, value) -> value.setPrewviewList(AppVideo.getInstance().getPlaylist(key).getListOfVideos()));
 	}
 	
-	public void setFilteredPlaylist(@NotNull List<Playlist> playlistList){
-		this.filteredPlaylist = playlistList;
-		showPlaylistPreview(playlistList);
-	}
-
-	public static void main(String[] args){
-		IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/ArcPurple.theme.json"));
-//        IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
-		EventQueue.invokeLater(() -> {
-			try {
-//				Video v = new Video("https://www.youtube.com/watch?v=XKfgdkcIUxw");
-//				v.addLabels(model.Label.INFANTIL);
-//				v.addLabels(model.Label.VIDEOCLIP);
-				JFrame f = new JFrame();
-//				Set<Label> labelSet = v.getLabels();
-//				LabalManager manager = new LabalManager(labelSet,
-//						l->{v.addLabels(l);labelSet.add(l);},
-//						l->{v.removeLabels(l);labelSet.remove(l);});
-				MyPlaylistPanel manager = new MyPlaylistPanel(f,new ArrayList<Playlist>());
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				f.setContentPane(manager);
-				f.setBounds(0, 0, 800, 600);
-				f.setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+	public void setPlaylistsPanels(List<Playlist> playlists){
+		clearMainPanel();
+		playlistsPanels = new HashMap<>();
+		playlists.stream()
+		.map(Playlist::getTitle)
+		.forEach(p -> {
+			playlistsPanels.put(p, new VideoPreviewListPanel(new ArrayList<>(), vid->{
+				VideoPlayerWindow player = new VideoPlayerWindow(vid);
+				player.showPlayer(parent);
+			}));
+			mainPanel.add(playlistsPanels.get(p));
 		});
+		showPlaylistsPreview();
+	}
+	
+	public void clearMainPanel() {
+		playlistsPanels.values().forEach(panel -> mainPanel.remove(panel));
 	}
 }
 

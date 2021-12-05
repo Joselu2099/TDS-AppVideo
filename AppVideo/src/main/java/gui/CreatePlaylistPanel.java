@@ -99,11 +99,8 @@ public class CreatePlaylistPanel extends JPanel {
 	private void selectPlaylist(){
 		JComboBox<String> comboBox = new JComboBox<>(AppVideo.getInstance().getCurrentPlaylists().stream().map(Playlist::getTitle).toArray(String[]::new));
 		comboBox.setEditable(false);
-		JOptionPane.showMessageDialog(this,
-				comboBox,
-				"Seleccióna Playlist:",
-				JOptionPane.QUESTION_MESSAGE,
-				new ImageIcon("/images/multimediavideoplayer_128px.png"));
+		JOptionPane.showMessageDialog(this, comboBox, "Seleccióna Playlist:",
+				JOptionPane.QUESTION_MESSAGE, new ImageIcon("/images/multimediavideoplayer_128px.png"));
 		if (comboBox.getSelectedItem() == null)
 			return;
 		currentPlaylist = AppVideo.getInstance().getPlaylist((String) comboBox.getSelectedItem());
