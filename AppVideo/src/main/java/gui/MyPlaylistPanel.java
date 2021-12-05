@@ -22,6 +22,7 @@ public class MyPlaylistPanel extends JPanel{
 	private JFrame parent;
 	private Map<String, VideoPreviewListPanel> playlistsPanels = new HashMap<String, VideoPreviewListPanel>();
 	private List<Playlist> filteredPlaylists = new ArrayList<>();
+	private JScrollPane scrollPane;
 	
 	/**
 	 * Create the panel.
@@ -40,23 +41,17 @@ public class MyPlaylistPanel extends JPanel{
 		searchPanel.add(textField);
 		textField.setColumns(30);
 		
-		JButton btnSearchButton = new JButton("BUSCAR");
+		JButton btnSearchButton = new JButton("Buscar");
 		btnSearchButton.addActionListener(l->{filteredPlaylists = AppVideo.getInstance().searchPlaylists(textField.getText());
-											setPlaylistsPanels(filteredPlaylists);
-											showPlaylistsPreview();});
+											setPlaylistsPanels(filteredPlaylists);});
 		searchPanel.add(btnSearchButton);
 
-		JScrollPane scrollPane = new JScrollPane(mainPanel,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-		
 		setPlaylistsPanels(AppVideo.getInstance().getCurrentPlaylists());
 		showPlaylistsPreview();
-		
-		add(scrollPane, BorderLayout.CENTER);
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 	}
 
 	public void showPlaylistsPreview() {
-		//TODO mostrar playlist
 		playlistsPanels.forEach((key, value) -> value.setPrewviewList(AppVideo.getInstance().getPlaylist(key).getListOfVideos()));
 	}
 	
@@ -71,8 +66,14 @@ public class MyPlaylistPanel extends JPanel{
 				player.showPlayer(parent);
 			}));
 			mainPanel.add(playlistsPanels.get(p));
+			if(scrollPane!=null)
+				remove(scrollPane);
+			scrollPane = new JScrollPane(mainPanel,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			add(scrollPane, BorderLayout.CENTER);
 		});
 		showPlaylistsPreview();
+		revalidate();
+		repaint();
 	}
 	
 	public void clearMainPanel() {
