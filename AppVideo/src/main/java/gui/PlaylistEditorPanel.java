@@ -1,6 +1,7 @@
 package gui;
 
 import controller.AppVideo;
+import gui.VideoPreview.SelectVideoPrewviewListPanel;
 import gui.VideoPreview.VideoPreviewListPanel;
 import model.Label;
 import model.Playlist;
@@ -19,7 +20,7 @@ public class PlaylistEditorPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private JTextField textField;
-	private VideoPreviewListPanel vidPanel;
+	private SelectVideoPrewviewListPanel vidPanel;
 	private Set<Label> labelSet = new TreeSet<>();
 	private List<Video> selectedVideos;
 
@@ -53,7 +54,7 @@ public class PlaylistEditorPanel extends JPanel {
 		searchBoxPanel.add(textField);
 		textField.setColumns(30);
 
-		vidPanel = new VideoPreviewListPanel(new ArrayList<>(), vid->{
+		vidPanel = new SelectVideoPrewviewListPanel(AppVideo.getInstance().getFilteredVideoList(), playlist.getListOfVideos(), vid->{
 			if(selectedVideos.contains(vid)){
 				selectedVideos.remove(vid);
 				System.out.println("Video " + vid.getTitle() + " eliminado de playlist");
@@ -62,7 +63,6 @@ public class PlaylistEditorPanel extends JPanel {
 				System.out.println("Video " + vid.getTitle() + " añadido a playlist");
 			}
 		});
-		showVideoPreview(AppVideo.getInstance().getFilteredVideoList());
 
 		JButton btnSearchButton = new JButton("Buscar");
 		btnSearchButton.addActionListener(l -> {

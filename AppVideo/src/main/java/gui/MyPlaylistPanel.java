@@ -2,11 +2,15 @@ package gui;
 
 import controller.AppVideo;
 import gui.Util.SwapLayout;
+import gui.Util.WrapLayout;
+import gui.VideoPreview.PlayListVideoPreviewPanel;
 import gui.VideoPreview.VideoPreviewListPanel;
+import javafx.scene.shape.Box;
 import model.Playlist;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +28,7 @@ public class MyPlaylistPanel extends JPanel{
 	private JTextField textField;
 	private JPanel mainPanel;
 	private JFrame parent;
-	private Map<String, VideoPreviewListPanel> playlistsPanels = new HashMap<String, VideoPreviewListPanel>();
+	private Map<String, Component> playlistsPanels = new HashMap<>();
 	private List<Playlist> filteredPlaylists = new ArrayList<>();
 
 	/**
@@ -35,11 +39,12 @@ public class MyPlaylistPanel extends JPanel{
 		// Necesitamos el JFrame para ocultar la ventana cuando lanzamos
 		// el visualizador de video.
 		this.parent = parent;
+
 		setLayout(new BorderLayout());
-		
+
 		JPanel searchPanel = new JPanel();
+
 		add(searchPanel, BorderLayout.NORTH);
-		
 		textField = new JTextField();
 		searchPanel.add(textField);
 		textField.setColumns(30);
@@ -49,28 +54,45 @@ public class MyPlaylistPanel extends JPanel{
 											setPlaylistsPanels(filteredPlaylists);});
 		searchPanel.add(btnSearchButton);
 
+		AppVideo.getInstance().subscribeFilteredVideoChange(()->{
+			setPlaylistsPanels(AppVideo.getInstance().searchPlaylists(textField.getText()));
+		});
+
 		setPlaylistsPanels(AppVideo.getInstance().getCurrentPlaylists());
+//		this.setPreferredSize(parent.getPreferredSize());
 		mainPanel.setLayout(new SwapLayout(mainPanel));
-		add(mainPanel,BorderLayout.CENTER);
+//		mainPanel.setBorder(new EtchedBorder(EtchedBorder.RAISED));
+//		setBorder(new LineBorder(Color.YELLOW));
+		JScrollPane scrollPane = new JScrollPane(mainPanel,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+
+		add(scrollPane, BorderLayout.CENTER);
+
+//		add(mainPanel,gbc_lblNewLabel);
+//		setBorder(new LineBorder(Color.YELLOW));
 	}
 
 	public void setPlaylistsPanels(List<Playlist> playlists){
 		JPanel list = new JPanel();
 		list.setLayout(new BoxLayout(list,BoxLayout.Y_AXIS));
-		list.setBorder(new BevelBorder(BevelBorder.LOWERED,Color.RED,Color.BLACK));
+//		list.setBorder(new BevelBorder(BevelBorder.LOWERED,Color.RED,Color.BLACK));
 		playlistsPanels = playlists.stream().collect(Collectors.toMap(Playlist::getTitle,playlist -> {
-			VideoPreviewListPanel previewListPanel = new VideoPreviewListPanel(playlist.getListOfVideos(),video -> {
+			JPanel panel = new JPanel();
+			panel.setLayout(new BorderLayout());
+			panel.add(new JLabel(playlist.getTitle()),BorderLayout.NORTH);
+			VideoPreviewListPanel previewListPanel = new PlayListVideoPreviewPanel(playlist.getListOfVideos(), video -> {
 				VideoPlayerWindow player = new VideoPlayerWindow(video);
 				player.showPlayer(parent);
 			});
-			previewListPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
-			return previewListPanel;
+//			previewListPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+			panel.add(previewListPanel,BorderLayout.CENTER);
+			return new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		}));
 
 		playlistsPanels.values().stream().forEach(list::add);
 
-		JScrollPane scrollPane = new JScrollPane(list,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		mainPanel.add(scrollPane);
+//		JScrollPane scrollPane = new JScrollPane(list,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		mainPanel.add(list);
 	}
 	
 }

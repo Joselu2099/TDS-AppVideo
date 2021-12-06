@@ -41,7 +41,7 @@ public class VideoPreview extends JPanel {
 		add(lblPreviewLabel, BorderLayout.NORTH);
 		lblPreviewLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 
-		MultilineLabel lblTitle = new MultilineLabel(AppVideo.getInstance().changeShortTitleOfVideo(video, 20));
+		JLabel lblTitle = new JLabel(AppVideo.getInstance().changeShortTitleOfVideo(video, 20));
 		lblTitle.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		add(lblTitle, BorderLayout.SOUTH);
 

@@ -124,6 +124,9 @@ public class User implements Comparable<User> {
     }
 
     public void addRecentVideo(Video v){
+        if (recentVideos.contains(v)){
+            recentVideos.remove(v);
+        }
         recentVideos.add(0,v);
         if (recentVideos.size() >MAX_RECENT_VIDEOS)
             recentVideos.remove(recentVideos.size()-1);

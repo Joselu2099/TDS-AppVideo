@@ -27,12 +27,14 @@ public class CreatePlaylistPanel extends JPanel {
 	private JPanel createPanel;
 	private PlaylistEditorPanel videoSelector;
 	private JLabel lblPlaylistName;
+	private JFrame parent;
 	//private String currentPlaylist;
 
 	/**
 	 * Create the panel.
 	 */
 	public CreatePlaylistPanel(JFrame parent) {
+		this.parent = parent;
 		JPanel createPlaylistPanel = new JPanel();
 		createPlaylistPanel.setLayout(new SwapLayout(createPlaylistPanel));
 		// Necesitamos el JFrame para ocultar la ventana cuando lanzamos
@@ -99,7 +101,7 @@ public class CreatePlaylistPanel extends JPanel {
 	private void selectPlaylist(){
 		JComboBox<String> comboBox = new JComboBox<>(AppVideo.getInstance().getCurrentPlaylists().stream().map(Playlist::getTitle).toArray(String[]::new));
 		comboBox.setEditable(false);
-		JOptionPane.showMessageDialog(this, comboBox, "Seleccióna Playlist:",
+		JOptionPane.showMessageDialog(parent, comboBox, "Seleccióna Playlist:",
 				JOptionPane.QUESTION_MESSAGE, new ImageIcon("/images/multimediavideoplayer_128px.png"));
 		if (comboBox.getSelectedItem() == null)
 			return;

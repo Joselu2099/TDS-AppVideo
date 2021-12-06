@@ -113,6 +113,7 @@ public class HomePanel extends JPanel{
 
 		showVideoPreview(AppVideo.getInstance().getFilteredVideoList());
 		add(scrollPane,BorderLayout.CENTER);
+//		add(vidPanel,BorderLayout.CENTER);
 	}
 
 
@@ -177,7 +178,8 @@ public class HomePanel extends JPanel{
 				};
 //				List<Video> videoListX = Arrays.stream(urlX).map(Video::new).collect(Collectors.toList());
 //				h.updateVideoList(videoListX);
-				h.showVideoPreview(AppVideo.getInstance().getFilteredVideoList());
+//				h.showVideoPreview(AppVideo.getInstance().getFilteredVideoList());
+				h.showVideoPreview(videoList);
 			} catch (Exception e) {
 				throw e;
 			}

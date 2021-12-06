@@ -255,17 +255,6 @@ public class AppVideo {
                 .collect(Collectors.toList());
 
         notifieFilteredVideoChanged();
-        /*
-        currentPlaylists = new ArrayList<Playlist>();
-        for(Playlist p:getActualUser().getListOfPlaylist()){
-            int contador=0;
-            for(Video v: p.getListOfVideos()){
-                if(!currentVideos.contains(v)) break;
-                contador++;
-            }
-            if(contador>=p.getListOfVideos().size()) currentPlaylists.add(p);
-        }
-        */
     }
 
     public List<Video> getFilteredVideoList(){

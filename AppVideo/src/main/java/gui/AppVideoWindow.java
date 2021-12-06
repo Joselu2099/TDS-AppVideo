@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class AppVideoWindow {
 
@@ -53,7 +56,7 @@ public class AppVideoWindow {
      */
     private void initialize() {
         frmAppVideo = new JFrame();
-        frmAppVideo.setMinimumSize(new Dimension(1280, 720));
+//        frmAppVideo.setMinimumSize(new Dimension(1280, 720));
         frmAppVideo.setIconImage(Toolkit.getDefaultToolkit().getImage(LoginWindow.class.getResource("/images/multimediavideoplayer_128px.png")));
         frmAppVideo.setBounds(100, 100, 1280, 720);
         frmAppVideo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -126,7 +129,7 @@ public class AppVideoWindow {
         mnSettings.add(mntmExit);
 
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-        frmAppVideo.getContentPane().add(tabbedPane, BorderLayout.NORTH);
+        frmAppVideo.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 
         //JPanel home = new JPanel();
         homePanel = new HomePanel(frmAppVideo);
@@ -137,7 +140,7 @@ public class AppVideoWindow {
         tabbedPane.addTab("Recent", null, recentPanel, null);
 
         myPlaylistPanel = new MyPlaylistPanel(frmAppVideo);
-        tabbedPane.addTab("My Playlists", null, myPlaylistPanel, null);
+        tabbedPane.addTab("My Playlists", null,myPlaylistPanel, null);
 
         createPlaylistPanel = new CreatePlaylistPanel(frmAppVideo);
         tabbedPane.addTab("Create Playlists", null, createPlaylistPanel, null);
