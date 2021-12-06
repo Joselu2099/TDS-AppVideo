@@ -15,6 +15,7 @@ public class AppVideoWindow {
     private RecentPanel recentPanel;
     private MyPlaylistPanel myPlaylistPanel;
     private CreatePlaylistPanel createPlaylistPanel;
+    private PopularPanel popularPanel;
 
     /**
      * Create the application.
@@ -73,32 +74,44 @@ public class AppVideoWindow {
         mntmEdit.addActionListener(arg0 -> goToProfileWindow());
         mnProfile.add(mntmEdit);
 
+//        JMenu mnFilters = new JMenu("Filtros");
+//        mnFilters.add(mnSelect);
+        ButtonGroup bg = new ButtonGroup();
+
         JMenu mnFilters = new JMenu("Filtros");
         menuBar.add(mnFilters);
+        mnFilters.setEnabled(AppVideo.getInstance().isCurrentUserPremium());
 
-        JMenu mnSelect = new JMenu("Seleccionar");
-        mnFilters.add(mnSelect);
-
-        JMenuItem mntmMinors = new JMenuItem("Menores");
-        mntmMinors.addActionListener(arg0 -> AppVideo.getInstance().applyFilter(new MinorsFilter()));
-        mnSelect.add(mntmMinors);
-
-        JMenuItem mntmImpopulars = new JMenuItem("Impopulares");
-        mntmImpopulars.addActionListener(arg0 -> AppVideo.getInstance().applyFilter(new ImpopularsFilter()));
-        mnSelect.add(mntmImpopulars);
-
-
-        JMenuItem mntmLongName = new JMenuItem("Nombre largos");
-        mntmLongName.addActionListener(arg0 -> AppVideo.getInstance().applyFilter(new LongNameFilter()));
-        mnSelect.add(mntmLongName);
-
-        JMenuItem mntmMyLists = new JMenuItem("Mis listas");
-        mntmMyLists.addActionListener(arg0 -> AppVideo.getInstance().applyFilter(new MyListsFilter()));
-        mnSelect.add(mntmMyLists);
-
-        JMenuItem mntmRemoveFilter = new JMenuItem("Eliminar filtro");
+        JMenuItem mntmRemoveFilter = new JRadioButtonMenuItem("Sin filtro");
         mntmRemoveFilter.addActionListener(arg0 -> AppVideo.getInstance().applyFilter(new NoFilter()));
         mnFilters.add(mntmRemoveFilter);
+        if (AppVideo.getInstance().getCurrentUser().getFilter() instanceof NoFilter) mntmRemoveFilter.setSelected(true);
+        bg.add(mntmRemoveFilter);
+
+        JMenuItem mntmMinors = new JRadioButtonMenuItem("Menores");
+        mntmMinors.addActionListener(arg0 -> AppVideo.getInstance().applyFilter(new MinorsFilter()));
+        mnFilters.add(mntmMinors);
+        if (AppVideo.getInstance().getCurrentUser().getFilter() instanceof MinorsFilter) mntmMinors.setSelected(true);
+        bg.add(mntmMinors);
+
+        JMenuItem mntmImpopulars = new JRadioButtonMenuItem("Impopulares");
+        mntmImpopulars.addActionListener(arg0 -> AppVideo.getInstance().applyFilter(new ImpopularsFilter()));
+        mnFilters.add(mntmImpopulars);
+        if (AppVideo.getInstance().getCurrentUser().getFilter() instanceof ImpopularsFilter) mntmImpopulars.setSelected(true);
+        bg.add(mntmImpopulars);
+
+        JMenuItem mntmLongName = new JRadioButtonMenuItem("Nombre largos");
+        mntmLongName.addActionListener(arg0 -> AppVideo.getInstance().applyFilter(new LongNameFilter()));
+        if (AppVideo.getInstance().getCurrentUser().getFilter() instanceof LongNameFilter) mntmLongName.setSelected(true);
+        mnFilters.add(mntmLongName);
+        bg.add(mntmLongName);
+
+        JMenuItem mntmMyLists = new JRadioButtonMenuItem("Mis listas");
+        mntmMyLists.addActionListener(arg0 -> AppVideo.getInstance().applyFilter(new MyListsFilter()));
+        mnFilters.add(mntmMyLists);
+        if (AppVideo.getInstance().getCurrentUser().getFilter() instanceof MyListsFilter) mntmMyLists.setSelected(true);
+        bg.add(mntmMyLists);
+
 
         JMenu mnSettings = new JMenu("Settings");
         menuBar.add(mnSettings);
@@ -133,6 +146,13 @@ public class AppVideoWindow {
 
         createPlaylistPanel = new CreatePlaylistPanel(frmAppVideo);
         tabbedPane.addTab("Crear Playlists", null, createPlaylistPanel, null);
+
+        popularPanel = new PopularPanel(frmAppVideo);
+        int popularTabIndex = tabbedPane.getTabCount();
+        tabbedPane.addTab("Polular",null,popularPanel,null);
+        tabbedPane.setEnabledAt(popularTabIndex,AppVideo.getInstance().isCurrentUserPremium());
+
+
     }
 
     public HomePanel getHomePanel() {

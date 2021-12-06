@@ -118,6 +118,7 @@ public class SettingsWindow {
         gbc_btnBack.gridy = 13;
         frmSettings.getContentPane().add(btnBack, gbc_btnBack);
 
+
     }
 
     private void setNightMode(){

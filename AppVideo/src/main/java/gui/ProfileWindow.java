@@ -135,11 +135,22 @@ public class ProfileWindow {
         gbc_btnChangeMail.gridy = 9;
         frmProfile.getContentPane().add(btnChangeMail, gbc_btnChangeMail);
 
+        JButton btnGeneratePDF = new JButton("Generar PDF");
+
+        JButton btnQuitPremium = new JButton("Abandonar premium");
         JButton btnPremium = new JButton("Hazte premium");
+
+        btnPremium.setEnabled(!AppVideo.getInstance().isCurrentUserPremium());
+        btnQuitPremium.setEnabled(AppVideo.getInstance().isCurrentUserPremium());
+        btnGeneratePDF.setEnabled(AppVideo.getInstance().isCurrentUserPremium());
         btnPremium.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 becomeUserPremium();
+
+                btnPremium.setEnabled(!AppVideo.getInstance().isCurrentUserPremium());
+                btnQuitPremium.setEnabled(AppVideo.getInstance().isCurrentUserPremium());
+                btnGeneratePDF.setEnabled(AppVideo.getInstance().isCurrentUserPremium());
             }
         });
         btnPremium.setIcon(new ImageIcon(Objects.requireNonNull(ProfileWindow.class.getResource("/images/premiumIcon.png"))));
@@ -183,11 +194,14 @@ public class ProfileWindow {
         gbc_btnChangePassword.gridy = 12;
         frmProfile.getContentPane().add(btnChangePassword, gbc_btnChangePassword);
 
-        JButton btnQuitPremium = new JButton("Abandonar premium");
         btnQuitPremium.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 quitUserPremium();
+                lblFilter.setText(AppVideo.getInstance().getCurrentUser().getFilter().getClass().getSimpleName());
+                btnPremium.setEnabled(!AppVideo.getInstance().isCurrentUserPremium());
+                btnQuitPremium.setEnabled(AppVideo.getInstance().isCurrentUserPremium());
+                btnGeneratePDF.setEnabled(AppVideo.getInstance().isCurrentUserPremium());
             }
         });
         btnQuitPremium.setIcon(new ImageIcon(Objects.requireNonNull(ProfileWindow.class.getResource("/images/premiumIcon.png"))));
@@ -200,7 +214,7 @@ public class ProfileWindow {
         gbc_btnQuitPremium.gridy = 11;
         frmProfile.getContentPane().add(btnQuitPremium, gbc_btnQuitPremium);
 
-        JButton btnGeneratePDF = new JButton("Generar PDF");
+        btnGeneratePDF.setEnabled(AppVideo.getInstance().isCurrentUserPremium());
         btnGeneratePDF.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

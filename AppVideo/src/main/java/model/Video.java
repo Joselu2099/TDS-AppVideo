@@ -3,6 +3,7 @@ package model;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -114,5 +115,13 @@ public class Video implements Comparable<Video>{
     @Override
     public int compareTo(@NotNull Video o) {
         return this.url.compareTo(o.url);
+    }
+
+    public static class viewComparator implements Comparator<Video> {
+
+        @Override
+        public  int compare(Video o1, Video o2) {
+            return Integer.compare(o1.getViews(), o2.getViews());
+        }
     }
 }

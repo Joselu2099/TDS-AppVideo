@@ -6,6 +6,7 @@ import gui.VideoPreview.PlayListVideoPreviewPanel;
 import gui.VideoPreview.VideoPreviewListPanel;
 import model.Playlist;
 import javax.swing.*;
+import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,9 +72,10 @@ public class MyPlaylistPanel extends JPanel{
 				VideoPlayerWindow player = new VideoPlayerWindow(video);
 				player.showPlayer(parent);
 			});
-//			previewListPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+			panel.setBorder(new EtchedBorder(EtchedBorder.RAISED));
 			panel.add(previewListPanel, BorderLayout.CENTER);
-			return new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+			return panel;
+//			return new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		}));
 
 		playlistsPanels.values().forEach(list::add);

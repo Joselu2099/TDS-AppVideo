@@ -16,6 +16,9 @@ import java.io.FileOutputStream;
 import java.net.MalformedURLException;
 import java.util.*;
 import java.util.List;
+import java.util.Set;
+import java.util.*;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
@@ -40,6 +43,7 @@ public class AppVideo {
 
     private List<Runnable> filteredVideoChangedListeners;
     private List<Runnable> recentVideoChangedListeners;
+    private List<Consumer<Boolean>> premiumStatusChangedListeners;
 
     private AppVideo() {
         try {
@@ -50,6 +54,7 @@ public class AppVideo {
 
             filteredVideoChangedListeners = new ArrayList<>();
             recentVideoChangedListeners = new ArrayList<>();
+            premiumStatusChangedListeners = new ArrayList<>();
 
             currentPlaylists = new ArrayList<>();
 
@@ -91,6 +96,22 @@ public class AppVideo {
 
     public void unsubscribeFilteredVideoChange(Runnable callback){
         filteredVideoChangedListeners.remove(callback);
+    }
+
+    public List<Video> getMostTopViewVideos(int count){
+        return getFilteredVideoList().stream().sorted(new Video.viewComparator().reversed()::compare).limit(count).collect(Collectors.toList());
+
+    }
+
+    public void notifiePremiumStatusChange(){
+        premiumStatusChangedListeners.forEach(c->c.accept(isCurrentUserPremium()));
+    }
+    public void subscribePremiumStatusChange(Consumer<Boolean> isPremiumCallback){
+        if (isPremiumCallback != null)
+            premiumStatusChangedListeners.add(isPremiumCallback);
+    }
+    public void unsubscribePremiumStatusChange(Consumer<Boolean> isPremiumCallback){
+        premiumStatusChangedListeners.remove(isPremiumCallback);
     }
 
     public boolean login(String username, String password) {
@@ -145,6 +166,10 @@ public class AppVideo {
 
     public void loadVideos(String file){
         videosLoader.loadVideoFromXML(file);
+    }
+
+    public boolean isCurrentUserPremium(){
+        return getCurrentUser().isPremium();
     }
 
     private void notifieFilteredVideoChanged(){
@@ -296,6 +321,8 @@ public class AppVideo {
 
     public void quitPremium() {
         getCurrentUser().setPremium("no");
+
+        applyFilter(new NoFilter());
 
         DAOUser daoUser = factory.getDAOUser();
         daoUser.updateProfile(getCurrentUser());
