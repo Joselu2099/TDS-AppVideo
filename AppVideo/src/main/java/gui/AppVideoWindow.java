@@ -116,15 +116,12 @@ public class AppVideoWindow {
         JMenu mnSettings = new JMenu("Settings");
         menuBar.add(mnSettings);
 
-        JMenuItem mntmHelp = new JMenuItem("Ayuda");
-        mntmHelp.addActionListener(arg0 -> {
-
-		});
-
         JMenuItem mntmMySettings = new JMenuItem("Mis Settings");
         mntmMySettings.addActionListener(arg0 -> goToSettingsWindow());
-
         mnSettings.add(mntmMySettings);
+
+        JMenuItem mntmHelp = new JMenuItem("Ayuda");
+        mntmHelp.addActionListener(arg0 -> JOptionPane.showMessageDialog(frmAppVideo, "Cualquier problema o duda contactar a joseluis.sanchezc@um.es", "Ayuda", JOptionPane.PLAIN_MESSAGE));
         mnSettings.add(mntmHelp);
 
         JMenuItem mntmExit = new JMenuItem("Exit");
@@ -194,7 +191,7 @@ public class AppVideoWindow {
      */
     private void goToProfileWindow() {
         ProfileWindow profile = new ProfileWindow();
-        frmAppVideo.dispose();
-        profile.showWindow();
+        //frmAppVideo.dispose();
+        profile.showWindow(frmAppVideo);
     }
 }
