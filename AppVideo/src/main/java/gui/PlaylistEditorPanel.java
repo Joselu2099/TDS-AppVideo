@@ -51,7 +51,7 @@ public class PlaylistEditorPanel extends JDialog {
 			}
 		});
 		setBounds(0, 0, 800, 600);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(LoginWindow.class.getResource("/images/multimediavideoplayer_128px.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PlaylistEditorPanel.class.getResource("/images/multimediavideoplayer_128px.png")));
 		setMinimumSize(new Dimension(720, 480));
 
 		JPanel searchPanel = new JPanel();

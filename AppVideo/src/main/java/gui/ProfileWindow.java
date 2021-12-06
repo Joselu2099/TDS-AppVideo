@@ -2,7 +2,6 @@ package gui;
 
 import controller.AppVideo;
 import gui.Util.UIUtils;
-
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
@@ -10,6 +9,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
 import java.util.Objects;
 
 public class ProfileWindow {
@@ -202,7 +204,21 @@ public class ProfileWindow {
         btnGeneratePDF.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (AppVideo.getInstance().getCurrentUser().isPremium()) AppVideo.getInstance().generatePDF();
+                if (AppVideo.getInstance().getCurrentUser().isPremium()){
+                    EventQueue.invokeLater(() -> {
+                        JFileChooser jFileChooser = new JFileChooser(".");
+                        int i = jFileChooser.showSaveDialog(frmProfile);
+                        if (i == JFileChooser.APPROVE_OPTION){
+                            if (!jFileChooser.getSelectedFile().isDirectory()) {
+                                try {
+                                    AppVideo.getInstance().generatePDF(jFileChooser.getSelectedFile().getAbsolutePath());
+                                } catch (FileNotFoundException | MalformedURLException ex) {
+                                    ex.printStackTrace();
+                                }
+                            }
+                        }
+                    });
+                }
                 else
                     JOptionPane.showMessageDialog(frmProfile.getContentPane(), "Esta funcion es solo para usuarios premium", "Generar PDF", JOptionPane.ERROR_MESSAGE);
             }

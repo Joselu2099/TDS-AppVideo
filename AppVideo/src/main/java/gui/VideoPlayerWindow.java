@@ -23,7 +23,7 @@ public class VideoPlayerWindow extends JDialog {
 
     public VideoPlayerWindow(Video video) {
         videoWeb = VideoWebFactory.getInstance();
-        setIconImage(Toolkit.getDefaultToolkit().getImage(LoginWindow.class.getResource("/images/multimediavideoplayer_128px.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(VideoPlayerWindow.class.getResource("/images/multimediavideoplayer_128px.png")));
         setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         addWindowListener(new WindowAdapter() {

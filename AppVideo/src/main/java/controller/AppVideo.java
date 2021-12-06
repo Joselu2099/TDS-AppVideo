@@ -1,20 +1,29 @@
 package controller;
 
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.layout.element.*;
+import com.itextpdf.layout.property.UnitValue;
 import dao.DAOException;
 import dao.DAOFactory;
 import dao.DAOUser;
 import dao.DAOVideo;
 import model.*;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.io.FilenameUtils;
 import umu.tds.componente.VideosLoader;
-
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
+
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+
+import com.itextpdf.layout.Document;
 
 public class AppVideo {
 
@@ -342,7 +351,53 @@ public class AppVideo {
                 }).collect(Collectors.toList());
     }
 
-    public void generatePDF(){
+    public void generatePDF(String absolutePath) throws FileNotFoundException, MalformedURLException {
+        System.out.println(absolutePath);
+        List<String> playlistsTitles = getCurrentUser().getListOfPlaylist().stream()
+                .map(Playlist::getTitle)
+                .collect(Collectors.toList());
 
+        PdfWriter writer = new PdfWriter(FilenameUtils.getBaseName(absolutePath)+".pdf");
+        PdfDocument pdfDoc = new PdfDocument(writer);
+        Document document = new Document(pdfDoc);
+
+        // Create a PdfFont
+        //PdfFont font = PdfFontFactory.createFont(FontConstants.TIMES_ROMAN);
+        // Add a Paragraph
+
+        Image image = new Image(ImageDataFactory.create(Objects.requireNonNull(AppVideo.class.getResource("/images/multimediavideoplayer_128px.png"))));
+        document.add(image);
+        document.add(new Paragraph("AppVideo, generacion de playlists y sus videos:"));
+        if(!(playlistsTitles.size()>0)) {
+            document.add(new Paragraph("No hay playlists creadas"));
+            document.close();
+            return;
+        }
+        // Create a List
+        com.itextpdf.layout.element.List list;
+
+        for(String title : playlistsTitles){
+        	list = new com.itextpdf.layout.element.List();
+    		// Add ListItem objects
+            list.add(new ListItem(title));
+    		// Add the list
+    		document.add(list);
+
+            Table table = new Table(new float[]{4, 4, 4});
+            table.setWidth(UnitValue.createPercentValue(100));
+
+            table.addHeaderCell(new Cell().add(new Paragraph("Titulo")));
+            table.addHeaderCell(new Cell().add(new Paragraph("URL")));
+            table.addHeaderCell(new Cell().add(new Paragraph("Views")));
+
+            getPlaylist(title).getListOfVideos().forEach(video ->{
+                table.addCell(new Cell().add(new Paragraph(video.getTitle())));
+                table.addCell(new Cell().add(new Paragraph(video.getUrl())));
+                table.addCell(new Cell().add(new Paragraph(String.valueOf(video.getViews()))));
+            });
+
+            document.add(table);
+        }
+        document.close();
    }
 }
