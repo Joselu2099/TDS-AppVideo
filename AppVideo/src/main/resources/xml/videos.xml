@@ -32,5 +32,32 @@
 		<etiqueta>Music</etiqueta>
 		<etiqueta>Artic Monkeys</etiqueta>
 	</video>
+	
+	<video titulo="The plan is falling into place | G2 Esports LoL Roster Announcement">
+		<URL><![CDATA[https://www.youtube.com/watch?v=KaCLIROA26I]]></URL>
+		<etiqueta>Esports</etiqueta>
+		<etiqueta>G2 Esports</etiqueta>
+		<etiqueta>League of Legends</etiqueta>
+	</video>
+	
+	<video titulo="Como hacer un HACKINTOSH y ahorrarte +2000€">
+		<URL><![CDATA[https://www.youtube.com/watch?v=2bIoQgqkDQA]]></URL>
+		<etiqueta>Technology</etiqueta>
+		<etiqueta>Tutorial</etiqueta>
+	</video>
+	
+	<video titulo="orslok, rojuu - tofu delivery">
+		<URL><![CDATA[https://www.youtube.com/watch?v=wxKBvF2pS_A]]></URL>
+		<etiqueta>Music</etiqueta>
+		<etiqueta>Orslok</etiqueta>
+		<etiqueta>Rojuu</etiqueta>
+	</video>
+	
+	<video titulo="Trueno - FEEL ME?? (Video Oficial)">
+		<URL><![CDATA[https://www.youtube.com/watch?v=MaaEVFNDQLo]]></URL>
+		<etiqueta>Music</etiqueta>
+		<etiqueta>Trueno</etiqueta>
+		<etiqueta>Adultos</etiqueta>
+	</video>
 
 </videos>
