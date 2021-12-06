@@ -113,7 +113,10 @@ public class AppVideoWindow {
         mntmNightMode = new JMenuItem("");
         mntmNightMode.setHorizontalAlignment(SwingConstants.CENTER);
         mntmNightMode.setIcon(new ImageIcon(Objects.requireNonNull(AppVideoWindow.class.getResource(AppVideo.getInstance().getCurrentUser().isNightMode() ? "/images/lightModeIcon.png":"/images/nightModeIcon.png" ))));
-        mntmNightMode.addActionListener(arg0 -> setNightMode());
+        mntmNightMode.addActionListener(arg0 -> {
+            setNightMode();
+            getHomePanel().updateLuzComponent();
+        });
         mnSettings.add(mntmNightMode);
 
         JMenuItem mntmHelp = new JMenuItem("Ayuda");

@@ -21,6 +21,8 @@ public class HomePanel extends JPanel{
 
 	private JTextField textField;
 	private final VideoPreviewListPanel vidPanel;
+	private Luz luz;
+	private JPanel searchBoxPanel;
 	Set<Label> labelSet = new TreeSet<>();
 
 	public String getSearchText(){
@@ -40,7 +42,7 @@ public class HomePanel extends JPanel{
 		
 		JPanel searchPanel = new JPanel();
 		searchPanel.setLayout(new BoxLayout(searchPanel,BoxLayout.Y_AXIS));
-		JPanel searchBoxPanel = new JPanel();
+		searchBoxPanel = new JPanel();
 		searchPanel.add(searchBoxPanel);
 		LabelEditorPanel labelManager = new LabelEditorPanel(labelSet,
 				label -> {
@@ -74,7 +76,23 @@ public class HomePanel extends JPanel{
 		loadVideos.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		searchBoxPanel.add(loadVideos);
 
-		Luz luz = new Luz();
+		updateLuzComponent();
+
+		JScrollPane scrollPane = new JScrollPane(vidPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setBorder(new EmptyBorder(0,0,0,0));
+
+		showVideoPreview(AppVideo.getInstance().getFilteredVideoList());
+		add(scrollPane,BorderLayout.CENTER);
+//		add(vidPanel,BorderLayout.CENTER);
+	}
+
+	public void showVideoPreview(List<Video> videoList) {
+		vidPanel.setPrewviewList(videoList);
+	}
+
+	public void updateLuzComponent(){
+		if(luz!=null) searchBoxPanel.remove(luz);
+		luz = new Luz();
 		luz.setNombre("LoadVideo");
 		luz.setEncendido(false);
 		luz.setColor(Color.YELLOW);
@@ -95,20 +113,7 @@ public class HomePanel extends JPanel{
 		});
 		AppVideo.getInstance().subscribeFilteredVideoChange(()-> showVideoPreview(AppVideo.getInstance().searchVideos(getSearchText(),getSearchLabelSet())));
 		searchBoxPanel.add(luz);
-
-		JScrollPane scrollPane = new JScrollPane(vidPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBorder(new EmptyBorder(0,0,0,0));
-
-		showVideoPreview(AppVideo.getInstance().getFilteredVideoList());
-		add(scrollPane,BorderLayout.CENTER);
-//		add(vidPanel,BorderLayout.CENTER);
 	}
-
-
-	public void showVideoPreview(List<Video> videoList) {
-		vidPanel.setPrewviewList(videoList);
-	}
-
 }
 
 	
