@@ -64,7 +64,7 @@ public class AppVideo {
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
-        filter = currentUser.getFilter();
+        this.filter = currentUser.getFilter();
         applyFilter(filter);
     }
 
@@ -232,6 +232,7 @@ public class AppVideo {
 
     public void applyFilter(IFilter filter) {
         getCurrentUser().setFilter(filter);
+        factory.getDAOUser().updateProfile(getCurrentUser());
 
         videoRepository.updateFilteredVideoSet(videoRepository.getVideoList().stream().filter(filter::test).collect(Collectors.toSet()));
         this.currentPlaylists = getCurrentUser().getListOfPlaylist().stream()
