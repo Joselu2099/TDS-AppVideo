@@ -5,6 +5,11 @@ import com.formdev.flatlaf.FlatIntelliJLaf;
 public class a
 	extends FlatIntelliJLaf
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	public static final String NAME = "a";
 
 	public static boolean setup() {

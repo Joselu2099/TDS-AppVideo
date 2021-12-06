@@ -1,10 +1,8 @@
 package model;
 
-import controller.AppVideo;
 import dao.DAOException;
 import dao.DAOFactory;
 import dao.DAOVideo;
-
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;

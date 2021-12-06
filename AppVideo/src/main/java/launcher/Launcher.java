@@ -2,7 +2,6 @@ package launcher;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.IntelliJTheme;
-import gui.AppVideoWindow;
 import gui.LoginWindow;
 import model.VideoRepository;
 

@@ -7,9 +7,7 @@ import gui.Util.WrapLayout;
 import launcher.Launcher;
 import model.Label;
 import model.Video;
-
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Set;
@@ -17,7 +15,12 @@ import java.util.TreeSet;
 import java.util.function.Consumer;
 
 public class LabelEditorPanel extends JPanel {
-    Consumer<Label> addCallback;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	Consumer<Label> addCallback;
     Consumer<Label> deleteCallback;
 
 

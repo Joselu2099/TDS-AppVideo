@@ -4,8 +4,6 @@ import controller.AppVideo;
 import gui.VideoPreview.VideoPreviewListPanel;
 import model.Video;
 import javax.swing.*;
-import org.jetbrains.annotations.NotNull;
-
 import java.awt.*;
 import java.util.List;
 

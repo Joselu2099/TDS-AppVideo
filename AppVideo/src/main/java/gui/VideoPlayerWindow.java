@@ -1,6 +1,5 @@
 package gui;
 
-
 import com.formdev.flatlaf.IntelliJTheme;
 import controller.AppVideo;
 import gui.Util.VideoWebFactory;
@@ -18,7 +17,12 @@ import java.util.Set;
 
 public class VideoPlayerWindow extends JDialog {
 
-    private static VideoWeb videoWeb;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private static VideoWeb videoWeb;
     private static final int BOX_PADDING = 20;
 
     public VideoPlayerWindow(Video video) {
@@ -45,7 +49,6 @@ public class VideoPlayerWindow extends JDialog {
 
     	panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-//    	JLabel videoPlayerPlaceholder = new JLabel("Video Player");
         VideoWeb videoPlayerPlaceholder = videoWeb;
         videoPlayerPlaceholder.setMinimumSize(new Dimension(366,220));
         videoPlayerPlaceholder.setMaximumSize(new Dimension(366,220));

@@ -12,16 +12,13 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FilenameUtils;
 import umu.tds.componente.VideosLoader;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.net.MalformedURLException;
 import java.util.*;
 import java.util.List;
 import java.util.Set;
-import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
-import com.itextpdf.io.image.ImageData;
-import com.itextpdf.io.image.ImageDataFactory;
+
 
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;

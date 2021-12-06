@@ -9,8 +9,12 @@ import java.util.function.Consumer;
 
 public class VideoPreviewListPanel extends JPanel {
 
-
-    protected Consumer<Video> videoConsumer;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	protected Consumer<Video> videoConsumer;
     public VideoPreviewListPanel(List<Video> videoList,Consumer<Video> callback) {
         this.videoConsumer = callback;
         setLayout(new SwapLayout(this));

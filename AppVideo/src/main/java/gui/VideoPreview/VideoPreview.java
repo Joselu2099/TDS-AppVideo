@@ -1,11 +1,8 @@
 package gui.VideoPreview;
 
 import controller.AppVideo;
-import gui.Util.MultilineLabel;
-import gui.Util.UIUtils;
 import gui.Util.VideoWebFactory;
 import model.Video;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -14,6 +11,11 @@ import java.util.function.Consumer;
 
 public class VideoPreview extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * Create the panel.
 	 */

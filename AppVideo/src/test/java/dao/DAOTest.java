@@ -1,23 +1,11 @@
 package dao;
 
-import controller.AppVideo;
 import model.*;
 import org.junit.jupiter.api.Test;
-
 import java.util.HashSet;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DAOTest {
-
-    @Test
-    void createDAOFactory() {
-        try {
-            DAOFactory factory = DAOFactory.getInstance();
-        } catch (DAOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Test
     void createUser(){

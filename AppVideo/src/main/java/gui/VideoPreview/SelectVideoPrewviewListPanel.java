@@ -1,17 +1,21 @@
 package gui.VideoPreview;
 
 import model.Video;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Consumer;
 
 public class SelectVideoPrewviewListPanel extends VideoPreviewListPanel{
-    public SelectVideoPrewviewListPanel(List<Video> videoList, Consumer<Video> callback) {
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public SelectVideoPrewviewListPanel(List<Video> videoList, Consumer<Video> callback) {
         super(videoList, callback);
     }
 

@@ -1,9 +1,7 @@
 package gui;
 
-import com.formdev.flatlaf.IntelliJTheme;
 import controller.AppVideo;
 import gui.Util.UIUtils;
-
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import java.awt.*;

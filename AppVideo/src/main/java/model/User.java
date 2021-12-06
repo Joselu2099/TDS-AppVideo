@@ -1,14 +1,10 @@
 package model;
 
-import com.formdev.flatlaf.IntelliJTheme;
-import launcher.Launcher;
 import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 
 public class User implements Comparable<User> {

@@ -4,7 +4,12 @@ import java.awt.*;
 
 public class SwapLayout extends CardLayout {
 
-    Container parent;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	Container parent;
     public SwapLayout(Container parent) {
         this.parent = parent;
     }
