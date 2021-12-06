@@ -57,10 +57,8 @@ public class PlaylistEditorPanel extends JPanel {
 		vidPanel = new SelectVideoPrewviewListPanel(AppVideo.getInstance().getFilteredVideoList(), playlist.getListOfVideos(), vid->{
 			if(selectedVideos.contains(vid)){
 				selectedVideos.remove(vid);
-				System.out.println("Video " + vid.getTitle() + " eliminado de playlist");
 			}else{
 				selectedVideos.add(vid);
-				System.out.println("Video " + vid.getTitle() + " añadido a playlist");
 			}
 		});
 
@@ -73,11 +71,8 @@ public class PlaylistEditorPanel extends JPanel {
 		JButton btnSave = new JButton("Guardar");
 		btnSave.addActionListener(l -> {
 			playlist.setListOfVideos(selectedVideos);
-			if(!AppVideo.getInstance().createPlaylist(playlist)){
+			if(!AppVideo.getInstance().createPlaylist(playlist))
 				AppVideo.getInstance().updatePlaylist(playlist);
-				System.out.println("Actualizo la playlist");
-			}else System.out.println("Creo la playlist");
-
 			AppVideoWindow.getActiveInstance().getCreatePlaylistPanel().setCurrentPlaylist(playlist);
 			AppVideoWindow.getActiveInstance().showWindow();
 

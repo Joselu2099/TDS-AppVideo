@@ -79,7 +79,9 @@ public class MyPlaylistPanel extends JPanel{
 		playlistsPanels = playlists.stream().collect(Collectors.toMap(Playlist::getTitle,playlist -> {
 			JPanel panel = new JPanel();
 			panel.setLayout(new BorderLayout());
-			panel.add(new JLabel(playlist.getTitle()),BorderLayout.NORTH);
+			JLabel label = new JLabel("  "+playlist.getTitle());
+			label.setFont(new Font("Gill Sans MT", Font.BOLD, 18));
+			panel.add(label,BorderLayout.NORTH);
 			VideoPreviewListPanel previewListPanel = new PlayListVideoPreviewPanel(playlist.getListOfVideos(), video -> {
 				VideoPlayerWindow player = new VideoPlayerWindow(video);
 				player.showPlayer(parent);
@@ -89,7 +91,7 @@ public class MyPlaylistPanel extends JPanel{
 			return new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		}));
 
-		playlistsPanels.values().stream().forEach(list::add);
+		playlistsPanels.values().forEach(list::add);
 
 //		JScrollPane scrollPane = new JScrollPane(list,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		mainPanel.add(list);
