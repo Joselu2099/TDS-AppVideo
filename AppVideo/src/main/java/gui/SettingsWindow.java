@@ -87,7 +87,7 @@ public class SettingsWindow {
         btnNightMode.setSelectedIcon(null);
         btnNightMode.setBorderPainted(false);
         btnNightMode.setBorder(new MatteBorder(1, 1, 1, 1, UIUtils.getFocusedBorder()));
-        btnNightMode.setIcon(new ImageIcon(Objects.requireNonNull(SettingsWindow.class.getResource("/images/lightModeIcon.png"))));
+        btnNightMode.setIcon(new ImageIcon(Objects.requireNonNull(SettingsWindow.class.getResource(AppVideo.getInstance().getCurrentUser().isNightMode() ? "/images/nightModeIcon.png":"/images/lightModeIcon.png" ))));
         GridBagConstraints gbc_btnNightMode = new GridBagConstraints();
         gbc_btnNightMode.insets = new Insets(0, 0, 5, 5);
         gbc_btnNightMode.gridx = 2;
@@ -131,6 +131,7 @@ public class SettingsWindow {
             AppVideo.getInstance().setNightMode(false);
             UIUtils.setNightMode(false,frmSettings);
         }
+        btnNightMode.setIcon(new ImageIcon(Objects.requireNonNull(SettingsWindow.class.getResource(AppVideo.getInstance().getCurrentUser().isNightMode() ? "/images/nightModeIcon.png":"/images/lightModeIcon.png" ))));
     }
 
     private void goToAppVideoWindow() {
