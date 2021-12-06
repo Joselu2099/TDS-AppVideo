@@ -7,8 +7,6 @@ import javax.swing.border.EmptyBorder;
 import controller.AppVideo;
 import gui.Util.SwapLayout;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class CreatePlaylistPanel extends JPanel {
@@ -22,7 +20,7 @@ public class CreatePlaylistPanel extends JPanel {
 	private VideoPreviewListPanel playlistPanel;
 	private PlaylistEditorPanel videoSelector;
 	private JLabel lblPlaylistName;
-	private final JFrame parent;
+	private JFrame parent;
 	//private String currentPlaylist;
 
 	/**
@@ -52,8 +50,6 @@ public class CreatePlaylistPanel extends JPanel {
 				//currentPlaylist = playlistTitle;
 				currentPlaylist = new Playlist(playlistTitle);
 				goToPlaylistEditorPanel();
-				showPlaylistPreview(currentPlaylist);
-				lblPlaylistName.setText(playlistTitle);
 			}else if(playlistTitle!=null)JOptionPane.showMessageDialog(parent.getContentPane(),
 					"Prueba otro nombre para tu playlist",
 					"Playlist title", JOptionPane.ERROR_MESSAGE);
@@ -63,10 +59,10 @@ public class CreatePlaylistPanel extends JPanel {
 		JButton btnEditButton = new JButton("Editar Playlist");
 		btnEditButton.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
 		btnEditButton.addActionListener(l -> {
-			if(currentPlaylist !=null){
+			if(currentPlaylist!=null){
 				goToPlaylistEditorPanel();
-				currentPlaylist.setListOfVideos(videoSelector.getSelectedVideos());
-				showPlaylistPreview(currentPlaylist);
+				//currentPlaylist.setListOfVideos(videoSelector.getSelectedVideos());
+				//showPlaylistPreview(currentPlaylist);
 			}else JOptionPane.showMessageDialog(parent.getContentPane(),
 					"No has creado ninguna lista para poder editarla",
 					"Playlist editor", JOptionPane.ERROR_MESSAGE);
@@ -113,25 +109,19 @@ public class CreatePlaylistPanel extends JPanel {
 	}
 
 	public void goToPlaylistEditorPanel(){
-		JFrame editorFrame = new JFrame();
-		videoSelector = new PlaylistEditorPanel(editorFrame, currentPlaylist);
-		editorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		editorFrame.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				AppVideoWindow.getActiveInstance().showWindow();
-			}
-		});
-		editorFrame.setContentPane(videoSelector);
-		editorFrame.setBounds(0, 0, 800, 600);
-		AppVideoWindow.getActiveInstance().hideWindow();
-		editorFrame.setLocationRelativeTo(null);
-		editorFrame.setVisible(true);
+		videoSelector = new PlaylistEditorPanel(currentPlaylist);
+		videoSelector.showPlaylistEditorPanel(parent);
 	}
 
 	public void setCurrentPlaylist(Playlist playlist){
 		this.currentPlaylist = playlist;
-		showPlaylistPreview(currentPlaylist);
+		if(currentPlaylist==null){
+			lblPlaylistName.setText("");
+			playlistPanel.setPrewviewList(new ArrayList<>());
+		}else{
+			lblPlaylistName.setText(currentPlaylist.getTitle());
+			showPlaylistPreview(currentPlaylist);
+		}
 	}
 }
 

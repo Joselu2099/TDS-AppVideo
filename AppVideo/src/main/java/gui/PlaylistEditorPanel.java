@@ -7,10 +7,12 @@ import model.Playlist;
 import model.Video;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import java.util.*;
 
-public class PlaylistEditorPanel extends JPanel {
+public class PlaylistEditorPanel extends JDialog {
 
 	/**
 	 *
@@ -23,13 +25,34 @@ public class PlaylistEditorPanel extends JPanel {
 	private List<Video> selectedVideos;
 
 	/**
-	 * Create the panel.
+	 * Show the jdialog.
 	 */
-	public PlaylistEditorPanel(JFrame parent, Playlist playlist) {
+	public void showPlaylistEditorPanel(JFrame parent){
+		parent.setVisible(false);
+		setModal(true);
+		setLocationRelativeTo(null);
+		setVisible(true);
+		parent.setVisible(true);
+	}
+
+	/**
+	 * Create the jdialog.
+	 */
+	public PlaylistEditorPanel(Playlist playlist){
 		selectedVideos=playlist.getListOfVideos();
 		// Necesitamos el JFrame para ocultar la ventana cuando lanzamos
 		// el visualizador de video.
 		setLayout(new BorderLayout());
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				AppVideoWindow.getActiveInstance().showWindow();
+			}
+		});
+		setBounds(0, 0, 800, 600);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(LoginWindow.class.getResource("/images/multimediavideoplayer_128px.png")));
+		setMinimumSize(new Dimension(720, 480));
 
 		JPanel searchPanel = new JPanel();
 		searchPanel.setLayout(new BoxLayout(searchPanel, BoxLayout.Y_AXIS));
@@ -65,6 +88,20 @@ public class PlaylistEditorPanel extends JPanel {
 		btnSearchButton.addActionListener(l -> showVideoPreview(AppVideo.getInstance().searchVideos(textField.getText(), labelSet)));
 		searchBoxPanel.add(btnSearchButton);
 
+		JButton btnRemove = new JButton("Borrar Playlist");
+		btnRemove.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
+		btnRemove.addActionListener(l -> {
+			playlist.setListOfVideos(selectedVideos);
+			if(AppVideo.getInstance().isPlaylistInCurrentUser(playlist.getTitle())) {
+				AppVideoWindow.getActiveInstance().getCreatePlaylistPanel().setCurrentPlaylist(null);
+				AppVideo.getInstance().removePlaylist(playlist.getTitle());
+				dispose();
+			}else JOptionPane.showMessageDialog(this,
+					"La lista no puede ser eliminada ya que no ha sido guardada previamente :( ",
+					"Playlist editor", JOptionPane.ERROR_MESSAGE);
+		});
+		searchBoxPanel.add(btnRemove);
+
 		JButton btnSave = new JButton("Guardar Playlist");
 		btnSave.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
 		btnSave.addActionListener(l -> {
@@ -72,9 +109,7 @@ public class PlaylistEditorPanel extends JPanel {
 			if(!AppVideo.getInstance().createPlaylist(playlist))
 				AppVideo.getInstance().updatePlaylist(playlist);
 			AppVideoWindow.getActiveInstance().getCreatePlaylistPanel().setCurrentPlaylist(playlist);
-			AppVideoWindow.getActiveInstance().showWindow();
-
-			parent.dispose();
+			dispose();
 		});
 		searchBoxPanel.add(btnSave);
 

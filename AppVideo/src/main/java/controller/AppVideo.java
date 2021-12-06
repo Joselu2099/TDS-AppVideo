@@ -7,6 +7,9 @@ import dao.DAOVideo;
 import model.*;
 import org.apache.commons.codec.digest.DigestUtils;
 import umu.tds.componente.VideosLoader;
+
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -97,7 +100,7 @@ public class AppVideo {
     public boolean registerUser(String name, String surname, String mail, String username, String password, String dateOfBirth) {
         if (isUserRegistered(username)) return false;
         User user = new User(name, surname, mail, username, encodePassword(password), dateOfBirth);
-        setNightMode(false);
+        //setNightMode(false);
         DAOUser daoUser = factory.getDAOUser();
         daoUser.create(user);
         userRepository.addUser(user);
@@ -185,7 +188,6 @@ public class AppVideo {
         if(isPlaylistInCurrentUser(playlist.getTitle())) {
             return false;
         }
-        //Playlist playlist = new Playlist(title);
         factory.getDAOPlaylist().create(playlist);
         getCurrentUser().addOrReplacePlaylist(playlist);
         factory.getDAOUser().updateProfile(getCurrentUser());
@@ -248,7 +250,7 @@ public class AppVideo {
     }
 
 	public List<Playlist> getCurrentPlaylists() {
-		return Collections.unmodifiableList(currentPlaylists);
+		return currentPlaylists.stream().sorted(Playlist::compareTo).collect(Collectors.toList());
 	}
 
 	public void setCurrentPlaylists(List<Playlist> currentPlaylists) {
@@ -326,10 +328,6 @@ public class AppVideo {
         notifieRecentVideoChanged();
     }
 
-    public void generatePDF() {
-
-    }
-
     public Set<Label> getExistingLabelSet(){
         return Label.getExistingLabelSet();
     }
@@ -344,4 +342,7 @@ public class AppVideo {
                 }).collect(Collectors.toList());
     }
 
+    public void generatePDF(){
+
+   }
 }

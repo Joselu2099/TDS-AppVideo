@@ -1,9 +1,11 @@
 package model;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Playlist {
+public class Playlist implements Comparable<Playlist>{
 
     private int id;
     private String title;
@@ -79,5 +81,10 @@ public class Playlist {
                 ", title='" + title + '\'' +
                 ", listOfVideos=" + listOfVideos.toString() +
                 '}';
+    }
+
+    @Override
+    public int compareTo(@NotNull Playlist o) {
+        return this.getTitle().compareTo(o.getTitle());
     }
 }
