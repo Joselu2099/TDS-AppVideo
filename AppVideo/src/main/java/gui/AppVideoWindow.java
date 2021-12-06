@@ -1,11 +1,14 @@
 package gui;
 
 import controller.AppVideo;
+import gui.Util.UIUtils;
 import model.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Objects;
+
 
 public class AppVideoWindow {
 
@@ -16,6 +19,7 @@ public class AppVideoWindow {
     private MyPlaylistPanel myPlaylistPanel;
     private CreatePlaylistPanel createPlaylistPanel;
     private PopularPanel popularPanel;
+    private JMenuItem mntmNightMode;
 
     /**
      * Create the application.
@@ -42,18 +46,10 @@ public class AppVideoWindow {
     }
 
     /**
-     * Hide actual window
-     */
-    public void hideWindow() {
-        frmAppVideo.setVisible(false);
-    }
-
-    /**
      * Initialize the contents of the frame.
      */
     private void initialize() {
         frmAppVideo = new JFrame();
-//        frmAppVideo.setMinimumSize(new Dimension(1280, 720));
         frmAppVideo.setIconImage(Toolkit.getDefaultToolkit().getImage(LoginWindow.class.getResource("/images/multimediavideoplayer_128px.png")));
         frmAppVideo.setBounds(100, 100, 1280, 720);
         frmAppVideo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -74,8 +70,6 @@ public class AppVideoWindow {
         mntmEdit.addActionListener(arg0 -> goToProfileWindow());
         mnProfile.add(mntmEdit);
 
-//        JMenu mnFilters = new JMenu("Filtros");
-//        mnFilters.add(mnSelect);
         ButtonGroup bg = new ButtonGroup();
 
         JMenu mnFilters = new JMenu("Filtros");
@@ -116,9 +110,11 @@ public class AppVideoWindow {
         JMenu mnSettings = new JMenu("Settings");
         menuBar.add(mnSettings);
 
-        JMenuItem mntmMySettings = new JMenuItem("Mis Settings");
-        mntmMySettings.addActionListener(arg0 -> goToSettingsWindow());
-        mnSettings.add(mntmMySettings);
+        mntmNightMode = new JMenuItem("");
+        mntmNightMode.setHorizontalAlignment(SwingConstants.CENTER);
+        mntmNightMode.setIcon(new ImageIcon(Objects.requireNonNull(AppVideoWindow.class.getResource(AppVideo.getInstance().getCurrentUser().isNightMode() ? "/images/lightModeIcon.png":"/images/nightModeIcon.png" ))));
+        mntmNightMode.addActionListener(arg0 -> setNightMode());
+        mnSettings.add(mntmNightMode);
 
         JMenuItem mntmHelp = new JMenuItem("Ayuda");
         mntmHelp.addActionListener(arg0 -> JOptionPane.showMessageDialog(frmAppVideo, "Cualquier problema o duda contactar a joseluis.sanchezc@um.es", "Ayuda", JOptionPane.PLAIN_MESSAGE));
@@ -168,6 +164,10 @@ public class AppVideoWindow {
         return createPlaylistPanel;
     }
 
+    public JFrame getFrmAppVideo() {
+        return frmAppVideo;
+    }
+
     /**
      * Vuelve a la ventana de Login
      */
@@ -178,20 +178,21 @@ public class AppVideoWindow {
     }
 
     /**
-     * Va a la ventana de ajustes
-     */
-    private void goToSettingsWindow() {
-        SettingsWindow settings = new SettingsWindow();
-        frmAppVideo.dispose();
-        settings.showWindow();
-    }
-
-    /**
      * Va a la ventana del perfil
      */
     private void goToProfileWindow() {
         ProfileWindow profile = new ProfileWindow();
-        //frmAppVideo.dispose();
         profile.showWindow(frmAppVideo);
+    }
+    
+    private void setNightMode(){
+        if (!AppVideo.getInstance().getCurrentUser().isNightMode()) {
+            AppVideo.getInstance().setNightMode(true);
+            UIUtils.setNightMode(true,frmAppVideo);
+        } else if (AppVideo.getInstance().getCurrentUser().isNightMode()) {
+            AppVideo.getInstance().setNightMode(false);
+            UIUtils.setNightMode(false,frmAppVideo);
+        }
+        mntmNightMode.setIcon(new ImageIcon(Objects.requireNonNull(AppVideoWindow.class.getResource(AppVideo.getInstance().getCurrentUser().isNightMode() ? "/images/lightModeIcon.png":"/images/nightModeIcon.png" ))));
     }
 }

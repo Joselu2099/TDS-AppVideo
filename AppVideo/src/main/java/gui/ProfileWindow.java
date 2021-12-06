@@ -1,22 +1,22 @@
 package gui;
 
 import controller.AppVideo;
-import gui.Util.UIUtils;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.util.Objects;
 
 public class ProfileWindow extends JDialog{
 
-    private JLabel lblName;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private JLabel lblName;
     private JLabel lblSurname;
     private JLabel lblMail;
     private JLabel lblUsername;
@@ -57,7 +57,7 @@ public class ProfileWindow extends JDialog{
         getContentPane().setLayout(gridBagLayout);
 
         JLabel lblAppVideoIcon = new JLabel("");
-        lblAppVideoIcon.setIcon(new ImageIcon(Objects.requireNonNull(SettingsWindow.class.getResource("/images/multimediavideoplayer_128px.png"))));
+        lblAppVideoIcon.setIcon(new ImageIcon(Objects.requireNonNull(ProfileWindow.class.getResource("/images/multimediavideoplayer_128px.png"))));
         GridBagConstraints gbc_lblAppVideoIcon = new GridBagConstraints();
         gbc_lblAppVideoIcon.insets = new Insets(0, 0, 5, 5);
         gbc_lblAppVideoIcon.gridx = 4;
