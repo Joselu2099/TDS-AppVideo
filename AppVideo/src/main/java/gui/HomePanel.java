@@ -76,12 +76,17 @@ public class HomePanel extends JPanel{
 			player.showPlayer(parent);
 		});
 
-		JButton btnSearchButton = new JButton("BUSCAR");
+		JButton btnSearchButton = new JButton("Buscar Video");
+		btnSearchButton.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
 		btnSearchButton.addActionListener(l-> {
 				showVideoPreview(AppVideo.getInstance().searchVideos(textField.getText(),labelSet));
 		});
 		searchBoxPanel.add(btnSearchButton);
-		
+
+		JLabel loadVideos = new JLabel("                  ¿Quieres añadir nuevos videos? ");
+		loadVideos.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
+		searchBoxPanel.add(loadVideos);
+
 		Luz luz = new Luz();
 		luz.setNombre("LoadVideo");
 //		luz.addEncendidoListener(l-> AppVideo.getInstance().loadVideos("xml/videos.xml"));

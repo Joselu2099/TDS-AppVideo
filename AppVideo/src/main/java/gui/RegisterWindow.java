@@ -71,7 +71,7 @@ public class RegisterWindow {
         JPanel panelRegister = new JPanel();
         panelRegister.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
         panelRegister.setBorder(null);
-        tabbedPaneRegister.addTab("Register", null, panelRegister, null);
+        tabbedPaneRegister.addTab("Registrar", null, panelRegister, null);
         GridBagLayout gbl_panelRegister = new GridBagLayout();
         gbl_panelRegister.columnWidths = new int[]{60, 0, 0, 64, 131, 60, 0};
         gbl_panelRegister.rowHeights = new int[]{40, 0, 0, 0, 0, 0, 0, 60, 0, 40, 0, 0, 0, 0, 0, 60, 0};
@@ -134,7 +134,7 @@ public class RegisterWindow {
         gbc_lblWarningDate.gridy = 14;
         panelRegister.add(lblWarningDate, gbc_lblWarningDate);
 
-        JLabel lblName = new JLabel("Name: ");
+        JLabel lblName = new JLabel("Nombre: ");
         lblName.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
         GridBagConstraints gbc_lblName = new GridBagConstraints();
         gbc_lblName.anchor = GridBagConstraints.EAST;
@@ -154,7 +154,7 @@ public class RegisterWindow {
         panelRegister.add(textName, gbc_textName);
         textName.setColumns(10);
 
-        JLabel lblSurname = new JLabel("Surname: ");
+        JLabel lblSurname = new JLabel("Apellidos: ");
         lblSurname.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
         GridBagConstraints gbc_lblSurname = new GridBagConstraints();
         gbc_lblSurname.anchor = GridBagConstraints.EAST;
@@ -174,7 +174,7 @@ public class RegisterWindow {
         panelRegister.add(textSurname, gbc_textSurname);
         textSurname.setColumns(10);
 
-        JLabel lblUsername = new JLabel("Username: ");
+        JLabel lblUsername = new JLabel("Usuario: ");
         lblUsername.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
         GridBagConstraints gbc_lblUsername = new GridBagConstraints();
         gbc_lblUsername.anchor = GridBagConstraints.EAST;
@@ -193,7 +193,7 @@ public class RegisterWindow {
         panelRegister.add(textUsername, gbc_textUsername);
         textUsername.setColumns(15);
 
-        JLabel lblPassword = new JLabel("Password:");
+        JLabel lblPassword = new JLabel("Contraseña:");
         lblPassword.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
         GridBagConstraints gbc_lblPassword = new GridBagConstraints();
         gbc_lblPassword.anchor = GridBagConstraints.EAST;
@@ -211,7 +211,7 @@ public class RegisterWindow {
         gbc_passwordField.gridy = 4;
         panelRegister.add(passwordField, gbc_passwordField);
 
-        JLabel lblRepeatedPassword = new JLabel("Repeat:");
+        JLabel lblRepeatedPassword = new JLabel("Repetir:");
         lblRepeatedPassword.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
         GridBagConstraints gbc_lblRepeatedPassword = new GridBagConstraints();
         gbc_lblRepeatedPassword.anchor = GridBagConstraints.EAST;
@@ -249,7 +249,7 @@ public class RegisterWindow {
         panelRegister.add(textMail, gbc_textMail);
         textMail.setColumns(15);
 
-        JLabel lblDateOfBirth = new JLabel("Date of birth: ");
+        JLabel lblDateOfBirth = new JLabel("Año de nacimiento: ");
         lblDateOfBirth.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
         GridBagConstraints gbc_lblDateOfBirth = new GridBagConstraints();
         gbc_lblDateOfBirth.anchor = GridBagConstraints.EAST;
@@ -287,7 +287,7 @@ public class RegisterWindow {
         gbc_btnExit.gridy = 8;
         panelRegister.add(btnExit, gbc_btnExit);
 
-        final JButton btnRegister = new JButton("Register");
+        final JButton btnRegister = new JButton("Registrar");
         btnRegister.setPreferredSize(new Dimension(80, 30));
         btnRegister.setBorder(new MatteBorder(1, 1, 1, 1, UIUtils.getFocusedBorder()));
         panelRegister.getRootPane().setDefaultButton(btnRegister);

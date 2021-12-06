@@ -47,7 +47,8 @@ public class CreatePlaylistPanel extends JPanel {
 		JPanel editorPanel = new JPanel();
 		createPanel.add(editorPanel);
 
-		JButton btnCreateButton = new JButton("Create Playlist");
+		JButton btnCreateButton = new JButton("Crear Playlist");
+		btnCreateButton.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
 		btnCreateButton.addActionListener(l -> {
 			String playlistTitle = (String) JOptionPane.showInputDialog(parent, "Intruduce un nombre para tu playlist: ",
 						"Creating playlist", JOptionPane.PLAIN_MESSAGE, null, null, "");
@@ -64,7 +65,8 @@ public class CreatePlaylistPanel extends JPanel {
 		});
 		editorPanel.add(btnCreateButton);
 
-		JButton btnEditButton = new JButton("Edit Playlist");
+		JButton btnEditButton = new JButton("Editar Playlist");
+		btnEditButton.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
 		btnEditButton.addActionListener(l -> {
 			if(currentPlaylist !=null){
 				goToPlaylistEditorPanel();
@@ -76,7 +78,8 @@ public class CreatePlaylistPanel extends JPanel {
 		});
 		editorPanel.add(btnEditButton);
 		
-		JButton selectBtn = new JButton("Select Playlist");
+		JButton selectBtn = new JButton("Seleccionar Playlist");
+		selectBtn.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
 		selectBtn.addActionListener(l->selectPlaylist());
 
 		editorPanel.add(selectBtn);

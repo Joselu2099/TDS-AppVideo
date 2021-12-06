@@ -49,7 +49,8 @@ public class MyPlaylistPanel extends JPanel{
 		searchPanel.add(textField);
 		textField.setColumns(30);
 		
-		JButton btnSearchButton = new JButton("Buscar");
+		JButton btnSearchButton = new JButton("Buscar Playlist");
+		btnSearchButton.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
 		btnSearchButton.addActionListener(l->{filteredPlaylists = AppVideo.getInstance().searchPlaylists(textField.getText());
 											setPlaylistsPanels(filteredPlaylists);});
 		searchPanel.add(btnSearchButton);
@@ -59,23 +60,15 @@ public class MyPlaylistPanel extends JPanel{
 		});
 
 		setPlaylistsPanels(AppVideo.getInstance().getCurrentPlaylists());
-//		this.setPreferredSize(parent.getPreferredSize());
 		mainPanel.setLayout(new SwapLayout(mainPanel));
-//		mainPanel.setBorder(new EtchedBorder(EtchedBorder.RAISED));
-//		setBorder(new LineBorder(Color.YELLOW));
 		JScrollPane scrollPane = new JScrollPane(mainPanel,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-
 		add(scrollPane, BorderLayout.CENTER);
-
-//		add(mainPanel,gbc_lblNewLabel);
-//		setBorder(new LineBorder(Color.YELLOW));
 	}
 
 	public void setPlaylistsPanels(List<Playlist> playlists){
 		JPanel list = new JPanel();
 		list.setLayout(new BoxLayout(list,BoxLayout.Y_AXIS));
-//		list.setBorder(new BevelBorder(BevelBorder.LOWERED,Color.RED,Color.BLACK));
 		playlistsPanels = playlists.stream().collect(Collectors.toMap(Playlist::getTitle,playlist -> {
 			JPanel panel = new JPanel();
 			panel.setLayout(new BorderLayout());
@@ -92,8 +85,6 @@ public class MyPlaylistPanel extends JPanel{
 		}));
 
 		playlistsPanels.values().forEach(list::add);
-
-//		JScrollPane scrollPane = new JScrollPane(list,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		mainPanel.add(list);
 	}
 	

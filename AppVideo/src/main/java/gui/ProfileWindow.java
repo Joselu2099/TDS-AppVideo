@@ -10,6 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Objects;
 
 public class ProfileWindow {
 
@@ -68,7 +69,7 @@ public class ProfileWindow {
         gbc_lblAppVideoIcon.gridy = 3;
         frmProfile.getContentPane().add(lblAppVideoIcon, gbc_lblAppVideoIcon);
 
-        lblName = new JLabel("Name: " + AppVideo.getInstance().getCurrentUser().getName());
+        lblName = new JLabel("Nombre: " + AppVideo.getInstance().getCurrentUser().getName());
         lblName.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
         GridBagConstraints gbc_lblName = new GridBagConstraints();
         gbc_lblName.insets = new Insets(0, 0, 5, 5);
@@ -76,7 +77,7 @@ public class ProfileWindow {
         gbc_lblName.gridy = 6;
         frmProfile.getContentPane().add(lblName, gbc_lblName);
 
-        lblSurname = new JLabel("Surname: " + AppVideo.getInstance().getCurrentUser().getSurname());
+        lblSurname = new JLabel("Apellidos: " + AppVideo.getInstance().getCurrentUser().getSurname());
         lblSurname.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
         GridBagConstraints gbc_lblSurname = new GridBagConstraints();
         gbc_lblSurname.insets = new Insets(0, 0, 5, 5);
@@ -92,7 +93,7 @@ public class ProfileWindow {
         gbc_lblMail.gridy = 8;
         frmProfile.getContentPane().add(lblMail, gbc_lblMail);
 
-        lblUsername = new JLabel("Username: " + AppVideo.getInstance().getCurrentUser().getUsername());
+        lblUsername = new JLabel("Usuario: " + AppVideo.getInstance().getCurrentUser().getUsername());
         lblUsername.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
         GridBagConstraints gbc_lblUsername = new GridBagConstraints();
         gbc_lblUsername.insets = new Insets(0, 0, 5, 5);
@@ -100,7 +101,7 @@ public class ProfileWindow {
         gbc_lblUsername.gridy = 10;
         frmProfile.getContentPane().add(lblUsername, gbc_lblUsername);
 
-        lblFilter = new JLabel("Filter: " + AppVideo.getInstance().getCurrentUser().getFilter().getClass().getSimpleName());
+        lblFilter = new JLabel("Filtro: " + AppVideo.getInstance().getCurrentUser().getFilter().getClass().getSimpleName());
         lblFilter.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
         GridBagConstraints gbc_lblFilter = new GridBagConstraints();
         gbc_lblFilter.insets = new Insets(0, 0, 5, 5);
@@ -116,14 +117,14 @@ public class ProfileWindow {
         gbc_lblPremium.gridy = 8;
         frmProfile.getContentPane().add(lblPremium, gbc_lblPremium);
 
-        JButton btnChangeMail = new JButton("Change Mail");
+        JButton btnChangeMail = new JButton("Cambiar Mail");
         btnChangeMail.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 changeUserMail();
             }
         });
-        btnChangeMail.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/changeMailIcon.png")));
+        btnChangeMail.setIcon(new ImageIcon(Objects.requireNonNull(ProfileWindow.class.getResource("/images/changeMailIcon.png"))));
         btnChangeMail.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
         GridBagConstraints gbc_btnChangeMail = new GridBagConstraints();
         gbc_btnChangeMail.fill = GridBagConstraints.HORIZONTAL;
@@ -132,14 +133,14 @@ public class ProfileWindow {
         gbc_btnChangeMail.gridy = 9;
         frmProfile.getContentPane().add(btnChangeMail, gbc_btnChangeMail);
 
-        JButton btnPremium = new JButton("Become premium");
+        JButton btnPremium = new JButton("Hazte premium");
         btnPremium.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 becomeUserPremium();
             }
         });
-        btnPremium.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/premiumIcon.png")));
+        btnPremium.setIcon(new ImageIcon(Objects.requireNonNull(ProfileWindow.class.getResource("/images/premiumIcon.png"))));
         btnPremium.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
         GridBagConstraints gbc_btnPremium = new GridBagConstraints();
         gbc_btnPremium.fill = GridBagConstraints.HORIZONTAL;
@@ -148,14 +149,14 @@ public class ProfileWindow {
         gbc_btnPremium.gridy = 9;
         frmProfile.getContentPane().add(btnPremium, gbc_btnPremium);
 
-        JButton btnChangeUsername = new JButton("Change username");
+        JButton btnChangeUsername = new JButton("Cambiar username");
         btnChangeUsername.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 changeUserUsername();
             }
         });
-        btnChangeUsername.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/UserIcon.png")));
+        btnChangeUsername.setIcon(new ImageIcon(Objects.requireNonNull(ProfileWindow.class.getResource("/images/UserIcon.png"))));
         btnChangeUsername.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
         GridBagConstraints gbc_btnChangeUsername = new GridBagConstraints();
         gbc_btnChangeUsername.fill = GridBagConstraints.HORIZONTAL;
@@ -164,14 +165,14 @@ public class ProfileWindow {
         gbc_btnChangeUsername.gridy = 11;
         frmProfile.getContentPane().add(btnChangeUsername, gbc_btnChangeUsername);
 
-        JButton btnChangePassword = new JButton("Change password");
+        JButton btnChangePassword = new JButton("Cambiar password");
         btnChangePassword.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 changeUserPassword();
             }
         });
-        btnChangePassword.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/changePasswordIcon.png")));
+        btnChangePassword.setIcon(new ImageIcon(Objects.requireNonNull(ProfileWindow.class.getResource("/images/changePasswordIcon.png"))));
         btnChangePassword.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
         GridBagConstraints gbc_btnChangePassword = new GridBagConstraints();
         gbc_btnChangePassword.fill = GridBagConstraints.HORIZONTAL;
@@ -180,14 +181,14 @@ public class ProfileWindow {
         gbc_btnChangePassword.gridy = 12;
         frmProfile.getContentPane().add(btnChangePassword, gbc_btnChangePassword);
 
-        JButton btnQuitPremium = new JButton("Quit Premium");
+        JButton btnQuitPremium = new JButton("Abandonar premium");
         btnQuitPremium.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 quitUserPremium();
             }
         });
-        btnQuitPremium.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/premiumIcon.png")));
+        btnQuitPremium.setIcon(new ImageIcon(Objects.requireNonNull(ProfileWindow.class.getResource("/images/premiumIcon.png"))));
         btnQuitPremium.setSelectedIcon(null);
         btnQuitPremium.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
         GridBagConstraints gbc_btnQuitPremium = new GridBagConstraints();
@@ -197,16 +198,16 @@ public class ProfileWindow {
         gbc_btnQuitPremium.gridy = 11;
         frmProfile.getContentPane().add(btnQuitPremium, gbc_btnQuitPremium);
 
-        JButton btnGeneratePDF = new JButton("Generate PDF");
+        JButton btnGeneratePDF = new JButton("Generar PDF");
         btnGeneratePDF.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (AppVideo.getInstance().getCurrentUser().isPremium()) AppVideo.getInstance().generatePDF();
                 else
-                    JOptionPane.showMessageDialog(frmProfile.getContentPane(), "Esta funcion es solo para usuarios premium", "Generate PDF", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(frmProfile.getContentPane(), "Esta funcion es solo para usuarios premium", "Generar PDF", JOptionPane.ERROR_MESSAGE);
             }
         });
-        btnGeneratePDF.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/pdfIcon.png")));
+        btnGeneratePDF.setIcon(new ImageIcon(Objects.requireNonNull(ProfileWindow.class.getResource("/images/pdfIcon.png"))));
         btnGeneratePDF.setSelectedIcon(null);
         btnGeneratePDF.setFont(new Font("Gill Sans MT", Font.BOLD, 12));
         GridBagConstraints gbc_btnGeneratePDF = new GridBagConstraints();
@@ -226,7 +227,7 @@ public class ProfileWindow {
         });
         btnBack.setBorderPainted(false);
         btnBack.setBorder(new MatteBorder(1, 1, 1, 1, UIUtils.getFocusedBorder()));
-        btnBack.setIcon(new ImageIcon(ProfileWindow.class.getResource("/images/backIcon.png")));
+        btnBack.setIcon(new ImageIcon(Objects.requireNonNull(ProfileWindow.class.getResource("/images/backIcon.png"))));
         GridBagConstraints gbc_btnBack = new GridBagConstraints();
         gbc_btnBack.fill = GridBagConstraints.HORIZONTAL;
         gbc_btnBack.insets = new Insets(0, 0, 5, 5);
@@ -239,21 +240,21 @@ public class ProfileWindow {
         while (true) {
 
             String newMail = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(), "Intruduce un nuevo mail : ",
-                    "Change mail", JOptionPane.PLAIN_MESSAGE, null, null, "");
+                    "Cambiar mail", JOptionPane.PLAIN_MESSAGE, null, null, "");
 
             if (newMail.trim().contains("@")) {
                 AppVideo.getInstance().changeMail(newMail);
                 lblMail.setText("Mail: " + AppVideo.getInstance().getCurrentUser().getMail());
                 break;
             } else
-                JOptionPane.showMessageDialog(frmProfile.getContentPane(), "El formato del Mail es incorrecto, ejemplo de uso: usuario@gmail.com", "Change mail", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(frmProfile.getContentPane(), "El formato del Mail es incorrecto, ejemplo de uso: usuario@gmail.com", "Cambiar mail", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void changeUserPassword() {
         while (true) {
             String actualPassword = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(),
-                    "Intruduce tu contraseña actual : ", "Change password",
+                    "Intruduce tu contraseña actual : ", "Cambiar contraseña",
                     JOptionPane.PLAIN_MESSAGE, null, null, "");
 
             if (actualPassword == null) break;
@@ -261,20 +262,20 @@ public class ProfileWindow {
             if (AppVideo.getInstance().getCurrentUser().getPassword().equals(AppVideo.getInstance().encodePassword(actualPassword))) {
 
                 String newPassword = (String) JOptionPane.showInputDialog(frmProfile.getContentPane(), "Introduce la nueva contraseña : ",
-                        "Change password", JOptionPane.PLAIN_MESSAGE, null, null, "password");
+                        "Cambiar contraseña", JOptionPane.PLAIN_MESSAGE, null, null, "contraseña");
 
                 if (newPassword == null) break;
 
                 if (newPassword.length() < AppVideo.MIN_PASSWORD_LENGTH)
                     JOptionPane.showMessageDialog(frmProfile.getContentPane(),
-                            "La contraseña debe tener al menos " + AppVideo.MIN_PASSWORD_LENGTH + " caracteres", "Change password", JOptionPane.ERROR_MESSAGE);
+                            "La contraseña debe tener al menos " + AppVideo.MIN_PASSWORD_LENGTH + " caracteres", "Cambiar contraseña", JOptionPane.ERROR_MESSAGE);
                 else {
                     AppVideo.getInstance().changePassword(newPassword);
                     break;
                 }
 
             } else {
-                JOptionPane.showMessageDialog(frmProfile.getContentPane(), "Contraseña incorrecta, prueba otra vez", "Change password", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(frmProfile.getContentPane(), "Contraseña incorrecta, prueba otra vez", "Cambiar contraseña", JOptionPane.ERROR_MESSAGE);
             }
 
 

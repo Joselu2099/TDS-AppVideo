@@ -70,56 +70,53 @@ public class AppVideoWindow {
         JMenuBar menuBar = new JMenuBar();
         frmAppVideo.setJMenuBar(menuBar);
 
-        JMenu mnProfile = new JMenu("Profile");
+        JMenu mnProfile = new JMenu("Perfil");
         menuBar.add(mnProfile);
 
-        JMenuItem mntmEdit = new JMenuItem("Edit");
+        JMenuItem mntmEdit = new JMenuItem("Editar");
         mntmEdit.addActionListener(arg0 -> goToProfileWindow());
         mnProfile.add(mntmEdit);
 
-        JMenu mnFilters = new JMenu("Filters");
+        JMenu mnFilters = new JMenu("Filtros");
         menuBar.add(mnFilters);
 
-        JMenu mnSelect = new JMenu("Select");
+        JMenu mnSelect = new JMenu("Seleccionar");
         mnFilters.add(mnSelect);
 
-        JMenuItem mntmMinors = new JMenuItem("Minors");
+        JMenuItem mntmMinors = new JMenuItem("Menores");
         mntmMinors.addActionListener(arg0 -> {
 			AppVideo.getInstance().applyFilter(new MinorsFilter());
 			System.out.println("Filtro minors");
 		});
         mnSelect.add(mntmMinors);
 
-        JMenuItem mntmImpopulars = new JMenuItem("Impopulars");
+        JMenuItem mntmImpopulars = new JMenuItem("Impopulares");
         mntmImpopulars.addActionListener(arg0 -> {
 			AppVideo.getInstance().applyFilter(new ImpopularsFilter());
-			System.out.println("Filtro impopulars");
 		});
         mnSelect.add(mntmImpopulars);
 
-        JMenuItem mntmMyLists = new JMenuItem("My lists");
+        JMenuItem mntmMyLists = new JMenuItem("Mis listas");
         mntmMyLists.addActionListener(arg0 -> {
 			AppVideo.getInstance().applyFilter(new MyListsFilter());
-			System.out.println("Filtro my lists");
 		});
         mnSelect.add(mntmMyLists);
 
-        JMenuItem mntmRemoveFilter = new JMenuItem("Remove filter");
+        JMenuItem mntmRemoveFilter = new JMenuItem("Eliminar filtro");
         mntmRemoveFilter.addActionListener(arg0 -> {
 			AppVideo.getInstance().applyFilter(new NoFilter());
-			System.out.println("Filtro eliminado");
 		});
         mnFilters.add(mntmRemoveFilter);
 
         JMenu mnSettings = new JMenu("Settings");
         menuBar.add(mnSettings);
 
-        JMenuItem mntmHelp = new JMenuItem("Help");
+        JMenuItem mntmHelp = new JMenuItem("Ayuda");
         mntmHelp.addActionListener(arg0 -> {
 
 		});
 
-        JMenuItem mntmMySettings = new JMenuItem("My settings");
+        JMenuItem mntmMySettings = new JMenuItem("Mis Settings");
         mntmMySettings.addActionListener(arg0 -> goToSettingsWindow());
 
         mnSettings.add(mntmMySettings);
@@ -134,17 +131,16 @@ public class AppVideoWindow {
 
         //JPanel home = new JPanel();
         homePanel = new HomePanel(frmAppVideo);
-//        homePanel.showVideoPreview(VideoRepository.getInstance().getFilteredVideos());
         tabbedPane.addTab("Home", null, homePanel, null);
 
         recentPanel = new RecentPanel(frmAppVideo);
-        tabbedPane.addTab("Recent", null, recentPanel, null);
+        tabbedPane.addTab("Recientes", null, recentPanel, null);
 
         myPlaylistPanel = new MyPlaylistPanel(frmAppVideo);
-        tabbedPane.addTab("My Playlists", null,myPlaylistPanel, null);
+        tabbedPane.addTab("Mis Playlists", null,myPlaylistPanel, null);
 
         createPlaylistPanel = new CreatePlaylistPanel(frmAppVideo);
-        tabbedPane.addTab("Create Playlists", null, createPlaylistPanel, null);
+        tabbedPane.addTab("Crear Playlists", null, createPlaylistPanel, null);
     }
 
     public HomePanel getHomePanel() {

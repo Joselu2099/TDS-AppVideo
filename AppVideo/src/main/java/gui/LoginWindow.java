@@ -138,7 +138,7 @@ public class LoginWindow {
         gbc_btnLogin.gridy = 10;
         panel.add(btnLogin, gbc_btnLogin);
 
-        JLabel lblNewLabel = new JLabel("not registered yet?");
+        JLabel lblNewLabel = new JLabel("Aun no estás registrado?");
         lblNewLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
         GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
         gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
@@ -146,7 +146,7 @@ public class LoginWindow {
         gbc_lblNewLabel.gridy = 13;
         panel.add(lblNewLabel, gbc_lblNewLabel);
 
-        JButton btnRegister = new JButton("Register");
+        JButton btnRegister = new JButton("Registrar");
         btnRegister.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

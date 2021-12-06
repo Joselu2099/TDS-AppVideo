@@ -62,13 +62,15 @@ public class PlaylistEditorPanel extends JPanel {
 			}
 		});
 
-		JButton btnSearchButton = new JButton("Buscar");
+		JButton btnSearchButton = new JButton("Buscar Video");
+		btnSearchButton.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
 		btnSearchButton.addActionListener(l -> {
 			showVideoPreview(AppVideo.getInstance().searchVideos(textField.getText(), labelSet));
 		});
 		searchBoxPanel.add(btnSearchButton);
 
-		JButton btnSave = new JButton("Guardar");
+		JButton btnSave = new JButton("Guardar Playlist");
+		btnSave.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
 		btnSave.addActionListener(l -> {
 			playlist.setListOfVideos(selectedVideos);
 			if(!AppVideo.getInstance().createPlaylist(playlist))
