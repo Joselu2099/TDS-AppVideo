@@ -4,9 +4,6 @@ import gui.Util.SwapLayout;
 import gui.Util.WrapLayout;
 import model.Video;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.MatteBorder;
-import java.awt.*;
 import java.util.List;
 import java.util.function.Consumer;
 

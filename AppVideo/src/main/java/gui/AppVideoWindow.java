@@ -2,14 +2,10 @@ package gui;
 
 import controller.AppVideo;
 import model.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class AppVideoWindow {
 
@@ -91,21 +87,15 @@ public class AppVideoWindow {
         mnSelect.add(mntmMinors);
 
         JMenuItem mntmImpopulars = new JMenuItem("Impopulares");
-        mntmImpopulars.addActionListener(arg0 -> {
-			AppVideo.getInstance().applyFilter(new ImpopularsFilter());
-		});
+        mntmImpopulars.addActionListener(arg0 -> AppVideo.getInstance().applyFilter(new ImpopularsFilter()));
         mnSelect.add(mntmImpopulars);
 
         JMenuItem mntmMyLists = new JMenuItem("Mis listas");
-        mntmMyLists.addActionListener(arg0 -> {
-			AppVideo.getInstance().applyFilter(new MyListsFilter());
-		});
+        mntmMyLists.addActionListener(arg0 -> AppVideo.getInstance().applyFilter(new MyListsFilter()));
         mnSelect.add(mntmMyLists);
 
         JMenuItem mntmRemoveFilter = new JMenuItem("Eliminar filtro");
-        mntmRemoveFilter.addActionListener(arg0 -> {
-			AppVideo.getInstance().applyFilter(new NoFilter());
-		});
+        mntmRemoveFilter.addActionListener(arg0 -> AppVideo.getInstance().applyFilter(new NoFilter()));
         mnFilters.add(mntmRemoveFilter);
 
         JMenu mnSettings = new JMenu("Settings");

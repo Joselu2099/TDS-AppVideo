@@ -2,18 +2,12 @@ package gui;
 
 import controller.AppVideo;
 import gui.Util.SwapLayout;
-import gui.Util.WrapLayout;
 import gui.VideoPreview.PlayListVideoPreviewPanel;
 import gui.VideoPreview.VideoPreviewListPanel;
-import javafx.scene.shape.Box;
 import model.Playlist;
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -26,9 +20,8 @@ public class MyPlaylistPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	private JTextField textField;
-	private JPanel mainPanel;
-	private JFrame parent;
-	private Map<String, Component> playlistsPanels = new HashMap<>();
+	private final JPanel mainPanel;
+	private final JFrame parent;
 	private List<Playlist> filteredPlaylists = new ArrayList<>();
 
 	/**
@@ -55,9 +48,7 @@ public class MyPlaylistPanel extends JPanel{
 											setPlaylistsPanels(filteredPlaylists);});
 		searchPanel.add(btnSearchButton);
 
-		AppVideo.getInstance().subscribeFilteredVideoChange(()->{
-			setPlaylistsPanels(AppVideo.getInstance().searchPlaylists(textField.getText()));
-		});
+		AppVideo.getInstance().subscribeFilteredVideoChange(()-> setPlaylistsPanels(AppVideo.getInstance().searchPlaylists(textField.getText())));
 
 		setPlaylistsPanels(AppVideo.getInstance().getCurrentPlaylists());
 		mainPanel.setLayout(new SwapLayout(mainPanel));
@@ -69,19 +60,20 @@ public class MyPlaylistPanel extends JPanel{
 	public void setPlaylistsPanels(List<Playlist> playlists){
 		JPanel list = new JPanel();
 		list.setLayout(new BoxLayout(list,BoxLayout.Y_AXIS));
-		playlistsPanels = playlists.stream().collect(Collectors.toMap(Playlist::getTitle,playlist -> {
+		//			previewListPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+		Map<String, Component> playlistsPanels = playlists.stream().collect(Collectors.toMap(Playlist::getTitle, playlist -> {
 			JPanel panel = new JPanel();
 			panel.setLayout(new BorderLayout());
-			JLabel label = new JLabel("  "+playlist.getTitle());
+			JLabel label = new JLabel("  " + playlist.getTitle());
 			label.setFont(new Font("Gill Sans MT", Font.BOLD, 18));
-			panel.add(label,BorderLayout.NORTH);
+			panel.add(label, BorderLayout.NORTH);
 			VideoPreviewListPanel previewListPanel = new PlayListVideoPreviewPanel(playlist.getListOfVideos(), video -> {
 				VideoPlayerWindow player = new VideoPlayerWindow(video);
 				player.showPlayer(parent);
 			});
 //			previewListPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
-			panel.add(previewListPanel,BorderLayout.CENTER);
-			return new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+			panel.add(previewListPanel, BorderLayout.CENTER);
+			return new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		}));
 
 		playlistsPanels.values().forEach(list::add);

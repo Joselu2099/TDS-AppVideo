@@ -2,11 +2,9 @@ package gui;
 
 import controller.AppVideo;
 import gui.VideoPreview.SelectVideoPrewviewListPanel;
-import gui.VideoPreview.VideoPreviewListPanel;
 import model.Label;
 import model.Playlist;
 import model.Video;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -20,7 +18,7 @@ public class PlaylistEditorPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private JTextField textField;
-	private SelectVideoPrewviewListPanel vidPanel;
+	private final SelectVideoPrewviewListPanel vidPanel;
 	private Set<Label> labelSet = new TreeSet<>();
 	private List<Video> selectedVideos;
 
@@ -64,9 +62,7 @@ public class PlaylistEditorPanel extends JPanel {
 
 		JButton btnSearchButton = new JButton("Buscar Video");
 		btnSearchButton.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
-		btnSearchButton.addActionListener(l -> {
-			showVideoPreview(AppVideo.getInstance().searchVideos(textField.getText(), labelSet));
-		});
+		btnSearchButton.addActionListener(l -> showVideoPreview(AppVideo.getInstance().searchVideos(textField.getText(), labelSet)));
 		searchBoxPanel.add(btnSearchButton);
 
 		JButton btnSave = new JButton("Guardar Playlist");

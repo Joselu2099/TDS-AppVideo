@@ -1,8 +1,6 @@
 package gui;
 
 import controller.AppVideo;
-import model.UserRepository;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;

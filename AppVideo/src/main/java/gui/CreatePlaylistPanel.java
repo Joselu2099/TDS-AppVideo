@@ -4,16 +4,12 @@ import gui.VideoPreview.VideoPreviewListPanel;
 import model.Playlist;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
 import controller.AppVideo;
 import gui.Util.SwapLayout;
-import org.jetbrains.annotations.NotNull;
-
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class CreatePlaylistPanel extends JPanel {
 
@@ -24,10 +20,9 @@ public class CreatePlaylistPanel extends JPanel {
 
 	private Playlist currentPlaylist;
 	private VideoPreviewListPanel playlistPanel;
-	private JPanel createPanel;
 	private PlaylistEditorPanel videoSelector;
 	private JLabel lblPlaylistName;
-	private JFrame parent;
+	private final JFrame parent;
 	//private String currentPlaylist;
 
 	/**
@@ -41,7 +36,7 @@ public class CreatePlaylistPanel extends JPanel {
 		// el visualizador de video.
 		setLayout(new BorderLayout(0, 0));
 
-		createPanel = new JPanel();
+		JPanel createPanel = new JPanel();
 		createPanel.setLayout(new BoxLayout(createPanel,BoxLayout.Y_AXIS));
 		add(createPanel, BorderLayout.NORTH);
 		JPanel editorPanel = new JPanel();

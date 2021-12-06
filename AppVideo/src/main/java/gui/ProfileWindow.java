@@ -62,7 +62,7 @@ public class ProfileWindow {
         });
 
         JLabel lblAppVideoIcon = new JLabel("");
-        lblAppVideoIcon.setIcon(new ImageIcon(SettingsWindow.class.getResource("/images/multimediavideoplayer_128px.png")));
+        lblAppVideoIcon.setIcon(new ImageIcon(Objects.requireNonNull(SettingsWindow.class.getResource("/images/multimediavideoplayer_128px.png"))));
         GridBagConstraints gbc_lblAppVideoIcon = new GridBagConstraints();
         gbc_lblAppVideoIcon.insets = new Insets(0, 0, 5, 5);
         gbc_lblAppVideoIcon.gridx = 4;
