@@ -82,13 +82,17 @@ public class AppVideoWindow {
         JMenuItem mntmMinors = new JMenuItem("Menores");
         mntmMinors.addActionListener(arg0 -> {
 			AppVideo.getInstance().applyFilter(new MinorsFilter());
-			System.out.println("Filtro minors");
 		});
         mnSelect.add(mntmMinors);
 
         JMenuItem mntmImpopulars = new JMenuItem("Impopulares");
         mntmImpopulars.addActionListener(arg0 -> AppVideo.getInstance().applyFilter(new ImpopularsFilter()));
         mnSelect.add(mntmImpopulars);
+
+
+        JMenuItem mntmLongName = new JMenuItem("Nombre largos");
+        mntmImpopulars.addActionListener(arg0 -> AppVideo.getInstance().applyFilter(new LongNameFilter()));
+        mnSelect.add(mntmLongName);
 
         JMenuItem mntmMyLists = new JMenuItem("Mis listas");
         mntmMyLists.addActionListener(arg0 -> AppVideo.getInstance().applyFilter(new MyListsFilter()));

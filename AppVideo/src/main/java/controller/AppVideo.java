@@ -168,8 +168,9 @@ public class AppVideo {
         if (isVideoPersisted(video.getUrl()))
             return;
         factory.getDAOVideo().create(video); // Side effect: update video ids
-        videoRepository.addVideo(video,filter.test(video));
-        if (filter.test(video)){
+        boolean test = filter.test(video,getCurrentUser());
+        videoRepository.addVideo(video,test);
+        if (test){
             notifieFilteredVideoChanged();
         }
     }
@@ -234,7 +235,7 @@ public class AppVideo {
         getCurrentUser().setFilter(filter);
         factory.getDAOUser().updateProfile(getCurrentUser());
 
-        videoRepository.updateFilteredVideoSet(videoRepository.getVideoList().stream().filter(filter::test).collect(Collectors.toSet()));
+        videoRepository.updateFilteredVideoSet(videoRepository.getVideoList().stream().filter(v->filter.test(v,getCurrentUser())).collect(Collectors.toSet()));
         this.currentPlaylists = getCurrentUser().getListOfPlaylist().stream()
                 .filter(playlist -> videoRepository.getUnmodifiableFilteredVideoSet().containsAll(playlist.getListOfVideos()))
                 .collect(Collectors.toList());
