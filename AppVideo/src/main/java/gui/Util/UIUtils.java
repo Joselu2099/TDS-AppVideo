@@ -1,5 +1,7 @@
 package gui.Util;
 
+import com.formdev.flatlaf.IntelliJTheme;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -42,5 +44,15 @@ public class UIUtils {
 
     public static String stringToHTML(String text){
         return "<html>" + text.replace("\n","<br>") + "</html>";
+    }
+
+    public static void setNightMode(boolean isNightMode,JFrame frame){
+        if (isNightMode) {
+            IntelliJTheme.setup(UIUtils.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
+        } else {
+            IntelliJTheme.setup(UIUtils.class.getResourceAsStream("/themes/ArcPurple.theme.json"));
+        }
+        if (frame != null)
+            SwingUtilities.updateComponentTreeUI(frame);
     }
 }

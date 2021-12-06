@@ -162,13 +162,11 @@ public class User implements Comparable<User> {
     }
 
     public void setNightMode(boolean nightMode) {
-        // TODO Move this to view layer
         this.isNightMode = nightMode;
-        if (this.isNightMode) {
-            IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
-        } else {
-            IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/ArcPurple.theme.json"));
-        }
+    }
+
+    public boolean getNightMode(){
+        return isNightMode;
     }
 
     @Override

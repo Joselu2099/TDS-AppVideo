@@ -97,7 +97,7 @@ public class AppVideo {
     public boolean registerUser(String name, String surname, String mail, String username, String password, String dateOfBirth) {
         if (isUserRegistered(username)) return false;
         User user = new User(name, surname, mail, username, encodePassword(password), dateOfBirth);
-        user.setNightMode(false);
+        setNightMode(false);
         DAOUser daoUser = factory.getDAOUser();
         daoUser.create(user);
         userRepository.addUser(user);
@@ -106,7 +106,7 @@ public class AppVideo {
 
     public boolean registerUser(User user) {
         if (isUserRegistered(user.getUsername())) return false;
-        user.setNightMode(false);
+        setNightMode(false);
         DAOUser daoUser = factory.getDAOUser();
         daoUser.create(user);
         userRepository.addUser(user);
@@ -286,6 +286,10 @@ public class AppVideo {
 
         DAOUser daoUser = factory.getDAOUser();
         daoUser.updateProfile(getCurrentUser());
+    }
+    public boolean getNightMode() {
+        return getCurrentUser().isNightMode();
+
     }
 
     public void setNightMode(boolean nightMode) {

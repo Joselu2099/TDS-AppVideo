@@ -1,6 +1,8 @@
 package gui;
 
 import controller.AppVideo;
+import gui.Util.UIUtils;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -180,6 +182,8 @@ public class LoginWindow {
                 JOptionPane.showMessageDialog(null, "El usuario o clave son incorrectos", "Login Fallido",
                         JOptionPane.ERROR_MESSAGE);
             } else {
+
+                UIUtils.setNightMode(AppVideo.getInstance().getNightMode(),frmLogin);
                 //Mostrar ventana principal
                 AppVideoWindow appVideoWindow = new AppVideoWindow();
                 AppVideoWindow.setActiveInstance(appVideoWindow);

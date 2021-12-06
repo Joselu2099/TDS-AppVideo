@@ -1,5 +1,6 @@
 package gui;
 
+import com.formdev.flatlaf.IntelliJTheme;
 import controller.AppVideo;
 import gui.Util.UIUtils;
 
@@ -126,11 +127,12 @@ public class SettingsWindow {
         if (!AppVideo.getInstance().getCurrentUser().isNightMode()) {
             lblLightNightMode.setText(NIGHTMODEACTIVATED);
             AppVideo.getInstance().setNightMode(true);
+            UIUtils.setNightMode(true,frmSettings);
         } else if (AppVideo.getInstance().getCurrentUser().isNightMode()) {
             lblLightNightMode.setText(NIGHTMODEDISABLED);
             AppVideo.getInstance().setNightMode(false);
+            UIUtils.setNightMode(false,frmSettings);
         }
-        SwingUtilities.updateComponentTreeUI(frmSettings);
     }
 
     private void goToAppVideoWindow() {
