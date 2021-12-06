@@ -15,7 +15,7 @@ public class Launcher {
             try {
                 UIManager.setLookAndFeel(new FlatLightLaf());
                 IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/ArcPurple.theme.json"));
-//				IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
+				//IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
 
                 VideoRepository.getInstance();
 

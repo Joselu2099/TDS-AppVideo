@@ -149,7 +149,7 @@ public class AppVideoWindow {
 
         popularPanel = new PopularPanel(frmAppVideo);
         int popularTabIndex = tabbedPane.getTabCount();
-        tabbedPane.addTab("Polular",null,popularPanel,null);
+        tabbedPane.addTab("Tendencias",null,popularPanel,null);
         tabbedPane.setEnabledAt(popularTabIndex,AppVideo.getInstance().isCurrentUserPremium());
 
 

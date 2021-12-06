@@ -130,16 +130,12 @@ public class AppVideo {
     public boolean registerUser(String name, String surname, String mail, String username, String password, String dateOfBirth) {
         if (isUserRegistered(username)) return false;
         User user = new User(name, surname, mail, username, encodePassword(password), dateOfBirth);
-        //setNightMode(false);
-        DAOUser daoUser = factory.getDAOUser();
-        daoUser.create(user);
-        userRepository.addUser(user);
-        return true;
+        return registerUser(user);
     }
 
     public boolean registerUser(User user) {
         if (isUserRegistered(user.getUsername())) return false;
-        setNightMode(false);
+        user.setNightMode(false);
         DAOUser daoUser = factory.getDAOUser();
         daoUser.create(user);
         userRepository.addUser(user);
@@ -387,10 +383,6 @@ public class AppVideo {
         PdfWriter writer = new PdfWriter(FilenameUtils.getBaseName(absolutePath)+".pdf");
         PdfDocument pdfDoc = new PdfDocument(writer);
         Document document = new Document(pdfDoc);
-
-        // Create a PdfFont
-        //PdfFont font = PdfFontFactory.createFont(FontConstants.TIMES_ROMAN);
-        // Add a Paragraph
 
         Image image = new Image(ImageDataFactory.create(Objects.requireNonNull(AppVideo.class.getResource("/images/multimediavideoplayer_128px.png"))));
         document.add(image);
