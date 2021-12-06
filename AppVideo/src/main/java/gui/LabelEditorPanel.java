@@ -1,6 +1,7 @@
 package gui;
 
 import com.formdev.flatlaf.IntelliJTheme;
+import controller.AppVideo;
 import gui.Util.SwapLayout;
 import gui.Util.WrapLayout;
 import launcher.Launcher;
@@ -59,7 +60,8 @@ public class LabelEditorPanel extends JPanel {
 
         tagPanel.setLayout(new WrapLayout());
         labelSet.forEach(label -> tagPanel.add(tagButtonFactory(label.name())));
-        JButton addBtn = new JButton("+");
+        JButton addBtn = new JButton("Añadir etiqueta");
+        addBtn.setIcon(new ImageIcon(LabelEditorPanel.class.getResource("/images/icons8-filter-24.png")));
         addBtn.addActionListener(l->showAddDialog());
         tagPanel.add(addBtn);
         return tagPanel;
@@ -69,15 +71,20 @@ public class LabelEditorPanel extends JPanel {
     private void showAddDialog() {
         //JOptionPane.showMessageDialog(null, comboBox, "Seleccióna la etiqueta que quieres añadir:",
         //JOptionPane.QUESTION_MESSAGE);
-        Label l = Label.valueOf((String)JOptionPane.showInputDialog(
-                this,
-                "Seleccióna la etiqueta que quieres añadir:",
-                "Añadir etiqueta",
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-null,
-//                Label.values(),
-                null));
+        JComboBox<String> comboBox = new JComboBox<>(AppVideo.getInstance().getExistingLabelSet().stream().map(Label::name).toArray(String[]::new));
+        comboBox.setEditable(true);
+
+        JOptionPane.showMessageDialog(this, comboBox, "Seleccióna etiqueta:",
+                JOptionPane.QUESTION_MESSAGE, new ImageIcon("/images/multimediavideoplayer_128px.png"));
+//        String input = (String)JOptionPane.showInputDialog(
+//                this,
+//                "Seleccióna la etiqueta que quieres añadir:",
+//                "Añadir etiqueta",
+//                JOptionPane.QUESTION_MESSAGE,
+//                null,
+//                AppVideo.getInstance().getExistingLabelSet().stream().map(Label::name).toArray(),
+//                "tag");
+        Label l = Label.valueOf((String) comboBox.getSelectedItem());
         if (addCallback != null && l != null){
             labels.add(l);
             addCallback.accept(l);

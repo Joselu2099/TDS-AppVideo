@@ -330,6 +330,10 @@ public class AppVideo {
 
     }
 
+    public Set<Label> getExistingLabelSet(){
+        return Label.getExistingLabelSet();
+    }
+
 
     public List<Video> xmlVideoAdapter(umu.tds.componente.Videos videos) {
         return videos.getVideo().stream()

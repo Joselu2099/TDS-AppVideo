@@ -2,7 +2,10 @@ package model;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 public class Label implements Comparable<Label> {
 //    DIBUJOS_ANIMADOS, PELICULA, SERIE, INTRIGA, TERROR, CLASICO, VIDEOCLIP, ADULTOS, INFANTIL
@@ -19,8 +22,17 @@ public class Label implements Comparable<Label> {
     public static final Label ADULTOS = new Label("ADULTOS");
     public static final Label INFANTIL = new Label("INFANTIL");
 
+    private static Set<Label> existingLabelSet;
+
     private Label(String name) {
-        this.name = name;
+        this.name = name.toUpperCase(Locale.ROOT);
+        if (existingLabelSet == null)
+            existingLabelSet = new HashSet<>();
+        existingLabelSet.add(this);
+    }
+
+    public static Set<Label> getExistingLabelSet(){
+        return Collections.unmodifiableSet(existingLabelSet);
     }
 
     @Override
@@ -50,13 +62,15 @@ public class Label implements Comparable<Label> {
 //        return l.name;
 //    }
 
+    // Factoria
     public static Label valueOf(String name){
+        if (name == null || name.equals(""))
+            return null;
         return new Label(name);
     }
 
     @Override
     public int compareTo(@NotNull Label o) {
-    	if(this.name == null) return 0;
         return this.name.compareTo(o.name);
     }
 }
