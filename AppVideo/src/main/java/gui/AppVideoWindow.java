@@ -80,9 +80,7 @@ public class AppVideoWindow {
         mnFilters.add(mnSelect);
 
         JMenuItem mntmMinors = new JMenuItem("Menores");
-        mntmMinors.addActionListener(arg0 -> {
-			AppVideo.getInstance().applyFilter(new MinorsFilter());
-		});
+        mntmMinors.addActionListener(arg0 -> AppVideo.getInstance().applyFilter(new MinorsFilter()));
         mnSelect.add(mntmMinors);
 
         JMenuItem mntmImpopulars = new JMenuItem("Impopulares");
@@ -91,7 +89,7 @@ public class AppVideoWindow {
 
 
         JMenuItem mntmLongName = new JMenuItem("Nombre largos");
-        mntmImpopulars.addActionListener(arg0 -> AppVideo.getInstance().applyFilter(new LongNameFilter()));
+        mntmLongName.addActionListener(arg0 -> AppVideo.getInstance().applyFilter(new LongNameFilter()));
         mnSelect.add(mntmLongName);
 
         JMenuItem mntmMyLists = new JMenuItem("Mis listas");
