@@ -4,8 +4,6 @@ import dao.DAOException;
 import dao.DAOFactory;
 import dao.DAOUser;
 import dao.DAOVideo;
-import gui.AppVideoWindow;
-import gui.PlaylistEditorPanel;
 import model.*;
 import org.apache.commons.codec.digest.DigestUtils;
 import umu.tds.componente.VideosLoader;
@@ -13,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class AppVideo {
@@ -46,7 +43,7 @@ public class AppVideo {
 
             videosLoader.subscribeNewVideoLoaded( videosXML ->{
                 List<Video> newVideo = xmlVideoAdapter(videosXML);
-                newVideo.stream().forEach(this::persistVideo);
+                newVideo.forEach(this::persistVideo);
                 notifieFilteredVideoChanged();
             });
         } catch (DAOException e) {
@@ -68,7 +65,7 @@ public class AppVideo {
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
         filter = currentUser.getFilter();
-        applyFilter(currentUser.getFilter());
+        applyFilter(filter);
     }
 
     public String changeShortTitleOfVideo(Video video, int num){
@@ -88,7 +85,6 @@ public class AppVideo {
         User user = userRepository.getUser(username);
         if (user != null && checkPassword(password, user.getPassword())) {
             this.setCurrentUser(user);
-            applyFilter(user.getFilter());
             return true;
         }
         return false;
@@ -142,7 +138,7 @@ public class AppVideo {
     private void notifieFilteredVideoChanged(){
         // Usamos runnable porque AppVideo es un singleton y no hay problema de visibilidad,
         // y no sabemos que dato necesita cuando pasa el evento.
-        filteredVideoChangedListeners.stream().forEach(Runnable::run);
+        filteredVideoChangedListeners.forEach(Runnable::run);
     }
     
     public List<Video> searchVideos(String text,Set<Label> labelSet) {
@@ -218,18 +214,6 @@ public class AppVideo {
     
     public Playlist getPlaylist(String title) {
     	return getCurrentUser().getPlaylist(title);
-    }
-
-    public void addVideoToPlaylist(String title, Video video){
-        if(!getCurrentUser().hasPlaylist(title)) return;
-        getCurrentUser().getPlaylist(title).addVideo(video);
-        factory.getDAOUser().updateProfile(getCurrentUser());
-    }
-
-    public void removeVideoOfPlaylist(String title, Video video){
-        if(!getCurrentUser().hasPlaylist(title)) return;
-        getCurrentUser().getPlaylist(title).removeVideo(video);
-        factory.getDAOUser().updateProfile(getCurrentUser());
     }
 
     public String encodePassword(String password) {
@@ -311,7 +295,7 @@ public class AppVideo {
         daoUser.updateProfile(getCurrentUser());
     }
     private void notifieRecentVideoChanged(){
-        recentVideoChangedListeners.stream().forEach(Runnable::run);
+        recentVideoChangedListeners.forEach(Runnable::run);
     }
     public void subscribeRecentVideoChanged(Runnable callback){
         if (callback == null)

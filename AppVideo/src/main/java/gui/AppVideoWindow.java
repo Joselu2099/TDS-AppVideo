@@ -56,7 +56,7 @@ public class AppVideoWindow {
         frmAppVideo.setIconImage(Toolkit.getDefaultToolkit().getImage(LoginWindow.class.getResource("/images/multimediavideoplayer_128px.png")));
         frmAppVideo.setBounds(100, 100, 1280, 720);
         frmAppVideo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frmAppVideo.setMinimumSize(new Dimension(720, 480));
+        frmAppVideo.setMinimumSize(new Dimension(900, 600));
         frmAppVideo.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {goToLoginWindow();
