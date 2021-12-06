@@ -33,7 +33,7 @@ public class MyPlaylistPanel extends JPanel{
 		// el visualizador de video.
 		this.parent = parent;
 
-		setLayout(new BorderLayout());
+		setLayout(new BorderLayout(5,5));
 
 		JPanel searchPanel = new JPanel();
 

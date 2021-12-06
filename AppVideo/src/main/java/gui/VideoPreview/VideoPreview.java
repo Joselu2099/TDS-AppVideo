@@ -41,7 +41,8 @@ public class VideoPreview extends JPanel {
 		add(lblPreviewLabel, BorderLayout.NORTH);
 		lblPreviewLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 
-		JLabel lblTitle = new JLabel(AppVideo.getInstance().changeShortTitleOfVideo(video, 20));
+		JLabel lblTitle = new JLabel(AppVideo.getInstance().changeShortTitleOfVideo(video, 18));
+		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		add(lblTitle, BorderLayout.SOUTH);
 

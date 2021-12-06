@@ -24,10 +24,12 @@ public class RecentPanel extends JPanel{
 	 * Create the panel.
 	 */
 	public RecentPanel(JFrame parent) {
-		setLayout(new BorderLayout(0, 0));
+		setLayout(new BorderLayout(8, 8));
 		// Necesitamos el JFrame para ocultar la ventana cuando lanzamos
 		// el visualizador de video.
 		this.parent = parent;
+
+
 		this.videoPreviewListPanel = new VideoPreviewListPanel(AppVideo.getInstance().getCurrentUserRencentVideo(),this::videoClickCallback);
 		this.add(videoPreviewListPanel,BorderLayout.CENTER);
 

@@ -36,7 +36,7 @@ public class HomePanel extends JPanel{
 	public HomePanel(JFrame parent) {
 		// Necesitamos el JFrame para ocultar la ventana cuando lanzamos
 		// el visualizador de video.
-		setLayout(new BorderLayout());
+		setLayout(new BorderLayout(5,5));
 		
 		JPanel searchPanel = new JPanel();
 		searchPanel.setLayout(new BoxLayout(searchPanel,BoxLayout.Y_AXIS));

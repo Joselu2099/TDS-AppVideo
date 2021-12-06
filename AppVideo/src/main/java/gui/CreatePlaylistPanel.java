@@ -34,7 +34,7 @@ public class CreatePlaylistPanel extends JPanel {
 		createPlaylistPanel.setLayout(new SwapLayout(createPlaylistPanel));
 		// Necesitamos el JFrame para ocultar la ventana cuando lanzamos
 		// el visualizador de video.
-		setLayout(new BorderLayout(0, 0));
+		setLayout(new BorderLayout(5, 5));
 
 		JPanel createPanel = new JPanel();
 		createPanel.setLayout(new BoxLayout(createPanel,BoxLayout.Y_AXIS));
