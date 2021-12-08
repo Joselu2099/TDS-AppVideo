@@ -18,8 +18,11 @@ public class AppVideoWindow {
     private RecentPanel recentPanel;
     private MyPlaylistPanel myPlaylistPanel;
     private CreatePlaylistPanel createPlaylistPanel;
-    private PopularPanel popularPanel;
+    private TrendsPanel trendsPanel;
     private JMenuItem mntmNightMode;
+    private JMenu mnFilters;
+    private JTabbedPane tabbedPane;
+    private int popularTabIndex;
 
     /**
      * Create the application.
@@ -72,9 +75,9 @@ public class AppVideoWindow {
 
         ButtonGroup bg = new ButtonGroup();
 
-        JMenu mnFilters = new JMenu("Filtros");
+        mnFilters = new JMenu("Filtros");
         menuBar.add(mnFilters);
-        mnFilters.setEnabled(AppVideo.getInstance().isCurrentUserPremium());
+        setMnFiltersVisible(AppVideo.getInstance().isCurrentUserPremium());
 
         JMenuItem mntmRemoveFilter = new JRadioButtonMenuItem("Sin filtro");
         mntmRemoveFilter.addActionListener(arg0 -> AppVideo.getInstance().applyFilter(new NoFilter()));
@@ -127,7 +130,7 @@ public class AppVideoWindow {
         mntmExit.addActionListener(arg0 -> goToLoginWindow());
         mnSettings.add(mntmExit);
 
-        JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+        tabbedPane = new JTabbedPane(JTabbedPane.TOP);
         frmAppVideo.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 
         //JPanel home = new JPanel();
@@ -143,10 +146,10 @@ public class AppVideoWindow {
         createPlaylistPanel = new CreatePlaylistPanel(frmAppVideo);
         tabbedPane.addTab("Crear Playlists", null, createPlaylistPanel, null);
 
-        popularPanel = new PopularPanel(frmAppVideo);
-        int popularTabIndex = tabbedPane.getTabCount();
-        tabbedPane.addTab("Tendencias",null,popularPanel,null);
-        tabbedPane.setEnabledAt(popularTabIndex,AppVideo.getInstance().isCurrentUserPremium());
+        trendsPanel = new TrendsPanel(frmAppVideo);
+        popularTabIndex = tabbedPane.getTabCount();
+        tabbedPane.addTab("Tendencias",null, trendsPanel,null);
+        setTrendsPanelVisible(AppVideo.getInstance().isCurrentUserPremium());
 
 
     }
@@ -197,5 +200,13 @@ public class AppVideoWindow {
             UIUtils.setNightMode(false,frmAppVideo);
         }
         mntmNightMode.setIcon(new ImageIcon(Objects.requireNonNull(AppVideoWindow.class.getResource(AppVideo.getInstance().getCurrentUser().isNightMode() ? "/images/lightModeIcon.png":"/images/nightModeIcon.png" ))));
+    }
+
+    public void setMnFiltersVisible(Boolean condition) {
+        mnFilters.setEnabled(condition);
+    }
+
+    public void setTrendsPanelVisible(Boolean condition) {
+        tabbedPane.setEnabledAt(popularTabIndex,condition);
     }
 }

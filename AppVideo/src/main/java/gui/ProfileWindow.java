@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.util.Objects;
@@ -49,6 +51,7 @@ public class ProfileWindow extends JDialog{
         setIconImage(Toolkit.getDefaultToolkit().getImage(LoginWindow.class.getResource("/images/multimediavideoplayer_128px.png")));
         setBounds(100, 100, 900, 680);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
         GridBagLayout gridBagLayout = new GridBagLayout();
         gridBagLayout.columnWidths = new int[]{50, 0, 0, 20, 50, 20, 0, 0, 50, 0};
         gridBagLayout.rowHeights = new int[]{50, 0, 0, 0, 40, 0, 0, 29, 0, 0, 0, 30, 0, 0, 50, 40, 50, 0};
@@ -144,6 +147,8 @@ public class ProfileWindow extends JDialog{
                 btnPremium.setEnabled(!AppVideo.getInstance().isCurrentUserPremium());
                 btnQuitPremium.setEnabled(AppVideo.getInstance().isCurrentUserPremium());
                 btnGeneratePDF.setEnabled(AppVideo.getInstance().isCurrentUserPremium());
+                AppVideoWindow.getActiveInstance().setMnFiltersVisible(AppVideo.getInstance().isCurrentUserPremium());
+                AppVideoWindow.getActiveInstance().setTrendsPanelVisible(AppVideo.getInstance().isCurrentUserPremium());
             }
         });
         btnPremium.setIcon(new ImageIcon(Objects.requireNonNull(ProfileWindow.class.getResource("/images/premiumIcon.png"))));
@@ -195,6 +200,8 @@ public class ProfileWindow extends JDialog{
                 btnPremium.setEnabled(!AppVideo.getInstance().isCurrentUserPremium());
                 btnQuitPremium.setEnabled(AppVideo.getInstance().isCurrentUserPremium());
                 btnGeneratePDF.setEnabled(AppVideo.getInstance().isCurrentUserPremium());
+                AppVideoWindow.getActiveInstance().setMnFiltersVisible(AppVideo.getInstance().isCurrentUserPremium());
+                AppVideoWindow.getActiveInstance().setTrendsPanelVisible(AppVideo.getInstance().isCurrentUserPremium());
             }
         });
         btnQuitPremium.setIcon(new ImageIcon(Objects.requireNonNull(ProfileWindow.class.getResource("/images/premiumIcon.png"))));
@@ -239,28 +246,6 @@ public class ProfileWindow extends JDialog{
         gbc_btnGeneratePDF.gridx = 6;
         gbc_btnGeneratePDF.gridy = 12;
         getContentPane().add(btnGeneratePDF, gbc_btnGeneratePDF);
-
-        /*
-        btnBack = new JButton("");
-        frmProfile.getRootPane().setDefaultButton(btnBack);
-        btnBack.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                goToAppVideoWindow();
-            }
-        });
-        btnBack.setBorderPainted(false);
-        btnBack.setBorder(new EmptyBorder(0,0,0,0));
-        //btnBack.setBorder(new MatteBorder(1, 1, 1, 1, UIUtils.getFocusedBorder()));
-        btnBack.setIcon(new ImageIcon(Objects.requireNonNull(ProfileWindow.class.getResource("/images/backIcon.png"))));
-        GridBagConstraints gbc_btnBack = new GridBagConstraints();
-        gbc_btnBack.fill = GridBagConstraints.HORIZONTAL;
-        gbc_btnBack.insets = new Insets(0, 0, 5, 5);
-        gbc_btnBack.gridx = 1;
-        gbc_btnBack.gridy = 15;
-        frmProfile.getContentPane().add(btnBack, gbc_btnBack);
-
-         */
     }
 
     private void changeUserMail() {
