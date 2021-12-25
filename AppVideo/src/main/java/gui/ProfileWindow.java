@@ -246,6 +246,15 @@ public class ProfileWindow extends JDialog{
         gbc_btnGeneratePDF.gridx = 6;
         gbc_btnGeneratePDF.gridy = 12;
         getContentPane().add(btnGeneratePDF, gbc_btnGeneratePDF);
+
+
+        // Left align buttons
+        btnChangeMail.setHorizontalAlignment(JButton.LEFT);
+        btnChangePassword.setHorizontalAlignment(JButton.LEFT);
+        btnChangeUsername.setHorizontalAlignment(JButton.LEFT);
+        btnPremium.setHorizontalAlignment(JButton.LEFT);
+        btnGeneratePDF.setHorizontalAlignment(JButton.LEFT);
+        btnQuitPremium.setHorizontalAlignment(JButton.LEFT);
     }
 
     private void changeUserMail() {
