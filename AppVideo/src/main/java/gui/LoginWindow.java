@@ -184,16 +184,20 @@ public class LoginWindow {
             } else {
 
                 UIUtils.setNightMode(AppVideo.getInstance().getNightMode(),frmLogin);
+                System.out.println(SwingUtilities.isEventDispatchThread());
+                passwordField.setBackground(Color.GREEN.darker());
                 //Mostrar ventana principal
-                AppVideoWindow appVideoWindow = new AppVideoWindow();
-                AppVideoWindow.setActiveInstance(appVideoWindow);
+                SwingUtilities.invokeLater(()->{
+                    AppVideoWindow appVideoWindow = new AppVideoWindow();
+                    AppVideoWindow.setActiveInstance(appVideoWindow);
 
-                AppVideoWindow.getActiveInstance().showWindow();
-                frmLogin.setVisible(false);
+                    AppVideoWindow.getActiveInstance().showWindow();
+                    frmLogin.setVisible(false);
+
+                });
             }
         } else {
-            JOptionPane.showMessageDialog(frmLogin, "El usuario " + user + " no esta registrado en AppMusic.\n", "Login fallido", JOptionPane.ERROR_MESSAGE);
-            frmLogin.setTitle("Login Gestor Eventos");
+            JOptionPane.showMessageDialog(frmLogin, "El usuario " + user + " no esta registrado en AppVideo.\n", "Login fallido", JOptionPane.ERROR_MESSAGE);
         }
     }
 
