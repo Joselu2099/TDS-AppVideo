@@ -84,6 +84,7 @@ public class HomePanel extends JPanel{
 		showVideoPreview(AppVideo.getInstance().getFilteredVideoList());
 		add(scrollPane,BorderLayout.CENTER);
 //		add(vidPanel,BorderLayout.CENTER);
+		AppVideo.getInstance().subscribeFilteredVideoChange(()-> showVideoPreview(AppVideo.getInstance().searchVideos(getSearchText(),getSearchLabelSet())));
 	}
 
 	public void showVideoPreview(List<Video> videoList) {
@@ -111,7 +112,6 @@ public class HomePanel extends JPanel{
 				});
 			}
 		});
-		AppVideo.getInstance().subscribeFilteredVideoChange(()-> showVideoPreview(AppVideo.getInstance().searchVideos(getSearchText(),getSearchLabelSet())));
 		searchBoxPanel.add(luz);
 	}
 }
