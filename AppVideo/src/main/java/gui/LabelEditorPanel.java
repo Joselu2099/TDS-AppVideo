@@ -76,9 +76,20 @@ public class LabelEditorPanel extends JPanel {
         //JOptionPane.QUESTION_MESSAGE);
         JComboBox<String> comboBox = new JComboBox<>(AppVideo.getInstance().getExistingLabelSet().stream().map(Label::name).toArray(String[]::new));
         comboBox.setEditable(true);
+        SwingUtilities.invokeLater(()->{
+            comboBox.getEditor().selectAll();
+            comboBox.requestFocusInWindow();
+        });
 
-        JOptionPane.showMessageDialog(this, comboBox, "Seleccióna etiqueta:",
-                JOptionPane.QUESTION_MESSAGE, new ImageIcon("/images/multimediavideoplayer_128px.png"));
+        String[] options = {  "Ok","Cancel" };
+        int status = JOptionPane.showOptionDialog(this,comboBox,"Selecciona etiqueta: ",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,
+                new ImageIcon("/images/multimediavideoplayer_128px.png"),options,options[0]);
+//                JOptionPane.showMessageDialog(this, comboBox, "Seleccióna etiqueta:",
+//
+//                JOptionPane.QUESTION_MESSAGE, new ImageIcon("/images/multimediavideoplayer_128px.png"));
+
+//        JOptionPane.showMessageDialog(this, comboBox, "Seleccióna etiqueta:",
+//                JOptionPane.QUESTION_MESSAGE, new ImageIcon("/images/multimediavideoplayer_128px.png"));
 //        String input = (String)JOptionPane.showInputDialog(
 //                this,
 //                "Seleccióna la etiqueta que quieres añadir:",
@@ -88,7 +99,7 @@ public class LabelEditorPanel extends JPanel {
 //                AppVideo.getInstance().getExistingLabelSet().stream().map(Label::name).toArray(),
 //                "tag");
         Label l = Label.valueOf((String) comboBox.getSelectedItem());
-        if (addCallback != null && l != null){
+        if (addCallback != null && l != null && status == JOptionPane.OK_OPTION){
             labels.add(l);
             addCallback.accept(l);
 //            swapLayoutPanelWrapper.swap(getTagPanel(labels));
