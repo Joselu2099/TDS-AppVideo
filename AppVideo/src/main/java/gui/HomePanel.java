@@ -84,7 +84,7 @@ public class HomePanel extends JPanel{
 		showVideoPreview(AppVideo.getInstance().getFilteredVideoList());
 		add(scrollPane,BorderLayout.CENTER);
 //		add(vidPanel,BorderLayout.CENTER);
-		AppVideo.getInstance().subscribeFilteredVideoChange(()-> showVideoPreview(AppVideo.getInstance().searchVideos(getSearchText(),getSearchLabelSet())));
+		AppVideo.getInstance().subscribeFilteredVideoChange(()->SwingUtilities.invokeLater(()-> showVideoPreview(AppVideo.getInstance().searchVideos(getSearchText(),getSearchLabelSet()))));
 	}
 
 	public void showVideoPreview(List<Video> videoList) {

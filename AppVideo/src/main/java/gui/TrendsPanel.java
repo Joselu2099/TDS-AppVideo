@@ -46,7 +46,7 @@ public class TrendsPanel extends JPanel {
         this.add(videoPreviewListPanel,BorderLayout.CENTER);
 
         // callback to update panel
-        AppVideo.getInstance().subscribeRecentVideoChanged(()->showVideoPreview(AppVideo.getInstance().getMostTopViewVideos(TOP_VIDEO_COUNT)));
+        AppVideo.getInstance().subscribeRecentVideoChanged(()->SwingUtilities.invokeLater(()->showVideoPreview(AppVideo.getInstance().getMostTopViewVideos(TOP_VIDEO_COUNT))));
 
     }
 

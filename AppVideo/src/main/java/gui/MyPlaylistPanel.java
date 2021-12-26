@@ -49,7 +49,7 @@ public class MyPlaylistPanel extends JPanel{
 											setPlaylistsPanels(filteredPlaylists);});
 		searchPanel.add(btnSearchButton);
 
-		AppVideo.getInstance().subscribeFilteredVideoChange(()-> setPlaylistsPanels(AppVideo.getInstance().searchPlaylists(textField.getText())));
+		AppVideo.getInstance().subscribeFilteredVideoChange(()->SwingUtilities.invokeLater(()-> setPlaylistsPanels(AppVideo.getInstance().searchPlaylists(textField.getText()))));
 
 		setPlaylistsPanels(AppVideo.getInstance().getCurrentPlaylists());
 		mainPanel.setLayout(new SwapLayout(mainPanel));

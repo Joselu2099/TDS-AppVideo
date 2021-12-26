@@ -39,7 +39,7 @@ public class RecentPanel extends JPanel{
 		this.videoPreviewListPanel = new VideoPreviewListPanel(AppVideo.getInstance().getCurrentUserRencentVideo(),this::videoClickCallback);
 		this.add(videoPreviewListPanel,BorderLayout.CENTER);
 		// callback to update panel
-		AppVideo.getInstance().subscribeRecentVideoChanged(()->showVideoPreview(AppVideo.getInstance().getCurrentUserRencentVideo()));
+		AppVideo.getInstance().subscribeRecentVideoChanged(()->SwingUtilities.invokeLater(()->showVideoPreview(AppVideo.getInstance().getCurrentUserRencentVideo())));
 	}
 
 	private void videoClickCallback(Video v){
