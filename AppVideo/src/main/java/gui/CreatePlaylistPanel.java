@@ -21,6 +21,8 @@ public class CreatePlaylistPanel extends JPanel {
 	private PlaylistEditorPanel videoSelector;
 	private JLabel lblPlaylistName;
 	private JFrame parent;
+
+	private JButton btnEditButton;
 	//private String currentPlaylist;
 
 	/**
@@ -56,7 +58,7 @@ public class CreatePlaylistPanel extends JPanel {
 		});
 		editorPanel.add(btnCreateButton);
 
-		JButton btnEditButton = new JButton("Editar Playlist");
+		btnEditButton = new JButton("Editar Playlist");
 		btnEditButton.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
 		btnEditButton.addActionListener(l -> {
 			if(currentPlaylist!=null){
@@ -68,6 +70,7 @@ public class CreatePlaylistPanel extends JPanel {
 					"Playlist editor", JOptionPane.ERROR_MESSAGE);
 		});
 		editorPanel.add(btnEditButton);
+		updateEditBtn();
 		
 		JButton selectBtn = new JButton("Seleccionar Playlist");
 		selectBtn.setFont(new Font("Gill Sans MT", Font.BOLD, 14));
@@ -97,11 +100,17 @@ public class CreatePlaylistPanel extends JPanel {
 		comboBox.setEditable(false);
 		JOptionPane.showMessageDialog(parent, comboBox, "Seleccióna Playlist:",
 				JOptionPane.QUESTION_MESSAGE, new ImageIcon("/images/multimediavideoplayer_128px.png"));
-		if (comboBox.getSelectedItem() == null)
+		if (comboBox.getSelectedItem() == null){
+			updateEditBtn();
 			return;
+		}
 		currentPlaylist = AppVideo.getInstance().getPlaylist((String) comboBox.getSelectedItem());
 		showPlaylistPreview(currentPlaylist);
 		lblPlaylistName.setText(currentPlaylist.getTitle());
+		updateEditBtn();
+	}
+	private void updateEditBtn(){
+		btnEditButton.setEnabled(currentPlaylist !=null);
 	}
 
 	public void showPlaylistPreview(Playlist playlist) {
@@ -111,10 +120,13 @@ public class CreatePlaylistPanel extends JPanel {
 	public void goToPlaylistEditorPanel(){
 		videoSelector = new PlaylistEditorPanel(currentPlaylist);
 		videoSelector.showPlaylistEditorPanel(parent);
+
+		updateEditBtn();
 	}
 
 	public void setCurrentPlaylist(Playlist playlist){
 		this.currentPlaylist = playlist;
+		updateEditBtn();
 		if(currentPlaylist==null){
 			lblPlaylistName.setText("");
 			playlistPanel.setPrewviewList(new ArrayList<>());
