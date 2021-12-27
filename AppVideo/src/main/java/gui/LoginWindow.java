@@ -184,7 +184,7 @@ public class LoginWindow {
             } else {
 
                 UIUtils.setNightMode(AppVideo.getInstance().getNightMode(),frmLogin);
-                System.out.println(SwingUtilities.isEventDispatchThread());
+//                System.out.println(SwingUtilities.isEventDispatchThread());
                 passwordField.setBackground(Color.GREEN.darker());
                 //Mostrar ventana principal
                 SwingUtilities.invokeLater(()->{
