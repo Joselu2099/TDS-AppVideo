@@ -1,6 +1,6 @@
 ---
 title: "TDS"
-author: [Mengchen Huang G2.1 2021-2022]
+author: [Mengchen Huang G2.1 && Jose Luis Sánchez Carrasco G3.1  2021-2022]
 subject: "TDS"
 subtitle: "AppVideo"
 titlepage: true
@@ -26,15 +26,7 @@ urlcolor: "ogange"
 
 
 # Diagrama de clases del dominio
-
-
-
-
-
-
-
-
-
+!(Diagrama de clases del dominio)[images/AppVideo DC.svg]
 
 # Un diagrama de interacción UML
 
