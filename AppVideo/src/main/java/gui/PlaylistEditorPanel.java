@@ -123,7 +123,7 @@ public class PlaylistEditorPanel extends JDialog {
 	}
 
 	public void showVideoPreview(List<Video> videoList) {
-		vidPanel.setPrewviewList(videoList);
+		vidPanel.setPrewviewList(videoList,selectedVideos);
 	}
 }
 	
