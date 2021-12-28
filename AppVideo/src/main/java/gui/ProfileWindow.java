@@ -225,7 +225,8 @@ public class ProfileWindow extends JDialog{
                         if (i == JFileChooser.APPROVE_OPTION){
                             if (!jFileChooser.getSelectedFile().isDirectory()) {
                                 try {
-                                    AppVideo.getInstance().generatePDF(jFileChooser.getSelectedFile().getAbsolutePath());
+                                    String name = AppVideo.getInstance().generatePDF(jFileChooser.getSelectedFile().getAbsolutePath());
+                                    JOptionPane.showMessageDialog(getContentPane(),"PDF guardado en: "+name,"PDF guardado con exito",JOptionPane.PLAIN_MESSAGE);
                                 } catch (FileNotFoundException | MalformedURLException ex) {
                                     ex.printStackTrace();
                                 }

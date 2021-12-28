@@ -375,24 +375,24 @@ public class AppVideo {
                 }).collect(Collectors.toList());
     }
 
-    public void generatePDF(String absolutePath) throws FileNotFoundException, MalformedURLException {
-        System.out.println(absolutePath);
+    public String generatePDF(String absolutePath) throws FileNotFoundException, MalformedURLException {
+        String filename = FilenameUtils.getFullPath(absolutePath)+FilenameUtils.getBaseName(absolutePath)+".pdf";
         List<String> playlistsTitles = getCurrentUser().getListOfPlaylist().stream()
                 .map(Playlist::getTitle)
                 .collect(Collectors.toList());
 
-        PdfWriter writer = new PdfWriter(FilenameUtils.getBaseName(absolutePath)+".pdf");
+        PdfWriter writer = new PdfWriter(filename);
         PdfDocument pdfDoc = new PdfDocument(writer);
         Document document = new Document(pdfDoc);
 
         Image image = new Image(ImageDataFactory.create(Objects.requireNonNull(AppVideo.class.getResource("/images/multimediavideoplayer_128px.png"))));
-        document.add(image);
         document.add(new Paragraph("AppVideo, generacion de playlists y sus videos:"));
         if(!(playlistsTitles.size()>0)) {
             document.add(new Paragraph("No hay playlists creadas"));
             document.close();
-            return;
+            return filename;
         }
+        document.add(image);
         // Create a List
         com.itextpdf.layout.element.List list;
 
@@ -419,5 +419,6 @@ public class AppVideo {
             document.add(table);
         }
         document.close();
+        return filename;
    }
 }
