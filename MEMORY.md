@@ -81,7 +81,7 @@ Se han implementado diversos test unitarios:
   - `persistVideo`: se comprueba la funcionalidad de persistir un video.
   - `createPlaylist`: se comprueba la funcionalidad de crear una playlist.
   - `removePlaylist`: se comprueba la funcionalidad de borrar una playlist.
-  
+
 ## Test para persistencia
 ### DAOTest
 Se comprueba la correcta creacion de las entidades `User` y `Video` en persistencia y el correcto funcionamiento de la actualización de las mismas.
@@ -89,7 +89,7 @@ Se comprueba la correcta creacion de las entidades `User` y `Video` en persisten
   - `updateUser`
   - `createVideo`  
   - `updateVideo`
-  
+
 ### DAOUtilsTest
 Se comprueba el correcto funcionamiento de algunas funciones utiles para la persistencia como:
   - `stringToList`  
@@ -168,24 +168,135 @@ En el menu de *Settings* podemos cambiar el tema al **Modo nocturno**:
 
 ### Home
 
+#### Buscar video
+
 Para la pestña *Home*, podemos buscar videos por el titulo:
 
-![image-20211228132412810](https://s2.loli.net/2021/12/28/CWbYZREf4hNMtyp.png)
+![Buscador](https://s2.loli.net/2021/12/28/CWbYZREf4hNMtyp.png)
 
 
 
-O filtrar por etiqueta:
+O filtrar video que tiene uno de las etiquetas seleccionadoa (Solo se realiza la busqueda al pulsar el boton de *Buscar Video*):
 
-![image-20211228132454709](https://s2.loli.net/2021/12/28/G7BHyfkmWedsCS5.png)
+![Selector de etiqueta](https://s2.loli.net/2021/12/28/TchX8NQ2UdL6Fzy.png)
+
+![Buscar por etiqueta](https://s2.loli.net/2021/12/28/1XnvuxwiOo7MC68.png)
+
+
+
+#### Añadir nuevo video con xml
+
+Se puede añadir nuevos videos al sistema con el botón de *Luz*, que se mantiene encendido hasta que termina la operación de carga de video.
+
+![Cargar nuevo video](https://s2.loli.net/2021/12/28/2MSChleQ8bqp7cj.png)
+
+
+
+
+
+### Visualizar video
+
+Se puede visualizar video, haz click al video que quiere reproducir y se abre en un nuevo ventana [Visualizador de Video](#VideoPlayer)
+
+
+
+
+
+### Recientes
+
+En la pestaña de recientes, la función que tiene es muy simple, **contiene la lista de 5 videos visto más recientes** que podrá ser visualizado al hacer click en el video que se abre [Visualizador de Video](#VideoPlayer).
+
+![image-20211228192411524](https://s2.loli.net/2021/12/29/dWTOsuVy4gUpjxl.png)
+
+
+
+
+
+### Mis Playlists
+
+En este pestaña, el usuario puede visualizar todas sus lista de reproducción que tiene guardado, se puede [visualizar el video](#VideoPlayer) haciendo click sobre ellos .
+
+![image-20211228192803967](https://s2.loli.net/2021/12/29/qAfK1Q9TWrt2xnk.png)
+
+
+
+### Crear Playlists
+
+En la pestaña de *Crear Playlist*, que al principio está vacía, podemos **Seleccionar Playlist** existente o podemos **Crear Playlist**. 
+
+![image-20211228195329617](https://s2.loli.net/2021/12/29/GOK8YNmd14sacnf.png)
+
+
+
+Una vez que tenemos seleccionado un playlist, tenemos una vista previa de la playlist, donde podemos ver el titulo de la playlist que en éste caso es `Tecnologia` y podemos reproducir el video haciendo el click sobre él.
+
+![image-20211228211659078](https://s2.loli.net/2021/12/29/rt4mIqohDzv6Hsu.png)
+
+
+
+Haciendo click en *Editar Playlist*, podemos abrir el editor de playlist que explicamos a continuación.
+
+
+
+
+
+#### Editor de playlist
+
+En el editor podemos buscar video por su nombre o filtrar por etiquetas similar al de pestaña *Home*,  Borrar Playlist actual o guardar la selección.
+
+![image-20211228200202454](https://s2.loli.net/2021/12/29/wYZfuLWCNzS9JP2.png)
+
+
+
+### Tendencias
+
+Para los usuarios premium, existe un pestaña de *Tendencia* que permite tener una lista de los 10 videos más visualidado en nuestro sistema.
+
+
+
+![image-20211228213312072](https://s2.loli.net/2021/12/29/cLuqNHoYkwdMrKb.png)
+
+
+
+
+
+## Editor del perfil
+
+Este ventana que se puede acceder mediante `Perfil-Editar`  en la barra de menu de la ventana principal, permite consultar los estados del usuario y cambiar sus datos.
+
+![image-20211228213650537](https://s2.loli.net/2021/12/29/4w2zIBux3VtNFZU.png)
+
+
+
+Otra función importante es generar pdf para los usuarios premium, para generar el pdf, basta con dar al botón de *Generar PDF* y  seleccionar el lugar y el nombre que tenga el pdf final.
+
+
+
+![image-20211228214001484](https://s2.loli.net/2021/12/29/3oQqthsH7OUPjin.png)
+
+
+
+Una vez generado el pdf, tiene lo siguiente formado:
 
 # Observaciones finales
 Esta práctica nos ha enseñado a enfrentarnos a un proyecto de gran envergadura, por lo menos en comparación de todas las prácticas anteriores realizadas en la carrera, perfectamente podría tratarse una aplicación comercial, más allá de que es mejorable en diversos aspectos, si fuese una aplicación que tuviese que competir en el mercado de hoy en día, obviando eso AppVideo se parece a una aplicación real.
 A la hora del desarrollo hemos tenido errores a la hora de como afrontar el diseño software de ciertas partes del programa como la implementacion del componente `VideosLoader` a la hora de hacer uso de el junto al componente `Luz`, pero que hemos solucionado con facilidad. También hemos tenido que aplicar mucho refactoring a lo largo de todo el desarrollo, una vez mas por temas de diseño a la hora de revisar que no incumpliese los patrones `GRASP`, de que se respetase el patrón `modelo-vista`. También de como llevar a cabo ciertas funcionalidades como crear playlist y editarlas, ya que hay varias formas de hacerlo. En resumen, decisiones de diseño que hemos ido tomando y cambiando a lo largo del desarrollo que nos ha llevado muchas horas de refactorización.
 ## Conclusiones
+
 Hemos aprendido mucho sobre patrones de diseño y desarrollo software en general realizando este práctica. Hemos aprendido a utilizar swing, a diseñar interfaces gráficas, la separacion en capas de la aplicacion (`modelo-vista`), adaptadores, factorias abstractas y patrón `dao` para usar la base de datos, uso de `layouts`, etc.
 
+
+
 ## Horas estimadas
-|          Alumnos           |      GUI      |  Modelo | Persistencia | Componentes | Refactoring/Mejoras | Utils | Memoria | Horas estimadas |
-|----------------------------|:-------------:|--------:| ------------:| -----------:| -------------------:| -----:| -------:| ---------------:|
-| Jose Luis Sanchez Carrasco |  60           |  15     | 10           | 5           | 70                  | 2     | 5       | 167             |
-| Mengchen Huang             |  65           |  5      | 15           | 4           | 80                  | 5     | 5       | 179             |
+
+
+|       Alumnos       | Jose Luis Sanchez Carrasco | Mengchen Huang |
+| :-----------------: | :------------------------: | :------------: |
+|         GUI         |             60             |       65       |
+|       Modelo        |             15             |       5        |
+|    Persistencia     |             10             |       15       |
+|     Componentes     |             5              |       4        |
+| Refactoring/Mejoras |             70             |       80       |
+|        Utils        |             2              |       5        |
+|       Memoria       |             5              |       5        |
+|   Horas estimadas   |            167             |      179       |
