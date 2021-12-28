@@ -218,7 +218,7 @@ public class AppVideo {
         factory.getDAOPlaylist().create(playlist);
         getCurrentUser().addOrReplacePlaylist(playlist);
         factory.getDAOUser().updateProfile(getCurrentUser());
-        applyFilter(filter);
+        updateFilterForCurrentPlaylists(filter);
         return true;
     }
 
@@ -230,7 +230,7 @@ public class AppVideo {
         getCurrentUser().removePlaylist(title);
         factory.getDAOPlaylist().delete(p);
         factory.getDAOUser().updateProfile(getCurrentUser());
-        applyFilter(filter);
+        updateFilterForCurrentPlaylists(filter);
     }
 
     public void updatePlaylist(Playlist playlist){
@@ -239,7 +239,7 @@ public class AppVideo {
         }
         getCurrentUser().addOrReplacePlaylist(playlist);
         factory.getDAOPlaylist().updateProfile(playlist);
-        applyFilter(filter);
+        updateFilterForCurrentPlaylists(filter);
     }
     
     public Playlist getPlaylist(String title) {
@@ -264,8 +264,12 @@ public class AppVideo {
         getCurrentUser().setFilter(filter);
         factory.getDAOUser().updateProfile(getCurrentUser());
 
-        videoRepository.updateFilteredVideoSet(videoRepository.getVideoList().stream().filter(v->filter.test(v,getCurrentUser())).collect(Collectors.toSet()));
-        this.currentPlaylists = getCurrentUser().getListOfPlaylist().stream()
+        videoRepository.updateFilteredVideoSet(videoRepository.getVideoList().stream().parallel().filter(v->filter.test(v,getCurrentUser())).collect(Collectors.toSet()));
+        updateFilterForCurrentPlaylists(filter);
+    }
+
+    private void updateFilterForCurrentPlaylists(IFilter filter){
+        this.currentPlaylists = getCurrentUser().getListOfPlaylist().stream().parallel()
                 .filter(playlist -> videoRepository.getUnmodifiableFilteredVideoSet().containsAll(playlist.getListOfVideos()))
                 .collect(Collectors.toList());
 
