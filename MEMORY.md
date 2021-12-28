@@ -25,16 +25,20 @@ urlcolor: "ogange"
 ---
 
 
-# Diagrama de clases del dominio
-![Diagrama de clases del dominio](images/AppVideo DC.pdf)
 
-# Un diagrama de interacción UML
+# Diagrama de clases del dominio
+
+![Diagrama de clases del dominio](images/UML.pdf)
 
 # Arquitectura y diseño de la aplicación
 
 La aplicación consta de 46 clases para las ventanas que formarán parte de la capa de vistas (paguete `gui`), los adaptadores para las diferentes entidades que se guardan en persistencia (paquete `dao`), las clases del dominio (paquete `model`), el lanzador (paquete `laucher`) y el controlador `AppVideo` (paquete `controller`). En la parte de GUI tenemos diversas clases desarrolladas mas alla de las propias ventanas como Utils, nuevos Layouts y previews para mostrar los videos y las playlist.
 
+
+
 ![Arquitectura y diseño de la app](images/diseñoAPP.png)
+
+
 
 Otro elemento a mencionar es el componente cargador de videos, que consta de 6 clases, 5 ya venian dadas y la sexta es el componente java bean al cual hemos llamado `VideosLoader`, el cual utilizando el patron Observer carga los videos de un XML dado y notifica a los oyentes con los videos que ha cargado. 
 
@@ -56,10 +60,63 @@ Los patrones de diseño que hemos usado indirectamente al usar Java AWT, Swing y
   - Patrón estrategia.
   - Patrón iterador.
   - Patrón observer.
-  
+
 #  Explicación sobre los componentes utilizados. 
 
-Nuestra aplicación hace uso de dos componentes, el primero llamado `luz` se puede encontrar en la ventana `AppVideoWindow`, en concreto en `HomePanel`, es un componente sencillo que al ser pulsado emite una luz de un color, en nuestro caso hemos puesto un color amarillo como luz, y a continuacion se abre un selector de archivos en el que debes seleccionar el `XML` en el que se encuentras las canciones, en nuestro caso se llama `videos.xml`. Una vez seleccionado el archivo el boton vuelve a su estado por defecto y deja de estar pulsado.
+
+
+# Un diagrama de interacción UML para la operación añadir un vídeo a una lista de vídeos del usuario, mostrando los objetos involucrados.
+
+![](/Users/mc/git/TDS-AppVideo/images/SD.pdf)
+
+
+
+Hemos usado *Ashtah* para generar la diagrama de de interacción, la interacción empieza en `PlaylistEditorPanel`, que se inicia al dar el botón de *Guardar Playlist*.
+
+
+
+
+
+
+
+# Una breve explicación de la arquitectura de la aplicación y decisiones de diseño que se consideren de interés para la comprensión del trabajo.
+
+
+
+# La aplicación está dividido en 3 capas, según el modelo de MVC:
+
+
+
+
+
+- Modelo: 
+
+  - DAO, forma parte de Modelo y se encuentra en paquete `dao`
+
+- Vista:
+
+  - Se encuentra en paquete `gui` donde está la implementación de los ventanas y es el nucleo del vista.
+
+  - En paquete `launcher` se encuentra la entrada del programa principal.
+
+- Controlador:
+  - Se encuentra en paquete `controller`, que se encuentra `AppVideo`
+
+
+
+
+
+# Explicación de los patrones de diseño utilizados (directamente por haberlos implementado o indirectamente por formar parte de alguna librería Java usada como Swing o el servicio de persistencia proporcionado por los profesores de la asignatura).
+
+
+
+
+
+
+
+#  Explicación sobre los componentes utilizados.
+
+Nuestra aplicación hace uso de dos componentes, el primero llamado `luz` se puede encontrar en la ventana `AppVideoWindow`, en concreto en `HomePanel`, es un componente sencillo que al ser pulsado emite una luz de un color, en nuestro caso hemos puesto un color amarillo como luz, y a continuacion se abre un selector de archivos en el que debes seleccionar el `XML` en el que se encuentras las canciones, en nuestro caso se llama `videos.xml`. Una vez seleccionado el archivo el botón vuelve a su estado por defecto y deja de estar pulsado.
 
 El segundo componente está directamente relacionado con este componente `luz`, el cual hemos visto que su funcionalidad es elegir un archivo `xml` donde estan los videos que queremos cargar, tras elegir ese archivo hacemos uso de este segundo componente llamado `VideosLoader`, el cual pasandole este archivo `xml` como parametro carga los videos haciendo un mapeo de `xml` a `java`. Una vez cargados los videos por el componente notifica al oyente haciendo uso del patron observer, en este caso `controller` (el controlador) con los videos cargados.
 
@@ -79,11 +136,85 @@ El segundo componente está directamente relacionado con este componente `luz`, 
 
 
 
+## Ventana de login
+
+La ventana de login, que el es primer ventana que se sale al incial el programa, podemos hacer **login** o ir al ventana de **registrar**.
+
+
+
+![image-20211228124442067](https://s2.loli.net/2021/12/28/TVhWOGapeRwNs5S.png)
 
 
 
 
 
+Al hacer un login exitoso, el campo de contraseña se pone con fondo verde para indicar que el usuario y la contraseña son correctos.
+
+
+
+![image-20211228124816680](https://s2.loli.net/2021/12/28/lOHewKbCzGdugEx.png)
+
+
+
+## Ventana de registro
+
+Podemos registra en está venta un nuevo usuario rellenando los datos que necesita.
+
+![image-20211228130225669](https://s2.loli.net/2021/12/28/ugJDF5PpmAGCH6S.png)
+
+
+
+
+
+Al dar el botón de *Registrar*:![image-20211228130333600](https://s2.loli.net/2021/12/28/Rl38vtBaisSwhnT.png)
+
+
+
+Se registrar correctamente si no existe otro usuario con el mismo nombre de usuario y que la contraseña es valida.
+
+
+
+## Ventana principal
+
+
+
+Al hacer el login en el sistema, entramos en la ventana principal del programa:
+
+![image-20211228130908899](https://s2.loli.net/2021/12/28/mQkC97TnrNJX2fI.png)
+
+
+
+En el menu, podemos editar nuestro perfil, donde podemos cambiar los datos de nuestro usuario y hacer que el usuario sea ***premium***
+
+![image-20211228131016569](https://s2.loli.net/2021/12/28/5txXDLhQpqMeg71.png)
+
+
+
+Si sosmos usuario premium, podemos aplicar filtros:
+
+![image-20211228131603503](https://s2.loli.net/2021/12/28/3WSBXqLIZkElciQ.png)
+
+
+
+En el menu de *Settings* podemos cambiar el tema al **Modo nocturno**:
+
+![image-20211228131741710](https://s2.loli.net/2021/12/28/YRHutxFIJlaBXoC.png)
+
+![image-20211228132014400](https://s2.loli.net/2021/12/28/hHb94oSn3vAzgQq.png)
+
+
+
+### Home
+
+Para la pestña *Home*, podemos buscar videos por el titulo:
+
+![image-20211228132412810](https://s2.loli.net/2021/12/28/CWbYZREf4hNMtyp.png)
+
+
+
+O filtrar por etiqueta:
+
+![image-20211228132454709](https://s2.loli.net/2021/12/28/G7BHyfkmWedsCS5.png)
 
 # Observaciones finales
 Esta práctica nos ha enseñado a enfrentarnos a un proyecto de gran envergadura, por lo menos en comparación de todas las prácticas anteriores realizadas en la carrera, perfectamente podría tratarse una aplicación comercial, más allá de que es mejorable en diversos aspectos, si fuese una aplicación que tuviese que competir en el mercado de hoy en día, obviando eso AppVideo se parece a una aplicación real.
