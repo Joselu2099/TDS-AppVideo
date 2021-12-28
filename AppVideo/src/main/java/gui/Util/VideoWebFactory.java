@@ -11,7 +11,7 @@ public class VideoWebFactory {
 
      Esto se podría resolverse si los metodos de getThumbnail es estatica...
     */
-    public static VideoWeb getInstance (){
+    public static synchronized VideoWeb getInstance (){
         if (instance == null){
             instance = new VideoWeb();
         }

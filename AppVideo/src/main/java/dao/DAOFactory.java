@@ -18,7 +18,7 @@ public abstract class DAOFactory {
      * Solo existe el tipo TDSFactoriaDAO
      */
     @SuppressWarnings("deprecation")
-    public static DAOFactory getInstance(String type) throws DAOException {
+    public static synchronized DAOFactory getInstance(String type) throws DAOException {
         if (uniqueInstance == null)
             try {
                 uniqueInstance = (DAOFactory) Class.forName(type).newInstance();

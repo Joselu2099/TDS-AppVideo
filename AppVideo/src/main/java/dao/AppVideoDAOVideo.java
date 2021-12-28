@@ -28,7 +28,7 @@ public final class AppVideoDAOVideo implements DAOVideo {
     }
 
     // Aplicamos el patron Singleton.
-    public static AppVideoDAOVideo getInstance() {
+    public static synchronized AppVideoDAOVideo getInstance() {
         if (uniqueInstance == null)
             uniqueInstance = new AppVideoDAOVideo();
         return uniqueInstance;

@@ -40,7 +40,7 @@ public final class AppVideoDAOUser implements DAOUser {
     }
 
     // Aplicamos el patron Singleton.
-    public static AppVideoDAOUser getInstance() {
+    public static synchronized AppVideoDAOUser getInstance() {
         if (uniqueInstance == null)
             uniqueInstance = new AppVideoDAOUser();
         return uniqueInstance;
