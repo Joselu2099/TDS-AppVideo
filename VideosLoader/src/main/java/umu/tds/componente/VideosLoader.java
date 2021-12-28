@@ -31,7 +31,7 @@ public class VideosLoader implements Serializable {
 	}
 
 	private void notifiedLoadedVideos(Videos videos) {
-		videosListeners.stream().forEach(videosConsumer -> videosConsumer.accept(videos));
+		videosListeners.forEach(videosConsumer -> videosConsumer.accept(videos));
 	}
 
 	public synchronized void subscribeNewVideoLoaded(Consumer<Videos> listener) {
