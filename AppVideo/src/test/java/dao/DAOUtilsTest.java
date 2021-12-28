@@ -54,38 +54,14 @@ class DAOUtilsTest {
     }
 
     @Test
-    void listsToMap() {
-    }
-
-    @Test
-    void idsToVideos() {
-    }
-
-    @Test
-    void videosToIds() {
-    }
-
-    @Test
-    void playlistsToIds() {
-    }
-
-    @Test
-    void filterToString() {
-    }
-
-    @Test
-    void stringToFilter() {
-    }
-
-    @Test
     void safeValueOf() {
         assertEquals(DAOUtils.safeValueOf("1"), Integer.valueOf(1));
         assertEquals(DAOUtils.safeValueOf("-1"), Integer.valueOf(-1));
         assertEquals(DAOUtils.safeValueOf("0"), Integer.valueOf(0));
         assertEquals(DAOUtils.safeValueOf("10007"), Integer.valueOf(10007));
         assertEquals(DAOUtils.safeValueOf("-10007"), Integer.valueOf("-10007"));
-        assertEquals(DAOUtils.safeValueOf("wft"), null);
-        assertEquals(DAOUtils.safeValueOf("nan"), null);
+        assertNull(DAOUtils.safeValueOf("wft"));
+        assertNull(DAOUtils.safeValueOf("nan"));
         assertNull(DAOUtils.safeValueOf(""));
         assertNull(DAOUtils.safeValueOf(null));
     }

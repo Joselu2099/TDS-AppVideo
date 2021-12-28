@@ -61,13 +61,40 @@ Los patrones de diseño que hemos usado indirectamente al usar Java AWT, Swing y
   - Patrón iterador.
   - Patrón observer.
 
-#  Explicación sobre los componentes utilizados.
+#  Explicación sobre los componentes utilizados
 
 Nuestra aplicación hace uso de dos componentes, el primero llamado `luz` se puede encontrar en la ventana `AppVideoWindow`, en concreto en `HomePanel`, es un componente sencillo que al ser pulsado emite una luz de un color, en nuestro caso hemos puesto un color amarillo como luz, y a continuacion se abre un selector de archivos en el que debes seleccionar el `XML` en el que se encuentras las canciones, en nuestro caso se llama `videos.xml`. Una vez seleccionado el archivo el botón vuelve a su estado por defecto y deja de estar pulsado.
 
 El segundo componente está directamente relacionado con este componente `luz`, el cual hemos visto que su funcionalidad es elegir un archivo `xml` donde estan los videos que queremos cargar, tras elegir ese archivo hacemos uso de este segundo componente llamado `VideosLoader`, el cual pasandole este archivo `xml` como parametro carga los videos haciendo un mapeo de `xml` a `java`. Una vez cargados los videos por el componente notifica al oyente haciendo uso del patron observer, en este caso `controller` (el controlador) con los videos cargados.
 
-# Tests unitarios implementados.
+# Tests unitarios implementados
+Se han implementado diversos test unitarios:
+
+## Test para el controlador
+  Se han testeado diversas funciones que se encuentran en el constructor:
+  - `login`: se comprueba que un usuario puede loguearse correctamente.
+  - `isUserRegistered`: se comprueba si la funcion que comprueba si un usuario ya esta registrado funciona correctamente.
+  - `setPremium`: se comprueba si un usuario se hace premium.
+  - `registerUser`: se comprueba que funciona correctamente el registro de usuarios.
+  - `setNightMode`: se comprueba que se pone bien el nightMode.
+  - `applyFilter`: se comprueba que se aplica un filtro correctamente.
+  - `persistVideo`: se comprueba la funcionalidad de persistir un video.
+  - `createPlaylist`: se comprueba la funcionalidad de crear una playlist.
+  - `removePlaylist`: se comprueba la funcionalidad de borrar una playlist.
+  
+## Test para persistencia
+### DAOTest
+Se comprueba la correcta creacion de las entidades `User` y `Video` en persistencia y el correcto funcionamiento de la actualización de las mismas.
+  - `createUser`
+  - `updateUser`
+  - `createVideo`  
+  - `updateVideo`
+  
+### DAOUtilsTest
+Se comprueba el correcto funcionamiento de algunas funciones utiles para la persistencia como:
+  - `stringToList`  
+  - `listToString`  
+  - `safeValueOf`  
 
 # Un breve manual de usuario que explique cómo usar la aplicación
 
