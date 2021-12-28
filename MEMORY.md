@@ -85,4 +85,14 @@ El segundo componente está directamente relacionado con este componente `luz`, 
 
 
 
-# Observaciones finales (deben incluir una estimación del tiempo dedicado a la práctica)
+# Observaciones finales
+Esta práctica nos ha enseñado a enfrentarnos a un proyecto de gran envergadura, por lo menos en comparación de todas las prácticas anteriores realizadas en la carrera, perfectamente podría tratarse una aplicación comercial, más allá de que es mejorable en diversos aspectos, si fuese una aplicación que tuviese que competir en el mercado de hoy en día, obviando eso AppVideo se parece a una aplicación real.
+A la hora del desarrollo hemos tenido errores a la hora de como afrontar el diseño software de ciertas partes del programa como la implementacion del componente `VideosLoader` a la hora de hacer uso de el junto al componente `Luz`, pero que hemos solucionado con facilidad. También hemos tenido que aplicar mucho refactoring a lo largo de todo el desarrollo, una vez mas por temas de diseño a la hora de revisar que no incumpliese los patrones `GRASP`, de que se respetase el patrón `modelo-vista`. También de como llevar a cabo ciertas funcionalidades como crear playlist y editarlas, ya que hay varias formas de hacerlo. En resumen, decisiones de diseño que hemos ido tomando y cambiando a lo largo del desarrollo que nos ha llevado muchas horas de refactorización.
+## Conclusiones
+Hemos aprendido mucho sobre patrones de diseño y desarrollo software en general realizando este práctica. Hemos aprendido a utilizar swing, a diseñar interfaces gráficas, la separacion en capas de la aplicacion (`modelo-vista`), adaptadores, factorias abstractas y patrón `dao` para usar la base de datos, uso de `layouts`, etc.
+
+## Horas estimadas
+|          Alumnos           |      GUI      |  Modelo | Persistencia | Componentes | Refactoring/Mejoras | Utils | Memoria | Horas estimadas |
+|----------------------------|:-------------:|--------:| ------------:| -----------:| -------------------:| -----:| -------:| ---------------:|
+| Jose Luis Sanchez Carrasco |  60           |  15     | 10           | 5           | 70                  | 2     | 5       | 167             |
+| Mengchen Huang             |  65           |  5      | 15           | 4           | 80                  | 5     | 5       | 179             |
