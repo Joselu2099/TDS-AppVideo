@@ -61,59 +61,6 @@ Los patrones de diseño que hemos usado indirectamente al usar Java AWT, Swing y
   - Patrón iterador.
   - Patrón observer.
 
-#  Explicación sobre los componentes utilizados. 
-
-
-
-# Un diagrama de interacción UML para la operación añadir un vídeo a una lista de vídeos del usuario, mostrando los objetos involucrados.
-
-![](/Users/mc/git/TDS-AppVideo/images/SD.pdf)
-
-
-
-Hemos usado *Ashtah* para generar la diagrama de de interacción, la interacción empieza en `PlaylistEditorPanel`, que se inicia al dar el botón de *Guardar Playlist*.
-
-
-
-
-
-
-
-# Una breve explicación de la arquitectura de la aplicación y decisiones de diseño que se consideren de interés para la comprensión del trabajo.
-
-
-
-# La aplicación está dividido en 3 capas, según el modelo de MVC:
-
-
-
-
-
-- Modelo: 
-
-  - DAO, forma parte de Modelo y se encuentra en paquete `dao`
-
-- Vista:
-
-  - Se encuentra en paquete `gui` donde está la implementación de los ventanas y es el nucleo del vista.
-
-  - En paquete `launcher` se encuentra la entrada del programa principal.
-
-- Controlador:
-  - Se encuentra en paquete `controller`, que se encuentra `AppVideo`
-
-
-
-
-
-# Explicación de los patrones de diseño utilizados (directamente por haberlos implementado o indirectamente por formar parte de alguna librería Java usada como Swing o el servicio de persistencia proporcionado por los profesores de la asignatura).
-
-
-
-
-
-
-
 #  Explicación sobre los componentes utilizados.
 
 Nuestra aplicación hace uso de dos componentes, el primero llamado `luz` se puede encontrar en la ventana `AppVideoWindow`, en concreto en `HomePanel`, es un componente sencillo que al ser pulsado emite una luz de un color, en nuestro caso hemos puesto un color amarillo como luz, y a continuacion se abre un selector de archivos en el que debes seleccionar el `XML` en el que se encuentras las canciones, en nuestro caso se llama `videos.xml`. Una vez seleccionado el archivo el botón vuelve a su estado por defecto y deja de estar pulsado.
@@ -122,19 +69,7 @@ El segundo componente está directamente relacionado con este componente `luz`, 
 
 # Tests unitarios implementados.
 
-
-
-
-
-
-
-
-
-
-
 # Un breve manual de usuario que explique cómo usar la aplicación
-
-
 
 ## Ventana de login
 
