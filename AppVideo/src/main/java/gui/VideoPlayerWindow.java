@@ -33,7 +33,7 @@ public class VideoPlayerWindow extends JDialog {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                videoWeb.cancel(); // Stop playing in background when windows is closed.
+                videoWeb.cancel(); // Stop playing in background when windows are closed.
             }
         });
 
@@ -110,20 +110,20 @@ public class VideoPlayerWindow extends JDialog {
     }
 
 
-    public static void main(String[] args) {
-        IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/ArcPurple.theme.json"));
-//        IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
-        EventQueue.invokeLater(() -> {
-            try {
-                Video v = new Video("https://www.youtube.com/watch?v=XKfgdkcIUxw");
-                v.addLabels(Label.INFANTIL);
-                v.addLabels(Label.VIDEOCLIP);
-                VideoPlayerWindow frame = new VideoPlayerWindow(v);
-                frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
+//     public static void main(String[] args) {
+//         IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/ArcPurple.theme.json"));
+// //        IntelliJTheme.setup(Launcher.class.getResourceAsStream("/themes/DarkPurple.theme.json"));
+//         EventQueue.invokeLater(() -> {
+//             try {
+//                 Video v = new Video("https://www.youtube.com/watch?v=XKfgdkcIUxw");
+//                 v.addLabels(Label.INFANTIL);
+//                 v.addLabels(Label.VIDEOCLIP);
+//                 VideoPlayerWindow frame = new VideoPlayerWindow(v);
+//                 frame.setVisible(true);
+//             } catch (Exception e) {
+//                 e.printStackTrace();
+//             }
+//         });
+//     }
 }
 
