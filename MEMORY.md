@@ -100,11 +100,29 @@ Los patrones de diseño que hemos usado indirectamente al usar Java AWT, Swing y
 
 
 
-Nuestra aplicación hace uso de dos componentes, el primero llamado `luz` se puede encontrar en la ventana `AppVideoWindow`, en concreto en `HomePanel`, es un componente sencillo que al ser pulsado emite una luz de un color, en nuestro caso hemos puesto un color amarillo como luz, y a continuacion se abre un selector de archivos en el que debes seleccionar el `XML` en el que se encuentras las canciones, en nuestro caso se llama `videos.xml`. Una vez seleccionado el archivo el botón vuelve a su estado por defecto y deja de estar pulsado.
+El primer componente usado en nuestra aplicación llamado `luz` se puede encontrar en la ventana `AppVideoWindow`, en concreto en `HomePanel`, es un componente sencillo que al ser pulsado emite una luz de un color, en nuestro caso hemos puesto un color amarillo como luz, y a continuacion se abre un selector de archivos en el que debes seleccionar el `XML` en el que se encuentras las canciones, en nuestro caso se llama `videos.xml`. Una vez seleccionado el archivo el botón vuelve a su estado por defecto y deja de estar pulsado.
 
 El segundo componente está directamente relacionado con este componente `luz`, el cual hemos visto que su funcionalidad es elegir un archivo `xml` donde estan los videos que queremos cargar, tras elegir ese archivo hacemos uso de este segundo componente llamado `VideosLoader`, el cual pasandole este archivo `xml` como parametro carga los videos haciendo un mapeo de `xml` a `java`. Una vez cargados los videos por el componente notifica al oyente haciendo uso del patron observer, en este caso `controller` (el controlador) con los videos cargados.
 
 
+
+Tambien usamos componente `VideoWeb` que nos permite visualizar videos de YouTube mediante `JavaFX`.
+
+
+
+Para poder comunicar con el base de dato, usamos `DriverPersistencia` que en este caso usamos `H2`.
+
+
+
+Para la generación de PDF, hemos usado `itextpdf`, para extraer el nombre base del fichero, hemos usado `commons-io` para poder hacerlo en multiple plataforma (Lo podríamos hacer con regex tambien).
+
+
+
+Para *"Look&Feel"* de swing, hemos optado por un tema plano y moderno, `flatlaf`, que permite cambiar los colores con un fichero *json*.
+
+
+
+Para los test unitarias, hemos usado `JUnit`.
 
 # Tests unitarios implementados
 Se han implementado diversos test unitarios:
@@ -145,6 +163,14 @@ Se comprueba el correcto funcionamiento de algunas funciones utiles para la pers
   - `safeValueOf`  
 
 # Un breve manual de usuario que explique cómo usar la aplicación
+
+Antes de ejecutar la aplicación, debemos iniciar el base de dato H2 que se encuentra en la ruta del proyecto.
+
+```bash
+java -jar ServidorPersistenciaH2.jar
+```
+
+
 
 ## Ventana de login
 
@@ -238,7 +264,7 @@ O filtrar video que tiene uno de las etiquetas seleccionadoa (Solo se realiza la
 
 #### Añadir nuevo video con xml
 
-Se puede añadir nuevos videos al sistema con el botón de *Luz*, que se mantiene encendido hasta que termina la operación de carga de video.
+**Se puede añadir nuevos videos al sistema con el botón de *Luz***, que se mantiene encendido hasta que termina la operación de carga de video.
 
 ![Cargar nuevo video](https://s2.loli.net/2021/12/28/2MSChleQ8bqp7cj.png)
 
